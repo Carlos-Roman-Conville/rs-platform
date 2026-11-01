@@ -206,6 +206,13 @@
    "date": "2026-10-30",
    "kind": "quantity",
    "reason": "SOC-1 (Society keeper 2026-10-31): a religious community is a view of society.organisation (one store); planned, never built"
+  },
+  {
+   "old": "air.pao2",
+   "new": "body.pao2",
+   "date": "2026-10-31",
+   "kind": "quantity",
+   "reason": "Reality keeper 2026-10-31 (unit 2765); non-owner writes left in code are recorded as '(2765) multi-writer:' flags for the overlap work: PO2 in the alveoli and blood belongs to the body (respiration after SPLIT step 2b); gas.altitude_inspired_po2 writes only the inspired air value"
   }
  ]
 }

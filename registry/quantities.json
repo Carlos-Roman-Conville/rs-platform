@@ -10,7 +10,7 @@
    "checked": "2026-10-30",
    "parser": "Toolchain/kernel/src/units.ts parse (unit 2592)",
    "tally": {
-    "parses": 299,
+    "parses": 300,
     "kind record": 123,
     "kind text": 1,
     "kind categorical": 8,
@@ -154,12 +154,10 @@
    "scope": "air",
    "writer": null,
    "description": "PAO2",
-   "status": "seed: several writers (an overlap or a naming clash to resolve)",
-   "candidate_writers": [
-    "realism.gas.alveolar_po2",
-    "realism.gas.ventilation_drive"
-   ],
+   "status": "retired",
    "kind": "quantity",
+   "retired_reason": "Reality keeper 2026-10-31 (unit 2765); non-owner writes left in code are recorded as '(2765) multi-writer:' flags for the overlap work: PO2 in the alveoli and blood belongs to the body (respiration after SPLIT step 2b); gas.altitude_inspired_po2 writes only the inspired air value",
+   "replaced_by": "body.pao2",
    "unit_parses": true
   },
   {
@@ -694,15 +692,12 @@
    "unit_text": "event",
    "unit_status": "n/a (record)",
    "scope": "body",
-   "writer": null,
+   "writer": "realism.infra.crisis_record",
    "description": "crisis",
-   "status": "seed: several writers (an overlap or a naming clash to resolve)",
-   "candidate_writers": [
-    "realism.medicine.disease_course",
-    "realism.physiology.hydration_band"
-   ],
+   "status": "confirmed by owner",
    "kind": "record",
    "kind_note": "a crisis record (IF-1)",
+   "writer_note": "Reality keeper 2026-10-31 (unit 2765); non-owner writes left in code are recorded as '(2765) multi-writer:' flags for the overlap work: the crisis and cause-of-death ledger (2710; crisis.ts recordCrisis / trackCrisis); medicine, anatomy and the others open crises by calling the ledger, as callers not writers",
    "unit_parses": null
   },
   {
@@ -1243,6 +1238,18 @@
    "description": "PAL",
    "status": "seed",
    "kind": "quantity",
+   "unit_parses": true
+  },
+  {
+   "id": "body.pao2",
+   "unit": "mmHg",
+   "unit_text": "mmHg",
+   "unit_status": "mapped",
+   "kind": "quantity",
+   "scope": "body",
+   "writer": "realism.gas.breathing_process",
+   "description": "alveolar and arterial oxygen partial pressure",
+   "status": "confirmed by owner",
    "unit_parses": true
   },
   {
@@ -1910,15 +1917,11 @@
    "unit_text": "J",
    "unit_status": "as given",
    "scope": "component",
-   "writer": null,
+   "writer": "realism.infra.world_conservation",
    "description": "heat",
-   "status": "seed: several writers (an overlap or a naming clash to resolve)",
-   "candidate_writers": [
-    "realism.chem.carbon_combustion_charcoal",
-    "realism.chem.heat_per_kg",
-    "realism.thermo.metabolic_heat"
-   ],
+   "status": "confirmed by owner",
    "kind": "quantity",
+   "writer_note": "Reality keeper 2026-10-31 (unit 2765); non-owner writes left in code are recorded as '(2765) multi-writer:' flags for the overlap work: the substrate energy ledger (registry contents); every thermal process moves heat as a ledger transfer",
    "unit_parses": true
   },
   {
@@ -3993,12 +3996,10 @@
    "scope": "plugin",
    "writer": null,
    "description": "state",
-   "status": "seed: several writers (an overlap or a naming clash to resolve)",
-   "candidate_writers": [
-    "pirate.align.reducer",
-    "pirate.env.weather_markov"
-   ],
+   "status": "confirmed by owner",
    "kind": "quantity",
+   "writer_note": "Reality keeper 2026-10-31 (unit 2765); non-owner writes left in code are recorded as '(2765) multi-writer:' flags for the overlap work: a host input, not a realism mechanism",
+   "written_by": "host (the pirate plugin's own state)",
    "unit_parses": false
   },
   {

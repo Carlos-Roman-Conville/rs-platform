@@ -2495,3 +2495,14 @@ QUANTITY_OPS += [
 # --- 2026-10-31: re-audit of settlement 47af0d5 (2771, provider ports) and 3069dda (2781, DUP-62 doc) ---
 DECISIONS["DUP-62"]["progress"].append({"date": "2026-10-31", "step": "unit passed (doc part)", "by": "registry keeper", "commit": "settlement 3069dda (2781)",
     "note": "re-audited: PACKAGES.md and README.md mark office powers and succession as Government's; Office.powers[] and appoint / vacate / grantPermission are records only. The code part (AuthorityProvider.may, tests (1)-(4)) waits for Government; group stays closing"})
+
+# --- 2026-10-31: the last four REG-16 multi-writer quantities (Reality keeper, for unit 2765) ---
+QUANTITY_OPS += [
+ ("rename", "air.pao2", [("body.pao2", "mmHg", "quantity", "alveolar and arterial oxygen partial pressure")],
+  _RW + ": PO2 in the alveoli and blood belongs to the body (respiration after SPLIT step 2b); gas.altitude_inspired_po2 writes only the inspired air value"),
+ ("writer", "body.crisis", "realism.infra.crisis_record", _RW + ": the crisis and cause-of-death ledger (2710; crisis.ts recordCrisis / trackCrisis); medicine, anatomy and the others open crises by calling the ledger, as callers not writers"),
+ ("writer", "component.heat", "realism.infra.world_conservation", _RW + ": the substrate energy ledger (registry contents); every thermal process moves heat as a ledger transfer"),
+ ("writer", "plugin.state", None, _RW + ": a host input, not a realism mechanism"),
+]
+QUANTITY_PATCH.setdefault("body.pao2", {}).update({"writer": "realism.gas.breathing_process"})
+QUANTITY_PATCH.setdefault("plugin.state", {}).update({"written_by": "host (the pirate plugin's own state)"})

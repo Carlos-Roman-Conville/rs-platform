@@ -9217,7 +9217,6 @@
    "audit_batch": "pirate-world",
    "audit_id": null,
    "writes": [
-    "plugin.state",
     "plugin.log"
    ],
    "reads": [],
@@ -17603,9 +17602,7 @@
    "unit_issues": [],
    "audit_batch": "pirate-world",
    "audit_id": null,
-   "writes": [
-    "plugin.state"
-   ],
+   "writes": [],
    "reads": [],
    "aggregates": null,
    "vv": {
@@ -26780,8 +26777,7 @@
    "writes": [
     "component.co2",
     "component.co",
-    "component.o2_used",
-    "component.heat"
+    "component.o2_used"
    ],
    "reads": [],
    "aggregates": null,
@@ -26882,9 +26878,7 @@
    "unit_issues": [],
    "audit_batch": "realism-phys",
    "audit_id": null,
-   "writes": [
-    "component.heat"
-   ],
+   "writes": [],
    "reads": [],
    "aggregates": null,
    "vv": {
@@ -31356,9 +31350,7 @@
    "interfaces": [
     "IF-30"
    ],
-   "writes": [
-    "air.pao2"
-   ],
+   "writes": [],
    "reads": [],
    "aggregates": null,
    "vv": {
@@ -32799,8 +32791,7 @@
    "audit_id": null,
    "writes": [
     "air.ve",
-    "air.paco2",
-    "air.pao2"
+    "air.paco2"
    ],
    "reads": [],
    "aggregates": null,
@@ -35271,8 +35262,7 @@
    ],
    "writes": [
     "body.stage_incubating_ill",
-    "body.fatal_draw_day",
-    "body.crisis"
+    "body.fatal_draw_day"
    ],
    "reads": [],
    "aggregates": null,
@@ -41239,8 +41229,7 @@
    "audit_id": null,
    "writes": [
     "body.endurance_hydration",
-    "body.work_capacity_hydration",
-    "body.crisis"
+    "body.work_capacity_hydration"
    ],
    "reads": [],
    "aggregates": null,
@@ -45885,9 +45874,7 @@
    "closed_overlap_groups": [
     "DUP-5"
    ],
-   "writes": [
-    "component.heat"
-   ],
+   "writes": [],
    "reads": [],
    "aggregates": null,
    "vv": {
