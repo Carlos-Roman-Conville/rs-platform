@@ -3051,3 +3051,8 @@ for _g in INTERFACE_GAPS:
     if _g["interface"] == "IF-27":
         _g["owner_remaining"] = ["life (LabourSupply provider)", "kernel harness (shared.host.work_resolution; Kernel keeper code after v0.1.0, History keeper specification in X1)"]
         _g["progress"] += "; controller 2026-11-01: the hire step is the kernel harness's (contract row shared.host.work_resolution); the game adapter plays the same role in a game"
+
+# --- 2026-11-01: Kernel keeper: shared.host.work_resolution unit drafted after History's X1 spec defines an "accepted" work intention (hours > 0? available()? reservation wage vs posted wage?); Needs 2823 ---
+for _r in EXTRA_ROWS:
+    if _r["id"] == "shared.host.work_resolution":
+        _r["notes"] += "; open (History keeper, X1 spec): what makes a work intention accepted (hours > 0, available(), or reservation wage vs posted wage); the kernel unit (Needs 2823) waits on it; the harness already reaches Settlement's apply and LabourSupply (settlement src/providers.ts)"
