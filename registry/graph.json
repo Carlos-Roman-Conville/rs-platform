@@ -9051,6 +9051,12 @@
      "step": "re-audit: not passed",
      "by": "registry keeper",
      "note": "amended id test passes (kernel 2749, aa8e64c). harness rerun by the registry keeper at kernel 1e7f8bb (PLATFORM §11b: the recovery changed contract code): 13 of 15 pass; thirty-days 'P0 one clock' and replay 'canonical-equal snapshots' both TIMED OUT (600 s and 1200 s test timeouts; ran 1622 s and 2674 s), no assertion failed; unverified, not failed. Closes when the replay test passes after the recovery (Kernel keeper: raise the timeout or find the slowdown). Economy's hand-minted txn ids are local ids qualified at the boundary, acceptable under the amended scheme"
+    },
+    {
+     "date": "2026-10-31",
+     "step": "units queued",
+     "by": "Kernel keeper",
+     "note": "kernel 2886 raises the harness limits (thirty-days 3600 s, replay 7200 s; hang guards for periodic validation runs); kernel 2887 (gate-only) runs both once and prints their duration; its pass is the record. Machine at 100 % CPU tonight (69 Claude, 4 Codex) fits a 2.7x slowdown with no failed assertion"
     }
    ]
   },
@@ -9103,6 +9109,12 @@
      "step": "units queued",
      "by": "Reality keeper",
      "note": "realism 2846 (after 2845): exports assertDayMatchesClock(day, tSeconds, origin?) (floor(t/86400) on the integer clock); realism calls it after each daily tick wherever it drives the clock; population, ecology and medicine ticks document that a host must call it; a test drives all three ticks for five days at 60 s and fails on a skipped or doubled day. Re-audit when it lands; the harness timeout (Kernel keeper) is the other open item. Note for the re-audit: the amended clause needs the kernel adapter to assert, so check the kernel harness adapter calls it where it drives realism"
+    },
+    {
+     "date": "2026-10-31",
+     "step": "units queued",
+     "by": "Kernel keeper",
+     "note": "kernel 2886 raises the harness limits (thirty-days 3600 s, replay 7200 s; hang guards for periodic validation runs); kernel 2887 (gate-only) runs both once and prints their duration; its pass is the record. Machine at 100 % CPU tonight (69 Claude, 4 Codex) fits a 2.7x slowdown with no failed assertion"
     }
    ]
   },
