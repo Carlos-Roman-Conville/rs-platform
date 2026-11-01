@@ -3094,3 +3094,15 @@ for _r in EXTRA_ROWS:
 for _r in EXTRA_ROWS:
     if _r["id"] == "shared.host.work_resolution":
         _r["tests"] = "planned: Toolchain/kernel harness/work-resolution.test.ts (kernel 5006, after v0.1.0 / 2823); X1 seam S6 Gate H1-H4 (history DESIGN §3.8)"
+
+# --- 2026-11-01: controller's role ruling, option (a): the role or post travels in the intention's target; terms stay numbers only; no Cognition type change ---
+for _r in EXTRA_ROWS:
+    if _r["id"] == "shared.host.work_resolution":
+        _r["formulation"] = _r["formulation"].replace(
+            "AND a vacant post of the role named in the intention's terms exists in Settlement. Post mapping: the first vacant post of that role by stable id (deterministic under replay). No role in terms: not accepted (status failed, reason 'no role').",
+            "AND a vacant post exists for the intention's target. ROLE SOURCE (controller 2026-11-01, option a): for a work intention, target = a Settlement role id or post id the mind knows through perception (its affordances, IF-46); "
+            "a role id resolves to the first vacant post of that role by stable id (deterministic under replay), a post id directly; no target: not accepted (status failed, reason 'no target'); "
+            "terms stay numbers only (cognition src/types.ts), no Cognition type change. Vacancy is acceptance until Society's organisations.")
+        _r["notes"] = _r["notes"].replace("; OPEN 2026-11-01 (escalated): the ruling reads the role from the intention's terms, but terms are numbers only (cognition src/types.ts), so a role name cannot be a term; where the role comes from (target, a numeric role id, or a terms type change) is the controller's call",
+                                          "; role source ruled 2026-11-01 (controller, option a): the intention's target")
+        assert "option a" in _r["formulation"] and "option a" in _r["notes"]
