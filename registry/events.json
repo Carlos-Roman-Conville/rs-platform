@@ -3,13 +3,21 @@
     {
       "type": "shared.action.outcome",
       "producer": "shared.action.resolution",
-      "consumers": ["cognition.learning.outcome"],
+      "consumers": [
+        "cognition.learning.outcome"
+      ],
       "cause": "required",
       "payload": {
-        "status": { "kind": "string", "required": true },
-        "stimuli": { "kind": "list", "required": true }
+        "status": {
+          "kind": "string",
+          "required": true
+        },
+        "stimuli": {
+          "kind": "list",
+          "required": true
+        }
       },
-      "notes": "CG-16/CG-18 (Cognition keeper 2026-11-01; agreed by Reality, Life, Economy and Settlement). One outcome type for every action kind; cause = the intention event id; status completed | failed | impossible (C-Q25: whether a refusal is failed, Rex). Produced by the engine resolving the action kind (shared.action.resolution); consumed through the host's outcome command. stimuli are raw scene truth records; their element schema is not yet fixed (no 3007 kind fits a record), so 'of' is omitted. payload? carries the engine-native record (trade, refused, contact_event) and is not typed here."
+      "notes": "CG-16/CG-18 (Cognition keeper 2026-11-01; agreed by Reality, Life, Economy and Settlement). One outcome type for every action kind; cause = the intention event id; status completed | failed | impossible (C-Q25: whether a refusal is failed, Rex). Produced by the engine resolving the action kind (shared.action.resolution); consumed through the host's outcome command. stimuli are raw scene truth records; their element schema is not yet fixed (no 3007 kind fits a record), so 'of' is omitted. payload? carries the engine-native record (trade, refused, contact_event) and is not typed here. Settlement (3047) emits it only when hire carries a cause, with stimuli [{post, holder, wage}]."
     },
     {
       "type": "settlement.post_filled",
@@ -17,11 +25,21 @@
       "consumers": [],
       "cause": "optional",
       "payload": {
-        "post": { "kind": "id", "required": true },
-        "holder": { "kind": "id", "required": true },
-        "wage": { "kind": "number", "quantity": "settlement.post_wage", "required": true }
+        "post": {
+          "kind": "id",
+          "required": true
+        },
+        "holder": {
+          "kind": "id",
+          "required": true
+        },
+        "wage": {
+          "kind": "number",
+          "quantity": "settlement.post_wage",
+          "required": true
+        }
       },
-      "notes": "IF-27 (Settlement keeper 2026-11-01): native event emitted by hire beside shared.action.outcome; cause is the intention event id when hire was asked for by an intention. Consumers to be named by Settlement."
+      "notes": "IF-27 (Settlement keeper 2026-11-01, fields confirmed): native event emitted by hire beside shared.action.outcome; cause is the intention event id when hire was asked for by an intention. No engine reads it directly: it travels as the payload of shared.action.outcome, consumed by cognition.learning.outcome (indirect, so consumers stay empty); the pirate host's story bridge ignores it. Built by settlement 3047 (test U24)."
     }
   ]
 }

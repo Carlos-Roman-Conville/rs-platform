@@ -2983,3 +2983,7 @@ for _g in INTERFACE_GAPS:
         _g["progress"] += "; registry/events.json populated 2026-11-01 with shared.action.outcome and settlement.post_filled (IF-27, Settlement keeper)"
     if _g["interface"] == "IF-27":
         _g["progress"] += "; agreed by Cognition, Economy, Settlement 2026-11-01; hire takes cause? and emits shared.action.outcome + settlement.post_filled (Settlement's next unit); CONTRACTS §19 optional reservationWage (economy da42670, settlement 87ff281)"
+
+# --- 2026-11-01: IF-27 unit queued: settlement 3047 (hire.cause, postFilled, shared.action.outcome; test U24) ---
+for _g in INTERFACE_GAPS:
+    if _g["interface"] == "IF-27": _g["progress"] += "; settlement 3047 queued (Codex: hire.cause, postFilled, shared.action.outcome; test U24); money-ledger migration onto kernel.transfer after kernel v0.1.0"
