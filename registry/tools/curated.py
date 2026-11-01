@@ -3118,3 +3118,8 @@ for _r in EXTRA_ROWS:
         _r["notes"] = _r["notes"].replace("; OPEN 2026-11-01: Cognition queued 5007/5008 (role?: string on Intention) against ruling (a); controller asked which stands; Life's provider is unaffected (the host supplies roleOf(intention))",
             "; (a) confirmed by the controller 2026-11-01: Cognition's role? type change withdrawn (a DESIGN §2.4 note on the target convention instead); kernel 5006 and Life's roleOf(intention) read target; the failure reason is 'no target'")
         assert "(a) confirmed" in _r["notes"]
+
+# --- 2026-11-01: History DESIGN §3.8 at ab3274a: target carries the role, fixture interim dropped, reason 'no target' (registry keeper checked: 'no role' absent, 'no target' x2) ---
+for _r in EXTRA_ROWS:
+    if _r["id"] == "shared.host.work_resolution":
+        _r["home"] = _r["home"].replace("e1ff6ea cites this contract, H1 checks the accepted rule)", "e1ff6ea cites this contract, H1 checks the accepted rule; ab3274a: target carries the role, reason 'no target')")
