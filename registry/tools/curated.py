@@ -2930,3 +2930,8 @@ for _r in EXTRA_ROWS:
     if _r["id"] == "kernel.transfer":
         _r["notes"] = ("controller decision 2026-11-01 (go); after kernel v0.1.0 the ledgers migrate in paired units: Economy's goods stock ledger (adjust, economy.stock_changes; takeMass/addMass first) "
                        "and Settlement's money ledger (CONTRACTS §3; Economy has no money ledger); CHAINS CG-19/20/21 adopt it")
+
+# --- 2026-11-01: Reality accepted the CG-22 rule (no buffer); 3001 needs kernel 3006 and uses transfer(); Life's chain units queued as realism 3014-3019 (3015 = CG-21 + CG-3) ---
+for _g in INTERFACE_GAPS:
+    if _g["interface"] == "CG-22": _g["progress"] += "; Reality accepted 2026-11-01 as worded, no buffer; realism 3001 needs kernel 3006 and uses transfer() for every soil transfer; tests 'integration rule (3001)', 'one transfer (3001)'"
+    if _g["interface"] in ("CG-21", "CG-3"): _g["progress"] += "; queued as realism 3015 (needs 2815 and 3001)"
