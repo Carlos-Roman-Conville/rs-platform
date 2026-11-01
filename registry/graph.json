@@ -5006,7 +5006,7 @@
   {
    "id": "society.convention.payment_acceptance",
    "engine": "society",
-   "status": "planned",
+   "status": "built",
    "kind": "mechanism",
    "domain": "F",
    "scope": "universal"

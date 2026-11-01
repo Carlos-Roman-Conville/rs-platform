@@ -70,7 +70,7 @@ mechanisms, and are not itemised. Coverage limits are listed in `HQ/handoffs/reg
 | settlement mechanisms | 23 | 0 | 1 | 24 |
 | economy mechanisms | 24 | 0 | 5 | 29 |
 | cognition mechanisms | 14 | 0 | 41 | 55 |
-| society mechanisms | 0 | 0 | 18 | 18 |
+| society mechanisms | 1 | 0 | 17 | 18 |
 | government mechanisms | 6 | 0 | 10 | 16 |
 | knowledge mechanisms | 0 | 0 | 7 | 7 |
 | history mechanisms | 0 | 0 | 1 | 1 |
@@ -78,7 +78,7 @@ mechanisms, and are not itemised. Coverage limits are listed in `HQ/handoffs/reg
 | shared mechanisms | 7 | 5 | 5 | 17 |
 | pirate-ship mechanisms | 24 | 63 | 15 | 102 |
 | restatements (pirate docs and adapters) | 0 | 90 | 2 | 92 |
-| **all rows** | 229 | 161 | 200 | 590 |
+| **all rows** | 230 | 161 | 199 | 590 |
 
 **Restatements** are not errors: the pirate body docs are rendered from the same library JSON as the realism
 code (`body/build-body-data.py`), so their tables cannot disagree with the code. Disagreements live only in their
@@ -491,7 +491,7 @@ stability/conservation/boundary tests, `integration_tested_with`, integration te
 | `society.affordance.offer` | P | F | U | 4 | --- |  | society/DESIGN.md (society 1515974; proposed, awaiting Rex) |
 | `society.class.structure` | P | F | U | 3 | --- |  | society/DESIGN.md (society 1515974; proposed, awaiting Rex) |
 | `society.collective.action` | P | F | U | ? | --- |  | society/DESIGN.md (society 1515974; proposed, awaiting Rex) |
-| `society.convention.payment_acceptance` | P | F | U | ? | --- |  | HQ/handoffs/economy/MULTI-ECONOMY-DESIGN.md v2 (Rex 2026-11-01, ENGINES.md 'Competing econ |
+| `society.convention.payment_acceptance` | B | F | U | ? | I-- |  | society/src/acceptance.ts acceptance(group, asset, window, records); src/network.ts trade  |
 | `society.culture.salience` | P | F | U | ? | --- |  | ENGINES.md 'Cultural salience and the zeitgeist in attraction' (Rex 2026-10-30; planned, i |
 | `society.doctrine.transmission_divergence` | P | F | U | ? | --- |  | ENGINES.md 'Institutions, government and religion emerge' (Rex 2026-10-31; planned) |
 | `society.household.structure` | P | F | U | ? | --- | DUP-59 | ROADMAP P6 Society (planned) |

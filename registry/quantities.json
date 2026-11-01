@@ -5007,7 +5007,7 @@
    "scope": "society",
    "writer": "society.convention.payment_acceptance",
    "description": "share of a group's members who took an asset in a completed exchange in a window; nullable (null: no member observed); out port of its writer when built",
-   "status": "planned (multi-economy v2, 2026-11-01)",
+   "status": "built (society 5288 bf20d01; out port at edb1696, 2026-11-01)",
    "unit_parses": true
   },
   {

@@ -3404,3 +3404,20 @@ for _r in EXTRA_ROWS:
         assert "valuation.ts" in _r["home"]
 VV_OVERRIDES["cognition.valuation.payment_acceptance"] = {"validated": "no (§8 two-island demonstration waits on Society 5288/5289)",
     "integrated": "partial (reads perceived observations; Economy's offers reach it through the host)", "evidence": "re-audit 2026-11-01 at cognition 5f048e7: 351/351, tsc clean"}
+
+# --- 2026-11-01: Society payment acceptance landed: DESIGN §1.17 (33faf24), engine bf20d01 (src/acceptance.ts acceptance(); src/network.ts trade contacts; src/ports.ts),
+# §8 tests 1d8175a (5288/5289); D-SOC-1 evidence refreshed and host replay timeout fixed edb1696 (5322, SOC-15). Registry keeper re-audited at society edb1696 (tree clean):
+# vitest 862 pass + 2 skipped (20 files), tsc --noEmit clean. Held at 1d8175a for the stale D-SOC-1 src hash; cleared ---
+for _r in EXTRA_ROWS:
+    if _r["id"] == "society.convention.payment_acceptance":
+        _r["status"] = "built"; _r["state"] = "projection (retains no state)"; _r["timescale"] = "per read over a window"
+        _r["home"] = ("Toolchain/society/src/acceptance.ts acceptance(group, asset, window, records); src/network.ts trade contacts (bf20d01); Society DESIGN §1.17 (33faf24); "
+                      "design " + _r["home"].replace("; planned", ""))
+        _r["tests"] = ("Toolchain/society vitest 862 pass + 2 skipped at edb1696 (registry keeper rerun 2026-11-01): test/acceptance.test.ts (§8, 1d8175a), D-SOC-1 report refreshed (5322)")
+        _r["notes"] += ("; built 2026-11-01: share = latest takes over observed members; unobserved members excluded (null when none observed); a null or non-finite window throws, no default")
+        assert "acceptance.ts" in _r["home"]
+VV_OVERRIDES["society.convention.payment_acceptance"] = {"validated": "no (the §8 two-island demonstration not run yet)",
+    "integrated": "yes (out port society.payment_acceptance_share in society kernel.json at edb1696)", "evidence": "re-audit 2026-11-01 at society edb1696: 862+2 skipped, tsc clean"}
+for _q in EXTRA_QUANTITIES:
+    if _q["id"] == "society.payment_acceptance_share":
+        _q["status"] = "built (society 5288 bf20d01; out port at edb1696, 2026-11-01)"

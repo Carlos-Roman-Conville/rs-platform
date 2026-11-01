@@ -7,8 +7,8 @@
   "contract_fields": "PLATFORM.md §7",
   "evidence_scale": "PLATFORM.md §4 (1 law ... 6 fiction)",
   "counts": {
-   "built": 229,
-   "planned": 200,
+   "built": 230,
+   "planned": 199,
    "documented-only": 161
   },
   "kinds": {
@@ -20,10 +20,10 @@
   "schema_4": "adds rate_limiter and failure_mode to the §7 contract fields (with inputs = what enters, outputs = what leaves, state = what accumulates), null until owners fill them; widens vv.record item 5 with numerical {stability, coupled_update_consistency, sensitivity} (PLATFORM §11a item 5, Rex 2026-10-31); check-registry warns, never fails, on empty fields of built rows",
   "schema_3": "each row carries vv {implemented, integrated, validated, record{sources_and_model, applicability, verification_tests, validation_evidence, tolerance, stability_conservation_boundary, integration_tested_with, integration_tests, report}} (PLATFORM.md §11a); seeded 2026-10-30 from the audit and the combined tests; owners complete it, the registry keeper re-audits",
   "vv_counts": {
-   "implemented": 227,
-   "built_mechanisms": 229,
+   "implemented": 228,
+   "built_mechanisms": 230,
    "with_integration_test": 122,
-   "integrated_yes": 128,
+   "integrated_yes": 129,
    "validated_yes": 0,
    "validated_candidate": 6,
    "validation_failed": 2
@@ -52766,9 +52766,9 @@
    "id": "society.convention.payment_acceptance",
    "name": "Payment acceptance conventions",
    "owning_engine": "society",
-   "home": "HQ/handoffs/economy/MULTI-ECONOMY-DESIGN.md v2 (Rex 2026-11-01, ENGINES.md 'Competing economies and endogenous money'); planned",
+   "home": "Toolchain/society/src/acceptance.ts acceptance(group, asset, window, records); src/network.ts trade contacts (bf20d01); Society DESIGN §1.17 (33faf24); design HQ/handoffs/economy/MULTI-ECONOMY-DESIGN.md v2 (Rex 2026-11-01, ENGINES.md 'Competing economies and endogenous money')",
    "home_kind": "docs",
-   "status": "planned",
+   "status": "built",
    "status_note": "",
    "kind": "mechanism",
    "restates": null,
@@ -52782,31 +52782,33 @@
      "unit": "see quantities.json"
     }
    ],
-   "state": "planned",
+   "state": "projection (retains no state)",
    "formulation": "acceptance(group, asset, window) = share of the group's members who took the asset in a completed exchange in the window, counting completed exchanges and logged not-accepted refusals; null when no member was observed; a null window is refused; trade is one tie kind on the one network (DUP-60); sanctions only as a person's or organisation's own act under society.norm.sanction",
    "dependencies": [
     "society.norm.sanction"
    ],
-   "timescale": "planned",
+   "timescale": "per read over a window",
    "invariants": "no conversion table; acceptance is a relation between a holder and an asset, never a flag on the asset; no date, population or count unlock (Rex 2026-11-01)",
    "sources": "MULTI-ECONOMY-DESIGN v2; ECON-27/28: Harris 2003 (price-time priority), Spufford 1986 (owners post offers)",
    "evidence": null,
    "evidence_note": "?",
    "approximations": "planned",
-   "tests": "planned: the two-island demonstration acceptance tests (design §8)",
+   "tests": "Toolchain/society vitest 862 pass + 2 skipped at edb1696 (registry keeper rerun 2026-11-01): test/acceptance.test.ts (§8, 1d8175a), D-SOC-1 report refreshed (5322)",
    "consumers": [],
-   "notes": "SPECIALISATION of society.norm.sanction, not a new gear; measured from behaviour, never willingness; the true share is a view for hosts, reports and tests and is never fed into minds",
+   "notes": "SPECIALISATION of society.norm.sanction, not a new gear; measured from behaviour, never willingness; the true share is a view for hosts, reports and tests and is never fed into minds; built 2026-11-01: share = latest takes over observed members; unobserved members excluded (null when none observed); a null or non-finite window throws, no default",
    "overlap_groups": [],
    "unit_issues": [],
    "audit_batch": "registry-keeper-2026-11-01-multi-economy",
    "audit_id": null,
-   "writes": [],
+   "writes": [
+    "society.payment_acceptance_share"
+   ],
    "reads": [],
    "aggregates": null,
    "vv": {
-    "implemented": false,
-    "integrated": "no (not built)",
-    "validated": "n/a",
+    "implemented": true,
+    "integrated": "yes (out port society.payment_acceptance_share in society kernel.json at edb1696)",
+    "validated": "no (the §8 two-island demonstration not run yet)",
     "record": {
      "sources_and_model": {
       "sources": "MULTI-ECONOMY-DESIGN v2; ECON-27/28: Harris 2003 (price-time priority), Spufford 1986 (owners post offers)",
@@ -52814,8 +52816,10 @@
       "evidence_level": null
      },
      "applicability": "planned",
-     "verification_tests": "planned: the two-island demonstration acceptance tests (design §8)",
-     "validation_evidence": [],
+     "verification_tests": "Toolchain/society vitest 862 pass + 2 skipped at edb1696 (registry keeper rerun 2026-11-01): test/acceptance.test.ts (§8, 1d8175a), D-SOC-1 report refreshed (5322)",
+     "validation_evidence": [
+      "re-audit 2026-11-01 at society edb1696: 862+2 skipped, tsc clean"
+     ],
      "tolerance": null,
      "stability_conservation_boundary": [],
      "numerical": {
@@ -52825,7 +52829,7 @@
      },
      "integration_tested_with": [],
      "integration_tests": [],
-     "report": "SPECIALISATION of society.norm.sanction, not a new gear; measured from behaviour, never willingness; the true share is a view for hosts, reports and tests and is never fed into minds"
+     "report": "SPECIALISATION of society.norm.sanction, not a new gear; measured from behaviour, never willingness; the true share is a view for hosts, reports and tests and is never fed into minds; built 2026-11-01: share = latest takes over observed members; unobserved members excluded (null when none observed); a null or non-finite window throws, no default"
     }
    },
    "rate_limiter": null,
