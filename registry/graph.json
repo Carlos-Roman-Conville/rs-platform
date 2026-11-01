@@ -9103,7 +9103,7 @@
    ],
    "proposed_owner": "a shared kernel package (new, infra).",
    "approved_owner": "a shared kernel package (new, infra).",
-   "state": "closing",
+   "state": "closed",
    "decision": "owner approved as proposed (Rex, 2026-10-30; OVERLAPS-BATCH-1.md)",
    "progress": [
     {
@@ -9129,6 +9129,17 @@
      "step": "units queued",
      "by": "Kernel keeper",
      "note": "kernel 2886 raises the harness limits (thirty-days 3600 s, replay 7200 s; hang guards for periodic validation runs); kernel 2887 (gate-only) runs both once and prints their duration; its pass is the record. Machine at 100 % CPU tonight (69 Claude, 4 Codex) fits a 2.7x slowdown with no failed assertion"
+    },
+    {
+     "date": "2026-10-31",
+     "step": "re-audited (11a criteria)",
+     "by": "registry keeper",
+     "note": "implemented: kernel ids qualify as <engine>/<local id> (Rex's amended clause), test 'never collide' in test/ids.test.ts (2749, aa8e64c); settlement and economy import kernel ids, context and reduce; realism uses the kernel rng. integrated: kernel 2887 at e2fca94 (2886's raised limits): harness thirty-days and replay 15/15 pass (2,283 s under load; runner log) (replay 'canonical-equal kernel and all three engine snapshots'). validated: n/a (an identity and replay rule). Economy's locally minted txn ids are local ids qualified at the boundary"
+    },
+    {
+     "date": "2026-10-31",
+     "step": "closed",
+     "by": "registry keeper"
     }
    ]
   },
@@ -9187,6 +9198,12 @@
      "step": "units queued",
      "by": "Kernel keeper",
      "note": "kernel 2886 raises the harness limits (thirty-days 3600 s, replay 7200 s; hang guards for periodic validation runs); kernel 2887 (gate-only) runs both once and prints their duration; its pass is the record. Machine at 100 % CPU tonight (69 Claude, 4 Codex) fits a 2.7x slowdown with no failed assertion"
+    },
+    {
+     "date": "2026-10-31",
+     "step": "harness passed",
+     "by": "Kernel keeper",
+     "note": "kernel 2887 at e2fca94 (2886's raised limits): harness thirty-days and replay 15/15 pass (2,283 s under load; runner log); DUP-33 now waits only on Reality's counter asserts (realism 2846)"
     }
    ]
   },

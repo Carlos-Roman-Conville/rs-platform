@@ -2653,3 +2653,12 @@ GROUPS[:] = [(g[0], g[1], g[2], g[3] + (["realism.development.maturation", "real
 DECISIONS["DUP-17"]["progress"].append({"date": "2026-10-31", "step": "members added", "by": "registry keeper",
     "note": "realism.development.maturation (planned) joins as the developmental side: it must add no age-keyed multiplier and ends where cellular ageing begins; realism.neurology.tone (built, an age scale in its formula) joins as a fifth age-keyed effect, frozen like the other four until the cellular layer"})
 ROW_PATCHES["realism.development.maturation"] = {"notes": "registered 2026-10-31 after the controller's overlap check for Rex; adopted by the Life keeper (life DESIGN §1.9): shares the developmental-state record plants use (§1.2); full contract fields after the plant work; owns hormonal development until an endocrine row is proposed. Writes the developmental part of record 2; trait_change stays adult trait change"}
+
+# --- 2026-10-31: DUP-32 closed (kernel 2887 at e2fca94: harness thirty-days and replay 15/15 after the recovery) ---
+_H2887 = "kernel 2887 at e2fca94 (2886's raised limits): harness thirty-days and replay 15/15 pass (2,283 s under load; runner log)"
+DECISIONS["DUP-32"]["progress"] += [
+ {"date": "2026-10-31", "step": "re-audited (11a criteria)", "by": "registry keeper",
+  "note": "implemented: kernel ids qualify as <engine>/<local id> (Rex's amended clause), test 'never collide' in test/ids.test.ts (2749, aa8e64c); settlement and economy import kernel ids, context and reduce; realism uses the kernel rng. integrated: " + _H2887 + " (replay 'canonical-equal kernel and all three engine snapshots'). validated: n/a (an identity and replay rule). Economy's locally minted txn ids are local ids qualified at the boundary"},
+ {"date": "2026-10-31", "step": "closed", "by": "registry keeper"}]
+DECISIONS["DUP-32"]["state"] = "closed"
+DECISIONS["DUP-33"]["progress"].append({"date": "2026-10-31", "step": "harness passed", "by": "Kernel keeper", "note": _H2887 + "; DUP-33 now waits only on Reality's counter asserts (realism 2846)"})

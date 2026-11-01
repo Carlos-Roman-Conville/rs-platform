@@ -5604,12 +5604,13 @@
     "all"
    ],
    "notes": "'ship.*' = shipment id, but contract text also speaks of organisations owning 'ships' (vessels): name collision with any vessel entity",
-   "overlap_groups": [
-    "DUP-32"
-   ],
+   "overlap_groups": [],
    "unit_issues": [],
    "audit_batch": "setl-econ",
    "audit_id": null,
+   "closed_overlap_groups": [
+    "DUP-32"
+   ],
    "writes": [
     "economy.id"
    ],
@@ -5708,12 +5709,13 @@
     "hosts"
    ],
    "notes": "Copy of settlement reducer pattern",
-   "overlap_groups": [
-    "DUP-32"
-   ],
+   "overlap_groups": [],
    "unit_issues": [],
    "audit_batch": "setl-econ",
    "audit_id": null,
+   "closed_overlap_groups": [
+    "DUP-32"
+   ],
    "writes": [
     "economy.state",
     "economy.events",
@@ -34173,12 +34175,14 @@
    ],
    "notes": "NOT a mechanism registry. It is an ENTITY registry (stable ids for substances/materials/components with properties) holding no formulas, owners, units or dependency edges. [package split pending, SPLIT.md; owner reality since 2026-10-31]",
    "overlap_groups": [
-    "DUP-10",
-    "DUP-32"
+    "DUP-10"
    ],
    "unit_issues": [],
    "audit_batch": "realism-phys",
    "audit_id": null,
+   "closed_overlap_groups": [
+    "DUP-32"
+   ],
    "writes": [
     "world.heat_capacity",
     "world.content_mass"
@@ -48140,12 +48144,13 @@
     "all records"
    ],
    "notes": "Economy has a duplicate mint() with its own prefixes (inv,mkt,ship,ord,org). Pool detection is by string prefix 'pool.' hard-coded in the engine (host convention leaking into engine)",
-   "overlap_groups": [
-    "DUP-32"
-   ],
+   "overlap_groups": [],
    "unit_issues": [],
    "audit_batch": "setl-econ",
    "audit_id": null,
+   "closed_overlap_groups": [
+    "DUP-32"
+   ],
    "writes": [
     "settlement.id"
    ],
@@ -48237,12 +48242,13 @@
     "pirate adapter"
    ],
    "notes": "Same pattern as economy.infra.reducer_replay (two copies of reduce/Runner/ctx/ids/must/finite helpers)",
-   "overlap_groups": [
-    "DUP-32"
-   ],
+   "overlap_groups": [],
    "unit_issues": [],
    "audit_batch": "setl-econ",
    "audit_id": null,
+   "closed_overlap_groups": [
+    "DUP-32"
+   ],
    "writes": [],
    "reads": [],
    "aggregates": null,
