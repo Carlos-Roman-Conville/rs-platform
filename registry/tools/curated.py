@@ -2882,3 +2882,8 @@ for _g in INTERFACE_GAPS:
     elif _id == "CG-16": _g["progress"] = "Life keeper 2026-11-01: Life owns body.capacity_functional (DUP-15), designed with the human sections; lead Cognition"
     elif _id == "CG-20": _g["progress"] = "Life agrees 2026-11-01: soil loses nutrients only by uptake, leaching, runoff and erosion; the fertility drain becomes a read. Reality decides"
     elif _id == "CG-22": _g["progress"] = _g.get("progress", "") + "; Life 2026-11-01: immediate substrate transactions, not a pending sum"
+
+# --- 2026-11-01: CG-19 wording amended (Economy and Life agreed); verification units 2999 + 3010 ---
+for _g in INTERFACE_GAPS:
+    if _g["interface"] == "CG-19":
+        _g["progress"] = _g.get("progress", "") + "; amended 2026-11-01: goods carry mass (kg per unit, owned once by Economy) and name a Life food id; energy stays Life's (food.kcalPerKg, E = m x e_food); verification units 2999-economy-goods-mass-transfers and 3010-economy-coupled-food-to-body-test (one kernel transaction; Needs 2999)"
