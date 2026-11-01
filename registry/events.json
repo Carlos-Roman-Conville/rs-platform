@@ -855,12 +855,28 @@
           "kind": "number",
           "required": true
         },
+        "currency": {
+          "kind": "string",
+          "required": false
+        },
+        "market": {
+          "kind": "string",
+          "required": false
+        },
+        "refusedBy": {
+          "kind": "string",
+          "required": false
+        },
+        "purpose": {
+          "kind": "string",
+          "required": false
+        },
         "cause": {
           "kind": "string",
           "required": false
         }
       },
-      "notes": "kernel 3011 inventory (1933334, draft), registered 2026-11-01 by the registry keeper. Emitted at economy/src/commands.ts:218; EconomyEvent, economy/src/events.ts:3. Reducer event; kernel/harness/adapters.ts:30 publishes the entire event as payload, including type and any cause. The adapter does not forward cause to the Kernel envelope. Configuration events pre-dating adapter creation are skipped (line 15). COLLISION: society/src/organisation.ts:121 also emits kind=refused, with required textual cause and optional open payload (outcome, reason, person, dues/benefit details); society/src/choice.ts:152 and :233 return refused variants stored at organisation.ts:214. Society producer mechanisms are society.organisation.actors and society.organisation.collective_choice, Economy producer is economy.trade.trade. No single producer or payload contract fits: producer=null; payload above describes Economy only. Society cause is explanatory text, not an event id. Registry keeper 2026-11-01: registered for Economy's bus emission only (economy 4192e27, IF-26 price limits); Society's local kind 'refused' is not on the bus. OPEN (REG-31): the name collision if Society's log is ever published."
+      "notes": "kernel 3011 inventory (1933334, draft), registered 2026-11-01 by the registry keeper. Emitted at economy/src/commands.ts:218; EconomyEvent, economy/src/events.ts:3. Reducer event; kernel/harness/adapters.ts:30 publishes the entire event as payload, including type and any cause. The adapter does not forward cause to the Kernel envelope. Configuration events pre-dating adapter creation are skipped (line 15). COLLISION: society/src/organisation.ts:121 also emits kind=refused, with required textual cause and optional open payload (outcome, reason, person, dues/benefit details); society/src/choice.ts:152 and :233 return refused variants stored at organisation.ts:214. Society producer mechanisms are society.organisation.actors and society.organisation.collective_choice, Economy producer is economy.trade.trade. No single producer or payload contract fits: producer=null; payload above describes Economy only. Society cause is explanatory text, not an event id. Registry keeper 2026-11-01: registered for Economy's bus emission only (economy 4192e27, IF-26 price limits); Society's local kind 'refused' is not on the bus. OPEN (REG-31): the name collision if Society's log is ever published. 2026-11-01: a 'not-accepted' refusal on buy/sell carries currency, market and refusedBy (economy 5270, 685807d) and, when the command names one, purpose 'tax'|'debt' (economy 5297, 61356da, GOV-19; registry keeper re-audit 150/150, tsc clean); it feeds the failed shared.action.outcome stimuli and Government's refusal-to-breach (5292)"
     },
     {
       "type": "rentPaid",
