@@ -3065,3 +3065,13 @@ for _r in EXTRA_ROWS:
         _r["tests"] = ("planned: X1 seam S6 Gate H1 (every post_filled traces through a hire to an accepted work intention; one hire per accepted intention), "
                        "H2 (a rejected hire leaves no partial state), H3 (the host writes no wage field), H4 (G-inert holds)")
         _r["notes"] += "; History §3.8 defers 'accepted' and the host's phase to the contract and kernel order.json, and the Kernel keeper defers it to History: escalated to the controller 2026-11-01"
+
+# --- 2026-11-01: controller's ruling on an accepted work intention (recorded for Rex to overrule); owner: this host contract row, as a declared default (dispatch, not an engine formula) ---
+for _r in EXTRA_ROWS:
+    if _r["id"] == "shared.host.work_resolution":
+        _r["formulation"] += ("; ACCEPTED (controller 2026-11-01, declared default, for Rex to overrule): a work intention is accepted when Life's provider answers hours(person, role, day) > 0 for the day "
+            "(this already encodes availability; no separate available() test) AND a vacant post of the role named in the intention's terms exists in Settlement. Post mapping: the first vacant post of that role "
+            "by stable id (deterministic under replay). No role in terms: not accepted (status failed, reason 'no role'). Wage: until Rex decides ECON-24 the host applies NO wage comparison "
+            "(reservation wage vs posted wage is not tested), exactly as Economy applies no floor today. Not accepted resolves to shared.action.outcome status failed with the reason among the stimuli (C-Q25), so the mind learns")
+        _r["notes"] = _r["notes"].replace("; History §3.8 defers 'accepted' and the host's phase to the contract and kernel order.json, and the Kernel keeper defers it to History: escalated to the controller 2026-11-01",
+            "; 'accepted' ruled by the controller 2026-11-01 (see formulation); the host's phase follows kernel order.json")
