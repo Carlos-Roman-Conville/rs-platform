@@ -2968,3 +2968,18 @@ for _g in INTERFACE_GAPS:
     if _g["interface"] == "IF-27": _g["progress"] += "; Settlement's answer pending"
     if _g["interface"] == "CG-18": _g["progress"] += "; proposed event shared.action.outcome {cause, status, stimuli, payload?} (producer: the resolver), consumer cognition.learning.outcome; cognition.intention gains terms? (cognition 3044)"
     if _g["interface"] == "CG-23": _g["progress"] += "; open C-Q26 (controller): who excludes simulated minds from the population headcount"
+
+# --- 2026-11-01: re-audit of kernel 3006 (a7459c8): src/transfer.ts; test/transfer.test.ts rerun by the registry keeper 20/20. kernel.transfer planned -> built ---
+for _r in EXTRA_ROWS:
+    if _r["id"] == "kernel.transfer":
+        _r.update({"status": "built", "home": "Toolchain/kernel/src/transfer.ts (transfer, TransferLedger, TransferJournal; kernel a7459c8, unit 3006)",
+                   "tests": "Toolchain/kernel test/transfer.test.ts (registry keeper rerun at kernel a7459c8, 20/20)"})
+ROW_PATCHES.setdefault("kernel.transfer", {}).update({"rate_limiter": "none (synchronous call inside kernel.transaction)",
+    "failure_mode": "a ledger refusal or unit mismatch throws inside the transaction, which restores every participant"})
+VV_OVERRIDES["kernel.transfer"] = {"validated": "n/a (accounting identity)", "integrated": "no (no engine ledger migrated yet: realism 3001, economy, settlement follow)",
+                                   "evidence": "re-audit 2026-11-01 at kernel a7459c8: transfer.test.ts 20/20"}
+for _g in INTERFACE_GAPS:
+    if _g["interface"] == "CG-18":
+        _g["progress"] += "; registry/events.json populated 2026-11-01 with shared.action.outcome and settlement.post_filled (IF-27, Settlement keeper)"
+    if _g["interface"] == "IF-27":
+        _g["progress"] += "; agreed by Cognition, Economy, Settlement 2026-11-01; hire takes cause? and emits shared.action.outcome + settlement.post_filled (Settlement's next unit); CONTRACTS §19 optional reservationWage (economy da42670, settlement 87ff281)"

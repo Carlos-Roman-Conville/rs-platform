@@ -7,8 +7,8 @@
   "contract_fields": "PLATFORM.md §7",
   "evidence_scale": "PLATFORM.md §4 (1 law ... 6 fiction)",
   "counts": {
-   "built": 221,
-   "planned": 201,
+   "built": 222,
+   "planned": 200,
    "documented-only": 161
   },
   "kinds": {
@@ -20,8 +20,8 @@
   "schema_4": "adds rate_limiter and failure_mode to the §7 contract fields (with inputs = what enters, outputs = what leaves, state = what accumulates), null until owners fill them; widens vv.record item 5 with numerical {stability, coupled_update_consistency, sensitivity} (PLATFORM §11a item 5, Rex 2026-10-31); check-registry warns, never fails, on empty fields of built rows",
   "schema_3": "each row carries vv {implemented, integrated, validated, record{sources_and_model, applicability, verification_tests, validation_evidence, tolerance, stability_conservation_boundary, integration_tested_with, integration_tests, report}} (PLATFORM.md §11a); seeded 2026-10-30 from the audit and the combined tests; owners complete it, the registry keeper re-audits",
   "vv_counts": {
-   "implemented": 219,
-   "built_mechanisms": 221,
+   "implemented": 220,
+   "built_mechanisms": 222,
    "with_integration_test": 122,
    "integrated_yes": 122,
    "validated_yes": 0,
@@ -9111,9 +9111,9 @@
    "id": "kernel.transfer",
    "name": "Transfer service (one transfer per physical flow)",
    "owning_engine": "kernel",
-   "home": "Toolchain/kernel/src/transfer.ts (planned: kernel unit 3006-kernel-transfer-service; design §17 in 3008)",
+   "home": "Toolchain/kernel/src/transfer.ts (transfer, TransferLedger, TransferJournal; kernel a7459c8, unit 3006)",
    "home_kind": "docs",
-   "status": "planned",
+   "status": "built",
    "status_note": "",
    "kind": "mechanism",
    "restates": null,
@@ -9133,20 +9133,22 @@
    "evidence": 1,
    "evidence_note": "",
    "approximations": "none (accounting)",
-   "tests": "planned: test/transfer.test.ts (unit 3006)",
+   "tests": "Toolchain/kernel test/transfer.test.ts (registry keeper rerun at kernel a7459c8, 20/20)",
    "consumers": [],
    "notes": "controller decision 2026-11-01 (go); after kernel v0.1.0 the ledgers migrate in paired units: Economy's goods stock ledger (adjust, economy.stock_changes; takeMass/addMass first) and Settlement's money ledger (CONTRACTS §3; Economy has no money ledger); CHAINS CG-19/20/21 adopt it",
    "overlap_groups": [],
    "unit_issues": [],
    "audit_batch": "controller-2026-11-01-transfer",
    "audit_id": null,
+   "rate_limiter": "none (synchronous call inside kernel.transaction)",
+   "failure_mode": "a ledger refusal or unit mismatch throws inside the transaction, which restores every participant",
    "writes": [],
    "reads": [],
    "aggregates": null,
    "vv": {
-    "implemented": false,
-    "integrated": "no (not built)",
-    "validated": "n/a",
+    "implemented": true,
+    "integrated": "no (no engine ledger migrated yet: realism 3001, economy, settlement follow)",
+    "validated": "n/a (accounting identity)",
     "record": {
      "sources_and_model": {
       "sources": "bookkeeping identity",
@@ -9154,8 +9156,10 @@
       "evidence_level": 1
      },
      "applicability": "none (accounting)",
-     "verification_tests": "planned: test/transfer.test.ts (unit 3006)",
-     "validation_evidence": [],
+     "verification_tests": "Toolchain/kernel test/transfer.test.ts (registry keeper rerun at kernel a7459c8, 20/20)",
+     "validation_evidence": [
+      "re-audit 2026-11-01 at kernel a7459c8: transfer.test.ts 20/20"
+     ],
      "tolerance": null,
      "stability_conservation_boundary": [],
      "numerical": {
@@ -9167,9 +9171,7 @@
      "integration_tests": [],
      "report": "controller decision 2026-11-01 (go); after kernel v0.1.0 the ledgers migrate in paired units: Economy's goods stock ledger (adjust, economy.stock_changes; takeMass/addMass first) and Settlement's money ledger (CONTRACTS §3; Economy has no money ledger); CHAINS CG-19/20/21 adopt it"
     }
-   },
-   "rate_limiter": null,
-   "failure_mode": null
+   }
   },
   {
    "id": "knowledge.adoption.aggregate",

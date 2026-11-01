@@ -1246,7 +1246,7 @@
   {
    "id": "kernel.transfer",
    "engine": "kernel",
-   "status": "planned",
+   "status": "built",
    "kind": "mechanism",
    "domain": "infra",
    "scope": "universal"
@@ -10485,7 +10485,7 @@
   "meta": {
    "rule": "a depends_on edge between two built mechanisms with no combined test that runs both (PLATFORM.md §11a item 6)",
    "covered_pairs": 67,
-   "gap_pairs": 58,
+   "gap_pairs": 59,
    "interface_gap_count": 27
   },
   "gaps": [
@@ -10537,6 +10537,13 @@
    },
    {
     "reader": "kernel.resolution.handoff",
+    "read": "kernel.transaction",
+    "engines": [
+     "kernel"
+    ]
+   },
+   {
+    "reader": "kernel.transfer",
     "read": "kernel.transaction",
     "engines": [
      "kernel"
@@ -11048,7 +11055,7 @@
      "settlement"
     ],
     "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)",
-    "progress": "; Cognition keeper 2026-11-01: contract shared.action.resolution registered planned; proposals with Reality, Life, Economy, Settlement; Settlement's answer pending"
+    "progress": "; Cognition keeper 2026-11-01: contract shared.action.resolution registered planned; proposals with Reality, Life, Economy, Settlement; Settlement's answer pending; agreed by Cognition, Economy, Settlement 2026-11-01; hire takes cause? and emits shared.action.outcome + settlement.post_filled (Settlement's next unit); CONTRACTS §19 optional reservationWage (economy da42670, settlement 87ff281)"
    },
    {
     "interface": "CG-1",
@@ -11282,7 +11289,7 @@
      "all engines"
     ],
     "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)",
-    "progress": "controller go 2026-11-01: registry/events.json (registry keeper owns; created empty) with type, producer, consumers, cause, payload schema; kernel 3007 adds checkEventContracts (warns until populated); the first unit is the event inventory; Cognition keeper 2026-11-01: cognition.intention payload {id, mind, action, target?, t, expectedOutcomes: Categorical, status} (built, cognition 2106314), producer cognition.decision.select, consumers the resolvers; proposed terms?: Record<string, number>; enters events.json with the 3011 inventory; proposed event shared.action.outcome {cause, status, stimuli, payload?} (producer: the resolver), consumer cognition.learning.outcome; cognition.intention gains terms? (cognition 3044)"
+    "progress": "controller go 2026-11-01: registry/events.json (registry keeper owns; created empty) with type, producer, consumers, cause, payload schema; kernel 3007 adds checkEventContracts (warns until populated); the first unit is the event inventory; Cognition keeper 2026-11-01: cognition.intention payload {id, mind, action, target?, t, expectedOutcomes: Categorical, status} (built, cognition 2106314), producer cognition.decision.select, consumers the resolvers; proposed terms?: Record<string, number>; enters events.json with the 3011 inventory; proposed event shared.action.outcome {cause, status, stimuli, payload?} (producer: the resolver), consumer cognition.learning.outcome; cognition.intention gains terms? (cognition 3044); registry/events.json populated 2026-11-01 with shared.action.outcome and settlement.post_filled (IF-27, Settlement keeper)"
    },
    {
     "interface": "CG-19",

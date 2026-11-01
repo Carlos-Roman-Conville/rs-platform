@@ -66,7 +66,7 @@ mechanisms, and are not itemised. Coverage limits are listed in `HQ/handoffs/reg
 |---|---|---|---|---|
 | reality mechanisms | 44 | 0 | 38 | 82 |
 | life mechanisms | 83 | 3 | 50 | 136 |
-| kernel mechanisms | 3 | 0 | 1 | 4 |
+| kernel mechanisms | 4 | 0 | 0 | 4 |
 | settlement mechanisms | 23 | 0 | 1 | 24 |
 | economy mechanisms | 21 | 0 | 5 | 26 |
 | cognition mechanisms | 13 | 0 | 41 | 54 |
@@ -78,7 +78,7 @@ mechanisms, and are not itemised. Coverage limits are listed in `HQ/handoffs/reg
 | shared mechanisms | 6 | 5 | 5 | 16 |
 | pirate-ship mechanisms | 24 | 63 | 15 | 102 |
 | restatements (pirate docs and adapters) | 0 | 90 | 2 | 92 |
-| **all rows** | 221 | 161 | 201 | 583 |
+| **all rows** | 222 | 161 | 200 | 583 |
 
 **Restatements** are not errors: the pirate body docs are rendered from the same library JSON as the realism
 code (`body/build-body-data.py`), so their tables cannot disagree with the code. Disagreements live only in their
@@ -358,7 +358,7 @@ stability/conservation/boundary tests, `integration_tested_with`, integration te
 |---|---|---|---|---|---|---|---|
 | `kernel.resolution.handoff` | B | infra | U | 1 | I-- |  | kernel/src/resolution.ts (ResolutionService, ConservedQuantity, switchTo; kernel a3c4314) |
 | `kernel.transaction` | B | infra | U | 1 | I-- |  | kernel/src/transaction.ts (transaction, Participant; kernel a3c4314) |
-| `kernel.transfer` | P | infra | U | 1 | --- |  | kernel/src/transfer.ts (planned: kernel unit 3006-kernel-transfer-service; design §17 in 3 |
+| `kernel.transfer` | B | infra | U | 1 | I-- |  | kernel/src/transfer.ts (transfer, TransferLedger, TransferJournal; kernel a7459c8, unit 30 |
 | `realism.infra.rng` | B | infra | U | 1 | I-- |  | realism/src/process.ts rng L14 |
 
 ### settlement (24)

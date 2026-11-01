@@ -1,3 +1,27 @@
 {
-  "events": []
+  "events": [
+    {
+      "type": "shared.action.outcome",
+      "producer": "shared.action.resolution",
+      "consumers": ["cognition.learning.outcome"],
+      "cause": "required",
+      "payload": {
+        "status": { "kind": "string", "required": true },
+        "stimuli": { "kind": "list", "required": true }
+      },
+      "notes": "CG-16/CG-18 (Cognition keeper 2026-11-01; agreed by Reality, Life, Economy and Settlement). One outcome type for every action kind; cause = the intention event id; status completed | failed | impossible (C-Q25: whether a refusal is failed, Rex). Produced by the engine resolving the action kind (shared.action.resolution); consumed through the host's outcome command. stimuli are raw scene truth records; their element schema is not yet fixed (no 3007 kind fits a record), so 'of' is omitted. payload? carries the engine-native record (trade, refused, contact_event) and is not typed here."
+    },
+    {
+      "type": "settlement.post_filled",
+      "producer": "settlement.assign.workforce",
+      "consumers": [],
+      "cause": "optional",
+      "payload": {
+        "post": { "kind": "id", "required": true },
+        "holder": { "kind": "id", "required": true },
+        "wage": { "kind": "number", "quantity": "settlement.post_wage", "required": true }
+      },
+      "notes": "IF-27 (Settlement keeper 2026-11-01): native event emitted by hire beside shared.action.outcome; cause is the intention event id when hire was asked for by an intention. Consumers to be named by Settlement."
+    }
+  ]
 }
