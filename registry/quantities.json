@@ -2533,7 +2533,7 @@
    "scope": "economy",
    "writer": "economy.recipe.definition",
    "description": "Good.weight: kg per unit of a good, owned once by the goods catalogue (CG-19)",
-   "status": "planned (CG-19, Economy keeper 2026-11-01; unit 2999)",
+   "status": "built (economy da23966, unit 2999; CG-19 re-audit 2026-11-01 at 4192e27, 28/28); port declaration pending economy 5049",
    "unit_parses": true
   },
   {
@@ -2644,7 +2644,7 @@
    "scope": "economy",
    "writer": "economy.inventory.holdings",
    "description": "q of a mass transfer out of an inventory: units removed x good_mass_per_unit; the same q is added to the destination (a body through eat_meal, IF-36) in one transaction (CG-19, PLATFORM §7a)",
-   "status": "planned (CG-19, Economy keeper 2026-11-01; unit 2999)",
+   "status": "built (economy da23966, unit 2999; CG-19 re-audit 2026-11-01 at 4192e27, 28/28); port declaration pending economy 5049",
    "unit_parses": true
   },
   {

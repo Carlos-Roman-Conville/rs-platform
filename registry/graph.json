@@ -11327,7 +11327,7 @@
     "interface": "CG-19",
     "from": "economy",
     "to": "life",
-    "state": "gap (CHAINS.md 2026-11-01)",
+    "state": "closed 2026-11-01: goods carry kg (Good.weight) and a Life food id; takeMass then eatMeal in one kernel transaction, mass delta -q/+q exact, rollback of both engines on failure; re-audit at economy 4192e27: mass 9/9 + food-to-body 5/5 + intention, 28/28",
     "gap": "IF-36 and IF-42 require mass; economy.material.produce, inventory.holdings and consumption.demand count goods unitless; eat_meal takes kg and kcal; no row converts a good to mass or energy",
     "joins": "Toolchain/CHAINS.md",
     "failure_type": "invalid coupling",

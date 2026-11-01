@@ -3123,3 +3123,14 @@ for _r in EXTRA_ROWS:
 for _r in EXTRA_ROWS:
     if _r["id"] == "shared.host.work_resolution":
         _r["home"] = _r["home"].replace("e1ff6ea cites this contract, H1 checks the accepted rule)", "e1ff6ea cites this contract, H1 checks the accepted rule; ab3274a: target carries the role, reason 'no target')")
+
+# --- 2026-11-01: CG-19 closed. Re-audit by the registry keeper at economy 4192e27 (contains da23966 2999, 2fef178 3010, 4192e27 3045):
+# test/mass.test.ts M1-M9, test/food-to-body.test.ts F1-F5, test/intention.test.ts: 28/28. Ports (recipe.definition writes good_mass_per_unit,
+# inventory.holdings writes mass_taken) are Composer unit 5049 (Economy keeper) ---
+for _q in EXTRA_QUANTITIES:
+    if _q["id"] in ("economy.good_mass_per_unit", "economy.mass_taken"):
+        _q["status"] = "built (economy da23966, unit 2999; CG-19 re-audit 2026-11-01 at 4192e27, 28/28); port declaration pending economy 5049"
+for _g in INTERFACE_GAPS:
+    if _g["interface"] == "CG-19":
+        _g.update({"state": "closed 2026-11-01: goods carry kg (Good.weight) and a Life food id; takeMass then eatMeal in one kernel transaction, "
+                            "mass delta -q/+q exact, rollback of both engines on failure; re-audit at economy 4192e27: mass 9/9 + food-to-body 5/5 + intention, 28/28"})
