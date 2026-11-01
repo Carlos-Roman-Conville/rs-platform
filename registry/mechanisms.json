@@ -7,8 +7,8 @@
   "contract_fields": "PLATFORM.md §7",
   "evidence_scale": "PLATFORM.md §4 (1 law ... 6 fiction)",
   "counts": {
-   "built": 223,
-   "planned": 206,
+   "built": 226,
+   "planned": 203,
    "documented-only": 161
   },
   "kinds": {
@@ -20,10 +20,10 @@
   "schema_4": "adds rate_limiter and failure_mode to the §7 contract fields (with inputs = what enters, outputs = what leaves, state = what accumulates), null until owners fill them; widens vv.record item 5 with numerical {stability, coupled_update_consistency, sensitivity} (PLATFORM §11a item 5, Rex 2026-10-31); check-registry warns, never fails, on empty fields of built rows",
   "schema_3": "each row carries vv {implemented, integrated, validated, record{sources_and_model, applicability, verification_tests, validation_evidence, tolerance, stability_conservation_boundary, integration_tested_with, integration_tests, report}} (PLATFORM.md §11a); seeded 2026-10-30 from the audit and the combined tests; owners complete it, the registry keeper re-audits",
   "vv_counts": {
-   "implemented": 221,
-   "built_mechanisms": 223,
+   "implemented": 224,
+   "built_mechanisms": 226,
    "with_integration_test": 122,
-   "integrated_yes": 124,
+   "integrated_yes": 127,
    "validated_yes": 0,
    "validated_candidate": 6,
    "validation_failed": 2
@@ -5129,7 +5129,7 @@
    "consumers": [
     "host"
    ],
-   "notes": "Contract s8 vs code mismatch",
+   "notes": "Contract s8 vs code mismatch; 2026-11-01: accounts per currency (economy 5270, 685807d); valuing across currencies only through economy.exchange.observed_ratios",
    "overlap_groups": [],
    "unit_issues": [],
    "audit_batch": "setl-econ",
@@ -5204,7 +5204,7 @@
       "pirate-ship web/src/economy/economy.test.ts I1, I1b, I2 (Toolchain/economy/TESTS.md)",
       "Toolchain/economy examples/three-ports.ts; test/labour-and-sim.test.ts"
      ],
-     "report": "Contract s8 vs code mismatch"
+     "report": "Contract s8 vs code mismatch; 2026-11-01: accounts per currency (economy 5270, 685807d); valuing across currencies only through economy.exchange.observed_ratios"
     }
    },
    "rate_limiter": null,
@@ -5499,9 +5499,9 @@
    "id": "economy.exchange.observed_ratios",
    "name": "Observed exchange ratios (view)",
    "owning_engine": "economy",
-   "home": "HQ/handoffs/economy/MULTI-ECONOMY-DESIGN.md v2 (Rex 2026-11-01, ENGINES.md 'Competing economies and endogenous money'); planned",
+   "home": "economy/src/queries.ts ratios, mediaInUse (economy 5271, b7174d2); design HQ/handoffs/economy/MULTI-ECONOMY-DESIGN.md v2 (Rex 2026-11-01, ENGINES.md 'Competing economies and endogenous money')",
    "home_kind": "code",
-   "status": "planned",
+   "status": "built",
    "status_note": "",
    "kind": "mechanism",
    "restates": null,
@@ -5515,31 +5515,33 @@
      "unit": "see quantities.json"
     }
    ],
-   "state": "planned",
+   "state": "built",
    "formulation": "ratios(market, A, B, fromDay, toDay) and mediaInUse(market) summarised from completed exchanges; a view, never state; no rule reads it",
    "dependencies": [],
-   "timescale": "planned",
+   "timescale": "per command / per tick",
    "invariants": "no conversion table; acceptance is a relation between a holder and an asset, never a flag on the asset; no date, population or count unlock (Rex 2026-11-01)",
    "sources": "MULTI-ECONOMY-DESIGN v2; ECON-27/28: Harris 2003 (price-time priority), Spufford 1986 (owners post offers)",
    "evidence": null,
    "evidence_note": "?",
    "approximations": "planned",
-   "tests": "planned: the two-island demonstration acceptance tests (design §8)",
+   "tests": "Toolchain/economy vitest 145/145 at 13c3a3c (registry keeper rerun 2026-11-01; test/offers.test.ts and the currency tests); the §8 two-island acceptance tests are still to come",
    "consumers": [
     "economy.accounting.view"
    ],
-   "notes": "valuing an inventory in another currency uses only a dated observed ratio from a named market",
+   "notes": "valuing an inventory in another currency uses only a dated observed ratio from a named market; built 2026-11-01: out port economy.observed_ratio (5272 13c3a3c); test/offers.test.ts fences it so no rule reads it",
    "overlap_groups": [],
    "unit_issues": [],
    "audit_batch": "registry-keeper-2026-11-01-multi-economy",
    "audit_id": null,
-   "writes": [],
+   "writes": [
+    "economy.observed_ratio"
+   ],
    "reads": [],
    "aggregates": null,
    "vv": {
-    "implemented": false,
-    "integrated": "no (not built)",
-    "validated": "n/a",
+    "implemented": true,
+    "integrated": "yes (out port wired in economy kernel.json at 13c3a3c; Settlement's multi-currency consumer not landed yet)",
+    "validated": "no (the §8 two-island acceptance tests not run yet)",
     "record": {
      "sources_and_model": {
       "sources": "MULTI-ECONOMY-DESIGN v2; ECON-27/28: Harris 2003 (price-time priority), Spufford 1986 (owners post offers)",
@@ -5547,8 +5549,10 @@
       "evidence_level": null
      },
      "applicability": "planned",
-     "verification_tests": "planned: the two-island demonstration acceptance tests (design §8)",
-     "validation_evidence": [],
+     "verification_tests": "Toolchain/economy vitest 145/145 at 13c3a3c (registry keeper rerun 2026-11-01; test/offers.test.ts and the currency tests); the §8 two-island acceptance tests are still to come",
+     "validation_evidence": [
+      "re-audit 2026-11-01 at economy 13c3a3c: 145/145, tsc clean"
+     ],
      "tolerance": null,
      "stability_conservation_boundary": [],
      "numerical": {
@@ -5558,7 +5562,7 @@
      },
      "integration_tested_with": [],
      "integration_tests": [],
-     "report": "valuing an inventory in another currency uses only a dated observed ratio from a named market"
+     "report": "valuing an inventory in another currency uses only a dated observed ratio from a named market; built 2026-11-01: out port economy.observed_ratio (5272 13c3a3c); test/offers.test.ts fences it so no rule reads it"
     }
    },
    "rate_limiter": null,
@@ -6470,9 +6474,9 @@
    "id": "economy.market.offers",
    "name": "Open offers and their matching",
    "owning_engine": "economy",
-   "home": "HQ/handoffs/economy/MULTI-ECONOMY-DESIGN.md v2 (Rex 2026-11-01, ENGINES.md 'Competing economies and endogenous money'); planned",
+   "home": "economy/src/commands.ts offer/accept/withdraw (postOffer, acceptOffer, withdrawOffer, fillOffer; economy 5271, b7174d2); design HQ/handoffs/economy/MULTI-ECONOMY-DESIGN.md v2 (Rex 2026-11-01, ENGINES.md 'Competing economies and endogenous money')",
    "home_kind": "code",
-   "status": "planned",
+   "status": "built",
    "status_note": "",
    "kind": "mechanism",
    "restates": null,
@@ -6486,21 +6490,21 @@
     }
    ],
    "outputs": [],
-   "state": "planned",
+   "state": "built",
    "formulation": "a market holds open offers (holder gives x of A for y of B until expiry); an exchange happens when an intention accepts an offer, or two offers cross exactly at price-time priority (the older offer's ratio; ECON-27/28 by research); owners post offers; expired offers are withdrawn on the tick; Economy decides no acceptance",
    "dependencies": [],
-   "timescale": "planned",
+   "timescale": "per command / per tick",
    "invariants": "no conversion table; acceptance is a relation between a holder and an asset, never a flag on the asset; no date, population or count unlock (Rex 2026-11-01)",
    "sources": "MULTI-ECONOMY-DESIGN v2; ECON-27/28: Harris 2003 (price-time priority), Spufford 1986 (owners post offers)",
    "evidence": null,
    "evidence_note": "?",
    "approximations": "planned",
-   "tests": "planned: the two-island demonstration acceptance tests (design §8)",
+   "tests": "Toolchain/economy vitest 145/145 at 13c3a3c (registry keeper rerun 2026-11-01; test/offers.test.ts and the currency tests); the §8 two-island acceptance tests are still to come",
    "consumers": [
     "economy.trade.trade",
     "economy.exchange.observed_ratios"
    ],
-   "notes": "commands offer, withdraw; uses economy.market.five_numbers (the market record)",
+   "notes": "commands offer, withdraw; uses economy.market.five_numbers (the market record); built 2026-11-01: price-time crossing at the resting offer's ratio; expired offers withdrawn 'unfilled' on the tick; beyond-stock goods refused, no balance rule on money (Q19/ECON-26)",
    "overlap_groups": [],
    "unit_issues": [],
    "audit_batch": "registry-keeper-2026-11-01-multi-economy",
@@ -6509,9 +6513,9 @@
    "reads": [],
    "aggregates": null,
    "vv": {
-    "implemented": false,
-    "integrated": "no (not built)",
-    "validated": "n/a",
+    "implemented": true,
+    "integrated": "yes (out port wired in economy kernel.json at 13c3a3c; Settlement's multi-currency consumer not landed yet)",
+    "validated": "no (the §8 two-island acceptance tests not run yet)",
     "record": {
      "sources_and_model": {
       "sources": "MULTI-ECONOMY-DESIGN v2; ECON-27/28: Harris 2003 (price-time priority), Spufford 1986 (owners post offers)",
@@ -6519,8 +6523,10 @@
       "evidence_level": null
      },
      "applicability": "planned",
-     "verification_tests": "planned: the two-island demonstration acceptance tests (design §8)",
-     "validation_evidence": [],
+     "verification_tests": "Toolchain/economy vitest 145/145 at 13c3a3c (registry keeper rerun 2026-11-01; test/offers.test.ts and the currency tests); the §8 two-island acceptance tests are still to come",
+     "validation_evidence": [
+      "re-audit 2026-11-01 at economy 13c3a3c: 145/145, tsc clean"
+     ],
      "tolerance": null,
      "stability_conservation_boundary": [],
      "numerical": {
@@ -6530,7 +6536,7 @@
      },
      "integration_tested_with": [],
      "integration_tests": [],
-     "report": "commands offer, withdraw; uses economy.market.five_numbers (the market record)"
+     "report": "commands offer, withdraw; uses economy.market.five_numbers (the market record); built 2026-11-01: price-time crossing at the resting offer's ratio; expired offers withdrawn 'unfilled' on the tick; beyond-stock goods refused, no balance rule on money (Q19/ECON-26)"
     }
    },
    "rate_limiter": null,
@@ -6786,9 +6792,9 @@
    "id": "economy.money.currencies",
    "name": "Currency records",
    "owning_engine": "economy",
-   "home": "HQ/handoffs/economy/MULTI-ECONOMY-DESIGN.md v2 (Rex 2026-11-01, ENGINES.md 'Competing economies and endogenous money'); planned",
+   "home": "economy/src/commands.ts defineCurrency; src/queries.ts isCurrency, currencyProvider (economy 5268, 21b5ebe); design HQ/handoffs/economy/MULTI-ECONOMY-DESIGN.md v2 (Rex 2026-11-01, ENGINES.md 'Competing economies and endogenous money')",
    "home_kind": "code",
-   "status": "planned",
+   "status": "built",
    "status_note": "",
    "kind": "mechanism",
    "restates": null,
@@ -6802,33 +6808,35 @@
      "unit": "see quantities.json"
     }
    ],
-   "state": "planned",
+   "state": "built",
    "formulation": "currency records: id, issuer (Government, a bank, or none), backing good if any; isCurrency(id) answers Settlement; stall quotes per (good, currency) from the price rule on that currency's base price",
    "dependencies": [],
-   "timescale": "planned",
+   "timescale": "per command / per tick",
    "invariants": "no conversion table; acceptance is a relation between a holder and an asset, never a flag on the asset; no date, population or count unlock (Rex 2026-11-01)",
    "sources": "MULTI-ECONOMY-DESIGN v2; ECON-27/28: Harris 2003 (price-time priority), Spufford 1986 (owners post offers)",
    "evidence": null,
    "evidence_note": "?",
    "approximations": "planned",
-   "tests": "planned: the two-island demonstration acceptance tests (design §8)",
+   "tests": "Toolchain/economy vitest 145/145 at 13c3a3c (registry keeper rerun 2026-11-01; test/offers.test.ts and the currency tests); the §8 two-island acceptance tests are still to come",
    "consumers": [
     "settlement.ledger.pay",
     "economy.trade.trade",
     "economy.accounting.view"
    ],
-   "notes": "the one currency list; Settlement owns none (S2)",
+   "notes": "the one currency list; Settlement owns none (S2); built 2026-11-01: out port economy.currency (kernel.json, 5272 13c3a3c); Settlement reads currencyProvider().isCurrency",
    "overlap_groups": [],
    "unit_issues": [],
    "audit_batch": "registry-keeper-2026-11-01-multi-economy",
    "audit_id": null,
-   "writes": [],
+   "writes": [
+    "economy.currency"
+   ],
    "reads": [],
    "aggregates": null,
    "vv": {
-    "implemented": false,
-    "integrated": "no (not built)",
-    "validated": "n/a",
+    "implemented": true,
+    "integrated": "yes (out port wired in economy kernel.json at 13c3a3c; Settlement's multi-currency consumer not landed yet)",
+    "validated": "no (the §8 two-island acceptance tests not run yet)",
     "record": {
      "sources_and_model": {
       "sources": "MULTI-ECONOMY-DESIGN v2; ECON-27/28: Harris 2003 (price-time priority), Spufford 1986 (owners post offers)",
@@ -6836,8 +6844,10 @@
       "evidence_level": null
      },
      "applicability": "planned",
-     "verification_tests": "planned: the two-island demonstration acceptance tests (design §8)",
-     "validation_evidence": [],
+     "verification_tests": "Toolchain/economy vitest 145/145 at 13c3a3c (registry keeper rerun 2026-11-01; test/offers.test.ts and the currency tests); the §8 two-island acceptance tests are still to come",
+     "validation_evidence": [
+      "re-audit 2026-11-01 at economy 13c3a3c: 145/145, tsc clean"
+     ],
      "tolerance": null,
      "stability_conservation_boundary": [],
      "numerical": {
@@ -6847,7 +6857,7 @@
      },
      "integration_tested_with": [],
      "integration_tests": [],
-     "report": "the one currency list; Settlement owns none (S2)"
+     "report": "the one currency list; Settlement owns none (S2); built 2026-11-01: out port economy.currency (kernel.json, 5272 13c3a3c); Settlement reads currencyProvider().isCurrency"
     }
    },
    "rate_limiter": null,
@@ -7988,7 +7998,7 @@
     "economy.accounting.view",
     "example policy"
    ],
-   "notes": "No market clearing or matching: trades are host commands at a given price. Duty/tax is only a ledger kind string, not implemented; multi-economy v2 §7 (2026-11-01): this row IS the exchange (economy.exchange.legs proposed and folded in here, one gear); keeps its built status, tests and kernel.transfer consumer link",
+   "notes": "No market clearing or matching: trades are host commands at a given price. Duty/tax is only a ledger kind string, not implemented; multi-economy v2 §7 (2026-11-01): this row IS the exchange (economy.exchange.legs proposed and folded in here, one gear); keeps its built status, tests and kernel.transfer consumer link; BUILT 2026-11-01: the N-leg exchange command (5268, 21b5ebe; event 'exchanged') and stall quotes per currency with one 'not-accepted' refusal record (5270, 685807d); the PLANNED EXTENSION in the formulation is now built (Settlement's multi-currency ledger side still to land)",
    "overlap_groups": [],
    "unit_issues": [],
    "audit_batch": "setl-econ",
@@ -8039,7 +8049,7 @@
      "integration_tests": [
       "Toolchain/economy examples/three-ports.ts; test/labour-and-sim.test.ts"
      ],
-     "report": "No market clearing or matching: trades are host commands at a given price. Duty/tax is only a ledger kind string, not implemented; multi-economy v2 §7 (2026-11-01): this row IS the exchange (economy.exchange.legs proposed and folded in here, one gear); keeps its built status, tests and kernel.transfer consumer link"
+     "report": "No market clearing or matching: trades are host commands at a given price. Duty/tax is only a ledger kind string, not implemented; multi-economy v2 §7 (2026-11-01): this row IS the exchange (economy.exchange.legs proposed and folded in here, one gear); keeps its built status, tests and kernel.transfer consumer link; BUILT 2026-11-01: the N-leg exchange command (5268, 21b5ebe; event 'exchanged') and stall quotes per currency with one 'not-accepted' refusal record (5270, 685807d); the PLANNED EXTENSION in the formulation is now built (Settlement's multi-currency ledger side still to land)"
     }
    },
    "rate_limiter": null,

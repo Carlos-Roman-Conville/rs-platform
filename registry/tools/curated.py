@@ -3319,3 +3319,34 @@ DECISIONS["DUP-43"].update({"decision": "settled (multi-economy v2, Rex 2026-11-
                             "economy.exchange.observed_ratios (dated, per market), never a table; PriceProvider.valueOf stays unimplemented until a consumer needs it",
                             "state": "closing", "approved_owner": "government (money supply); economy (valuation views); settlement (the logged move)"})
 DECISIONS["DUP-43"]["progress"].append({"date": "2026-11-01", "step": "decided", "by": "registry keeper (controller's go)", "note": "MULTI-ECONOMY-DESIGN v2 §4 Government and S4; closes when S4 (process name required) lands"})
+
+# --- 2026-11-01: Economy multi-economy units landed: 5268 (21b5ebe currencies + N-leg exchange), 5270 (685807d stall quotes and accounts per currency,
+# one 'not-accepted' refusal), 5271 (b7174d2 offers, accept/withdraw, price-time crossing at the resting ratio, expiry on the tick; ratios/mediaInUse view),
+# 5272 (13c3a3c kernel.json out ports economy.currency, economy.observed_ratio). Registry keeper re-audited at economy 13c3a3c (tree clean): vitest 145/145,
+# tsc --noEmit clean. Three planned rows flipped to built; five bus events added to events.json (currencyDefined, exchanged, offerPosted, offerFilled, offerWithdrawn) ---
+_ME_BUILT = {
+    "economy.money.currencies": ("economy/src/commands.ts defineCurrency; src/queries.ts isCurrency, currencyProvider (economy 5268, 21b5ebe)",
+                                 "out port economy.currency (kernel.json, 5272 13c3a3c); Settlement reads currencyProvider().isCurrency"),
+    "economy.market.offers": ("economy/src/commands.ts offer/accept/withdraw (postOffer, acceptOffer, withdrawOffer, fillOffer; economy 5271, b7174d2)",
+                              "price-time crossing at the resting offer's ratio; expired offers withdrawn 'unfilled' on the tick; beyond-stock goods refused, no balance rule on money (Q19/ECON-26)"),
+    "economy.exchange.observed_ratios": ("economy/src/queries.ts ratios, mediaInUse (economy 5271, b7174d2)",
+                                         "out port economy.observed_ratio (5272 13c3a3c); test/offers.test.ts fences it so no rule reads it"),
+}
+for _r in EXTRA_ROWS:
+    if _r["id"] in _ME_BUILT:
+        _w, _n = _ME_BUILT[_r["id"]]
+        _r["status"] = "built"; _r["state"] = "built"; _r["timescale"] = "per command / per tick"
+        _r["home"] = _w + "; design " + _r["home"].replace("; planned", "")
+        _r["tests"] = "Toolchain/economy vitest 145/145 at 13c3a3c (registry keeper rerun 2026-11-01; test/offers.test.ts and the currency tests); the §8 two-island acceptance tests are still to come"
+        _r["notes"] += "; built 2026-11-01: " + _n
+        VV_OVERRIDES[_r["id"]] = {"validated": "no (the §8 two-island acceptance tests not run yet)", "integrated": "yes (out port wired in economy kernel.json at 13c3a3c; Settlement's multi-currency consumer not landed yet)",
+                                  "evidence": "re-audit 2026-11-01 at economy 13c3a3c: 145/145, tsc clean"}
+assert sum(1 for _r in EXTRA_ROWS if _r["id"] in _ME_BUILT and _r["status"] == "built") == 3
+for _q in EXTRA_QUANTITIES:
+    if _q["id"] in ("economy.currency", "economy.observed_ratio"):
+        _q["status"] = "built (economy 5268/5271; out port at 13c3a3c, 2026-11-01)"
+_tt = ROW_PATCHES.setdefault("economy.trade.trade", {})
+_tt["notes"] += ("; BUILT 2026-11-01: the N-leg exchange command (5268, 21b5ebe; event 'exchanged') and stall quotes per currency with one 'not-accepted' refusal record "
+                 "(5270, 685807d); the PLANNED EXTENSION in the formulation is now built (Settlement's multi-currency ledger side still to land)")
+_av = ROW_PATCHES.setdefault("economy.accounting.view", {})
+_av["notes"] = (_av.get("notes") or "Contract s8 vs code mismatch") + "; 2026-11-01: accounts per currency (economy 5270, 685807d); valuing across currencies only through economy.exchange.observed_ratios"

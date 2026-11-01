@@ -2497,7 +2497,7 @@
    "scope": "economy",
    "writer": "economy.money.currencies",
    "description": "currency records (id, issuer, backing good); isCurrency(id) is the out port Settlement reads (S2)",
-   "status": "planned (multi-economy v2, 2026-11-01)",
+   "status": "built (economy 5268/5271; out port at 13c3a3c, 2026-11-01)",
    "unit_parses": null
   },
   {
@@ -2676,7 +2676,7 @@
    "scope": "economy",
    "writer": "economy.exchange.observed_ratios",
    "description": "a view: B-per-A ratios of completed exchanges per market and day range; written by no rule and read by no rule; out port of its writer when built",
-   "status": "planned (multi-economy v2, 2026-11-01)",
+   "status": "built (economy 5268/5271; out port at 13c3a3c, 2026-11-01)",
    "unit_parses": null
   },
   {

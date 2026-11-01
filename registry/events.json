@@ -1153,6 +1153,160 @@
         }
       },
       "notes": "kernel 3011 inventory (1933334, draft), registered 2026-11-01 by the registry keeper. Emitted at settlement/src/tick/wages.ts:12; SettlementEvent, settlement/src/events.ts:13. Reducer event; kernel/harness/adapters.ts:30 publishes the entire event as payload, including type and any cause. The adapter does not forward cause to the Kernel envelope. Configuration events pre-dating adapter creation are skipped (line 15)."
+    },
+    {
+      "type": "currencyDefined",
+      "producer": "economy.money.currencies",
+      "consumers": [
+        "history.record.backend"
+      ],
+      "cause": "optional",
+      "payload": {
+        "type": {
+          "kind": "string",
+          "required": true
+        },
+        "currency": {
+          "kind": "string",
+          "required": true
+        },
+        "cause": {
+          "kind": "string",
+          "required": false
+        }
+      },
+      "notes": "registered 2026-11-01 by the registry keeper from economy 5268/5271 (21b5ebe, b7174d2; re-audited at 13c3a3c, 145/145). Emitted at economy/src/commands.ts:345. Configuration event."
+    },
+    {
+      "type": "exchanged",
+      "producer": "economy.trade.trade",
+      "consumers": [
+        "history.record.backend"
+      ],
+      "cause": "optional",
+      "payload": {
+        "type": {
+          "kind": "string",
+          "required": true
+        },
+        "money": {
+          "kind": "list",
+          "of": "record",
+          "required": true
+        },
+        "goods": {
+          "kind": "list",
+          "of": "record",
+          "required": true
+        },
+        "txns": {
+          "kind": "list",
+          "of": "record",
+          "required": true
+        },
+        "cause": {
+          "kind": "string",
+          "required": false
+        }
+      },
+      "notes": "registered 2026-11-01 by the registry keeper from economy 5268/5271 (21b5ebe, b7174d2; re-audited at 13c3a3c, 145/145). Emitted at economy/src/commands.ts:380: the N-leg exchange, all legs on one kernel transfer()."
+    },
+    {
+      "type": "offerPosted",
+      "producer": "economy.market.offers",
+      "consumers": [
+        "history.record.backend"
+      ],
+      "cause": "optional",
+      "payload": {
+        "type": {
+          "kind": "string",
+          "required": true
+        },
+        "offer": {
+          "kind": "string",
+          "required": true
+        },
+        "market": {
+          "kind": "string",
+          "required": true
+        },
+        "by": {
+          "kind": "string",
+          "required": true
+        },
+        "cause": {
+          "kind": "string",
+          "required": false
+        }
+      },
+      "notes": "registered 2026-11-01 by the registry keeper from economy 5268/5271 (21b5ebe, b7174d2; re-audited at 13c3a3c, 145/145). Emitted at economy/src/commands.ts:483 when an offer rests (an incoming offer that crosses fully emits only offerFilled)."
+    },
+    {
+      "type": "offerFilled",
+      "producer": "economy.market.offers",
+      "consumers": [
+        "history.record.backend"
+      ],
+      "cause": "optional",
+      "payload": {
+        "type": {
+          "kind": "string",
+          "required": true
+        },
+        "offer": {
+          "kind": "string",
+          "required": true
+        },
+        "maker": {
+          "kind": "string",
+          "required": true
+        },
+        "taker": {
+          "kind": "string",
+          "required": true
+        },
+        "gave": {
+          "kind": "record",
+          "required": true
+        },
+        "got": {
+          "kind": "record",
+          "required": true
+        },
+        "cause": {
+          "kind": "string",
+          "required": false
+        }
+      },
+      "notes": "registered 2026-11-01 by the registry keeper from economy 5268/5271 (21b5ebe, b7174d2; re-audited at 13c3a3c, 145/145). Emitted at economy/src/commands.ts:450; price-time crossing at the resting offer's ratio (ECON-27/28)."
+    },
+    {
+      "type": "offerWithdrawn",
+      "producer": "economy.market.offers",
+      "consumers": [
+        "history.record.backend"
+      ],
+      "cause": "optional",
+      "payload": {
+        "type": {
+          "kind": "string",
+          "required": true
+        },
+        "offer": {
+          "kind": "string",
+          "required": true
+        },
+        "reason": {
+          "kind": "string",
+          "required": true
+        },
+        "cause": {
+          "kind": "string",
+          "required": false
+        }
+      },
+      "notes": "registered 2026-11-01 by the registry keeper from economy 5268/5271 (21b5ebe, b7174d2; re-audited at 13c3a3c, 145/145). Emitted at economy/src/commands.ts:427; reason 'owner' (withdraw) or 'unfilled' (expiry on the tick)."
     }
   ]
 }

@@ -68,7 +68,7 @@ mechanisms, and are not itemised. Coverage limits are listed in `HQ/handoffs/reg
 | life mechanisms | 83 | 3 | 50 | 136 |
 | kernel mechanisms | 4 | 0 | 0 | 4 |
 | settlement mechanisms | 23 | 0 | 1 | 24 |
-| economy mechanisms | 21 | 0 | 8 | 29 |
+| economy mechanisms | 24 | 0 | 5 | 29 |
 | cognition mechanisms | 13 | 0 | 42 | 55 |
 | society mechanisms | 0 | 0 | 18 | 18 |
 | government mechanisms | 4 | 0 | 12 | 16 |
@@ -78,7 +78,7 @@ mechanisms, and are not itemised. Coverage limits are listed in `HQ/handoffs/reg
 | shared mechanisms | 7 | 5 | 5 | 17 |
 | pirate-ship mechanisms | 24 | 63 | 15 | 102 |
 | restatements (pirate docs and adapters) | 0 | 90 | 2 | 92 |
-| **all rows** | 223 | 161 | 206 | 590 |
+| **all rows** | 226 | 161 | 203 | 590 |
 
 **Restatements** are not errors: the pirate body docs are rendered from the same library JSON as the realism
 code (`body/build-body-data.py`), so their tables cannot disagree with the code. Disagreements live only in their
@@ -398,7 +398,7 @@ stability/conservation/boundary tests, `integration_tested_with`, integration te
 | `economy.burial_waste` | P | D | U | 5 | --- | DUP-45 | economy/PLAN.md step 12; README 'Scope added' |
 | `economy.consumption.demand` | B | D | U | 4 | IT- | DUP-21 DUP-31 | economy/src/tick/index.ts consumption() |
 | `economy.example.three_ports` | B | D | U | 5 | I-- |  | economy/examples/three-ports.ts |
-| `economy.exchange.observed_ratios` | P | D | U | ? | --- |  | HQ/handoffs/economy/MULTI-ECONOMY-DESIGN.md v2 (Rex 2026-11-01, ENGINES.md 'Competing econ |
+| `economy.exchange.observed_ratios` | B | D | U | ? | I-- |  | economy/src/queries.ts ratios, mediaInUse (economy 5271, b7174d2); design HQ/handoffs/econ |
 | `economy.goods.record_object` | P | D | U | ? | --- |  | ENGINES.md 'History is the backend record; knowledge of history is Cognition's' (Rex 2026- |
 | `economy.household.budget` | P | D | U | ? | --- | DUP-59 | ROADMAP P5 Grounded economy (planned) |
 | `economy.infra.id_scheme` | B | infra | U | 4 | I-- |  | economy/src/ids.ts |
@@ -408,10 +408,10 @@ stability/conservation/boundary tests, `integration_tested_with`, integration te
 | `economy.labour.wage_quote` | B | D | U | 5 | IT- | DUP-28 | economy/src/labour.ts wageQuote/wageQuotes |
 | `economy.market.five_numbers` | B | D | U | 3 | IT- |  | economy/src/state.ts MarketGood; commands.ts setMarketGood |
 | `economy.market.observed_production` | B | D | U | 4 | IT- | DUP-27 | economy/src/tick/index.ts production() (roll), commands.ts produce |
-| `economy.market.offers` | P | D | U | ? | --- |  | HQ/handoffs/economy/MULTI-ECONOMY-DESIGN.md v2 (Rex 2026-11-01, ENGINES.md 'Competing econ |
+| `economy.market.offers` | B | D | U | ? | I-- |  | economy/src/commands.ts offer/accept/withdraw (postOffer, acceptOffer, withdrawOffer, fill |
 | `economy.material.available` | B | D | U | 4 | IT- |  | economy/src/material.ts availableUnits |
 | `economy.material.produce` | B | D | U | 4 | IT- | DUP-27 DUP-52 | economy/src/commands.ts produce; src/material.ts consumeInputs |
-| `economy.money.currencies` | P | D | U | ? | --- |  | HQ/handoffs/economy/MULTI-ECONOMY-DESIGN.md v2 (Rex 2026-11-01, ENGINES.md 'Competing econ |
+| `economy.money.currencies` | B | D | U | ? | I-- |  | economy/src/commands.ts defineCurrency; src/queries.ts isCurrency, currencyProvider (econo |
 | `economy.org.organisation` | B | F | U | 4 | IT- | DUP-58 | economy/src/commands.ts openOrganisation |
 | `economy.presentation.worn_items` | P | D | U | ? | --- |  | ENGINES.md 'Style and presentation' (Rex 2026-10-30; a shared planned mechanism, not an en |
 | `economy.price.king_davenant` | P | D | M | 3 | --- |  | economy/RESEARCH.md s1 |

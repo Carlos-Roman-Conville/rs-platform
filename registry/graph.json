@@ -934,7 +934,7 @@
   {
    "id": "economy.exchange.observed_ratios",
    "engine": "economy",
-   "status": "planned",
+   "status": "built",
    "kind": "mechanism",
    "domain": "D",
    "scope": "universal"
@@ -1014,7 +1014,7 @@
   {
    "id": "economy.market.offers",
    "engine": "economy",
-   "status": "planned",
+   "status": "built",
    "kind": "mechanism",
    "domain": "D",
    "scope": "universal"
@@ -1038,7 +1038,7 @@
   {
    "id": "economy.money.currencies",
    "engine": "economy",
-   "status": "planned",
+   "status": "built",
    "kind": "mechanism",
    "domain": "D",
    "scope": "universal"
