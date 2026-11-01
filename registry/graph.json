@@ -1066,7 +1066,7 @@
   {
    "id": "government.authority.acquisition_delegation",
    "engine": "government",
-   "status": "planned",
+   "status": "built",
    "kind": "mechanism",
    "domain": "E",
    "scope": "universal"
@@ -1082,7 +1082,7 @@
   {
    "id": "government.compliance.enforcement",
    "engine": "government",
-   "status": "planned",
+   "status": "built",
    "kind": "mechanism",
    "domain": "E",
    "scope": "universal"
@@ -1114,7 +1114,7 @@
   {
    "id": "government.jurisdiction.competing",
    "engine": "government",
-   "status": "planned",
+   "status": "built",
    "kind": "mechanism",
    "domain": "E",
    "scope": "universal"
@@ -1122,7 +1122,7 @@
   {
    "id": "government.law.schema",
    "engine": "government",
-   "status": "planned",
+   "status": "built",
    "kind": "mechanism",
    "domain": "E",
    "scope": "universal"

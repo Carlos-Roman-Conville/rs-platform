@@ -2591,3 +2591,16 @@ for _g in ("DUP-32", "DUP-33"):
         "note": "kernel 2886 raises the harness limits (thirty-days 3600 s, replay 7200 s; hang guards for periodic validation runs); kernel 2887 (gate-only) runs both once and prints their duration; its pass is the record. Machine at 100 % CPU tonight (69 Claude, 4 Codex) fits a 2.7x slowdown with no failed assertion"})
 DECISIONS["DUP-62"]["progress"].append({"date": "2026-10-31", "step": "unit passed (Settlement code part)", "by": "registry keeper", "commit": "settlement e52afbd (2871)",
     "note": "re-audited: every office power check goes through officeHas -> AuthorityProvider.may (src/context.ts:78-82) at the four sites (commands.ts:178 public title, :212 seize, :624 and :637 permit); default provider officePowersAuthority reads Office.powers[]; kernel.json declares the in port on government.office_may; belt check exits 0; Settlement reports 72 tests and a byte-identical pirate golden (test (4)). Waits for Government's provider (government 2870) and test (2) through appoint / vacate / inherit"})
+
+# --- 2026-10-31: re-audit of government 2863 (705ce83), 2864 (d04b4dc), 2867 (3f8fe4f); suite 286/286 at government 0ab1303 ---
+_GC = "government 0ab1303 (suite 286/286, registry keeper rerun)"
+for _k, _src, _t, _c, _n in [
+ ("government.law.schema", "src/law/schema.ts, load.ts, predicate.ts", "test/law-schema.test.ts, law-load.test.ts, predicate.test.ts", "705ce83 (2863)", "the law record, predicate language and loader"),
+ ("government.compliance.enforcement", "src/law/evaluate.ts, violation.ts", "test/evaluate.test.ts, violation.test.ts", "d04b4dc (2864)", "breach evaluation and violation stages"),
+ ("government.jurisdiction.competing", "src/law/evaluate.ts (jurisdiction applicability), src/authority/distribution.ts", "test/evaluate.test.ts", "d04b4dc (2864)", "jurisdiction applicability in the evaluator"),
+ ("government.authority.acquisition_delegation", "src/authority/distribution.ts, readers.ts", "test/authority.test.ts", "3f8fe4f (2867)", "authority distribution computed on read (provisionalF); keeper calls on supersession, dates and rivals in DESIGN §1.1-1.2 (0ab1303); the rival/place fix is unit 2890, so implemented, not final"),
+]:
+    ROW_PATCHES.setdefault(_k, {}).update({"status": "built", "home": "Toolchain/government/" + _src + " (" + _c + ")", "tests": "Toolchain/government " + _t + " (" + _GC + ")"})
+    VV_OVERRIDES[_k] = {"validated": "no (no independent data yet; the law fixture 2866 failed review and is re-encoded in 2888)",
+                        "integrated": "no (no combined test: the Settlement port provider is government 2870)",
+                        "evidence": "re-audit 2026-10-31 of " + _c + ": " + _n}

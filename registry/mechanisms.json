@@ -7,8 +7,8 @@
   "contract_fields": "PLATFORM.md §7",
   "evidence_scale": "PLATFORM.md §4 (1 law ... 6 fiction)",
   "counts": {
-   "built": 215,
-   "planned": 198,
+   "built": 219,
+   "planned": 194,
    "documented-only": 161
   },
   "kinds": {
@@ -20,8 +20,8 @@
   "schema_4": "adds rate_limiter and failure_mode to the §7 contract fields (with inputs = what enters, outputs = what leaves, state = what accumulates), null until owners fill them; widens vv.record item 5 with numerical {stability, coupled_update_consistency, sensitivity} (PLATFORM §11a item 5, Rex 2026-10-31); check-registry warns, never fails, on empty fields of built rows",
   "schema_3": "each row carries vv {implemented, integrated, validated, record{sources_and_model, applicability, verification_tests, validation_evidence, tolerance, stability_conservation_boundary, integration_tested_with, integration_tests, report}} (PLATFORM.md §11a); seeded 2026-10-30 from the audit and the combined tests; owners complete it, the registry keeper re-audits",
   "vv_counts": {
-   "implemented": 213,
-   "built_mechanisms": 215,
+   "implemented": 217,
+   "built_mechanisms": 219,
    "with_integration_test": 122,
    "integrated_yes": 122,
    "validated_yes": 0,
@@ -7680,9 +7680,9 @@
    "id": "government.authority.acquisition_delegation",
    "name": "Authority acquisition and delegation",
    "owning_engine": "government",
-   "home": "Toolchain/ENGINES.md 'Institutions, government and religion emerge' (Rex 2026-10-31; planned)",
+   "home": "Toolchain/government/src/authority/distribution.ts, readers.ts (3f8fe4f (2867))",
    "home_kind": "docs",
-   "status": "planned",
+   "status": "built",
    "status_note": "",
    "kind": "mechanism",
    "restates": null,
@@ -7718,7 +7718,7 @@
    "evidence": null,
    "evidence_note": "?",
    "approximations": "planned",
-   "tests": "none",
+   "tests": "Toolchain/government test/authority.test.ts (government 0ab1303 (suite 286/286, registry keeper rerun))",
    "consumers": [
     "government.rule.creation_amendment",
     "government.compliance.enforcement"
@@ -7730,13 +7730,15 @@
    "unit_issues": [],
    "audit_batch": "rex-2026-10-31-institutions",
    "audit_id": null,
-   "writes": [],
+   "writes": [
+    "government.authority_distribution"
+   ],
    "reads": [],
    "aggregates": null,
    "vv": {
-    "implemented": false,
-    "integrated": "no (not built)",
-    "validated": "n/a",
+    "implemented": true,
+    "integrated": "no (no combined test: the Settlement port provider is government 2870)",
+    "validated": "no (no independent data yet; the law fixture 2866 failed review and is re-encoded in 2888)",
     "record": {
      "sources_and_model": {
       "sources": "to research per unit (evidence levels stated); ENGINES.md",
@@ -7744,8 +7746,10 @@
       "evidence_level": null
      },
      "applicability": "planned",
-     "verification_tests": "none",
-     "validation_evidence": [],
+     "verification_tests": "Toolchain/government test/authority.test.ts (government 0ab1303 (suite 286/286, registry keeper rerun))",
+     "validation_evidence": [
+      "re-audit 2026-10-31 of 3f8fe4f (2867): authority distribution computed on read (provisionalF); keeper calls on supersession, dates and rivals in DESIGN §1.1-1.2 (0ab1303); the rival/place fix is unit 2890, so implemented, not final"
+     ],
      "tolerance": null,
      "stability_conservation_boundary": [],
      "numerical": {
@@ -7838,9 +7842,9 @@
    "id": "government.compliance.enforcement",
    "name": "Institutional compliance and enforcement",
    "owning_engine": "government",
-   "home": "Toolchain/ENGINES.md 'Institutions, government and religion emerge' (Rex 2026-10-31; planned)",
+   "home": "Toolchain/government/src/law/evaluate.ts, violation.ts (d04b4dc (2864))",
    "home_kind": "docs",
-   "status": "planned",
+   "status": "built",
    "status_note": "",
    "kind": "mechanism",
    "restates": null,
@@ -7880,7 +7884,7 @@
    "evidence": null,
    "evidence_note": "?",
    "approximations": "planned",
-   "tests": "none",
+   "tests": "Toolchain/government test/evaluate.test.ts, violation.test.ts (government 0ab1303 (suite 286/286, registry keeper rerun))",
    "consumers": [
     "cognition.learning.outcome",
     "society.organisation.actors"
@@ -7894,13 +7898,15 @@
     "IF-43",
     "IF-44"
    ],
-   "writes": [],
+   "writes": [
+    "government.violation"
+   ],
    "reads": [],
    "aggregates": null,
    "vv": {
-    "implemented": false,
-    "integrated": "no (not built)",
-    "validated": "n/a",
+    "implemented": true,
+    "integrated": "no (no combined test: the Settlement port provider is government 2870)",
+    "validated": "no (no independent data yet; the law fixture 2866 failed review and is re-encoded in 2888)",
     "record": {
      "sources_and_model": {
       "sources": "to research per unit (evidence levels stated); ENGINES.md",
@@ -7908,8 +7914,10 @@
       "evidence_level": null
      },
      "applicability": "planned",
-     "verification_tests": "none",
-     "validation_evidence": [],
+     "verification_tests": "Toolchain/government test/evaluate.test.ts, violation.test.ts (government 0ab1303 (suite 286/286, registry keeper rerun))",
+     "validation_evidence": [
+      "re-audit 2026-10-31 of d04b4dc (2864): breach evaluation and violation stages"
+     ],
      "tolerance": null,
      "stability_conservation_boundary": [],
      "numerical": {
@@ -8148,9 +8156,9 @@
    "id": "government.jurisdiction.competing",
    "name": "Jurisdiction and competing authority",
    "owning_engine": "government",
-   "home": "Toolchain/ENGINES.md 'Institutions, government and religion emerge' (Rex 2026-10-31; planned)",
+   "home": "Toolchain/government/src/law/evaluate.ts (jurisdiction applicability), src/authority/distribution.ts (d04b4dc (2864))",
    "home_kind": "docs",
-   "status": "planned",
+   "status": "built",
    "status_note": "",
    "kind": "mechanism",
    "restates": null,
@@ -8178,7 +8186,7 @@
    "evidence": null,
    "evidence_note": "?",
    "approximations": "planned",
-   "tests": "none",
+   "tests": "Toolchain/government test/evaluate.test.ts (government 0ab1303 (suite 286/286, registry keeper rerun))",
    "consumers": [
     "government.rule.creation_amendment",
     "government.compliance.enforcement"
@@ -8188,13 +8196,15 @@
    "unit_issues": [],
    "audit_batch": "rex-2026-10-31-institutions",
    "audit_id": null,
-   "writes": [],
+   "writes": [
+    "government.jurisdiction"
+   ],
    "reads": [],
    "aggregates": null,
    "vv": {
-    "implemented": false,
-    "integrated": "no (not built)",
-    "validated": "n/a",
+    "implemented": true,
+    "integrated": "no (no combined test: the Settlement port provider is government 2870)",
+    "validated": "no (no independent data yet; the law fixture 2866 failed review and is re-encoded in 2888)",
     "record": {
      "sources_and_model": {
       "sources": "to research per unit (evidence levels stated); ENGINES.md",
@@ -8202,8 +8212,10 @@
       "evidence_level": null
      },
      "applicability": "planned",
-     "verification_tests": "none",
-     "validation_evidence": [],
+     "verification_tests": "Toolchain/government test/evaluate.test.ts (government 0ab1303 (suite 286/286, registry keeper rerun))",
+     "validation_evidence": [
+      "re-audit 2026-10-31 of d04b4dc (2864): jurisdiction applicability in the evaluator"
+     ],
      "tolerance": null,
      "stability_conservation_boundary": [],
      "numerical": {
@@ -8223,9 +8235,9 @@
    "id": "government.law.schema",
    "name": "Law as executable data",
    "owning_engine": "government",
-   "home": "Toolchain/ENGINES.md 'Institutions, government and religion emerge' (Rex 2026-10-31; planned)",
+   "home": "Toolchain/government/src/law/schema.ts, load.ts, predicate.ts (705ce83 (2863))",
    "home_kind": "docs",
-   "status": "planned",
+   "status": "built",
    "status_note": "",
    "kind": "mechanism",
    "restates": null,
@@ -8243,7 +8255,7 @@
    "evidence": null,
    "evidence_note": "?",
    "approximations": "planned",
-   "tests": "none",
+   "tests": "Toolchain/government test/law-schema.test.ts, law-load.test.ts, predicate.test.ts (government 0ab1303 (suite 286/286, registry keeper rerun))",
    "consumers": [
     "government.rule.creation_amendment",
     "government.compliance.enforcement"
@@ -8257,9 +8269,9 @@
    "reads": [],
    "aggregates": null,
    "vv": {
-    "implemented": false,
-    "integrated": "no (not built)",
-    "validated": "n/a",
+    "implemented": true,
+    "integrated": "no (no combined test: the Settlement port provider is government 2870)",
+    "validated": "no (no independent data yet; the law fixture 2866 failed review and is re-encoded in 2888)",
     "record": {
      "sources_and_model": {
       "sources": "to research per unit (evidence levels stated); ENGINES.md",
@@ -8267,8 +8279,10 @@
       "evidence_level": null
      },
      "applicability": "planned",
-     "verification_tests": "none",
-     "validation_evidence": [],
+     "verification_tests": "Toolchain/government test/law-schema.test.ts, law-load.test.ts, predicate.test.ts (government 0ab1303 (suite 286/286, registry keeper rerun))",
+     "validation_evidence": [
+      "re-audit 2026-10-31 of 705ce83 (2863): the law record, predicate language and loader"
+     ],
      "tolerance": null,
      "stability_conservation_boundary": [],
      "numerical": {
