@@ -9045,6 +9045,12 @@
      "step": "acceptance amended",
      "by": "Rex (via the controller)",
      "note": "the id clause becomes the <engine>/<local id> qualification scheme; kernel 2749 (aa8e64c, 'never collide' test in test/ids.test.ts, gate passed) is its test"
+    },
+    {
+     "date": "2026-10-31",
+     "step": "re-audit: not passed",
+     "by": "registry keeper",
+     "note": "amended id test passes (kernel 2749, aa8e64c). harness rerun by the registry keeper at kernel 1e7f8bb (PLATFORM §11b: the recovery changed contract code): 13 of 15 pass; thirty-days 'P0 one clock' and replay 'canonical-equal snapshots' both TIMED OUT (600 s and 1200 s test timeouts; ran 1622 s and 2674 s), no assertion failed; unverified, not failed. Closes when the replay test passes after the recovery (Kernel keeper: raise the timeout or find the slowdown). Economy's hand-minted txn ids are local ids qualified at the boundary, acceptable under the amended scheme"
     }
    ]
   },
@@ -9085,6 +9091,12 @@
      "step": "acceptance amended",
      "by": "Rex (via the controller)",
      "note": "the clause becomes: an engine may keep its own counter only if the kernel adapter asserts it equals floor(T/DAY) each tick"
+    },
+    {
+     "date": "2026-10-31",
+     "step": "re-audit: not passed",
+     "by": "registry keeper",
+     "note": "under the amended clause, settlement and economy counters are asserted each tick (kernel harness/thirty-days.ts:59-68). GAP 1: Reality's own day counters (realism src/population.ts:221, ecology.ts:71, medicine.ts:448) are not asserted by any adapter: derive them from the clock or have the adapter assert them (Reality keeper). GAP 2: harness rerun by the registry keeper at kernel 1e7f8bb (PLATFORM §11b: the recovery changed contract code): 13 of 15 pass; thirty-days 'P0 one clock' and replay 'canonical-equal snapshots' both TIMED OUT (600 s and 1200 s test timeouts; ran 1622 s and 2674 s), no assertion failed; unverified, not failed"
     }
    ]
   },

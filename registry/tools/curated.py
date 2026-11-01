@@ -2576,3 +2576,11 @@ for _k, _sec, _rl, _fm in [
   "no world enforcer: a treaty breach is enforced only by the parties' own capacity"),
 ]:
     ROW_PATCHES.setdefault(_k, {}).update({"rate_limiter": _rl + " (government DESIGN §" + _sec + ")", "failure_mode": _fm + " (government DESIGN §" + _sec + ")"})
+
+# --- 2026-10-31: post-recovery harness rerun for DUP-32/33 (registry keeper, kernel 1e7f8bb) ---
+_HR = ("harness rerun by the registry keeper at kernel 1e7f8bb (PLATFORM §11b: the recovery changed contract code): 13 of 15 pass; "
+       "thirty-days 'P0 one clock' and replay 'canonical-equal snapshots' both TIMED OUT (600 s and 1200 s test timeouts; ran 1622 s and 2674 s), no assertion failed; unverified, not failed")
+DECISIONS["DUP-32"]["progress"].append({"date": "2026-10-31", "step": "re-audit: not passed", "by": "registry keeper",
+    "note": "amended id test passes (kernel 2749, aa8e64c). " + _HR + ". Closes when the replay test passes after the recovery (Kernel keeper: raise the timeout or find the slowdown). Economy's hand-minted txn ids are local ids qualified at the boundary, acceptable under the amended scheme"})
+DECISIONS["DUP-33"]["progress"].append({"date": "2026-10-31", "step": "re-audit: not passed", "by": "registry keeper",
+    "note": "under the amended clause, settlement and economy counters are asserted each tick (kernel harness/thirty-days.ts:59-68). GAP 1: Reality's own day counters (realism src/population.ts:221, ecology.ts:71, medicine.ts:448) are not asserted by any adapter: derive them from the clock or have the adapter assert them (Reality keeper). GAP 2: " + _HR})
