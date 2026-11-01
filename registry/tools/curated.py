@@ -2730,3 +2730,26 @@ _FAL = (" Diagnostic tooling (Rex 2026-11-01, not a mechanism): the Function Act
         "reads the existing processing trace (scenarios DESIGN §9) plus counterfactual ablation reruns; no second event or log system; F1-F13 unmodified during the initial experiments; the intended relevance map is never read by code.")
 _o = ROW_PATCHES.get("cognition.personality.eight_function", {}).get("notes")
 ROW_PATCHES.setdefault("cognition.personality.eight_function", {})["notes"] = ((_o or "Rex's theory as a hypothesis, one optional configuration of the slot (DESIGN.md §9); CTRL-7.") + _FAL)
+
+# --- 2026-11-01: causal-chain completeness audit (Toolchain/CHAINS.md; Rex's direction via the controller). Gaps only; the registry decides nothing ---
+for _id, _fr, _to, _gap in [
+ ("CG-1", "reality", "life", "chain 1.1: place.par (mol/m^2/d) has no writer; LIFE-2 says Reality writes it (phases 8, 13, 16)"),
+ ("CG-2", "reality", "life", "chain 1.2: place.rain, place.vpd and world.soil_water have no writer; hydrology writes only groundwater and drainage"),
+ ("CG-3", "life", "reality", "chain 1.4: no plant uptake flux quantity (water, N, P, K) although realism.terrain.soils integrates uptake"),
+ ("CG-4", "reality", "life", "chain 1.4: realism.plant.physiology inputs omit the LIFE-2 quantities (par, vpd, rain, soil_water, salinity, water)"),
+ ("CG-5", "life", "reality", "chain 1.7: no Reality or Life row moves an organism between places (only the plugin pirate.align.step)"),
+ ("CG-6", "life", "reality", "chain 1.8: no excreta mass or nutrient quantity for people or animals (body.urine is water only); DUP-45 undecided"),
+ ("CG-7", "reality", "reality", "N balance: no nitrogen input quantities (deposition, biological fixation, manure as mass)"),
+ ("CG-8", "reality", "reality", "N balance: no gaseous nitrogen losses (denitrification, volatilisation)"),
+ ("CG-9", "reality", "life", "N balance: world.soil_nutrient_pool and the nutrient fluxes join N, P and K in one kg quantity described per area"),
+ ("CG-10", "life", "life", "microbiology: no gut microbial digestion term (feed_gate, absorption, flux_digestion_atp)"),
+ ("CG-11", "life", "economy", "X1 acceptance (1): mass leaving bodies as faeces has no destination row or declared boundary"),
+ ("CG-12", "life", "life", "chain 2.2: the genetic profile (record 1) has no quantity id; maturation lists the row id as an input"),
+ ("CG-13", "life", "life", "chain 2.4: realism.nutrition.energy_store reads 'intake'; whether energy enters as eaten or absorbed is unstated"),
+ ("CG-14", "life", "life", "chain 2.4: expenditure has no growth, thermoregulation (shivering) or reproduction term"),
+ ("CG-15", "life", "life", "chain 2.5: tissue populations have no dN/dt = B - D equation or quantities (population_state outputs empty)"),
+ ("CG-16", "cognition", "reality / life", "chain 3.6: no row resolves an intention into a physical outcome (IF-43 names Reality and Life); body.capacity_functional has no writer (DUP-15)"),
+ ("CG-17", "kernel", "all", "structures: the kernel ConservedQuantity / ResolutionService (kernel src/resolution.ts) has no registry row"),
+ ("CG-18", "kernel", "all", "structures: KernelEvent payload is unknown; no list of event types with payload schema, producer and consumers"),
+]:
+    INTERFACE_GAPS.append({"interface": _id, "from": _fr, "to": _to, "state": "gap (CHAINS.md 2026-11-01)", "gap": _gap, "joins": "Toolchain/CHAINS.md"})
