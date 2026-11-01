@@ -8,11 +8,11 @@
   "evidence_scale": "PLATFORM.md §4 (1 law ... 6 fiction)",
   "counts": {
    "built": 221,
-   "planned": 200,
+   "planned": 201,
    "documented-only": 161
   },
   "kinds": {
-   "mechanism": 490,
+   "mechanism": 491,
    "restatement": 92
   },
   "schema_version": 4,
@@ -50448,6 +50448,74 @@
      "integration_tested_with": [],
      "integration_tests": [],
      "report": "GOV-Q4 (Rex-approved Government design 2026-10-31); a contract row in 'shared', owned by no engine"
+    }
+   },
+   "rate_limiter": null,
+   "failure_mode": null
+  },
+  {
+   "id": "shared.action.resolution",
+   "name": "Action resolution (shared contract)",
+   "owning_engine": "shared",
+   "home": "Toolchain/cognition/DESIGN.md §2.4 (proposed by the Cognition keeper 2026-11-01 as CG-16 lead; success equations stay with the owning engines)",
+   "home_kind": "code",
+   "status": "planned",
+   "status_note": "",
+   "kind": "mechanism",
+   "restates": null,
+   "domain": "infra",
+   "scope": "universal",
+   "scope_note": "",
+   "inputs": [],
+   "outputs": [],
+   "state": "none (a contract)",
+   "formulation": "resolve(intention, truth) -> { status: completed | failed | impossible, stimuli, transfers }, implemented by the engine owning the action kind in shared.action.kind; one kernel.transaction per intention containing its kernel.transfer calls and the outcome event; the outcome event's cause is the intention event id",
+   "dependencies": [
+    "shared.action.kind",
+    "kernel.transaction",
+    "kernel.transfer"
+   ],
+   "timescale": "per intention",
+   "invariants": "Cognition decides only whether someone attempts an act; success is decided by Reality and Life (IF-43, CG-16), Economy (IF-26), Settlement and Economy (IF-27); outcome events are the resolving engine's own types with cause; no cognition.outcome event type; owned by no engine",
+   "sources": "contract",
+   "evidence": null,
+   "evidence_note": "None",
+   "approximations": "planned",
+   "tests": "none",
+   "consumers": [
+    "cognition.learning.outcome"
+   ],
+   "notes": "CG-16 (CHAINS.md priority 2); proposals with Reality, Life, Economy and Settlement",
+   "overlap_groups": [],
+   "unit_issues": [],
+   "audit_batch": "cognition-keeper-2026-11-01-cg16",
+   "audit_id": null,
+   "writes": [],
+   "reads": [],
+   "aggregates": null,
+   "vv": {
+    "implemented": false,
+    "integrated": "no (not built)",
+    "validated": "n/a",
+    "record": {
+     "sources_and_model": {
+      "sources": "contract",
+      "model": "resolve(intention, truth) -> { status: completed | failed | impossible, stimuli, transfers }, implemented by the engine owning the action kind in shared.action.kind; one kernel.transaction per intention containing its kernel.transfer calls and the outcome event; the outcome event's cause is the intention event id",
+      "evidence_level": null
+     },
+     "applicability": "planned",
+     "verification_tests": "none",
+     "validation_evidence": [],
+     "tolerance": null,
+     "stability_conservation_boundary": [],
+     "numerical": {
+      "stability": null,
+      "coupled_update_consistency": null,
+      "sensitivity": null
+     },
+     "integration_tested_with": [],
+     "integration_tests": [],
+     "report": "CG-16 (CHAINS.md priority 2); proposals with Reality, Life, Economy and Settlement"
     }
    },
    "rate_limiter": null,

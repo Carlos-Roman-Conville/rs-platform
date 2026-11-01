@@ -2939,3 +2939,19 @@ for _g in INTERFACE_GAPS:
 # --- 2026-11-01: CG-9 ports unit queued (Reality): realism 3021 (needs 3001), process realism.ecology.soils (terrain.soils + eco.soil_fertility) writes world.soil_{n,p,k} and stock.f; no existing process writes stock.f (checked realism kernel.json at HEAD) ---
 for _g in INTERFACE_GAPS:
     if _g["interface"] == "CG-9": _g["progress"] += "; ports: realism 3021 (needs 3001), process realism.ecology.soils, gate check-registry on realism/kernel.json"
+
+# --- 2026-11-01: CG-16 contract id accepted (Cognition keeper, lead): shared.action.resolution, registry-owned like shared.contract.labour_supply ---
+EXTRA_ROWS.append({"id": "shared.action.resolution", "name": "Action resolution (shared contract)", "engine": "shared",
+    "home": "Toolchain/cognition/DESIGN.md §2.4 (proposed by the Cognition keeper 2026-11-01 as CG-16 lead; success equations stay with the owning engines)",
+    "status": "planned", "domain": "infra", "scope": "universal", "inputs": [], "outputs": [], "state": "none (a contract)",
+    "formulation": "resolve(intention, truth) -> { status: completed | failed | impossible, stimuli, transfers }, implemented by the engine owning the action kind in shared.action.kind; one kernel.transaction per intention containing its kernel.transfer calls and the outcome event; the outcome event's cause is the intention event id",
+    "dependencies": ["shared.action.kind", "kernel.transaction", "kernel.transfer"], "timescale": "per intention",
+    "invariants": "Cognition decides only whether someone attempts an act; success is decided by Reality and Life (IF-43, CG-16), Economy (IF-26), Settlement and Economy (IF-27); outcome events are the resolving engine's own types with cause; no cognition.outcome event type; owned by no engine",
+    "sources": "contract", "evidence": None, "approximations": "planned", "tests": "none",
+    "consumers": ["cognition.learning.outcome"], "notes": "CG-16 (CHAINS.md priority 2); proposals with Reality, Life, Economy and Settlement", "audit_batch": "cognition-keeper-2026-11-01-cg16"})
+for _g in INTERFACE_GAPS:
+    if _g["interface"] in ("CG-16", "IF-26", "IF-27"):
+        _g["progress"] = _g.get("progress", "") + "; Cognition keeper 2026-11-01: contract shared.action.resolution registered planned; proposals with Reality, Life, Economy, Settlement"
+    if _g["interface"] == "CG-18":
+        _g["progress"] += ("; Cognition keeper 2026-11-01: cognition.intention payload {id, mind, action, target?, t, expectedOutcomes: Categorical, status} (built, cognition 2106314), "
+                           "producer cognition.decision.select, consumers the resolvers; proposed terms?: Record<string, number>; enters events.json with the 3011 inventory")

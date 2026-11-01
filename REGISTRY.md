@@ -75,10 +75,10 @@ mechanisms, and are not itemised. Coverage limits are listed in `HQ/handoffs/reg
 | knowledge mechanisms | 0 | 0 | 7 | 7 |
 | history mechanisms | 0 | 0 | 1 | 1 |
 | catalogue mechanisms | 0 | 0 | 7 | 7 |
-| shared mechanisms | 6 | 5 | 4 | 15 |
+| shared mechanisms | 6 | 5 | 5 | 16 |
 | pirate-ship mechanisms | 24 | 63 | 15 | 102 |
 | restatements (pirate docs and adapters) | 0 | 90 | 2 | 92 |
-| **all rows** | 221 | 161 | 200 | 582 |
+| **all rows** | 221 | 161 | 201 | 583 |
 
 **Restatements** are not errors: the pirate body docs are rendered from the same library JSON as the realism
 code (`body/build-body-data.py`), so their tables cannot disagree with the code. Disagreements live only in their
@@ -552,11 +552,12 @@ stability/conservation/boundary tests, `integration_tested_with`, integration te
 | `catalogue.reference.ingest` | P | infra | U | ? | --- |  | catalogue/DESIGN.md (approved by Rex 2026-10-31) §2.2 |
 | `catalogue.region.membership` | P | infra | U | ? | --- |  | catalogue/DESIGN.md (approved by Rex 2026-10-31) §1.4 |
 
-### shared (15)
+### shared (16)
 
 | id | st | dom | sc | ev | V&V | overlaps | home |
 |---|---|---|---|---|---|---|---|
 | `shared.action.kind` | P | infra | U | ? | --- |  | government/DESIGN.md (approved by Rex 2026-10-31) § GOV-Q4 |
+| `shared.action.resolution` | P | infra | U | ? | --- |  | cognition/DESIGN.md §2.4 (proposed by the Cognition keeper 2026-11-01 as CG-16 lead; succe |
 | `shared.contract.day_order` | B | infra | U | 4 | IT- | DUP-33 | settlement/CONTRACTS.md s9 |
 | `shared.contract.inventory_ownership` | B | D | U | 4 | -T- |  | settlement/CONTRACTS.md s2 and s15 (= economy/CONTRACTS.md) |
 | `shared.contract.labour_supply` | P | D | U | 4 | --- |  | settlement/CONTRACTS.md s16 (= economy); declaration in settlement/src/providers.ts and ec |
