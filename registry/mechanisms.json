@@ -7803,6 +7803,8 @@
    "unit_issues": [],
    "audit_batch": "government-keeper-2026-10-31",
    "audit_id": null,
+   "rate_limiter": "the body's meetings and its quorum (government DESIGN §1.12)",
+   "failure_mode": "no quorum: no decision; ties resolve by the procedure's own rule, or none: no decision (government DESIGN §1.12)",
    "writes": [],
    "reads": [],
    "aggregates": null,
@@ -7830,9 +7832,7 @@
      "integration_tests": [],
      "report": "Government keeper 2026-10-31 (design approved). watched boundary with society.organisation.collective_choice (IF-47): law over a territory and non-members vs an organisation's own members"
     }
-   },
-   "rate_limiter": null,
-   "failure_mode": null
+   }
   },
   {
    "id": "government.compliance.enforcement",
@@ -7965,6 +7965,8 @@
    "unit_issues": [],
    "audit_batch": "government-keeper-2026-10-31",
    "audit_id": null,
+   "rate_limiter": "negotiation events (Cognition minds; IF-18 for executed agreements) (government DESIGN §1.14)",
+   "failure_mode": "no world enforcer: a treaty breach is enforced only by the parties' own capacity (government DESIGN §1.14)",
    "writes": [],
    "reads": [],
    "aggregates": null,
@@ -7992,9 +7994,7 @@
      "integration_tests": [],
      "report": "Government keeper 2026-10-31 (design approved). war decisions moved here from History (Rex 2026-10-31)"
     }
-   },
-   "rate_limiter": null,
-   "failure_mode": null
+   }
   },
   {
    "id": "government.fiscal.spending",
@@ -8320,6 +8320,8 @@
    "unit_issues": [],
    "audit_batch": "government-keeper-2026-10-31",
    "audit_id": null,
+   "rate_limiter": "none of its own; changes only as fast as Cognition's belief update changes each b_i (government DESIGN §1.8)",
+   "failure_mode": "no formed beliefs: R is null (flagged), never 0; aggregates only over persons with a belief (government DESIGN §1.8)",
    "writes": [],
    "reads": [],
    "aggregates": null,
@@ -8347,9 +8349,7 @@
      "integration_tests": [],
      "report": "Government keeper 2026-10-31 (design approved). GOV-Q1: never a stored score"
     }
-   },
-   "rate_limiter": null,
-   "failure_mode": null
+   }
   },
   {
    "id": "government.military.organisation",
@@ -8391,6 +8391,8 @@
    "unit_issues": [],
    "audit_batch": "government-keeper-2026-10-31",
    "audit_id": null,
+   "rate_limiter": "recruitment and pay (Economy goods, Settlement ledger) and Life capacity (government DESIGN §1.13)",
+   "failure_mode": "unpaid or disloyal agents (low y_j) withdraw backing C; desertion is each agent's Cognition choice (government DESIGN §1.13)",
    "writes": [],
    "reads": [],
    "aggregates": null,
@@ -8418,9 +8420,7 @@
      "integration_tests": [],
      "report": "Government keeper 2026-10-31 (design approved). the DUP-58 seam: one organisation store (Society); GOV-Q7: battle-scale aggregation is a shared aggregation interface, Reality owns the physics, Government the decision"
     }
-   },
-   "rate_limiter": null,
-   "failure_mode": null
+   }
   },
   {
    "id": "government.polity.structure",
@@ -8462,6 +8462,8 @@
    "unit_issues": [],
    "audit_batch": "government-keeper-2026-10-31",
    "audit_id": null,
+   "rate_limiter": "none of its own; a read of the authority graph, recomputed when authority inputs change (government DESIGN §1.14)",
+   "failure_mode": "fragmentation when the apex's A falls below a rival's over part of its territory, or the empower chains split (government DESIGN §1.14)",
    "writes": [],
    "reads": [],
    "aggregates": null,
@@ -8489,9 +8491,7 @@
      "integration_tests": [],
      "report": "Government keeper 2026-10-31 (design approved). polity formation, expansion and fragmentation moved here from History (Rex 2026-10-31)"
     }
-   },
-   "rate_limiter": null,
-   "failure_mode": null
+   }
   },
   {
    "id": "government.property.regime",
@@ -8535,6 +8535,8 @@
    "unit_issues": [],
    "audit_batch": "government-keeper-2026-10-31",
    "audit_id": null,
+   "rate_limiter": "enactment events (rule.creation_amendment procedures) (government DESIGN §1.11)",
+   "failure_mode": "a title command contrary to the regime is void (Settlement refuses the transfer); rival regimes from rival jurisdictions coexist (§1.6) (government DESIGN §1.11)",
    "writes": [],
    "reads": [],
    "aggregates": null,
@@ -8562,9 +8564,7 @@
      "integration_tests": [],
      "report": "Government keeper 2026-10-31 (design approved). "
     }
-   },
-   "rate_limiter": null,
-   "failure_mode": null
+   }
   },
   {
    "id": "government.rule.creation_amendment",

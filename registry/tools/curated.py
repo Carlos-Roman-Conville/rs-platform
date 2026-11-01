@@ -2559,3 +2559,20 @@ EXTRA_QUANTITIES.append({"id": "government.office_may", "kind": "quantity", "uni
 GROUPS[:] = [(g[0], g[1], g[2], g[3] + (["government.fiscal.taxation"] if g[0] == "DUP-42" else []), g[4]) for g in GROUPS]
 DECISIONS["DUP-62"]["progress"].append({"date": "2026-10-31", "step": "contract agreed", "by": "Government and Settlement keepers",
     "note": "GOVERNMENT-SETTLEMENT.md AGREED and byte-identical (settlement ac0a81d, government dd75837); quantity government.office_may registered for the AuthorityProvider.may port"})
+
+# --- 2026-10-31: rate limiters and failure modes for six Government rows (Government keeper, DESIGN §1.8, §1.11-1.14) ---
+for _k, _sec, _rl, _fm in [
+ ("government.legitimacy.aggregate", "1.8", "none of its own; changes only as fast as Cognition's belief update changes each b_i",
+  "no formed beliefs: R is null (flagged), never 0; aggregates only over persons with a belief"),
+ ("government.property.regime", "1.11", "enactment events (rule.creation_amendment procedures)",
+  "a title command contrary to the regime is void (Settlement refuses the transfer); rival regimes from rival jurisdictions coexist (§1.6)"),
+ ("government.collective_choice.procedure", "1.12", "the body's meetings and its quorum",
+  "no quorum: no decision; ties resolve by the procedure's own rule, or none: no decision"),
+ ("government.military.organisation", "1.13", "recruitment and pay (Economy goods, Settlement ledger) and Life capacity",
+  "unpaid or disloyal agents (low y_j) withdraw backing C; desertion is each agent's Cognition choice"),
+ ("government.polity.structure", "1.14", "none of its own; a read of the authority graph, recomputed when authority inputs change",
+  "fragmentation when the apex's A falls below a rival's over part of its territory, or the empower chains split"),
+ ("government.diplomacy.relations", "1.14", "negotiation events (Cognition minds; IF-18 for executed agreements)",
+  "no world enforcer: a treaty breach is enforced only by the parties' own capacity"),
+]:
+    ROW_PATCHES.setdefault(_k, {}).update({"rate_limiter": _rl + " (government DESIGN §" + _sec + ")", "failure_mode": _fm + " (government DESIGN §" + _sec + ")"})
