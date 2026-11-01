@@ -100,7 +100,7 @@ The registry keeper re-audits the commit and fills the closure record below.
 | 2 | CG-4 | broken connection | `realism.plant.physiology` reads the LIFE-2 quantities | Life | Reality |
 | 2 | CG-12 | broken connection | A quantity id for the genetic profile | Life | — |
 | 2 | CG-23 | broken connection | Population and individual consumption joined across resolutions | Life | Economy |
-| 2 | CG-17 | broken connection | A registry row for the kernel's `ConservedQuantity` and `ResolutionService` | Kernel | registry keeper |
+| 2 | CG-17 (**closed**) | broken connection | A registry row for the kernel's `ConservedQuantity` and `ResolutionService` | Kernel | registry keeper |
 | 2 | CG-18 | missing (no equation), assigned by the controller | Typed event contracts (type, payload, producer, consumers) | Kernel | controller, all engines |
 | 3 | CG-1, 2, 5, 6, 7, 8, 10, 11, 14, 15 | missing (no equation) | Research units (web tools) by each holder; implementation later | holders in the gap table | — |
 
@@ -108,7 +108,7 @@ The registry keeper re-audits the commit and fills the closure record below.
 
 | Gap | Unit | Equation | Unit of q | Owner | Verification | Re-audit |
 |---|---|---|---|---|---|---|
-| *(none closed yet)* | | | | | | |
+| CG-17 | none: the code already existed; registered by the registry keeper from the Kernel keeper's proposal | refine is accepted only if every declared conserved quantity matches within its tolerance; coarsen installs the exact aggregate; `transaction` restores every participant on failure | owner-declared per quantity | Kernel | `test/resolution.test.ts` and `test/transaction.test.ts`: 23/23 at kernel 309a317 (code unchanged since a3c4314) | registry keeper 2026-11-01. Rows `kernel.resolution.handoff` and `kernel.transaction` are built; integrated: no (no registered consumer yet) |
 
 ## Chain 1: ecological
 
@@ -254,7 +254,7 @@ accepts it (IF-26, IF-27, IF-43), and the kernel event carries it as an `unknown
 | CG-14 | Expenditure has no growth, thermoregulation or reproduction term | missing (no equation) | Life |
 | CG-15 | Tissue populations have no B − D equation or quantities | missing (no equation) | Life (realism 2815) |
 | CG-16 | No row resolves an intention into a physical outcome; capacity has no writer (DUP-15) | missing (no equation) | Reality / Life, with the controller |
-| CG-17 | The kernel conservation and resolution service has no registry row | broken connection | Kernel |
+| CG-17 | **closed 2026-11-01**: the kernel conservation and resolution service had no registry row | broken connection | Kernel |
 | CG-18 | Events have no typed contract | missing (no equation) | Kernel / controller |
 | CG-19 | Economy goods are unitless while IF-36 and IF-42 require mass and Life takes kg and kcal | invalid coupling | Economy with Life |
 | CG-20 | Soil nutrient loss on harvest (built `eco.soil_fertility`) is calculated apart from plant uptake | invalid coupling | Reality / Life (DUP-51, DUP-53) |

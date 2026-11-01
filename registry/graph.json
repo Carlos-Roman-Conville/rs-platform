@@ -1228,6 +1228,22 @@
    "scope": "universal"
   },
   {
+   "id": "kernel.resolution.handoff",
+   "engine": "kernel",
+   "status": "built",
+   "kind": "mechanism",
+   "domain": "infra",
+   "scope": "universal"
+  },
+  {
+   "id": "kernel.transaction",
+   "engine": "kernel",
+   "status": "built",
+   "kind": "mechanism",
+   "domain": "infra",
+   "scope": "universal"
+  },
+  {
    "id": "knowledge.adoption.aggregate",
    "engine": "knowledge",
    "status": "planned",
@@ -6593,6 +6609,11 @@
    "type": "depends_on"
   },
   {
+   "from": "kernel.resolution.handoff",
+   "to": "kernel.transaction",
+   "type": "depends_on"
+  },
+  {
    "from": "realism.chem.reaction_extent",
    "to": "realism.chem.carbon_combustion_charcoal",
    "type": "overlap",
@@ -10428,7 +10449,7 @@
   "meta": {
    "rule": "a depends_on edge between two built mechanisms with no combined test that runs both (PLATFORM.md §11a item 6)",
    "covered_pairs": 67,
-   "gap_pairs": 57,
+   "gap_pairs": 58,
    "interface_gap_count": 27
   },
   "gaps": [
@@ -10476,6 +10497,13 @@
     "engines": [
      "economy",
      "shared"
+    ]
+   },
+   {
+    "reader": "kernel.resolution.handoff",
+    "read": "kernel.transaction",
+    "engines": [
+     "kernel"
     ]
    },
    {
@@ -11186,7 +11214,7 @@
     "interface": "CG-17",
     "from": "kernel",
     "to": "all",
-    "state": "gap (CHAINS.md 2026-11-01)",
+    "state": "closed 2026-11-01: kernel.resolution.handoff and kernel.transaction registered (built; tests 23/23 at kernel 309a317)",
     "gap": "structures: the kernel ConservedQuantity / ResolutionService (kernel src/resolution.ts) has no registry row",
     "joins": "Toolchain/CHAINS.md",
     "failure_type": "broken connection",
@@ -11211,7 +11239,8 @@
      "controller",
      "all engines"
     ],
-    "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)"
+    "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)",
+    "progress": "Kernel keeper 2026-11-01 proposes registry/events.json (registry keeper owns: type, producer, consumers, payload field schema, cause), a checker in check-registry.ts and an opt-in bus contract hook; first unit an event inventory. Registry keeper agrees; waits on the controller"
    },
    {
     "interface": "CG-19",
@@ -11272,7 +11301,8 @@
      "life",
      "kernel"
     ],
-    "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)"
+    "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)",
+    "progress": "Kernel keeper 2026-11-01: no kernel change; proposed rule: each fast flux applies its transfer to the stock at its own period (one transaction with the source, §7a); the yearly mechanism runs only the stock's slow dynamics; a yearly buffer breaks §7a unless it is a declared conserved stock. Reality decides"
    },
    {
     "interface": "CG-23",

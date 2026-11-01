@@ -2790,3 +2790,41 @@ for _g in INTERFACE_GAPS:
         _g.update({"priority": _p, "owner": _o, "agreeing": _a, "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)"})
     elif _id.startswith("CG-"):
         _g.update({"priority": 3, "approved": "Rex 2026-11-01: research units now (web tools), implementation later"})
+
+# --- 2026-11-01: CG-17 closed. Kernel keeper's proposal (shared note kernel-cg17-cg18-cg22.md); registry keeper re-audit at kernel 309a317
+# (src/resolution.ts, src/transaction.ts and their tests unchanged since a3c4314): resolution.test.ts + transaction.test.ts 23/23 ---
+_KH = "Kernel keeper 2026-11-01 (CG-17, CHAINS.md); the kernel owns no world quantity: quantities and tolerances are supplied by the owner at construction"
+EXTRA_ROWS += [
+ {"id": "kernel.resolution.handoff", "name": "Adaptive resolution hand-off", "engine": "kernel", "home": "Toolchain/kernel/src/resolution.ts (ResolutionService, ConservedQuantity, switchTo; kernel a3c4314)",
+  "status": "built", "domain": "infra", "scope": "universal", "inputs": [], "outputs": [], "state": "the active representation, its RNG stream and enlisted participants",
+  "formulation": "coarse to fine: I = refine(A, rng), accepted only if for every declared conserved quantity q (owner-declared unit, absolute tolerance tau_q) |Q_q(coarsen(I)) - Q_q(A)| <= tau_q; fine to coarse: A = coarsen(I) installed exactly; switch only at the current scheduler boundary T (the old process set closes T, the new set first runs after T with dt from T)",
+  "dependencies": ["kernel.transaction"], "timescale": "per switch",
+  "invariants": "conservation within tau per quantity on refine; exact aggregate on coarsen; a failed switch restores representation, RNG stream and participants; no switch inside an instant; a no-op switch never reconverts; duplicate conserved quantity rejected",
+  "sources": "bookkeeping identity (PLATFORM §9: finer resolution refines the aggregate, never contradicts it)", "evidence": 1, "approximations": "none (accounting)",
+  "tests": "Toolchain/kernel test/resolution.test.ts (R-refine, R-boundary, R-coarsen, R-loss, R-every-quantity, R-isolation, R-transaction, R-coarsen-rollback, R-outer-transaction, R-instant, R-time, R-noop; registry keeper rerun at kernel 309a317, with transaction.test.ts 23/23)",
+  "consumers": [], "notes": _KH + "; no registered consumer yet (realism epidemic-vs-individuals uses its own)", "audit_batch": "kernel-keeper-2026-11-01-cg17"},
+ {"id": "kernel.transaction", "name": "Atomic multi-participant boundary", "engine": "kernel", "home": "Toolchain/kernel/src/transaction.ts (transaction, Participant; kernel a3c4314)",
+  "status": "built", "domain": "infra", "scope": "universal", "inputs": [], "outputs": [], "state": "participant snapshots for the duration of one call",
+  "formulation": "snapshot every enlisted participant; run fn; on throw restore every participant (attempting all) and rethrow",
+  "dependencies": [], "timescale": "per call",
+  "invariants": "all-or-nothing state across enlisted participants; a restore failure never masks the original error; gives the atomicity PLATFORM §7a needs (delta source = -q and delta destination = +q commit together or not at all); it is not itself a transfer primitive (open with the controller)",
+  "sources": "bookkeeping identity", "evidence": 1, "approximations": "none (accounting)",
+  "tests": "Toolchain/kernel test/transaction.test.ts; test/resolution.test.ts R-transaction, R-outer-transaction (registry keeper rerun at kernel 309a317, 23/23)",
+  "consumers": [], "notes": _KH, "audit_batch": "kernel-keeper-2026-11-01-cg17"},
+]
+ROW_PATCHES.setdefault("kernel.resolution.handoff", {}).update({"rate_limiter": "one switch per service per instant; tolerance is the owner's",
+    "failure_mode": "throws 'does not conserve <q>' and rolls back; rejects past, future or invalid switch times"})
+ROW_PATCHES.setdefault("kernel.transaction", {}).update({"rate_limiter": "none (synchronous call)",
+    "failure_mode": "on throw every participant is restored and the original error rethrown"})
+for _k in ("kernel.resolution.handoff", "kernel.transaction"):
+    VV_OVERRIDES[_k] = {"validated": "n/a (accounting identity)", "integrated": "no (no registered consumer yet)",
+                        "evidence": "re-audit 2026-11-01 at kernel 309a317 (code unchanged since a3c4314): 23/23"}
+for _g in INTERFACE_GAPS:
+    if _g["interface"] == "CG-17":
+        _g.update({"state": "closed 2026-11-01: kernel.resolution.handoff and kernel.transaction registered (built; tests 23/23 at kernel 309a317)"})
+    if _g["interface"] == "CG-22":
+        _g["progress"] = ("Kernel keeper 2026-11-01: no kernel change; proposed rule: each fast flux applies its transfer to the stock at its own period "
+                          "(one transaction with the source, §7a); the yearly mechanism runs only the stock's slow dynamics; a yearly buffer breaks §7a unless it is a declared conserved stock. Reality decides")
+    if _g["interface"] == "CG-18":
+        _g["progress"] = ("Kernel keeper 2026-11-01 proposes registry/events.json (registry keeper owns: type, producer, consumers, payload field schema, cause), "
+                          "a checker in check-registry.ts and an opt-in bus contract hook; first unit an event inventory. Registry keeper agrees; waits on the controller")

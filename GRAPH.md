@@ -7,8 +7,8 @@ acceptance tests. This is the readable view of `registry/graph.json`; ids are th
 
 ## 1. The graph in numbers
 
-- Nodes: 579 rows (487 mechanisms, 92 restatements).
-- Edges: 219 `depends_on` (resolved from each row's dependency list), 92 `restates`, 190 `overlap` (members of the 67 groups below), 51 `interface` (hand-offs, §2).
+- Nodes: 581 rows (489 mechanisms, 92 restatements).
+- Edges: 220 `depends_on` (resolved from each row's dependency list), 92 `restates`, 190 `overlap` (members of the 67 groups below), 51 `interface` (hand-offs, §2).
 - Unresolved dependencies: 82 mentions of 79 names that match no row (data files, host inputs, props, other docs); listed in graph.json.
 - Cross-engine `depends_on` edges: life → pirate-ship: 14, economy → shared: 7, life → reality: 5, settlement → shared: 5, settlement → economy: 5, shared → economy: 3, pirate-ship → life: 3, reality → kernel: 2, shared → settlement: 1, shared → life: 1.
   The realism → pirate-ship edges are realism code citing a pirate doc as its formula's authority (ENGINE.md, GAS_DYNAMICS.md, ANATOMY.md §3a, BODY.md): universal formulas whose statement lives in the plugin. Proposed: move each statement into a realism gear file (PLATFORM.md §8) and leave the doc pointing at it.
@@ -245,7 +245,7 @@ Each mechanism is **implemented** (code and unit tests pass), **integrated** (wi
 what it reads and feeds), and **validated** (its behaviour matches independent evidence within declared
 tolerances): three separate states, recorded per row in `mechanisms.json` (`vv`). Seeded 2026-10-30:
 
-- built mechanisms 219; **implemented** 217; with a combined (integration) test 122; **integrated (yes)** 122; **validated (yes)** 0; 6 candidates; 2 failed. 'Integrated' means a named combined test runs the row with what it reads and feeds (REVIEWS.md, V&V states); wiring by prop names alone is 'no'. That most rows are implemented-not-validated is the honest starting point (Rex).
+- built mechanisms 221; **implemented** 219; with a combined (integration) test 122; **integrated (yes)** 122; **validated (yes)** 0; 6 candidates; 2 failed. 'Integrated' means a named combined test runs the row with what it reads and feeds (REVIEWS.md, V&V states); wiring by prop names alone is 'no'. That most rows are implemented-not-validated is the honest starting point (Rex).
 
 The combined tests counted as integration evidence:
 
@@ -270,7 +270,7 @@ The combined tests counted as integration evidence:
 | Toolchain/cognition test/bench-world.test.ts ('hungry pair kernel integration': 144 body/cognition/resolution epochs, replay) and test/bench-acceptance.test.ts (DESIGN §6 fixture; rules verified, never validated; cognition 3a2bdcd) | 12 | yes |
 | Toolchain/cognition test/personality-versions.test.ts; bench/personality-versions.ts runs the hungry pair per personality version (DESIGN §9 T-3; cognition 3a2bdcd) | 4 | yes |
 
-Of the connected pairs (a `depends_on` edge between two built mechanisms), 67 run together in one of these tests and **57 do not**:
+Of the connected pairs (a `depends_on` edge between two built mechanisms), 67 run together in one of these tests and **58 do not**:
 
 | Reader | Reads | Engines |
 |---|---|---|
@@ -280,6 +280,7 @@ Of the connected pairs (a `depends_on` edge between two built mechanisms), 67 ru
 | `economy.labour.wage_quote` | `shared.contract.settlement_reader` | economy, shared |
 | `economy.trade.shipment` | `shared.contract.ledger_provider` | economy, shared |
 | `economy.trade.trade` | `shared.contract.ledger_provider` | economy, shared |
+| `kernel.resolution.handoff` | `kernel.transaction` | kernel |
 | `realism.infra.operator_control` | `realism.infra.rng` | kernel, reality |
 | `realism.infra.thermometer_drift` | `realism.infra.rng` | kernel, reality |
 | `realism.circulation.cardiac_output` | `realism.anatomy.species_profile` | life |

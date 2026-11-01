@@ -7,12 +7,12 @@
   "contract_fields": "PLATFORM.md §7",
   "evidence_scale": "PLATFORM.md §4 (1 law ... 6 fiction)",
   "counts": {
-   "built": 219,
+   "built": 221,
    "planned": 199,
    "documented-only": 161
   },
   "kinds": {
-   "mechanism": 487,
+   "mechanism": 489,
    "restatement": 92
   },
   "schema_version": 4,
@@ -20,8 +20,8 @@
   "schema_4": "adds rate_limiter and failure_mode to the §7 contract fields (with inputs = what enters, outputs = what leaves, state = what accumulates), null until owners fill them; widens vv.record item 5 with numerical {stability, coupled_update_consistency, sensitivity} (PLATFORM §11a item 5, Rex 2026-10-31); check-registry warns, never fails, on empty fields of built rows",
   "schema_3": "each row carries vv {implemented, integrated, validated, record{sources_and_model, applicability, verification_tests, validation_evidence, tolerance, stability_conservation_boundary, integration_tested_with, integration_tests, report}} (PLATFORM.md §11a); seeded 2026-10-30 from the audit and the combined tests; owners complete it, the registry keeper re-audits",
   "vv_counts": {
-   "implemented": 217,
-   "built_mechanisms": 219,
+   "implemented": 219,
+   "built_mechanisms": 221,
    "with_integration_test": 122,
    "integrated_yes": 122,
    "validated_yes": 0,
@@ -8976,6 +8976,136 @@
    },
    "rate_limiter": null,
    "failure_mode": null
+  },
+  {
+   "id": "kernel.resolution.handoff",
+   "name": "Adaptive resolution hand-off",
+   "owning_engine": "kernel",
+   "home": "Toolchain/kernel/src/resolution.ts (ResolutionService, ConservedQuantity, switchTo; kernel a3c4314)",
+   "home_kind": "docs",
+   "status": "built",
+   "status_note": "",
+   "kind": "mechanism",
+   "restates": null,
+   "domain": "infra",
+   "scope": "universal",
+   "scope_note": "",
+   "inputs": [],
+   "outputs": [],
+   "state": "the active representation, its RNG stream and enlisted participants",
+   "formulation": "coarse to fine: I = refine(A, rng), accepted only if for every declared conserved quantity q (owner-declared unit, absolute tolerance tau_q) |Q_q(coarsen(I)) - Q_q(A)| <= tau_q; fine to coarse: A = coarsen(I) installed exactly; switch only at the current scheduler boundary T (the old process set closes T, the new set first runs after T with dt from T)",
+   "dependencies": [
+    "kernel.transaction"
+   ],
+   "timescale": "per switch",
+   "invariants": "conservation within tau per quantity on refine; exact aggregate on coarsen; a failed switch restores representation, RNG stream and participants; no switch inside an instant; a no-op switch never reconverts; duplicate conserved quantity rejected",
+   "sources": "bookkeeping identity (PLATFORM §9: finer resolution refines the aggregate, never contradicts it)",
+   "evidence": 1,
+   "evidence_note": "",
+   "approximations": "none (accounting)",
+   "tests": "Toolchain/kernel test/resolution.test.ts (R-refine, R-boundary, R-coarsen, R-loss, R-every-quantity, R-isolation, R-transaction, R-coarsen-rollback, R-outer-transaction, R-instant, R-time, R-noop; registry keeper rerun at kernel 309a317, with transaction.test.ts 23/23)",
+   "consumers": [],
+   "notes": "Kernel keeper 2026-11-01 (CG-17, CHAINS.md); the kernel owns no world quantity: quantities and tolerances are supplied by the owner at construction; no registered consumer yet (realism epidemic-vs-individuals uses its own)",
+   "overlap_groups": [],
+   "unit_issues": [],
+   "audit_batch": "kernel-keeper-2026-11-01-cg17",
+   "audit_id": null,
+   "rate_limiter": "one switch per service per instant; tolerance is the owner's",
+   "failure_mode": "throws 'does not conserve <q>' and rolls back; rejects past, future or invalid switch times",
+   "writes": [],
+   "reads": [],
+   "aggregates": null,
+   "vv": {
+    "implemented": true,
+    "integrated": "no (no registered consumer yet)",
+    "validated": "n/a (accounting identity)",
+    "record": {
+     "sources_and_model": {
+      "sources": "bookkeeping identity (PLATFORM §9: finer resolution refines the aggregate, never contradicts it)",
+      "model": "coarse to fine: I = refine(A, rng), accepted only if for every declared conserved quantity q (owner-declared unit, absolute tolerance tau_q) |Q_q(coarsen(I)) - Q_q(A)| <= tau_q; fine to coarse: A = coarsen(I) installed exactly; switch only at the current scheduler boundary T (the old process set closes T, the new set first runs after T with dt from T)",
+      "evidence_level": 1
+     },
+     "applicability": "none (accounting)",
+     "verification_tests": "Toolchain/kernel test/resolution.test.ts (R-refine, R-boundary, R-coarsen, R-loss, R-every-quantity, R-isolation, R-transaction, R-coarsen-rollback, R-outer-transaction, R-instant, R-time, R-noop; registry keeper rerun at kernel 309a317, with transaction.test.ts 23/23)",
+     "validation_evidence": [
+      "re-audit 2026-11-01 at kernel 309a317 (code unchanged since a3c4314): 23/23"
+     ],
+     "tolerance": null,
+     "stability_conservation_boundary": [],
+     "numerical": {
+      "stability": null,
+      "coupled_update_consistency": null,
+      "sensitivity": null
+     },
+     "integration_tested_with": [],
+     "integration_tests": [],
+     "report": "Kernel keeper 2026-11-01 (CG-17, CHAINS.md); the kernel owns no world quantity: quantities and tolerances are supplied by the owner at construction; no registered consumer yet (realism epidemic-vs-individuals uses its own)"
+    }
+   }
+  },
+  {
+   "id": "kernel.transaction",
+   "name": "Atomic multi-participant boundary",
+   "owning_engine": "kernel",
+   "home": "Toolchain/kernel/src/transaction.ts (transaction, Participant; kernel a3c4314)",
+   "home_kind": "docs",
+   "status": "built",
+   "status_note": "",
+   "kind": "mechanism",
+   "restates": null,
+   "domain": "infra",
+   "scope": "universal",
+   "scope_note": "",
+   "inputs": [],
+   "outputs": [],
+   "state": "participant snapshots for the duration of one call",
+   "formulation": "snapshot every enlisted participant; run fn; on throw restore every participant (attempting all) and rethrow",
+   "dependencies": [],
+   "timescale": "per call",
+   "invariants": "all-or-nothing state across enlisted participants; a restore failure never masks the original error; gives the atomicity PLATFORM §7a needs (delta source = -q and delta destination = +q commit together or not at all); it is not itself a transfer primitive (open with the controller)",
+   "sources": "bookkeeping identity",
+   "evidence": 1,
+   "evidence_note": "",
+   "approximations": "none (accounting)",
+   "tests": "Toolchain/kernel test/transaction.test.ts; test/resolution.test.ts R-transaction, R-outer-transaction (registry keeper rerun at kernel 309a317, 23/23)",
+   "consumers": [],
+   "notes": "Kernel keeper 2026-11-01 (CG-17, CHAINS.md); the kernel owns no world quantity: quantities and tolerances are supplied by the owner at construction",
+   "overlap_groups": [],
+   "unit_issues": [],
+   "audit_batch": "kernel-keeper-2026-11-01-cg17",
+   "audit_id": null,
+   "rate_limiter": "none (synchronous call)",
+   "failure_mode": "on throw every participant is restored and the original error rethrown",
+   "writes": [],
+   "reads": [],
+   "aggregates": null,
+   "vv": {
+    "implemented": true,
+    "integrated": "no (no registered consumer yet)",
+    "validated": "n/a (accounting identity)",
+    "record": {
+     "sources_and_model": {
+      "sources": "bookkeeping identity",
+      "model": "snapshot every enlisted participant; run fn; on throw restore every participant (attempting all) and rethrow",
+      "evidence_level": 1
+     },
+     "applicability": "none (accounting)",
+     "verification_tests": "Toolchain/kernel test/transaction.test.ts; test/resolution.test.ts R-transaction, R-outer-transaction (registry keeper rerun at kernel 309a317, 23/23)",
+     "validation_evidence": [
+      "re-audit 2026-11-01 at kernel 309a317 (code unchanged since a3c4314): 23/23"
+     ],
+     "tolerance": null,
+     "stability_conservation_boundary": [],
+     "numerical": {
+      "stability": null,
+      "coupled_update_consistency": null,
+      "sensitivity": null
+     },
+     "integration_tested_with": [],
+     "integration_tests": [],
+     "report": "Kernel keeper 2026-11-01 (CG-17, CHAINS.md); the kernel owns no world quantity: quantities and tolerances are supplied by the owner at construction"
+    }
+   }
   },
   {
    "id": "knowledge.adoption.aggregate",
