@@ -3229,3 +3229,11 @@ for _g in INTERFACE_GAPS:
                             "Life provider realism 5009 (4074843 + 1008a49, 14/14); open wording point for Settlement and Economy (REG-32)"})
     if _g["interface"] == "CG-13":
         _g.update({"state": "closed 2026-11-01: energy enters absorbed (kept = eaten x absorbedFraction); realism 3014 c5a4651, nutrition test 'energy enters absorbed (CG-13)' passes on the registry keeper's rerun"})
+
+# --- 2026-11-01: REG-32 resolved by CONTRACTS §21 (settlement e3c8a69, md5 908a4371; agreed by Economy, which copies the same bytes): named holders' hours are netted
+# by the client (Settlement's staffing keeps one running total per person per tick across roles); a provider must not subtract named grants. Life's provider (realism 5009)
+# is correct as written. Offers, refusals and their expiry are the provider's own policy, outside the contract. Registry keeper read §21 at e3c8a69 ---
+_plp["notes"] = _plp["notes"].replace(
+    "OPEN (Settlement, Economy; REG-32): CONTRACTS §18 'hours left after the day's grants' vs Settlement's own namedUsed subtraction for named persons",
+    "REG-32 resolved by CONTRACTS §21 (settlement e3c8a69): named hours are netted by the client, the provider subtracts nothing; offers, refusals and expiry are provider policy")
+assert "CONTRACTS §21" in _plp["notes"]
