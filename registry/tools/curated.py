@@ -2753,3 +2753,24 @@ for _id, _fr, _to, _gap in [
  ("CG-18", "kernel", "all", "structures: KernelEvent payload is unknown; no list of event types with payload schema, producer and consumers"),
 ]:
     INTERFACE_GAPS.append({"interface": _id, "from": _fr, "to": _to, "state": "gap (CHAINS.md 2026-11-01)", "gap": _gap, "joins": "Toolchain/CHAINS.md"})
+
+# --- 2026-11-01: Rex's addendum to CHAINS.md: each gap carries its failure type (missing mechanism / broken connection / invalid coupling); CG-19..25 added ---
+for _id, _fr, _to, _gap in [
+ ("CG-19", "economy", "life", "IF-36 and IF-42 require mass; economy.material.produce, inventory.holdings and consumption.demand count goods unitless; eat_meal takes kg and kcal; no row converts a good to mass or energy"),
+ ("CG-20", "reality", "life", "one transfer calculated twice: built realism.eco.soil_fertility drains soil on harvest (f -= crop demand) apart from plant uptake (DUP-51, DUP-53)"),
+ ("CG-21", "life", "life", "plant biomass in two quantities: world.plant_state (plant.physiology, fast) and world.vegetation_stock (vegetation_stocks, yearly), no aggregation (DUP-53)"),
+ ("CG-22", "reality", "life", "realism.terrain.soils and hydrology timescale is once per world / yearly while the uptake and mineralisation fluxes they integrate run on the fast scheduler; no integration rule"),
+ ("CG-23", "life", "life", "population consumption (world.trophic_flux kg/a) and individual consumption (body.kcal_in per meal) are not joined across resolutions"),
+ ("CG-24", "life", "cognition", "body.hunger_signal's writer realism.nutrition.hunger_fullness is documented-only; Cognition reads a host stub"),
+ ("CG-25", "life", "cognition", "body.detectability's writer realism.perception.detectability is planned; Cognition reads a host stub"),
+]:
+    INTERFACE_GAPS.append({"interface": _id, "from": _fr, "to": _to, "state": "gap (CHAINS.md 2026-11-01)", "gap": _gap, "joins": "Toolchain/CHAINS.md"})
+_CG_TYPE = {"CG-1": "missing mechanism (no equation)", "CG-2": "missing mechanism (no equation)", "CG-3": "broken connection", "CG-4": "broken connection",
+    "CG-5": "missing mechanism (no equation)", "CG-6": "missing mechanism (no equation)", "CG-7": "missing mechanism (no equation)", "CG-8": "missing mechanism (no equation)",
+    "CG-9": "invalid coupling", "CG-10": "missing mechanism (no equation)", "CG-11": "missing mechanism (no equation)", "CG-12": "broken connection",
+    "CG-13": "invalid coupling (to confirm by the owner)", "CG-14": "missing mechanism (no equation)", "CG-15": "missing mechanism (no equation)",
+    "CG-16": "missing mechanism (no equation)", "CG-17": "broken connection", "CG-18": "missing mechanism (no equation)", "CG-19": "invalid coupling",
+    "CG-20": "invalid coupling", "CG-21": "invalid coupling", "CG-22": "invalid coupling", "CG-23": "broken connection",
+    "CG-24": "missing mechanism (not implemented)", "CG-25": "missing mechanism (not implemented)", "IF-26": "broken connection", "IF-27": "broken connection"}
+for _g in INTERFACE_GAPS:
+    if _g["interface"] in _CG_TYPE: _g["failure_type"] = _CG_TYPE[_g["interface"]]

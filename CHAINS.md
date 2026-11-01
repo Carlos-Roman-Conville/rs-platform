@@ -1,117 +1,148 @@
 # CHAINS: causal-chain completeness audit
 
-*Registry keeper, 2026-11-01, at Rex's direction (relayed by the controller). It is a targeted audit of three chains and
-seven structures, not a broad review.*
+*Registry keeper, 2026-11-01, at Rex's direction (relayed by the controller), revised the same day for Rex's
+addendum. It is a targeted audit of three chains and seven structures, not a broad review.*
 
 **Sources.** Only committed files were used:
-- rs-platform `registry/mechanisms.json`, `quantities.json` and `graph.json` at ef498c9;
+- rs-platform `registry/mechanisms.json`, `quantities.json` and `graph.json` at 8fcfdf8;
 - kernel a3c4314, realism 75e4fc2 and cognition 2106314.
 
-Every link cites a registry row. Nothing here is a new rule. Where a link has no row or no quantity, it says
-**missing**, and the gap is recorded in `graph.json` → `integration_gaps.interface_gaps` as CG-1 to CG-18.
+Every link cites a registry row. Nothing here is a new rule. Every gap is recorded in `graph.json` →
+`integration_gaps.interface_gaps` (CG-1 to CG-25; IF-26 and IF-27 were already there).
 
-**Columns:**
+**Rex's completeness rule (addendum 2026-11-01).** A link is complete only if three things hold:
+- one mechanism's output is a valid input to the next;
+- their units, timescales and state ownership are compatible;
+- where two engines describe one physical transfer, it is one transfer. For example, plant nitrogen uptake and soil
+  nitrogen loss are one quantity, never two calculations.
+
+**Failure types (Rex):**
+- **Missing mechanism:** no equation or no implementation. This audit marks which:
+  - *missing (no equation)* means no row states how the quantity is computed: work for **mathematics**.
+  - *missing (not implemented)* means a row states the formulation, but nothing is built: work for **implementation**.
+- **Broken connection:** both sides exist, but they do not exchange the required quantity. This is work for
+  **integration**.
+- **Invalid coupling:** they exchange it, but units, assumptions, timescales or conservation conflict, or one
+  transfer is calculated twice. This is also work for **integration**.
+
+**Other columns:**
 - **Quantity:** the registry id and its unit.
-- **Mechanism:** the row that moves the quantity.
 - **Parameters:**
   - *researched* means evidence level 1–3 with cited sources.
   - *estimate* means level 4–6.
   - *null+flag* means "to research per unit", with no values yet.
-- **Engine:** the owning engine after the Reality/Life split.
 - **State:** built, planned or missing.
 
-## Summary
+## Result: what the gaps call for
 
-| Chain | Links | Built | Planned | Missing | Its demonstration |
-|---|---|---|---|---|---|
-| 1. Ecological (sunlight to soil nutrients) | 10 | 1 (human side only) | 6 | 3 | X1 covers links 1.3–1.6 for one crop and people. The return half (1.7–1.10) is outside X1. |
-| 2. Human lifecycle (conception to death ledger) | 7 | 2 | 4 | 1 | Nothing yet. The realism checkpoints 1 and 2 exercise 2.4 and 2.7. |
-| 3. One cognitive decision | 10 | 4 | 3 | 3 | The hungry pair exercises 3.3–3.5 and 3.9–3.10 with built rows. Its body, environment and resolution are bench stubs. |
+| Investment | What it fixes | Count |
+|---|---|---|
+| **Mathematics** (missing, no equation) | CG-1, 2, 5, 6, 7, 8, 10, 11, 14, 15, 16, 18 | 12 gaps |
+| **Implementation** (missing, not implemented) | 10 planned chain links whose rows state a formulation (1.3, 1.5 animals, 1.6 wild animals, 1.9, 1.10, 2.1, 2.3, 2.6, 2.7 population, 3.1); CG-24 and CG-25 (Cognition's two Life inputs are host stubs) | 10 links + 2 gaps |
+| **Integration: broken connection** | CG-3, 4, 12, 17, 23; IF-26, IF-27 | 7 gaps |
+| **Integration: invalid coupling** | CG-9, 19, 20, 21, 22; CG-13 if the owner confirms it | 5 gaps (+1 to confirm) |
 
-**What blocks the chains most:**
-- **Chain 1:** no row writes PAR, root-zone soil water, plant uptake or excreta nitrogen. With those missing, the
-  nitrogen balance cannot close.
-- **Chain 2:** energy expenditure has no growth, thermoregulation or reproduction term.
-- **Chain 3:** no row owns turning an intention into a physical outcome. Cross-engine events have no typed contract.
+**Readings:**
+- **Chain 1** is mostly a mathematics problem. Its missing pieces are equations nobody has written: PAR, soil water,
+  nitrogen inputs and gaseous losses, excretion, and microbial digestion. It also has the worst couplings:
+  - the built soil-fertility index drains soil separately from plant uptake (Rex's own example);
+  - plant biomass is held in two quantities;
+  - Economy goods are unitless while Life ingests kilograms.
+- **Chain 2** is mathematics for the energy terms (growth, thermoregulation, reproduction) and for tissue
+  populations, and implementation for the rest.
+- **Chain 3** is integration and one mathematics gap. Everything from perception to intention is built. What's
+  missing is the resolution of an intention into an outcome (CG-16) and the connections out of `mind.intention`
+  (IF-26, IF-27).
+
+The choice of next investment is Rex's. This table is the evidence for it.
 
 ## Chain 1: ecological
 
 Sunlight → soil water and nutrients → plant growth → herbivore consumption → metabolism → movement → excretion →
 decomposition → soil nutrients.
 
-| # | Link | Quantity (id, unit) | Mechanism row | Parameters | Engine | State |
-|---|---|---|---|---|---|---|
-| 1.1 | Sunlight at the place | `place.par` mol/m^2/d | No writer: LIFE-2 says Reality writes it in phases 8, 13 and 16. `realism.optics.light_visibility` (planned, phase 8) has the sun path by date and latitude. `realism.env.daylight` (built) gives only `is_day` from the host's month row. | null+flag | reality | **missing** (CG-1) |
-| 1.2a | Rain and air dryness | `place.rain` mm/d, `place.vpd` kPa | No writer (LIFE-2). | null+flag | reality | **missing** (CG-2) |
-| 1.2b | Soil water | `world.soil_water` m^3/m^3 | No writer. `realism.terrain.hydrology` (planned) writes `world.groundwater` m3 and `world.drainage`, but not root-zone water. | null+flag | reality | **missing** (CG-2) |
-| 1.3 | Soil nutrients available | `world.soil_nutrient_pool` kg (N, P and K; total and plant-available) | `realism.terrain.soils` (planned, ev 4) is the only writer and integrates every flux. A built proxy exists: `realism.eco.soil_fertility`, an index f from 0 to 1 (ev 4, library conf low; DUP-51 open). | null+flag; the proxy is an estimate | reality | planned |
-| 1.4 | Plant uptake and growth | Uptake flux: **no id**. `world.plant_state` (record) and `world.vegetation_stock` (record, kg) | `realism.plant.physiology` (planned, ev 2) covers photosynthesis, respiration and water stress. IF-38 (soils → plants) is planned. `realism.terrain.vegetation_stocks` (planned) is in DUP-53 (open). Species data: `realism.anatomy.species_profile` (plant part planned). The X1 crop's data is in realism 2810 (*Saccharum officinarum*: 29 researched, 4 estimate, 14 null). | species data researched or null+flag; the mechanism is null+flag | life | planned. The uptake quantity is **missing** (CG-3). The row's inputs do not yet list the LIFE-2 quantities (CG-4). |
-| 1.5 | Herbivore consumption | `world.trophic_flux` kg/a. For people: `body.kcal_in` kcal and `body.pool_contents` kg | Animals: `realism.ecology.food_web` and `realism.ecology.animal_populations` (planned, population level; DUP-50 open). People: `realism.nutrition.eat_meal` (built, ev 4) through IF-36 from `economy.inventory.holdings`. Harvest into inventory is IF-42 (planned). | null+flag (animals); estimate (people) | life | planned (animals); built (people) |
-| 1.6 | Metabolism | `body.rmr` kcal/d, `body.expenditure` kcal, `body.heat` W | People: `realism.physiology.rmr` (built, ev 2) and `realism.physiology.energy_expenditure` (built, ev 1). Animals: the `species_profile` RMR column (Kleiber for the horse; built; tested in `realism:independence-horse`). Wild populations: inside `animal_populations` (planned). | researched | life | built (people and the horse); planned (wild animals) |
-| 1.7 | Movement | Energy: `body.expenditure` (MET). Displacement: **no id** | The energy cost is built (MET in `energy_expenditure`). `realism.mech.articulated_locomotion` (planned) covers the body. No Reality or Life row moves an organism across places; only the plugin `pirate.align.step` does. | null+flag | reality / life | energy built; position **missing** (CG-5) |
-| 1.8 | Excretion | `body.urine` kg/s (water only). Faeces and excreta nitrogen: **no id** | `realism.physiology.urine` is built (ev 2). `realism.waste.sanitation_decomposition` (planned, phase 11; DUP-45 has no decision) routes excreta to a place. There is no animal excretion row. | null+flag | life | urine water built; nutrient excretion **missing** (CG-6) |
-| 1.9 | Decomposition | `world.detritus` kg, `world.mineralisation_flux` kg/a | `realism.ecology.decomposition` (planned, ev 2; owner confirmed by Rex 2026-10-31). Burial passes to `realism.terrain.burial_diagenesis` (IF-28). | null+flag | life | planned |
-| 1.10 | Back to soil nutrients | `world.mineralisation_flux` into `world.soil_nutrient_pool`. Losses: `world.nutrient_flux` kg/a | IF-39 (decomposition → soils, planned). `realism.terrain.nutrient_transport` (planned) writes fluxes and never the stock. | null+flag | life → reality | planned |
+| # | Link | Quantity (id, unit) | Mechanism row | Parameters | Engine | State | Failure type |
+|---|---|---|---|---|---|---|---|
+| 1.1 | Sunlight at the place | `place.par` mol/m^2/d | No writer (LIFE-2: Reality, phases 8, 13 and 16). `realism.optics.light_visibility` (planned) has the sun path but no PAR. `realism.env.daylight` (built) gives only `is_day` from the host's month row. | null+flag | reality | missing | missing (no equation): CG-1 |
+| 1.2 | Rain, air dryness, soil water | `place.rain` mm/d, `place.vpd` kPa, `world.soil_water` m^3/m^3 | No writer. `realism.terrain.hydrology` (planned) writes `world.groundwater` m3 and `world.drainage` only. | null+flag | reality | missing | missing (no equation): CG-2 |
+| 1.3 | Soil nutrients | `world.soil_nutrient_pool` kg (N, P and K in one quantity, "per area") | `realism.terrain.soils` (planned, sole writer). The built proxy `realism.eco.soil_fertility` is an index f from 0 to 1 (DUP-51 open). | null+flag; the proxy is an estimate | reality | planned | missing (not implemented); invalid coupling: CG-9, CG-20, CG-22 |
+| 1.4 | Plant uptake and growth | uptake: **no id**; `world.plant_state` (record); `world.vegetation_stock` (record, kg) | `realism.plant.physiology` (planned); `realism.terrain.vegetation_stocks` (planned); IF-38 planned. Species data: realism 2810 (*Saccharum officinarum*: 29 researched, 4 estimate, 14 null). | species data researched or null+flag | life | planned | broken connection: CG-3, CG-4; invalid coupling: CG-21 |
+| 1.5 | Herbivore consumption | animals: `world.trophic_flux` kg/a; people: `body.kcal_in` kcal, `body.pool_contents` kg | `realism.ecology.food_web` and `.animal_populations` (planned; DUP-50 open). People: `realism.nutrition.eat_meal` (built) through IF-36 from `economy.inventory.holdings` (built). Harvest is IF-42 (planned). | null+flag / estimate | life | planned (animals), built (people) | missing (not implemented) for animals; invalid coupling: CG-19; broken connection: CG-23 |
+| 1.6 | Metabolism | `body.rmr` kcal/d, `body.expenditure` kcal, `body.heat` W | `realism.physiology.rmr`, `.energy_expenditure` (built). Horse: `species_profile` Kleiber (built). Wild animals: inside `animal_populations` (planned). | researched | life | built (people, horse) | complete for people and the horse; missing (not implemented) for wild animals |
+| 1.7 | Movement | energy: `body.expenditure`; displacement: **no id** | MET cost built. `realism.mech.articulated_locomotion` (planned). Only the plugin `pirate.align.step` moves anything. | null+flag | reality / life | energy built | missing (no equation): CG-5 |
+| 1.8 | Excretion | `body.urine` kg/s (water); excreta mass and N: **no id** | `realism.physiology.urine` (built). `realism.waste.sanitation_decomposition` (planned, no outputs; DUP-45 undecided). | null+flag | life | urine built | missing (no equation): CG-6 |
+| 1.9 | Decomposition | `world.detritus` kg, `world.mineralisation_flux` kg/a | `realism.ecology.decomposition` (planned); burial goes through IF-28 | null+flag | life | planned | missing (not implemented) |
+| 1.10 | Back to soil | `world.mineralisation_flux` → `world.soil_nutrient_pool`; losses `world.nutrient_flux` kg/a | IF-39 (planned); `realism.terrain.nutrient_transport` (planned; fluxes only) | null+flag | life → reality | planned | missing (not implemented); invalid coupling: CG-9, CG-22 |
+
+### Coupling check (units, timescales, ownership, one transfer)
+
+| Pair | Finding | Type |
+|---|---|---|
+| soils ↔ plant (1.3 → 1.4) | **One transfer, two calculations.** The built `realism.eco.soil_fertility` drains soil on harvest (f −= crop demand). That is independent of any plant uptake, which has no quantity at all. This is Rex's example: uptake and soil loss must be one quantity. | invalid coupling (CG-20); broken connection (CG-3) |
+| soils ↔ fluxes (1.3, 1.10) | The pool is kg "per area" with no area in the unit; the fluxes are kg/a. N, P and K share one quantity, so the N balance cannot be read off it. | invalid coupling (CG-9) |
+| soils ↔ fast processes | The timescale of `realism.terrain.soils` and `.hydrology` is "generation once per world; slow change per year". The plant uptake and mineralisation they integrate run on the fast scheduler ("fast processes often"). The registry states no rule for integrating the fast fluxes into a yearly stock. | invalid coupling (CG-22) |
+| plant biomass (1.4) | Two quantities for one stock: `world.plant_state` (plant.physiology, fast) and `world.vegetation_stock` (vegetation_stocks, yearly), with no declared aggregation (DUP-53 open). | invalid coupling (CG-21) |
+| plant → inventory → body (IF-42, IF-36) | IF-42 and IF-36 require mass ("harvested mass = biomass removed"; "hands over mass"). As registered, `economy.material.produce`, `.inventory.holdings` and `.consumption.demand` count goods unitless, while `eat_meal` takes kg and kcal. No row converts a good to mass or energy. | invalid coupling (CG-19) |
+| animal ↔ person consumption (1.5) | Populations consume biomass in kg/a (`trophic_flux`); individuals eat kcal per meal. No aggregation joins the two resolutions. | broken connection (CG-23) |
+| `plant.physiology` inputs | The row reads soil, groundwater and wind but not the LIFE-2 quantities it needs (PAR, VPD, rain, soil water). | broken connection (CG-4) |
 
 ### Nitrogen mass balance: ΔN_soil = inputs + returned − uptake − losses
 
-| Term | Registry id | Writer | State |
+| Term | Registry id | Writer | Type |
 |---|---|---|---|
-| ΔN_soil | `world.soil_nutrient_pool` (N, P and K in one quantity, unit kg, described as "per area") | `realism.terrain.soils` | planned. No N-only quantity exists, and the area is not in the unit (CG-9). |
-| inputs: deposition, biological fixation, manure or fertiliser | none. The ecosystem invariant names atmospheric input as a declared boundary. Manure exists only as an index step in `realism.eco.soil_fertility` (+0.03 f per 10 t/ha). | none | **missing** (CG-7) |
-| returned: mineralisation and excreta | `world.mineralisation_flux` kg/a; excreta has no id | `realism.ecology.decomposition`; none for excreta | planned and missing (CG-6) |
-| uptake | none | none | **missing** (CG-3) |
-| losses: runoff, leaching and erosion | `world.nutrient_flux` kg/a | `realism.terrain.nutrient_transport` | planned |
-| losses: denitrification and volatilisation | none | none | **missing** (CG-8) |
-| the check itself | an element ledger | `realism.infra.world_conservation` (built, ev 1; mass and element atoms, tolerance 1e-9; integrated in checkpoints 1 and 2). The kernel's `ConservedQuantity` is in kernel src/resolution.ts. | The mechanism exists. No test covers N across soil, plant, animal and detritus. |
+| ΔN_soil | `world.soil_nutrient_pool` (N, P and K together) | `realism.terrain.soils` (planned) | invalid coupling (CG-9) |
+| inputs: deposition, fixation, manure as mass | none (manure is only an index step in `eco.soil_fertility`) | none | missing (no equation): CG-7 |
+| returned | `world.mineralisation_flux` kg/a; excreta: none | decomposition (planned); none | missing (not implemented); missing (no equation): CG-6 |
+| uptake | none | none | broken connection: CG-3 (and CG-20, the duplicate drain) |
+| losses: runoff, leaching, erosion | `world.nutrient_flux` kg/a | `realism.terrain.nutrient_transport` (planned) | missing (not implemented) |
+| losses: denitrification, volatilisation | none | none | missing (no equation): CG-8 |
+| the check | element ledger | `realism.infra.world_conservation` (built, element atoms, tolerance 1e-9) | Built. No test covers N across soil, plant, animal and detritus. |
 
 ### Microbiology dependency check
 
-| Process | Microbial role | Rows | State |
-|---|---|---|---|
-| Digestion | gut microbiota; fermentation in the hindgut and rumen for herbivores | `realism.anatomy.feed_gate` (built, gut function gates absorption) and `realism.nutrition.absorption` (built, fixed fractions). `realism.metab.flux_digestion_atp` (planned) covers gastric emptying and transit. No row has a microbial term. | **missing** (CG-10) |
-| Decomposition | decomposer activity | `realism.ecology.decomposition` (planned) has "microbial activity by temperature, moisture and pH" as a rate. There is no decomposer population. | planned, as a rate only |
-| Nutrient cycling | mineralisation and immobilisation, nitrification, denitrification, N fixation | `realism.terrain.soils` lists "microbial activity" as a soil field. No row computes these transformations. | **missing** (CG-7, CG-8) |
-| Pathogens | infection | `realism.medicine.disease_course` (built), `realism.medicine.wounds` (built, infection roll), `realism.medicine.transmission_ecology` (planned) | built and planned |
+| Process | Rows | Type |
+|---|---|---|
+| Digestion: gut microbiota, hindgut and rumen fermentation | `realism.anatomy.feed_gate`, `realism.nutrition.absorption` (built, fixed fractions); `realism.metab.flux_digestion_atp` (planned); no microbial term | missing (no equation): CG-10 |
+| Decomposition | `realism.ecology.decomposition` (planned): microbial activity is a rate by temperature, moisture and pH; there is no decomposer population | missing (not implemented) |
+| Nutrient cycling: mineralisation and immobilisation, nitrification, denitrification, fixation | `realism.terrain.soils` lists "microbial activity" as a field; no row computes the transformations | missing (no equation): CG-7, CG-8 |
+| Pathogens | `realism.medicine.disease_course`, `.wounds` (built); `.transmission_ecology` (planned) | built / planned |
 
 ### What X1 exercises
 
-The ROADMAP's X1 loop uses links 1.3 (soils, with hydrology held simple), 1.4 (one food plant), harvest (IF-42), 1.5
-for people (IF-36, DUP-21) and 1.6 for people (built).
+X1 uses links 1.3 (hydrology held simple), 1.4 (one crop), IF-42, 1.5 for people (IF-36) and 1.6 for people.
 
-X1 does not cover 1.1 (PAR), herbivores, 1.7–1.10 or the nitrogen balance.
+It meets three of the invalid couplings head on: CG-19 (unitless goods against kg), CG-20 (the duplicate soil drain)
+and CG-21 (two biomass quantities). Its acceptance (1), mass closing across soil, plant, inventory and bodies, cannot
+pass until those are resolved.
 
-**Open for the controller:** X1's acceptance (1) says mass closes across soil, plant, inventory and bodies. Mass that
-leaves a body as faeces has no destination row (CG-6). So X1 needs either a declared boundary for body outputs or
-the waste row. The registry does not choose which (CG-11).
+**Open for the controller or Rex (CG-11):** mass leaving a body as faeces has no destination row.
 
 ## Chain 2: human lifecycle
 
 Conception → genetic profile → maturation → metabolism and energy accounting → tissue populations → ageing → death
 ledger.
 
-| # | Link | Quantity (id, unit) | Mechanism row | Parameters | Engine | State |
-|---|---|---|---|---|---|---|
-| 2.1 | Conception | `body.conception` (record) | `realism.reproduction.fertility_conception` (planned). It reads `mind.sexual_behaviour` from `cognition.reproduction.behaviour` (planned). | null+flag | life | planned |
-| 2.2 | Genetic profile | **No quantity id.** Record 1 is `realism.records.genetic_profile` (a row). `realism.development.maturation` lists the row id as an input. | `realism.genetics.inheritance`, `.recombination` and `.mutation` (planned): one recombined copy per chromosome, never an average | null+flag | life | planned. The quantity id is **missing** (CG-12). |
-| 2.3 | Maturation | `body.developmental_state` and `body.neural_development` (records) | `realism.development.maturation` (planned). IF-48 goes to Cognition. It owns hormonal development until an endocrine row exists. DUP-17 freezes all age multipliers. | null+flag | life | planned |
-| 2.4 | Metabolism and energy accounting | `body.kcal_in` kcal, `body.rmr` kcal/d, `body.expenditure` kcal, `body.glycogen` g, `body.fat_kg` kg, `body.mass` kg | `realism.nutrition.eat_meal`, `realism.physiology.rmr`, `realism.physiology.energy_expenditure`, `realism.nutrition.energy_store` and `realism.nutrition.body_mass`: all built and integrated (checkpoints 1 and 2) | researched (ev 1–2); eat_meal is an estimate (ev 4) | life | built, with gaps below |
-| 2.5 | Tissue populations, dN/dt = B − D | **No quantity ids** for cell births, deaths or viable mass | `realism.cellular.population_state` (planned; outputs empty; its equation is damage, D(t+1) = D + damage − repair), `realism.cellular.death_replacement` and `realism.cellular.stem_cell_pools` (planned). The first implementation is realism 2815 (plants first), not yet landed. | null+flag | life | planned. The B − D equation and its quantities are **missing** (CG-15). |
-| 2.6 | Ageing | organ capacity (through population_state) | `realism.cellular.ageing_emergent` (planned; "never a timer") and `realism.genes.ageing_capacity` (planned). Five built age-keyed effects are frozen under DUP-17. | null+flag; the frozen effects are estimates | life | planned |
-| 2.7 | Death ledger | `body.crisis` (record); `body.deathrateperhour` 1/h | `realism.infra.crisis_record` (built, ev 6): `declareDeath` throws without a non-survived crisis and a cause. Causes come from `realism.anatomy.crisis_floors`, `realism.nutrition.starvation_limit`, `realism.medicine.disease_course` and `realism.circulation.bleeding_class` (all built). The population count is `society.population.demography` (planned, reads `body.crisis`). The record is `history.record.backend` (planned). | estimate (ev 3–6) | life → society, history | built (individual); planned (population, history) |
+| # | Link | Quantity (id, unit) | Mechanism row | Parameters | Engine | State | Failure type |
+|---|---|---|---|---|---|---|---|
+| 2.1 | Conception | `body.conception` (record) | `realism.reproduction.fertility_conception` (planned); reads `mind.sexual_behaviour` (planned) | null+flag | life | planned | missing (not implemented) |
+| 2.2 | Genetic profile | **no quantity id**; `realism.development.maturation` lists the row `realism.records.genetic_profile` as its input | `realism.genetics.inheritance`, `.recombination`, `.mutation` (planned) | null+flag | life | planned | broken connection: CG-12 |
+| 2.3 | Maturation | `body.developmental_state`, `body.neural_development` (records) | `realism.development.maturation` (planned; IF-48; DUP-17 freeze) | null+flag | life | planned | missing (not implemented) |
+| 2.4 | Metabolism and energy | `body.kcal_in` kcal, `body.rmr` kcal/d, `body.expenditure` kcal, `body.glycogen` g, `body.fat_kg` kg | `eat_meal`, `rmr`, `energy_expenditure`, `energy_store`, `body_mass` (built, integrated in checkpoints 1 and 2) | researched (ev 1–2); eat_meal is an estimate | life | built | missing (no equation): CG-14; invalid coupling to confirm: CG-13 |
+| 2.5 | Tissue populations, dN/dt = B − D | **no ids** for births, deaths or viable mass | `realism.cellular.population_state` (planned; empty outputs; equation is damage only), `.death_replacement`, `.stem_cell_pools` (planned); realism 2815 has not landed | null+flag | life | planned | missing (no equation): CG-15 |
+| 2.6 | Ageing | organ capacity through population_state | `realism.cellular.ageing_emergent`, `realism.genes.ageing_capacity` (planned); five age effects frozen under DUP-17 | null+flag | life | planned | missing (not implemented) |
+| 2.7 | Death ledger | `body.crisis` (record) | `realism.infra.crisis_record` (built; no death without a crisis and a cause), fed by `crisis_floors`, `starvation_limit`, `disease_course`, `bleeding_class` (built). `society.population.demography` and `history.record.backend` (planned). | estimate | life → society, history | built (individual) | complete for individuals; missing (not implemented) for population and history |
 
-### Energy accounting: ΔE_stored = absorbed − expended, with each joule spent once
+### Energy accounting: ΔE_stored = absorbed − expended, each joule spent once
 
-| Term | Row | State |
+| Term | Row | Type |
 |---|---|---|
-| absorbed | `realism.nutrition.eat_meal` → `body.kcal_in`. `realism.nutrition.absorption` (`body.fraction_kept`) and `realism.anatomy.feed_gate` (`body.absorbed_nutrients`) cover nutrients. `energy_store` lists its input as "intake". | built. The row does not say whether energy enters as eaten or as absorbed (CG-13). |
-| maintenance | `realism.physiology.rmr` (Mifflin-St Jeor; Kleiber for the horse) | built. It enters M through scale = RMR / metabolicHeat(1), so maintenance and activity are one number counted once. |
-| activity | `realism.physiology.energy_expenditure` (MET × scale) | built |
-| growth | none. `realism.development.maturation` has no energy term. | **missing** (CG-14) |
-| thermoregulation | `realism.physiology.heat_balance` (built) moves heat but adds no metabolic cost. Shivering cost exists only in the plugin row `pirate.doc.physiology.thermal_cost` (planned). | **missing** in Life (CG-14) |
-| reproduction | none (gestation, lactation) | **missing** (CG-14) |
-| ΔE_stored | `realism.nutrition.energy_store`: glycogen first, then fat at 7700 kcal/kg. Invariant: balance = stored + unplaced (1e-3 J). Test: intake − heat − work = stored. | built |
-| one joule, once | Two built rows compute the metabolic rate again. `realism.thermo.metabolic_heat` (VO2 = 3.5·MET·mass, recomputed in `atmosphere.bodyGasFlows`) is in no group. `realism.nutri.rmr_mifflin` is in DUP-24, owner approved and restatement pending. | Watch item. No double count has been shown. |
+| absorbed | `eat_meal` → `body.kcal_in`. Absorption fractions (`body.fraction_kept`) and `feed_gate` cover nutrients. `energy_store`'s input is "intake". | invalid coupling **to confirm** (CG-13). If energy enters as eaten while absorption is applied elsewhere, either the unabsorbed energy is lost from the ledger or absorption is counted twice. The owner holds the answer. |
+| maintenance and activity | `rmr` enters M through scale = RMR / metabolicHeat(1); MET sets the activity. One number, counted once. Units are consistent: kcal/d → W → kcal. | complete |
+| growth | none | missing (no equation): CG-14 |
+| thermoregulation | `heat_balance` (built) moves heat but adds no metabolic cost. Only the plugin `pirate.doc.physiology.thermal_cost` (planned) has one. | missing (no equation): CG-14 |
+| reproduction | none (gestation, lactation) | missing (no equation): CG-14 |
+| ΔE_stored | `energy_store` (daily): balance = stored + unplaced (1e-3 J). The test checks intake − heat − work = stored. Expenditure accumulates each step and closes daily; the timescales are compatible. | complete |
+| one joule, once | `realism.thermo.metabolic_heat` (built) recomputes VO2 = 3.5·MET·mass in `atmosphere.bodyGasFlows`, a second calculation of the same metabolic rate (in no group). `realism.nutri.rmr_mifflin` is in DUP-24 (restatement pending). | watch item: no double count shown, but it's a duplicate calculation of one rate |
 
 ## Chain 3: one cognitive decision
 
@@ -120,50 +151,61 @@ environment, body, beliefs and memory → next step.
 
 The seed is the hungry pair: `cognition:hungry-pair`, cognition test/bench-world.test.ts (144 epochs, with replay).
 
-| # | Link | Quantity (id, unit) | Mechanism row | Parameters | Engine | State | Hungry pair |
+| # | Link | Quantity (id, unit) | Mechanism row | Engine | State | Hungry pair | Failure type |
 |---|---|---|---|---|---|---|---|
-| 3.1 | Environment signal | `world.signal_at_point` (record) | `realism.signal.at_point` (planned; physics only). IF-37 is planned. | null+flag | reality | planned | stub: fixture stock and items |
-| 3.2 | Body state to the mind | `body.hunger_signal` 1, `body.pain` 1, `body.capacity_functional` 1 | `realism.nutrition.hunger_fullness` (documented-only, ev 6; DUP-49); `realism.medicine.pain` (built); capacity has no writer (DUP-15) | estimate | life | hunger documented-only; pain built; capacity **missing** (CG-16) | stub: fixture hunger values 0.6 and 0.1 |
-| 3.3 | Perception | `body.detectability` 1 → `mind.observation` | `realism.perception.detectability` (planned, ev 2) feeds `cognition.perception.detect` (built, signal detection theory) and `cognition.attention.allocate` (built) | estimate (ev 4) | life → cognition | built in Cognition; d' is a host stub | yes, with stubs |
-| 3.4 | Cognition | `mind.belief`, `mind.need_priority`, `mind.goal_progress`, `mind.candidates`, `mind.expected_utility` | `cognition.belief.update`, `.needs.drive`, `.goals.objectives`, `.memory.episodic`, `.decision.generate` and `.decision.evaluate` (built) | estimate (ev 4); evaluate failed validation V2 jointly | cognition | built | yes |
-| 3.5 | Intention | `mind.intention` (record); kernel event type `cognition.intention` | `cognition.decision.select` (built; Luce choice with commitment) | estimate | cognition | built | yes |
-| 3.6 | Physical resolution | the attempt's outcome: **no id** | IF-43 says Reality and Life decide success. `realism.contact.contact_event` (planned) covers contact and IF-3 makes wounds. `realism.mech.articulated_locomotion` is planned. Eating is resolved through IF-36 (built). No row resolves an intention into a physical outcome in general. `shared.action.kind` (planned) is only the vocabulary. | null+flag | reality / life | **missing** (CG-16) | stub: the bench's `world.resolve` (fixture rules, `fightProbability`) |
-| 3.7 | Social resolution | `economy.trade.trade` (built). The edge IF-18 is planned. IF-43 (law), IF-46 (affordances) and the communication rows are planned. | as listed | estimate / null+flag | economy, government, society | trade built; the edges planned (IF-26, IF-27 already recorded) | stub: ask, give and trade by fixture |
-| 3.8 | Changed environment and body | `economy.inventory.holdings` (built), `body.kcal_in` through `eat_meal` (built) | as listed | as listed | economy, life | built, but not joined to Cognition | stub: fixture hunger falls 0.6 → 0.35 |
-| 3.9 | Changed beliefs and memory | `mind.prediction_error`, `mind.attribution`, `mind.episode`, `mind.belief` | `cognition.learning.outcome`, `.learning.attribution`, `.memory.episodic` and `.belief.update` (built) | estimate | cognition | built | yes |
-| 3.10 | Next step | the kernel clock and event bus | kernel src/scheduler.ts, runner.ts and events.ts (built; no registry row) | none | kernel | built | yes (144 epochs, replay) |
+| 3.1 | Environment signal | `world.signal_at_point` (record) | `realism.signal.at_point` (planned); IF-37 planned | reality | planned | stub (fixture stock and items) | missing (not implemented) |
+| 3.2 | Body state to the mind | `body.hunger_signal` 1, `body.pain` 1, `body.capacity_functional` 1 | `realism.nutrition.hunger_fullness` (documented-only); `realism.medicine.pain` (built); capacity has no writer (DUP-15) | life | partial | stub (hunger 0.6 / 0.1) | missing (not implemented): CG-24; missing (no equation): CG-16 for capacity |
+| 3.3 | Perception | `body.detectability` 1 → `mind.observation` | `realism.perception.detectability` (planned) → `cognition.perception.detect`, `.attention.allocate` (built) | life → cognition | Cognition built; d' is a host stub | yes, with stubs | missing (not implemented): CG-25 |
+| 3.4 | Cognition | `mind.belief`, `.need_priority`, `.goal_progress`, `.candidates`, `.expected_utility` | `cognition.belief.update`, `.needs.drive`, `.goals.objectives`, `.memory.episodic`, `.decision.generate`, `.decision.evaluate` (built) | cognition | built | yes | complete (evaluate failed validation V2; that is validation, not coupling) |
+| 3.5 | Intention | `mind.intention` (record); kernel event `cognition.intention` | `cognition.decision.select` (built) | cognition | built | yes | complete inside Cognition |
+| 3.6 | Physical resolution | outcome: **no id** | IF-43 says Reality and Life decide success. `realism.contact.contact_event` (planned), IF-3, `realism.mech.articulated_locomotion` (planned); eating through IF-36 (built). `shared.action.kind` (planned) is only the vocabulary. | reality / life | missing | stub (`world.resolve`, fixture rules) | missing (no equation): CG-16 |
+| 3.7 | Social resolution | `economy.trade.trade` (built); IF-18, IF-43, IF-46 (planned) | as listed | economy, government, society | trade built | stub (ask, give, trade by fixture) | broken connection: IF-26, IF-27 (`mind.intention` has no built consumer) |
+| 3.8 | Changed environment and body | `economy.inventory.holdings`, `body.kcal_in` (built) | as listed | economy, life | built, not joined to Cognition | stub (hunger 0.6 → 0.35) | broken connection (IF-26) and invalid coupling (CG-19) on the same path |
+| 3.9 | Changed beliefs and memory | `mind.prediction_error`, `.attribution`, `.episode`, `.belief` | `cognition.learning.outcome`, `.attribution`, `.memory.episodic`, `.belief.update` (built) | cognition | built | yes | complete |
+| 3.10 | Next step | the kernel clock and event bus | kernel src/scheduler.ts, runner.ts, events.ts (built) | kernel | built | yes (144 epochs, replay) | complete; the events are untyped (CG-18) |
+
+**Coupling note:** the units are compatible on every built Cognition link (0–1 quantities and records). The open
+couplings are where Cognition meets other engines: `mind.intention` (unit null, a record) has no consumer that
+accepts it (IF-26, IF-27, IF-43), and the kernel event carries it as an `unknown` payload (CG-18).
 
 ## The seven structures
 
-| Structure | What the registry has | Gaps |
-|---|---|---|
-| **Spatial compartments** | Quantity scopes `place`, `world`, `body` and `mind`. `realism.gas.room_box` (built) is the air compartment. `shared.contract.terrain_resolution` (planned) refines cells on demand. | No row defines the place or cell record itself. `world.*` stocks described "per area" carry unit kg (CG-9). |
-| **Shared material ledger** | `realism.infra.world_conservation` (built, ev 1): mass and element atoms. The substrate ledger is named in IF-31, IF-34 and IF-36. `economy.inventory.holdings` (built, goods). `settlement.ledger.pay` (built, money). The kernel's `ConservedQuantity` (kernel src/resolution.ts; test/resolution.test.ts). | The kernel conservation and resolution service has no registry row (CG-17). No cross-engine test covers N or soil mass. Harvest (IF-42) and decomposition return (IF-39) are planned. |
-| **Species configuration without false equivalence** | `realism.anatomy.species_profile` (LIFE-3): one record per species, every value labelled researched, estimate or fiction, or null with a flag; no species name in src/. DUP-23 keeps species parameters apart from current physiology. People use Mifflin-St Jeor; the horse uses Kleiber (`realism:independence-horse`). | The plant part is planned, with data landing (realism 2808–2810). `realism.physiology.rmr` falls back to 1 kcal/kg/h when height, age or sex is missing. That is a cross-species default (see uncertainty). |
-| **Lifecycle transitions** | conception (planned) → maturation (planned; "ends where ageing begins") → adult `realism.development.trait_change` (planned) → `realism.cellular.ageing_emergent` (planned) → crisis and death (built) → `society.population.demography` (planned) | Only death is built. Birth has no built path into demography. The genetic profile has no quantity (CG-12). |
-| **Adaptive resolution** | PLATFORM §9. Kernel `ResolutionService` with `switchTo` and conserved quantities within a tolerance (built). `shared.contract.terrain_resolution` (planned). Knowledge rows at summary resolution (planned). Regional subdivision in `population_state` (refinement B). `realism:epidemic-vs-individuals` (built: the aggregate matches 1,000 individual cases). | The kernel service has no row (CG-17). No chain-1 or chain-2 row declares its resolutions yet. |
-| **Uncertainty representation (no silent constants)** | Evidence level on every row. The LIFE-3 rule: every value labelled, or null with a flag. Government: legitimacy is null, never 0. Schema 4 adds `vv.record.numerical.sensitivity`. | `sensitivity` is null on all 579 rows. Built chain rows carry constants with only a row-level source: rmr's fallback; energy_store's fat floor (3 kg) and glycogen cap (400 g); starvation_limit's 60 % of start mass; soil_fertility's +0.03, +0.02, −0.02 and ×0.5 (conf low). No per-value label is visible in the registry for these. The owners hold the answer. |
-| **Cross-engine event contracts** | `KernelEvent {id, t, source, type, payload, cause}` (kernel src/events.ts, built). The typed records are `body.crisis`, `body.conception`, `realism.contact.contact_event`, `economy.shortage.event` and `mind.intention`. | The payload is `unknown`. No registry or kernel.json lists event types with their payload schema, producer and consumers. kernel.json ports declare quantities only (CG-18). |
+| Structure | What the registry has | Gaps | Type |
+|---|---|---|---|
+| **Spatial compartments** | Scopes `place`, `world`, `body` and `mind`; `realism.gas.room_box` (built); `shared.contract.terrain_resolution` (planned) | No row defines the place or cell record. `world.*` stocks "per area" carry unit kg (CG-9). | missing (no equation); invalid coupling |
+| **Shared material ledger** | `realism.infra.world_conservation` (built: mass and element atoms); the substrate ledger (IF-31, IF-34, IF-36); `economy.inventory.holdings` (goods, unitless); `settlement.ledger.pay` (money); kernel `ConservedQuantity` | The goods ledger and the mass ledger don't share units (CG-19). The kernel service has no row (CG-17). No cross-engine N or soil-mass test. | invalid coupling; broken connection |
+| **Species configuration without false equivalence** | `realism.anatomy.species_profile` (LIFE-3: labelled values, no species name in src/); DUP-23; Mifflin-St Jeor for people, Kleiber for the horse | The plant part is planned, with data landing (realism 2808–2810). `realism.physiology.rmr` falls back to 1 kcal/kg/h for any species missing height, age or sex: a cross-species default. | invalid coupling (assumption), for the owner to judge |
+| **Lifecycle transitions** | conception → maturation → trait_change → ageing_emergent (all planned) → crisis and death (built) → demography (planned) | Only death is built. The genetic profile has no quantity (CG-12). | missing (not implemented); broken connection |
+| **Adaptive resolution** | PLATFORM §9; kernel `ResolutionService` (built, conserved quantities within a tolerance); `terrain_resolution` (planned); `realism:epidemic-vs-individuals` (built) | The kernel service has no row (CG-17). No chain-1 or chain-2 row declares its resolutions. Population and individual consumption are not joined (CG-23). Soil timescales conflict (CG-22). | broken connection; invalid coupling |
+| **Uncertainty (no silent constants)** | Evidence levels; LIFE-3 labels (null+flag); legitimacy null, never 0; schema 4 `numerical.sensitivity` | `sensitivity` is null on all 579 rows. These constants carry only a row-level source: rmr fallback; fat floor 3 kg; glycogen cap 400 g; starvation at 60 % of start mass; soil_fertility steps +0.03, +0.02, −0.02 and ×0.5 (conf low). | owners to label; not a chain failure type |
+| **Cross-engine event contracts** | `KernelEvent {id, t, source, type, payload, cause}` (kernel, built); typed records `body.crisis`, `body.conception`, `contact_event`, `economy.shortage.event`, `mind.intention` | The payload is `unknown`. No list of event types with payload schema, producer and consumers exists (CG-18). | missing (no equation) |
 
 ## Gaps recorded (integration_gaps.interface_gaps)
 
-| Id | Gap | Holder (to propose; the registry decides nothing) |
-|---|---|---|
-| CG-1 | `place.par` has no writer | Reality (LIFE-2: phases 8, 13, 16) |
-| CG-2 | `place.rain`, `place.vpd` and `world.soil_water` have no writer | Reality |
-| CG-3 | No plant uptake flux quantity (water, N, P, K) | Life with Reality (substrate ledger) |
-| CG-4 | `realism.plant.physiology` inputs omit the LIFE-2 quantities | Life |
-| CG-5 | No row moves an organism between places | Reality / Life |
-| CG-6 | No excreta mass or nutrient quantity (people or animals); DUP-45 is undecided | Life |
-| CG-7 | No nitrogen inputs (deposition, fixation, manure as mass) | Reality / Life |
-| CG-8 | No gaseous nitrogen losses (denitrification, volatilisation) | Reality / Life |
-| CG-9 | Soil pools and fluxes join N, P and K in one kg quantity with no per-area unit | Reality |
-| CG-10 | No gut microbial digestion term | Life |
-| CG-11 | X1 conservation has no destination for body outputs | controller / Rex |
-| CG-12 | The genetic profile has no quantity id | Life |
-| CG-13 | energy_store's input is "intake": eaten or absorbed is unstated | Life |
-| CG-14 | Expenditure has no growth, thermoregulation or reproduction term | Life |
-| CG-15 | Tissue populations have no B − D equation or quantities | Life (realism 2815) |
-| CG-16 | No row resolves an intention into a physical outcome; capacity has no writer (DUP-15) | Reality / Life, with the controller |
-| CG-17 | The kernel conservation and resolution service has no registry row | Kernel |
-| CG-18 | Events have no typed contract (type, payload, producer, consumers) | Kernel / controller |
+| Id | Gap | Failure type | Holder (to propose; the registry decides nothing) |
+|---|---|---|---|
+| CG-1 | `place.par` has no writer | missing (no equation) | Reality |
+| CG-2 | `place.rain`, `place.vpd`, `world.soil_water` have no writer | missing (no equation) | Reality |
+| CG-3 | No plant uptake quantity (water, N, P, K) between soils and plants | broken connection | Life with Reality |
+| CG-4 | `realism.plant.physiology` inputs omit the LIFE-2 quantities | broken connection | Life |
+| CG-5 | No row moves an organism between places | missing (no equation) | Reality / Life |
+| CG-6 | No excreta mass or nutrient quantity; DUP-45 undecided | missing (no equation) | Life |
+| CG-7 | No nitrogen inputs (deposition, fixation, manure as mass) | missing (no equation) | Reality / Life |
+| CG-8 | No gaseous nitrogen losses | missing (no equation) | Reality / Life |
+| CG-9 | Soil pools and fluxes: N, P and K in one kg quantity, "per area" with no area unit | invalid coupling | Reality |
+| CG-10 | No gut microbial digestion term | missing (no equation) | Life |
+| CG-11 | X1: body outputs (faeces) have no destination | missing (no equation) | controller / Rex |
+| CG-12 | The genetic profile has no quantity id; maturation reads a row id | broken connection | Life |
+| CG-13 | energy_store reads "intake": eaten or absorbed is unstated | invalid coupling, to confirm | Life |
+| CG-14 | Expenditure has no growth, thermoregulation or reproduction term | missing (no equation) | Life |
+| CG-15 | Tissue populations have no B − D equation or quantities | missing (no equation) | Life (realism 2815) |
+| CG-16 | No row resolves an intention into a physical outcome; capacity has no writer (DUP-15) | missing (no equation) | Reality / Life, with the controller |
+| CG-17 | The kernel conservation and resolution service has no registry row | broken connection | Kernel |
+| CG-18 | Events have no typed contract | missing (no equation) | Kernel / controller |
+| CG-19 | Economy goods are unitless while IF-36 and IF-42 require mass and Life takes kg and kcal | invalid coupling | Economy with Life |
+| CG-20 | Soil nutrient loss on harvest (built `eco.soil_fertility`) is calculated apart from plant uptake | invalid coupling | Reality / Life (DUP-51, DUP-53) |
+| CG-21 | Plant biomass in two quantities (`world.plant_state`, `world.vegetation_stock`) with no aggregation | invalid coupling | Life (DUP-53) |
+| CG-22 | The soils and hydrology timescale is yearly while the fluxes they integrate run fast; no integration rule | invalid coupling | Reality / Life |
+| CG-23 | Population consumption (kg/a) and individual consumption (kcal per meal) are not joined | broken connection | Life |
+| CG-24 | `body.hunger_signal`'s writer is documented-only; Cognition reads a host stub | missing (not implemented) | Life |
+| CG-25 | `body.detectability`'s writer is planned; Cognition reads a host stub | missing (not implemented) | Life / Reality |
