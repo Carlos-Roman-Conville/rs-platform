@@ -26016,9 +26016,9 @@
   },
   {
    "id": "realism.anatomy.species_profile",
-   "name": "Species profile from library columns",
+   "name": "Species configuration record (every organism; animal anatomy is one part)",
    "owning_engine": "life",
-   "home": "Toolchain/realism/src/anatomy.ts speciesProfile L43-56, speciesRmr L59",
+   "home": "Toolchain/realism data/library/anatomy.json (animals) and data/library/plants.json (one table per species with a schema table; realism 2807, f2a9df5; scripts/check_plants.py); validation studies apart in validation.json plants_validation",
    "home_kind": "code",
    "status": "built",
    "status_note": "",
@@ -26069,7 +26069,7 @@
    "approximations": "only human and one horse column; formula text regex-parsed",
    "tests": "anatomy.test.ts horse column; independence.test.ts matches Kleiber RMR, CO, blood volume",
    "consumers": "assembleBody, human-wound/horse-stable",
-   "notes": "Resting cardiac output 0.07 L/min/kg here AND circulation has its own cardiac-output normal: two homes for resting CO. Blood volume 70 mL/kg here AND circulation normalBloodVolume (anatomy asserts equality at L112) [package split pending, SPLIT.md; owner life since 2026-10-31]",
+   "notes": "LIFE-3 (Life keeper 2026-10-31, life DESIGN §1.1): generalised from an animal anatomy profile to the species configuration record for every organism; one data record per species; every value labelled researched, estimate or fiction, or null with a flag; no behaviour rule; no species name in src/; cultivars and landraces are genetic profiles of one species. Consumers: every Life mechanism, the Catalogue, game adapters. Evidence per value. The animal part is built; the plant part is planned [package split pending, SPLIT.md; owner life since 2026-10-31]",
    "overlap_groups": [
     "DUP-23",
     "DUP-24"
@@ -26120,7 +26120,7 @@
      "integration_tests": [
       "realism test/independence.test.ts; examples/horse-stable.ts (CHECKPOINTS.md Independence)"
      ],
-     "report": "Resting cardiac output 0.07 L/min/kg here AND circulation has its own cardiac-output normal: two homes for resting CO. Blood volume 70 mL/kg here AND circulation normalBloodVolume (anatomy asserts equality at L112) [package split pending, SPLIT.md; owner life since 2026-10-31]"
+     "report": "LIFE-3 (Life keeper 2026-10-31, life DESIGN §1.1): generalised from an animal anatomy profile to the species configuration record for every organism; one data record per species; every value labelled researched, estimate or fiction, or null with a flag; no behaviour rule; no species name in src/; cultivars and landraces are genetic profiles of one species. Consumers: every Life mechanism, the Catalogue, game adapters. Evidence per value. The animal part is built; the plant part is planned [package split pending, SPLIT.md; owner life since 2026-10-31]"
     }
    },
    "rate_limiter": null,

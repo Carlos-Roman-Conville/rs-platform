@@ -10,11 +10,12 @@
    "checked": "2026-10-30",
    "parser": "Toolchain/kernel/src/units.ts parse (unit 2592)",
    "tally": {
-    "parses": 301,
+    "parses": 311,
     "kind record": 127,
     "kind text": 1,
     "kind categorical": 8,
-    "unknown: the": 38
+    "unknown: the": 38,
+    "fails the": 1
    }
   }
  },
@@ -3616,6 +3617,16 @@
    "unit_parses": null
   },
   {
+   "id": "place.par",
+   "kind": "quantity",
+   "unit": "mol/m^2/d",
+   "scope": "place",
+   "writer": null,
+   "description": "photosynthetically active radiation, mol photons per m2 per day",
+   "status": "planned (LIFE-2, Life keeper 2026-10-31): read by Life's plants; Reality writes it (phases 8, 13, 16) and registers the writer with its design",
+   "unit_parses": true
+  },
+  {
    "id": "place.props_outputs_by_id",
    "unit": null,
    "unit_text": "object",
@@ -3640,6 +3651,16 @@
    "description": "props.wbgt_c",
    "status": "seed",
    "kind": "quantity",
+   "unit_parses": true
+  },
+  {
+   "id": "place.rain",
+   "kind": "quantity",
+   "unit": "mm/d",
+   "scope": "place",
+   "writer": null,
+   "description": "rainfall",
+   "status": "planned (LIFE-2, Life keeper 2026-10-31): read by Life's plants; Reality writes it (phases 8, 13, 16) and registers the writer with its design",
    "unit_parses": true
   },
   {
@@ -3688,6 +3709,16 @@
    "description": "T",
    "status": "seed",
    "kind": "quantity",
+   "unit_parses": true
+  },
+  {
+   "id": "place.vpd",
+   "kind": "quantity",
+   "unit": "kPa",
+   "scope": "place",
+   "writer": null,
+   "description": "vapour pressure deficit",
+   "status": "planned (LIFE-2, Life keeper 2026-10-31): read by Life's plants; Reality writes it (phases 8, 13, 16) and registers the writer with its design",
    "unit_parses": true
   },
   {
@@ -5292,6 +5323,16 @@
    "unit_parses": true
   },
   {
+   "id": "world.inundation",
+   "kind": "quantity",
+   "unit": "1",
+   "scope": "world",
+   "writer": null,
+   "description": "fraction of time flooded",
+   "status": "planned (LIFE-2, Life keeper 2026-10-31): read by Life's plants; Reality writes it (phases 8, 13, 16) and registers the writer with its design",
+   "unit_parses": true
+  },
+  {
    "id": "world.medium_properties",
    "kind": "record",
    "unit": null,
@@ -5417,6 +5458,16 @@
    "unit_parses": true
   },
   {
+   "id": "world.sediment_porewater_nutrients",
+   "kind": "quantity",
+   "unit": "mg/L",
+   "scope": "world",
+   "writer": null,
+   "description": "sediment porewater N and P",
+   "status": "planned (LIFE-2, Life keeper 2026-10-31): read by Life's plants; Reality writes it (phases 8, 13, 16) and registers the writer with its design",
+   "unit_parses": true
+  },
+  {
    "id": "world.seed_bank",
    "kind": "record",
    "unit": null,
@@ -5472,7 +5523,7 @@
    "unit": "kg",
    "scope": "world",
    "writer": "realism.terrain.soils",
-   "description": "soil N, P and K pools per area (indexed by nutrient)",
+   "description": "soil N, P and K pools per area, total and plant-available (Life keeper and Reality agreed 2026-10-31); written only by realism.terrain.soils; Life writes uptake (water, N, P, K) and litter fluxes back through the substrate ledger, never the stock",
    "status": "planned (Rex 2026-10-30, ecosystem foundation)",
    "unit_parses": true
   },
@@ -5484,6 +5535,28 @@
    "writer": "realism.terrain.soils",
    "description": "soil pH (dimensionless)",
    "status": "planned (Rex 2026-10-30, ecosystem foundation)",
+   "unit_parses": true
+  },
+  {
+   "id": "world.soil_salinity",
+   "kind": "quantity",
+   "unit": "dS/m",
+   "scope": "world",
+   "writer": null,
+   "description": "soil salinity (electrical conductivity)",
+   "status": "planned (LIFE-2, Life keeper 2026-10-31): read by Life's plants; Reality writes it (phases 8, 13, 16) and registers the writer with its design",
+   "unit_parses": false,
+   "unit_error": "unknown unit symbol: dS",
+   "unit_status": "fails the kernel parser: unknown unit symbol: dS"
+  },
+  {
+   "id": "world.soil_water",
+   "kind": "quantity",
+   "unit": "m^3/m^3",
+   "scope": "world",
+   "writer": null,
+   "description": "root-zone volumetric soil water",
+   "status": "planned (LIFE-2, Life keeper 2026-10-31): read by Life's plants; Reality writes it (phases 8, 13, 16) and registers the writer with its design",
    "unit_parses": true
   },
   {
@@ -5599,6 +5672,46 @@
    "description": "speed over ground, heading, heel, capsize state",
    "status": "planned (Rex 2026-10-31, field survey)",
    "unit_parses": null
+  },
+  {
+   "id": "world.water_depth",
+   "kind": "quantity",
+   "unit": "m",
+   "scope": "world",
+   "writer": null,
+   "description": "water depth",
+   "status": "planned (LIFE-2, Life keeper 2026-10-31): read by Life's plants; Reality writes it (phases 8, 13, 16) and registers the writer with its design",
+   "unit_parses": true
+  },
+  {
+   "id": "world.water_kd",
+   "kind": "quantity",
+   "unit": "1/m",
+   "scope": "world",
+   "writer": null,
+   "description": "light attenuation coefficient in water",
+   "status": "planned (LIFE-2, Life keeper 2026-10-31): read by Life's plants; Reality writes it (phases 8, 13, 16) and registers the writer with its design",
+   "unit_parses": true
+  },
+  {
+   "id": "world.water_salinity",
+   "kind": "quantity",
+   "unit": "1",
+   "scope": "world",
+   "writer": null,
+   "description": "water salinity (PSU, practical salinity, dimensionless)",
+   "status": "planned (LIFE-2, Life keeper 2026-10-31): read by Life's plants; Reality writes it (phases 8, 13, 16) and registers the writer with its design",
+   "unit_parses": true
+  },
+  {
+   "id": "world.water_t",
+   "kind": "quantity",
+   "unit": "degC",
+   "scope": "world",
+   "writer": null,
+   "description": "water temperature",
+   "status": "planned (LIFE-2, Life keeper 2026-10-31): read by Life's plants; Reality writes it (phases 8, 13, 16) and registers the writer with its design",
+   "unit_parses": true
   },
   {
    "id": "world.wildlife_stock",

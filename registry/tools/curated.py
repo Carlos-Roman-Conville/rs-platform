@@ -2700,3 +2700,19 @@ GROUPS += [
 ]
 AUTH.update({"DUP-66": ("aggregation", "the one-population organ aggregate is legitimate once it reads the populations"), "DUP-67": ("duplicate-authority", "")})
 for _g in ("DUP-66", "DUP-67"): BATCH[_g] = "2c"
+
+# --- 2026-10-31: LIFE-3 (species configuration record) and LIFE-2 (plant input quantities), Life keeper ---
+ROW_PATCHES.setdefault("realism.anatomy.species_profile", {}).update({
+    "name": "Species configuration record (every organism; animal anatomy is one part)",
+    "home": "Toolchain/realism data/library/anatomy.json (animals) and data/library/plants.json (one table per species with a schema table; realism 2807, f2a9df5; scripts/check_plants.py); validation studies apart in validation.json plants_validation",
+    "notes": "LIFE-3 (Life keeper 2026-10-31, life DESIGN §1.1): generalised from an animal anatomy profile to the species configuration record for every organism; one data record per species; every value labelled researched, estimate or fiction, or null with a flag; no behaviour rule; no species name in src/; cultivars and landraces are genetic profiles of one species. Consumers: every Life mechanism, the Catalogue, game adapters. Evidence per value. The animal part is built; the plant part is planned"})
+_L2 = "planned (LIFE-2, Life keeper 2026-10-31): read by Life's plants; Reality writes it (phases 8, 13, 16) and registers the writer with its design"
+for _id, _u, _d in [("place.par", "mol/m^2/d", "photosynthetically active radiation, mol photons per m2 per day"),
+                    ("place.vpd", "kPa", "vapour pressure deficit"), ("place.rain", "mm/d", "rainfall"),
+                    ("world.soil_water", "m^3/m^3", "root-zone volumetric soil water"), ("world.soil_salinity", "dS/m", "soil salinity (electrical conductivity)"),
+                    ("world.water_depth", "m", "water depth"), ("world.water_kd", "1/m", "light attenuation coefficient in water"),
+                    ("world.water_salinity", "1", "water salinity (PSU, practical salinity, dimensionless)"), ("world.water_t", "degC", "water temperature"),
+                    ("world.inundation", "1", "fraction of time flooded"), ("world.sediment_porewater_nutrients", "mg/L", "sediment porewater N and P")]:
+    EXTRA_QUANTITIES.append({"id": _id, "kind": "quantity", "unit": _u, "scope": _id.split(".")[0], "writer": None, "description": _d, "status": _L2})
+QUANTITY_PATCH.setdefault("world.soil_nutrient_pool", {})["description"] = ("soil N, P and K pools per area, total and plant-available (Life keeper and Reality agreed 2026-10-31); written only by realism.terrain.soils; "
+    "Life writes uptake (water, N, P, K) and litter fluxes back through the substrate ledger, never the stock")
