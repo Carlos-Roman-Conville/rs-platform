@@ -3140,3 +3140,26 @@ for _r in EXTRA_ROWS:
     if _r["id"] == "shared.host.work_resolution":
         _r["notes"] = _r["notes"].replace("(a DESIGN §2.4 note on the target convention instead)", "(the DESIGN §2.4 target-convention note instead: unit 5007, cognition 07fb59d; 5008 withdrawn)")
         assert "07fb59d" in _r["notes"]
+
+# --- 2026-11-01: kernel v0.1.0 tagged (ac08916). Kernel 5006 landed (f452432, harness/work-resolution.ts resolveWork); registry keeper reran
+# `cd harness && npx vitest run work-resolution` at f452432: 10/10 (H1 once per cause, H2 rollback, H3 no wage read/write; reads target, reason 'no target').
+# Kernel 3011 event inventory (1933334) merged into registry/events.json: 33 bus-published types added; Society local kinds, Government returned candidates,
+# Reality's local crisis trace and the bench fixture.outcome are not bus events and stay out (REG-31); settlement.post_filled retired in events.json (bus type postFilled) ---
+for _r in EXTRA_ROWS:
+    if _r["id"] == "shared.host.work_resolution":
+        _r["status"] = "built"
+        _r["home"] = _r["home"].replace("implemented in Toolchain/kernel/harness/ (Kernel keeper, after kernel v0.1.0)",
+                                        "implemented in Toolchain/kernel/harness/work-resolution.ts resolveWork (kernel 5006, f452432, after v0.1.0 ac08916)")
+        _r["tests"] = "Toolchain/kernel harness/work-resolution.test.ts: 10/10 at kernel f452432 (registry keeper rerun 2026-11-01; H1-H3 named); X1 seam S6 Gate H1-H4 (history DESIGN §3.8)"
+        _r["notes"] += ("; built 2026-11-01 (kernel 5006, f452432): a role target resolves to the first vacant post by stable id after vacancy, then hours > 0 from LabourSupply; "
+                        "failure reasons 'no target' | 'no vacant post' | 'no hours'; Life's LabourSupply provider (IF-27) is still to land, the harness test uses a test provider")
+        assert "harness/work-resolution.ts" in _r["home"]
+VV_OVERRIDES["shared.host.work_resolution"] = {"validated": "n/a (host rule; controller's declared default)", "integrated": "no (Life's LabourSupply provider not built)",
+                                               "evidence": "re-audit 2026-11-01 at kernel f452432: work-resolution 10/10"}
+for _g in INTERFACE_GAPS:
+    if _g["interface"] == "IF-27":
+        _g["progress"] = _g.get("progress", "") + "; host part built 2026-11-01: kernel 5006 f452432, work-resolution 10/10 on the registry keeper's rerun; remaining: Life's LabourSupply provider ({LABOUR})"
+    if _g["interface"] == "CG-18":
+        _g["progress"] += ("; kernel 3011 inventory (1933334) merged 2026-11-01: events.json holds 36 bus types (3 advisory warnings: list without of); "
+                           "open (REG-31): the harness adapter does not forward a reducer event's cause to the kernel envelope; Society's local kinds and Government's returned records have no bus path; "
+                           "'refused' name collision Economy/Society; no object/nullable/union field kind")

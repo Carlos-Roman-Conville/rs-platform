@@ -245,7 +245,7 @@ Each mechanism is **implemented** (code and unit tests pass), **integrated** (wi
 what it reads and feeds), and **validated** (its behaviour matches independent evidence within declared
 tolerances): three separate states, recorded per row in `mechanisms.json` (`vv`). Seeded 2026-10-30:
 
-- built mechanisms 222; **implemented** 220; with a combined (integration) test 122; **integrated (yes)** 122; **validated (yes)** 0; 6 candidates; 2 failed. 'Integrated' means a named combined test runs the row with what it reads and feeds (REVIEWS.md, V&V states); wiring by prop names alone is 'no'. That most rows are implemented-not-validated is the honest starting point (Rex).
+- built mechanisms 223; **implemented** 221; with a combined (integration) test 122; **integrated (yes)** 122; **validated (yes)** 0; 6 candidates; 2 failed. 'Integrated' means a named combined test runs the row with what it reads and feeds (REVIEWS.md, V&V states); wiring by prop names alone is 'no'. That most rows are implemented-not-validated is the honest starting point (Rex).
 
 The combined tests counted as integration evidence:
 
@@ -270,7 +270,7 @@ The combined tests counted as integration evidence:
 | Toolchain/cognition test/bench-world.test.ts ('hungry pair kernel integration': 144 body/cognition/resolution epochs, replay) and test/bench-acceptance.test.ts (DESIGN §6 fixture; rules verified, never validated; cognition 3a2bdcd) | 12 | yes |
 | Toolchain/cognition test/personality-versions.test.ts; bench/personality-versions.ts runs the hungry pair per personality version (DESIGN §9 T-3; cognition 3a2bdcd) | 4 | yes |
 
-Of the connected pairs (a `depends_on` edge between two built mechanisms), 67 run together in one of these tests and **59 do not**:
+Of the connected pairs (a `depends_on` edge between two built mechanisms), 67 run together in one of these tests and **61 do not**:
 
 | Reader | Reads | Engines |
 |---|---|---|
@@ -284,6 +284,7 @@ Of the connected pairs (a `depends_on` edge between two built mechanisms), 67 ru
 | `kernel.transfer` | `kernel.transaction` | kernel |
 | `realism.infra.operator_control` | `realism.infra.rng` | kernel, reality |
 | `realism.infra.thermometer_drift` | `realism.infra.rng` | kernel, reality |
+| `shared.host.work_resolution` | `kernel.transaction` | kernel, shared |
 | `realism.circulation.cardiac_output` | `realism.anatomy.species_profile` | life |
 | `realism.gas.breathing_process` | `realism.gas.cohb` | life |
 | `realism.medicine.disease_course` | `realism.medicine.immunity` | life |
@@ -333,6 +334,7 @@ Of the connected pairs (a `depends_on` edge between two built mechanisms), 67 ru
 | `settlement.business.staffing` | `shared.labour.provider_draw` | settlement, shared |
 | `settlement.production.labour_cap` | `shared.labour.provider_draw` | settlement, shared |
 | `settlement.project.construction` | `shared.labour.provider_draw` | settlement, shared |
+| `shared.host.work_resolution` | `settlement.assign.workforce` | settlement, shared |
 
 Limits of this view: pairs inside one module may already be exercised together by that module's unit tests (the
 owner confirms and adds the test to the row's `integration_tests`); the `depends_on` edges are resolved by name

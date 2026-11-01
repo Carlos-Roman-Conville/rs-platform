@@ -75,10 +75,10 @@ mechanisms, and are not itemised. Coverage limits are listed in `HQ/handoffs/reg
 | knowledge mechanisms | 0 | 0 | 7 | 7 |
 | history mechanisms | 0 | 0 | 1 | 1 |
 | catalogue mechanisms | 0 | 0 | 7 | 7 |
-| shared mechanisms | 6 | 5 | 6 | 17 |
+| shared mechanisms | 7 | 5 | 5 | 17 |
 | pirate-ship mechanisms | 24 | 63 | 15 | 102 |
 | restatements (pirate docs and adapters) | 0 | 90 | 2 | 92 |
-| **all rows** | 222 | 161 | 201 | 584 |
+| **all rows** | 223 | 161 | 200 | 584 |
 
 **Restatements** are not errors: the pirate body docs are rendered from the same library JSON as the realism
 code (`body/build-body-data.py`), so their tables cannot disagree with the code. Disagreements live only in their
@@ -570,7 +570,7 @@ stability/conservation/boundary tests, `integration_tested_with`, integration te
 | `shared.contract.terrain_resolution` | P | infra | U | ? | --- |  | ENGINES.md 'Soil mechanics and excavation' (Rex 2026-10-31; Physical Reality, materials ph |
 | `shared.contract.terrain_view` | P | infra | U | ? | --- |  | ENGINES.md 'Planetary terrain and resource formation' (Rex 2026-10-30; Physical Reality P2 |
 | `shared.contract.transport_provider` | D | A | U | 4 | --- |  | economy/src/providers.ts |
-| `shared.host.work_resolution` | P | infra | U | ? | --- |  | contract (controller 2026-11-01); implemented in kernel/harness/ (Kernel keeper, after ker |
+| `shared.host.work_resolution` | B | infra | U | ? | I-- |  | contract (controller 2026-11-01); implemented in kernel/harness/work-resolution.ts resolve |
 | `shared.labour.provider_draw` | B | D | U | 4 | I-- | DUP-26 DUP-29 | settlement/src/providers.ts LabourProvider; economy/src/providers.ts LabourSupplyProvider |
 | `shared.utility.provider` | D | A | U | 5 | --- |  | settlement/src/providers.ts UtilityProvider/StubUtilities; tick/production.ts |
 
