@@ -2480,3 +2480,14 @@ EXTRA_QUANTITIES += [
 ]
 ROW_PATCHES.setdefault("cognition.communication.comprehend", {})["planned_writes"] = ["mind.testimony", "mind.meaning_pool"]
 ROW_PATCHES["cognition.communication.comprehend"]["outputs"] = [{"name": "mind.testimony", "unit": "record"}, {"name": "mind.meaning_pool", "unit": "record"}]
+
+# --- 2026-10-31: single writers for six multi-writer realism quantities (Reality keeper, for unit 2765's per-mechanism kernel.json; REG-16) ---
+_RW = "Reality keeper 2026-10-31 (unit 2765); non-owner writes left in code are recorded as '(2765) multi-writer:' flags for the overlap work"
+QUANTITY_OPS += [
+ ("writer", "body.rmr", "realism.physiology.rmr", _RW + ": physiology owns RMR (DUP-24); anatomy.species_profile selects the formula and reads; nutri.rmr_mifflin is a restatement and reads"),
+ ("writer", "air.pressure", "realism.atmos.barometric_pressure", _RW + ": gas.altitude_inspired_po2 reads it"),
+ ("writer", "component.vessel_t", "realism.thermo.boiling", _RW + ": the vessel's energy balance; chem.reaction_extent reads the temperature and adds its reaction heat as heat"),
+ ("writer", "body.blood_lost", "realism.circulation.blood_ledger", _RW + ": one ledger; circulation.bleed_rate supplies the bleed flux as an input"),
+ ("writer", "body.blood_volume", "realism.circulation.blood_ledger", _RW + ": one ledger; circulation.volume_recovery supplies the refill flux as an input"),
+ ("writer", "body.sweat", "realism.physiology.sweat", _RW + ": physiology.heat_balance reads it"),
+]

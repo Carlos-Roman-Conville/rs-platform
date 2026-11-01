@@ -228,14 +228,11 @@
    "unit_text": "Pa",
    "unit_status": "as given",
    "scope": "air",
-   "writer": null,
+   "writer": "realism.atmos.barometric_pressure",
    "description": "pressure",
-   "status": "seed: several writers (an overlap or a naming clash to resolve)",
-   "candidate_writers": [
-    "realism.atmos.barometric_pressure",
-    "realism.gas.altitude_inspired_po2"
-   ],
+   "status": "confirmed by owner",
    "kind": "quantity",
+   "writer_note": "Reality keeper 2026-10-31 (unit 2765); non-owner writes left in code are recorded as '(2765) multi-writer:' flags for the overlap work: gas.altitude_inspired_po2 reads it",
    "unit_parses": true
   },
   {
@@ -472,14 +469,11 @@
    "unit_text": "mL",
    "unit_status": "mapped (symbol added by kernel 2648)",
    "scope": "body",
-   "writer": null,
+   "writer": "realism.circulation.blood_ledger",
    "description": "blood lost",
-   "status": "seed: several writers (an overlap or a naming clash to resolve)",
-   "candidate_writers": [
-    "realism.circulation.bleed_rate",
-    "realism.circulation.blood_ledger"
-   ],
+   "status": "confirmed by owner",
    "kind": "quantity",
+   "writer_note": "Reality keeper 2026-10-31 (unit 2765); non-owner writes left in code are recorded as '(2765) multi-writer:' flags for the overlap work: one ledger; circulation.bleed_rate supplies the bleed flux as an input",
    "unit_parses": true
   },
   {
@@ -488,14 +482,11 @@
    "unit_text": "mL",
    "unit_status": "mapped (symbol added by kernel 2648)",
    "scope": "body",
-   "writer": null,
+   "writer": "realism.circulation.blood_ledger",
    "description": "blood_volume",
-   "status": "seed: several writers (an overlap or a naming clash to resolve)",
-   "candidate_writers": [
-    "realism.circulation.blood_ledger",
-    "realism.circulation.volume_recovery"
-   ],
+   "status": "confirmed by owner",
    "kind": "quantity",
+   "writer_note": "Reality keeper 2026-10-31 (unit 2765); non-owner writes left in code are recorded as '(2765) multi-writer:' flags for the overlap work: one ledger; circulation.volume_recovery supplies the refill flux as an input",
    "unit_parses": true
   },
   {
@@ -1391,15 +1382,11 @@
    "unit_text": "kcal/day",
    "unit_status": "mapped",
    "scope": "body",
-   "writer": null,
+   "writer": "realism.physiology.rmr",
    "description": "rmr",
-   "status": "seed: several writers (an overlap or a naming clash to resolve)",
-   "candidate_writers": [
-    "realism.anatomy.species_profile",
-    "realism.nutri.rmr_mifflin",
-    "realism.physiology.rmr"
-   ],
+   "status": "confirmed by owner",
    "kind": "quantity",
+   "writer_note": "Reality keeper 2026-10-31 (unit 2765); non-owner writes left in code are recorded as '(2765) multi-writer:' flags for the overlap work: physiology owns RMR (DUP-24); anatomy.species_profile selects the formula and reads; nutri.rmr_mifflin is a restatement and reads",
    "unit_parses": true
   },
   {
@@ -1519,14 +1506,11 @@
    "unit_text": "W",
    "unit_status": "as given",
    "scope": "body",
-   "writer": null,
+   "writer": "realism.physiology.sweat",
    "description": "sweat",
-   "status": "seed: several writers (an overlap or a naming clash to resolve)",
-   "candidate_writers": [
-    "realism.physiology.heat_balance",
-    "realism.physiology.sweat"
-   ],
+   "status": "confirmed by owner",
    "kind": "quantity",
+   "writer_note": "Reality keeper 2026-10-31 (unit 2765); non-owner writes left in code are recorded as '(2765) multi-writer:' flags for the overlap work: physiology.heat_balance reads it",
    "unit_parses": true
   },
   {
@@ -2114,14 +2098,11 @@
    "unit_text": "C",
    "unit_status": "as given",
    "scope": "component",
-   "writer": null,
+   "writer": "realism.thermo.boiling",
    "description": "vessel T",
-   "status": "seed: several writers (an overlap or a naming clash to resolve)",
-   "candidate_writers": [
-    "realism.chem.reaction_extent",
-    "realism.thermo.boiling"
-   ],
+   "status": "confirmed by owner",
    "kind": "quantity",
+   "writer_note": "Reality keeper 2026-10-31 (unit 2765); non-owner writes left in code are recorded as '(2765) multi-writer:' flags for the overlap work: the vessel's energy balance; chem.reaction_extent reads the temperature and adds its reaction heat as heat",
    "unit_parses": true
   },
   {

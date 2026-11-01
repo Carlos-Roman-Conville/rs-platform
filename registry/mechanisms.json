@@ -25406,8 +25406,7 @@
     "body.bloodmlkg",
     "body.cardiacoutputlminkg",
     "body.temperaturec",
-    "body.haemoglobingdl",
-    "body.rmr"
+    "body.haemoglobingdl"
    ],
    "reads": [],
    "aggregates": null,
@@ -27075,7 +27074,6 @@
    "writes": [
     "component.extent",
     "component.product_masses",
-    "component.vessel_t",
     "component.gas_to_receiver"
    ],
    "reads": [],
@@ -27394,9 +27392,7 @@
    "unit_issues": [],
    "audit_batch": "realism-bio",
    "audit_id": null,
-   "writes": [
-    "body.blood_lost"
-   ],
+   "writes": [],
    "reads": [],
    "aggregates": null,
    "vv": {
@@ -28544,9 +28540,7 @@
    "unit_issues": [],
    "audit_batch": "realism-bio",
    "audit_id": null,
-   "writes": [
-    "body.blood_volume"
-   ],
+   "writes": [],
    "reads": [],
    "aggregates": null,
    "vv": {
@@ -31274,7 +31268,6 @@
     "IF-30"
    ],
    "writes": [
-    "air.pressure",
     "air.inspired_po2"
    ],
    "reads": [],
@@ -38272,9 +38265,7 @@
    "unit_issues": [],
    "audit_batch": "realism-phys",
    "audit_id": null,
-   "writes": [
-    "body.rmr"
-   ],
+   "writes": [],
    "reads": [],
    "aggregates": null,
    "vv": {
@@ -41087,8 +41078,7 @@
    ],
    "writes": [
     "body.dry_heat",
-    "body.required_evaporation",
-    "body.sweat"
+    "body.required_evaporation"
    ],
    "reads": [],
    "aggregates": null,
