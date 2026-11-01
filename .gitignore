@@ -1,0 +1,10 @@
+# rs-platform (Rex, 2026-10-31; CTRL-21): the Toolchain root's own docs, the registry and the dashboard.
+# Every other folder is either its own engine repo (kernel, realism, ...) or a tool that may hold keys
+# (ask-codex, ask-cursor, card-fetch, ludii): all subfolders stay out unless allowed below.
+/*/
+!/registry/
+!/dashboard/
+node_modules/
+.codex-runs/
+__pycache__/
+dashboard/state.json

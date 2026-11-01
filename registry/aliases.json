@@ -1,0 +1,211 @@
+{
+ "meta": {
+  "schema_version": 1,
+  "rule": "one entry per rename, split or merge: old id -> new id (or list); a retired id is never reused",
+  "applies_to": "mechanism ids and quantity ids"
+ },
+ "aliases": [
+  {
+   "old": "economy.recipe.labour_hours_per_unit",
+   "new": "economy.labourhoursperunit",
+   "date": "2026-10-30",
+   "kind": "quantity",
+   "reason": "the economy keeper (the writer's owner) set the name; the old id was a settlement-keeper proposal published briefly in quantities.json"
+  },
+  {
+   "old": "percept.detectability",
+   "new": "body.detectability",
+   "date": "2026-10-30",
+   "kind": "quantity",
+   "reason": "a per-observer value in the body scope; never registered under the old name (cognition keeper's proposal)"
+  },
+  {
+   "old": "cognition.memory.retrieve",
+   "new": "cognition.memory.episodic",
+   "date": "2026-10-31",
+   "kind": "stream",
+   "reason": "kernel.json stream for episodic retrieval noise (test/process.test.ts maps it to episodic; src/memory.ts documents it); renaming would change every seeded draw and invalidate REPORT and replay evidence; the alias moves to cognition.memory.retrieval when that stage is built (cognition keeper 2026-10-31)"
+  },
+  {
+   "old": "settlement.state",
+   "new": null,
+   "date": "2026-10-30",
+   "kind": "quantity",
+   "reason": "the settlement state container, not a quantity: every command writes it through settlement.infra.reducer_replay (settlement keeper, 2026-10-30)"
+  },
+  {
+   "old": "settlement.events",
+   "new": null,
+   "date": "2026-10-30",
+   "kind": "quantity",
+   "reason": "events are the reducer's return value, not a quantity (settlement keeper, 2026-10-30)"
+  },
+  {
+   "old": "settlement.cap",
+   "new": [
+    "settlement.production.equipment_cap_units",
+    "settlement.production.labour_cap_units"
+   ],
+   "date": "2026-10-30",
+   "kind": "quantity",
+   "reason": "one seed name for two caps; materials and utilities caps come from providers and need no settlement quantity (settlement keeper, 2026-10-30)"
+  },
+  {
+   "old": "settlement.wage_ledger_rows",
+   "new": "settlement.ledger_row",
+   "date": "2026-10-30",
+   "kind": "quantity",
+   "reason": "an alias of settlement.ledger_row (kind wage); settlement.wage.pay asks pay to write (settlement keeper, 2026-10-30)"
+  },
+  {
+   "old": "settlement.business_status",
+   "new": "settlement.business.status",
+   "date": "2026-10-30",
+   "kind": "quantity",
+   "reason": "merged into settlement.business.status: the same field"
+  },
+  {
+   "old": "settlement.business_status_dormant_staffed_producing",
+   "new": "settlement.business.status",
+   "date": "2026-10-30",
+   "kind": "quantity",
+   "reason": "merged into settlement.business.status: the same field"
+  },
+  {
+   "old": "mind.partner_preference",
+   "new": "mind.preference",
+   "date": "2026-10-30",
+   "kind": "quantity",
+   "reason": "re-homed (Rex 2026-10-30, General preference learning): partner preferences are mind.preference in the partner context; registered planned the same day, never built"
+  },
+  {
+   "old": "economy.labourperunit",
+   "new": "economy.labourhoursperunit",
+   "date": "2026-10-30",
+   "kind": "quantity",
+   "reason": "economy unit 2630 (bb8ee31): Rates are {unitsPerFixtureDay, labourHoursPerUnit}, both required; defineRecipe refuses the old field (commands.ts L72); re-audited by the registry keeper: no other use in economy/src; the pirate fixture uses labourHoursPerUnit (2629)"
+  },
+  {
+   "old": "air.outputs_o2_frac_co2_ppm_sao2_cohb_ventilation_l_",
+   "new": [
+    "body.cohb",
+    "body.ventilation_l_min"
+   ],
+   "date": "2026-10-31",
+   "kind": "quantity",
+   "reason": "Reality keeper 2026-10-31 (unit 2765 splits realism/kernel.json per mechanism): a bundle split; breathing writes body.cohb and body.ventilation_l_min; O2 and CO2 are reads of the room's air.ppm_gases / air.gas_masses (writer realism.gas.room_box); saturation is circulation's (DUP-11)"
+  },
+  {
+   "old": "body.bodyoutputs_medicine",
+   "new": "body.medicine_outputs",
+   "date": "2026-10-31",
+   "kind": "quantity",
+   "reason": "Reality keeper 2026-10-31 (unit 2765 splits realism/kernel.json per mechanism)"
+  },
+  {
+   "old": "body.cascade_statement_kineticsseconds",
+   "new": "body.organ_cascade_state",
+   "date": "2026-10-31",
+   "kind": "quantity",
+   "reason": "Reality keeper 2026-10-31 (unit 2765 splits realism/kernel.json per mechanism)"
+  },
+  {
+   "old": "body.compartments_resting_active_fatigued",
+   "new": "body.muscle_compartments_3cc",
+   "date": "2026-10-31",
+   "kind": "quantity",
+   "reason": "Reality keeper 2026-10-31 (unit 2765 splits realism/kernel.json per mechanism)"
+  },
+  {
+   "old": "body.organ_tissue_components_graph_edges",
+   "new": "body.anatomy_graph",
+   "date": "2026-10-31",
+   "kind": "quantity",
+   "reason": "Reality keeper 2026-10-31 (unit 2765 splits realism/kernel.json per mechanism)"
+  },
+  {
+   "old": "body.seconds",
+   "new": "body.endurance_time_s",
+   "date": "2026-10-31",
+   "kind": "quantity",
+   "reason": "Reality keeper 2026-10-31 (unit 2765 splits realism/kernel.json per mechanism)"
+  },
+  {
+   "old": "component.thickness_0_228_m_rho_1920_cp_790_u_2_11_h_10",
+   "new": "component.wall_properties",
+   "date": "2026-10-31",
+   "kind": "quantity",
+   "reason": "Reality keeper 2026-10-31 (unit 2765 splits realism/kernel.json per mechanism)"
+  },
+  {
+   "old": "place.props_outputs_by_id",
+   "new": "place.outputs",
+   "date": "2026-10-31",
+   "kind": "quantity",
+   "reason": "Reality keeper 2026-10-31 (unit 2765 splits realism/kernel.json per mechanism)"
+  },
+  {
+   "old": "contract.available",
+   "new": "economy.output_units",
+   "date": "2026-10-30",
+   "kind": "quantity",
+   "reason": "provider-port vocabulary 2026-10-31 (Kernel keeper; Settlement and Economy agreed): MaterialProvider.available is economy.material.available's output units"
+  },
+  {
+   "old": "contract.businesses",
+   "new": "settlement.business",
+   "date": "2026-10-30",
+   "kind": "quantity",
+   "reason": "provider-port vocabulary 2026-10-31 (Kernel keeper; Settlement and Economy agreed): SettlementReader.businesses"
+  },
+  {
+   "old": "contract.production",
+   "new": "settlement.production_record",
+   "date": "2026-10-30",
+   "kind": "quantity",
+   "reason": "provider-port vocabulary 2026-10-31 (Kernel keeper; Settlement and Economy agreed): SettlementReader.production"
+  },
+  {
+   "old": "contract.take",
+   "new": "economy.units_taken",
+   "date": "2026-10-30",
+   "kind": "quantity",
+   "reason": "provider-port vocabulary 2026-10-31 (Kernel keeper; Settlement and Economy agreed): MaterialProvider.take returns economy.units_taken and changes economy.stock_changes (the take command on the stock ledger, economy.inventory.holdings; corrected 2026-10-31 by the Economy keeper: economy.stock_taken is market consumption's write)"
+  },
+  {
+   "old": "contract.produce",
+   "new": [
+    "economy.inputs_consumed",
+    "economy.outputs_and_byproducts_added",
+    "economy.market_producedtoday"
+   ],
+   "date": "2026-10-30",
+   "kind": "quantity",
+   "reason": "provider-port vocabulary 2026-10-31 (Kernel keeper; Settlement and Economy agreed): MaterialProvider.produce is a call on three economy quantities"
+  },
+  {
+   "old": "contract.rates",
+   "new": [
+    "economy.unitsperfixtureday",
+    "economy.labourhoursperunit"
+   ],
+   "date": "2026-10-30",
+   "kind": "quantity",
+   "reason": "provider-port vocabulary 2026-10-31 (Kernel keeper; Settlement and Economy agreed): MaterialProvider.rates"
+  },
+  {
+   "old": "air.sao2",
+   "new": "body.sao2",
+   "date": "2026-10-31",
+   "kind": "quantity",
+   "reason": "DUP-11: circulation owns the one saturation function (realism 79d09da, 2725); atmosphere supplies alveolar PO2 and calls it"
+  },
+  {
+   "old": "society.religious_community",
+   "new": "society.organisation",
+   "date": "2026-10-30",
+   "kind": "quantity",
+   "reason": "SOC-1 (Society keeper 2026-10-31): a religious community is a view of society.organisation (one store); planned, never built"
+  }
+ ]
+}

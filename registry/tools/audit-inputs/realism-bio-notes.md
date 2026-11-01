@@ -1,0 +1,44 @@
+# realism-bio audit notes (Toolchain/realism, life/biology side)
+
+78 rows in realism-bio.jsonl. All paths relative to E:/AI Programs/Toolchain/realism/.
+
+## 1. Duplicates / overlaps
+- **O2 consumption / oxidation computed twice**: `src/physics.ts:81-83 metabolicHeat` (3.5 mL/kg/min/MET x 20.1 kJ/L) and `src/atmosphere.ts:194 vo2PerMet` (3.5, from library `physiology.ventilation`). Physiology rescales energy to the body's RMR (`physiology.ts:300`), atmosphere does not. Heat and metabolic water use scaled M; O2/CO2 gas exchange uses unscaled VO2. They disagree whenever RMR is not 1 kcal/kg/h (and for the horse).
+- **Sleep pressure, two states**: `physiology.ts sleep_debt` (-> alertness, medicine healing x1.2) and `neurology.ts:539 hours_awake` -> adenosine -> arousal/sleep circuits. The library calls adenosine "the mechanism under" the debt table but no link exists. Two alertness-like outputs: physiology `alertness`, neurology `arousal`.
+- **Fatigue in three places**: physiology `fatigue_met_hours` (whole body), muscular 3CC per group, muscular Banister fatigue. No declared relation. Aerobic capacity also in three: circulation `aerobic_today`, Banister `performance`, unimplemented "Endurance pool".
+- **Work capacity is four separate outputs** (`work_capacity_heat`, `work_capacity_hydration`, `endurance_hydration`, nutrition starvation x0.8 in library). The hydration 2-4% row also says "heat strain faster", which overlaps the WBGT core drift.
+- **Vitamin C < 300 mg keyed to four consequences**: nutrition deficiency stage 1, anatomy collagen -0.02/day, medicine healing x3, and a separate medicine `scurvy` disease row (42-84 d incubation). Medicine flags say anatomy collagen "carries" scurvy while healing x3 is also applied.
+- **Age effects in four unlinked places**: `physiology.json ageing` (no code reads it; constitution healing +30% by 60), medicine healing (>50 x1.3, >65 x1.6), muscular age gate (x0.8 at 45), neurology dopamine -5%/decade after 40.
+- **Banister**: table in physiology library, code in `muscular.ts muscularBanisterDay`, physiology flags say "not implemented here".
+- **Bleeding death rate**: circulation `bleedingEffects.deathRatePerHour` (placeholder 0/1/10/50 %/h) vs medicine disease fatal draw vs population background + epidemic deaths. No shared cause-of-death ledger; fine for now but three mortality sources.
+- **Individual vs aggregate disease**: `population.ts` epidemic reimplements `medicine.expose/advanceDays` (same `diseaseCourse` parser; expected value vs Bernoulli). Population also keeps its own `health`, `foodDays`, `seasonedShare` instead of reading nutrition/medicine state. Mean agreement is untested.
+- **Blood volume per kg**: `circulation.normalBloodVolume` (70/65 parsed from prose) and `anatomy.species.blood-volume-ml-kg` (70, horse 80); anatomy checks equality at assembly. Resting cardiac output: anatomy 0.07 L/min/kg vs circulation normal CO.
+- **Water in three-four ledgers**: `body.contents water`, `props.waterDeficitKg`, glycogen-bound water (nutrition), blood volume (no link). Circulation `delivery_failures` says dehydration lowers plasma and DO2; nothing implements it, and if added alongside the hydration Endurance factor it would double penalise.
+- **Game attributes inside physical tables**: hydration rows (Endurance, Wits, Strength) and bleeding rows ("Endurance pool x0.8", "Wits x0.7"). The same attributes would be hit by both if a host applies both factor sets.
+- **Resting RMR**: Mifflin (physiology) vs Kleiber (anatomy), bridged by host-set `props.rmr_kcal_day`.
+- **Gas-tolerance thresholds** in `anatomy.respiratory` ("hypoxia under 16% O2, CO2 over 3%") vs `medicine.airConditions` thresholds (SaO2/PaCO2 patterns) vs atmosphere (not read here).
+
+## 2. Unit problems
+- **blood_lost_ml (circulation, mL) vs blood_lost_l (nutrition, L)**: different prop name AND unit; nothing writes `blood_lost_l`, so iron loss from haemorrhage (250 mg/L) is never triggered outside tests. Real wiring bug.
+- nutrition sodium/magnesium use reads `sweat_kg` as litres (1 kg/L implicit).
+- Population `Rates` are per year; `tick` divides by constant 365; medicine is per day; circulation seconds/minutes; physiology per step (dt s) with hourly rates (L/h) and kcal/day: conversions are inline, undocumented.
+- kcal (physiology/nutrition props) vs J (trace) via KCAL_J; glycogen kcal/g derived from prose.
+- Circulation hazard rates carry mixed units per event (index/day, per hour, per event, state).
+- nutrition niacin "mg NE" and folate "mcg vs pool mg" converted "by definition" (flag).
+
+## 3. Circular / ownership conflicts
+- Wiring by prop-name convention, not interfaces: neurology reads `met, sleep_debt, core_c, wbgt_c, pain, hunger, fever, starvation_stage, liver_function`; of these nothing produces `pain` (medicine writes `outputs['medicine.pain']`), `hunger`, `fever`, `starvation_stage`, `liver_function` (anatomy writes `outputs.liver`). Medicine reads `energy_balance_day_kcal`, `sleep_debt`, vit_c pool.
+- Anatomy organ function reads only perfusion and host signals; it does not read hydration, anaemia, drug burden or nutrition (library says kidney injury at 6-10% dehydration).
+- Body mass has no single owner: nutrition (fat, glycogen, water), circulation (shed blood), physiology (ledger).
+- Drug mass double-bookkept (registry content and `neu_gut`/`neu_c`).
+- Order dependence: physiology -> breathing -> nutrition -> neurology, circulation after breathing, medicine after circulation, anatomy after circulation/breathing; stated only in comments/examples.
+
+## 4. Planned / missing (explicit in flags and library)
+Circulation: all 7 homeostasis loops (baroreflex, kidney volume, erythropoiesis, glucose, K+, acid-base), CO-vs-volume curve, plasma refill and red-cell recovery tau, atherosclerosis updater. Physiology: cold side of core, cooling term, Endurance pool, glycogenFactor use, ageing curves, cold acclimatisation, sea legs. Nutrition: hunger/fullness/appetite, lean mass catabolism, starvation stage clock, stages 2/3, 19 unpooled nutrients, horse feed. Muscular: k_o, k_n, k_t, tendon injury, DOMS, muscle mass, limb strength. Neurology: all EC50/k_tol (null), later adenosine, inverted-U terms, habit learning, deficiency drivers. Medicine: dose-response, hygiene multipliers, sepsis/tetanus from wound, treated death risk, partial immunity strength, bleed rate and clotting (D-ROW question to Rex), fever. Anatomy: organ masses, cascade kinetics, ischaemic damage rate. Population: age-specific rates, outbreak effect on health, migration out, health recovery. No ATP/phosphocreatine pool anywhere (energy is glycogen/fat stock updated daily from a kcal flux).
+
+## 5. Pirate-specific in universal / universal only in pirate docs
+- Pirate-origin in code/tables: nutrition `HAEM_FOODS` (salt-beef, boucan, tasajo, coast-provisions); medicine treatments (17th-century Woodall/Moyle, rum, laudanum, quarantine of "the ship"); `circadian` "Ship's time" watch bands; default `dayStartH = 12` nautical day; population `transient`/ships in port/Port Royal/settlers x reputation; anatomy crisis floors cite pirate-ship `ANATOMY.md` 3a; muscular `limb_strength` (STATS 1-20) and game attribute names (Endurance, Wits, Strength) inside hydration/bleeding/aerobic rows.
+- Universal values only in docs: crisis floors (code constants citing a pirate doc); hygiene multipliers (x2 at 7 days unswabbed, x5 lousy...) exist only in the pirate-ship MEDICINE.md; skin-temperature shift of hydration thresholds; sleep quality weights (deck in rain 0.6 etc.) only in PHYSIOLOGY.md. The independence test enforces that src/examples never name the game.
+
+## Tests (mechanism -> file)
+anatomy.test (assembly, perfusion/class IV crisis, damage/repair, collagen, absorption reuse); circulation.test (normals, class III, bleed/clotting, volume recovery, DO2/COHb, hazards); physiology.test (RMR, MET, PAL, energy and heat and water conservation, sleep, circadian, WBGT drift, acclimatisation); hydration-week.test (sweat bands, crises at 6%/10%, DuBois); nutrition.test (pools, absorption, deficiency days, conservation, glycogen/fat); medicine.test (course, immunity, treatments, wounds, healing, bleeding via circulation, pain, air); neurology.test (Widmark, baseline, circuits, four clocks, fence); muscular.test (3CC, stimuli, adaptation, Banister); population.test (tick, ledger, famine, epidemic); checkpoint1 (7-day human); checkpoint2 (wound integration); independence (horse). Examples: `human-week.ts` chains environment -> room air -> physiology -> breathing -> nutrition -> neurology (no medicine/anatomy/circulation); `human-wound.ts` adds anatomy + circulation + medicine + muscular 3CC on top of the week; `horse-stable.ts` uses physiology + atmosphere + anatomy with Kleiber RMR and kcal-only feed.
