@@ -201,11 +201,14 @@ def backup() -> list[str]:
            + (f"; last mirror update {last.replace('T', ' ')}" if last else ""))
     off = st.get("offsite") or {}
     pushed = [o for o in off.get("repos", []) if o["last"]]
-    if not off.get("enabled"):
-        cov += "; GitHub off-site push not enabled yet (local mirrors only)"
-    else:
-        cov += "; GitHub: " + (", ".join(f"{o['repo']} {o['last'][5:16].replace('T', ' ')}" + (" FAILED" if o["failure"] else "")
-                                         for o in pushed) or "no push yet")
+    absent = [o["repo"] for o in off.get("repos", []) if not o["last"] and not o["failure"]]
+    gh = (", ".join(f"{o['repo']} {o['last'][5:16].replace('T', ' ')}"
+                    + (f" (behind {o['behind_min']} min)" if o["behind_min"] else "") + (" FAILED" if o["failure"] else "")
+                    for o in pushed) or "no push yet")
+    gh += "".join(f", {o['repo']} FAILED" for o in off.get("repos", []) if not o["last"] and o["failure"])
+    if absent:
+        gh += f"; no GitHub repo for {', '.join(absent)}"
+    cov += ("; GitHub mirror times: " if off.get("enabled") else "; GitHub (scheduled push NOT enabled, last manual push): ") + gh
     ls = st["latest_snapshot"]
     run = st["last_run"]
     point = (f"Latest recovery point: snapshot {ls['name']} ({st['snapshots']} kept, {ls.get('error_count', 0)} copy errors)"
@@ -227,8 +230,11 @@ def backup() -> list[str]:
         rpo = (f"Recovery point objective: up to {r['minutes']} min of completed work could be lost now "
                f"(target ≤ {r['target']}; snapshot {r['snapshot_min']} min old" + (f"; {late}" if late else "; every platform HEAD mirrored") + ")"
                + (" OVER TARGET" if r["minutes"] > r["target"] + 2 else ""))
-        rpo += (f"; off-site (machine lost): up to {off['minutes']} min" if off.get("enabled") and off.get("minutes") is not None
-                else "; off-site (machine lost): no GitHub copy yet")
+        if off.get("minutes") is None:
+            rpo += "; off-site (machine lost): no GitHub copy yet"
+        else:
+            rpo += (f"; off-site (machine lost): up to {off['minutes']} min behind GitHub"
+                    + ("" if off.get("enabled") else ", growing: scheduled GitHub push NOT enabled"))
     return [rpo, cov, point, test]
 
 

@@ -147,7 +147,7 @@ async function load() {
   }).join("") || "<span class='meta'>none</span>";
 
   // Backups (Toolchain/backup): coverage, latest recovery point, restore test
-  document.getElementById("backup").innerHTML = (s.backup||[]).map(l => `<div class="${/FAIL|missing|never|unavailable|no snapshot|OVER TARGET|unknown/.test(l)?'bad':''}">${esc(l)}</div>`).join("") || "<span class='meta'>none</span>";
+  document.getElementById("backup").innerHTML = (s.backup||[]).map(l => `<div class="${/FAIL|missing|never|unavailable|no snapshot|OVER TARGET|NOT enabled|unknown/.test(l)?'bad':''}">${esc(l)}</div>`).join("") || "<span class='meta'>none</span>";
 
   // Roadmap
   const rm = document.querySelector("#roadmap tbody"); rm.innerHTML = "";
