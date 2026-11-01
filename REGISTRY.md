@@ -66,7 +66,7 @@ mechanisms, and are not itemised. Coverage limits are listed in `HQ/handoffs/reg
 |---|---|---|---|---|
 | reality mechanisms | 44 | 0 | 38 | 82 |
 | life mechanisms | 83 | 3 | 50 | 136 |
-| kernel mechanisms | 3 | 0 | 0 | 3 |
+| kernel mechanisms | 3 | 0 | 1 | 4 |
 | settlement mechanisms | 23 | 0 | 1 | 24 |
 | economy mechanisms | 21 | 0 | 5 | 26 |
 | cognition mechanisms | 13 | 0 | 41 | 54 |
@@ -78,7 +78,7 @@ mechanisms, and are not itemised. Coverage limits are listed in `HQ/handoffs/reg
 | shared mechanisms | 6 | 5 | 4 | 15 |
 | pirate-ship mechanisms | 24 | 63 | 15 | 102 |
 | restatements (pirate docs and adapters) | 0 | 90 | 2 | 92 |
-| **all rows** | 221 | 161 | 199 | 581 |
+| **all rows** | 221 | 161 | 200 | 582 |
 
 **Restatements** are not errors: the pirate body docs are rendered from the same library JSON as the realism
 code (`body/build-body-data.py`), so their tables cannot disagree with the code. Disagreements live only in their
@@ -352,12 +352,13 @@ stability/conservation/boundary tests, `integration_tested_with`, integration te
 | `realism.thermo.metabolic_heat` | B | B | U | 1 | I-- | UNIT-5 | realism/src/physics.ts metabolicHeat L81 |
 | `realism.waste.sanitation_decomposition` | P | B | U | ? | --- | DUP-45 | realism/PHASES-6-PLUS.md Phase 11 |
 
-### kernel (3)
+### kernel (4)
 
 | id | st | dom | sc | ev | V&V | overlaps | home |
 |---|---|---|---|---|---|---|---|
 | `kernel.resolution.handoff` | B | infra | U | 1 | I-- |  | kernel/src/resolution.ts (ResolutionService, ConservedQuantity, switchTo; kernel a3c4314) |
 | `kernel.transaction` | B | infra | U | 1 | I-- |  | kernel/src/transaction.ts (transaction, Participant; kernel a3c4314) |
+| `kernel.transfer` | P | infra | U | 1 | --- |  | kernel/src/transfer.ts (planned: kernel unit 3006-kernel-transfer-service; design §17 in 3 |
 | `realism.infra.rng` | B | infra | U | 1 | I-- |  | realism/src/process.ts rng L14 |
 
 ### settlement (24)

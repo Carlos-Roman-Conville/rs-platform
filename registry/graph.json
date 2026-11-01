@@ -1244,6 +1244,14 @@
    "scope": "universal"
   },
   {
+   "id": "kernel.transfer",
+   "engine": "kernel",
+   "status": "planned",
+   "kind": "mechanism",
+   "domain": "infra",
+   "scope": "universal"
+  },
+  {
    "id": "knowledge.adoption.aggregate",
    "engine": "knowledge",
    "status": "planned",
@@ -6614,6 +6622,11 @@
    "type": "depends_on"
   },
   {
+   "from": "kernel.transfer",
+   "to": "kernel.transaction",
+   "type": "depends_on"
+  },
+  {
    "from": "realism.chem.reaction_extent",
    "to": "realism.chem.carbon_combustion_charcoal",
    "type": "overlap",
@@ -11240,7 +11253,7 @@
      "all engines"
     ],
     "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)",
-    "progress": "Kernel keeper 2026-11-01 proposes registry/events.json (registry keeper owns: type, producer, consumers, payload field schema, cause), a checker in check-registry.ts and an opt-in bus contract hook; first unit an event inventory. Registry keeper agrees; waits on the controller"
+    "progress": "controller go 2026-11-01: registry/events.json (registry keeper owns; created empty) with type, producer, consumers, cause, payload schema; kernel 3007 adds checkEventContracts (warns until populated); the first unit is the event inventory"
    },
    {
     "interface": "CG-19",
@@ -11255,7 +11268,8 @@
     "agreeing": [
      "life"
     ],
-    "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)"
+    "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)",
+    "progress": "Economy keeper 2026-11-01: unit 2999-economy-goods-mass-transfers (running). takeMass: delta inventory = -q, q = units x Good.weight (kg); eatMeal({food, kg: q}): delta body = +q in one kernel transaction; quantities economy.good_mass_per_unit (kg/count) and economy.mass_taken (kg) registered planned; energy: proposed amendment: goods carry no kcal, a good names its Life food id (Good.food) and Life's nutrition owns kcal per kg (Life to confirm); verification: economy test/mass.test.ts and goldens at 2999's commit, then Life's coupled test; adopts kernel.transfer (controller go)"
    },
    {
     "interface": "CG-20",

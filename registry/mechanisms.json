@@ -8,11 +8,11 @@
   "evidence_scale": "PLATFORM.md §4 (1 law ... 6 fiction)",
   "counts": {
    "built": 221,
-   "planned": 199,
+   "planned": 200,
    "documented-only": 161
   },
   "kinds": {
-   "mechanism": 489,
+   "mechanism": 490,
    "restatement": 92
   },
   "schema_version": 4,
@@ -9106,6 +9106,70 @@
      "report": "Kernel keeper 2026-11-01 (CG-17, CHAINS.md); the kernel owns no world quantity: quantities and tolerances are supplied by the owner at construction"
     }
    }
+  },
+  {
+   "id": "kernel.transfer",
+   "name": "Transfer service (one transfer per physical flow)",
+   "owning_engine": "kernel",
+   "home": "Toolchain/kernel/src/transfer.ts (planned: kernel unit 3006-kernel-transfer-service; design §17 in 3008)",
+   "home_kind": "docs",
+   "status": "planned",
+   "status_note": "",
+   "kind": "mechanism",
+   "restates": null,
+   "domain": "infra",
+   "scope": "universal",
+   "scope_note": "",
+   "inputs": [],
+   "outputs": [],
+   "state": "TransferJournal entries per instant",
+   "formulation": "transfer(source, destination, q) inside kernel.transaction: delta source = -q and delta destination = +q committed together; losses are ordinary transfers to a loss account in the same call; bookkeeping only: no formula, no knowledge of the quantity, no unit conversion (request and both ledgers in one unit); owners implement TransferLedger and decide their own refusals",
+   "dependencies": [
+    "kernel.transaction"
+   ],
+   "timescale": "per call",
+   "invariants": "PLATFORM §7a: per quantity per instant, debits equal credits; every engine's transfers (nutrients, water, mass, energy, money) go through it (controller 2026-11-01, recorded for Rex to overrule)",
+   "sources": "bookkeeping identity",
+   "evidence": 1,
+   "evidence_note": "",
+   "approximations": "none (accounting)",
+   "tests": "planned: test/transfer.test.ts (unit 3006)",
+   "consumers": [],
+   "notes": "controller decision 2026-11-01 (go): Economy and Settlement ledgers migrate in paired units after kernel v0.1.0; CHAINS CG-19/20/21 adopt it",
+   "overlap_groups": [],
+   "unit_issues": [],
+   "audit_batch": "controller-2026-11-01-transfer",
+   "audit_id": null,
+   "writes": [],
+   "reads": [],
+   "aggregates": null,
+   "vv": {
+    "implemented": false,
+    "integrated": "no (not built)",
+    "validated": "n/a",
+    "record": {
+     "sources_and_model": {
+      "sources": "bookkeeping identity",
+      "model": "transfer(source, destination, q) inside kernel.transaction: delta source = -q and delta destination = +q committed together; losses are ordinary transfers to a loss account in the same call; bookkeeping only: no formula, no knowledge of the quantity, no unit conversion (request and both ledgers in one unit); owners implement TransferLedger and decide their own refusals",
+      "evidence_level": 1
+     },
+     "applicability": "none (accounting)",
+     "verification_tests": "planned: test/transfer.test.ts (unit 3006)",
+     "validation_evidence": [],
+     "tolerance": null,
+     "stability_conservation_boundary": [],
+     "numerical": {
+      "stability": null,
+      "coupled_update_consistency": null,
+      "sensitivity": null
+     },
+     "integration_tested_with": [],
+     "integration_tests": [],
+     "report": "controller decision 2026-11-01 (go): Economy and Settlement ledgers migrate in paired units after kernel v0.1.0; CHAINS CG-19/20/21 adopt it"
+    }
+   },
+   "rate_limiter": null,
+   "failure_mode": null
   },
   {
    "id": "knowledge.adoption.aggregate",

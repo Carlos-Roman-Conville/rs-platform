@@ -10,7 +10,7 @@
    "checked": "2026-10-30",
    "parser": "Toolchain/kernel/src/units.ts parse (unit 2592)",
    "tally": {
-    "parses": 312,
+    "parses": 314,
     "kind record": 127,
     "kind text": 1,
     "kind categorical": 8,
@@ -2527,6 +2527,16 @@
    "unit_parses": true
   },
   {
+   "id": "economy.good_mass_per_unit",
+   "kind": "quantity",
+   "unit": "kg/count",
+   "scope": "economy",
+   "writer": "economy.recipe.definition",
+   "description": "Good.weight: kg per unit of a good, owned once by the goods catalogue (CG-19)",
+   "status": "planned (CG-19, Economy keeper 2026-11-01; unit 2999)",
+   "unit_parses": true
+  },
+  {
    "id": "economy.id",
    "unit": "1",
    "unit_text": "unitless",
@@ -2625,6 +2635,16 @@
    "description": "market state",
    "status": "seed",
    "kind": "quantity",
+   "unit_parses": true
+  },
+  {
+   "id": "economy.mass_taken",
+   "kind": "quantity",
+   "unit": "kg",
+   "scope": "economy",
+   "writer": "economy.inventory.holdings",
+   "description": "q of a mass transfer out of an inventory: units removed x good_mass_per_unit; the same q is added to the destination (a body through eat_meal, IF-36) in one transaction (CG-19, PLATFORM §7a)",
+   "status": "planned (CG-19, Economy keeper 2026-11-01; unit 2999)",
    "unit_parses": true
   },
   {

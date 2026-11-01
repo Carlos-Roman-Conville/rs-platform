@@ -7,8 +7,8 @@ acceptance tests. This is the readable view of `registry/graph.json`; ids are th
 
 ## 1. The graph in numbers
 
-- Nodes: 581 rows (489 mechanisms, 92 restatements).
-- Edges: 220 `depends_on` (resolved from each row's dependency list), 92 `restates`, 190 `overlap` (members of the 67 groups below), 51 `interface` (hand-offs, §2).
+- Nodes: 582 rows (490 mechanisms, 92 restatements).
+- Edges: 221 `depends_on` (resolved from each row's dependency list), 92 `restates`, 190 `overlap` (members of the 67 groups below), 51 `interface` (hand-offs, §2).
 - Unresolved dependencies: 82 mentions of 79 names that match no row (data files, host inputs, props, other docs); listed in graph.json.
 - Cross-engine `depends_on` edges: life → pirate-ship: 14, economy → shared: 7, life → reality: 5, settlement → shared: 5, settlement → economy: 5, shared → economy: 3, pirate-ship → life: 3, reality → kernel: 2, shared → settlement: 1, shared → life: 1.
   The realism → pirate-ship edges are realism code citing a pirate doc as its formula's authority (ENGINE.md, GAS_DYNAMICS.md, ANATOMY.md §3a, BODY.md): universal formulas whose statement lives in the plugin. Proposed: move each statement into a realism gear file (PLATFORM.md §8) and leave the doc pointing at it.

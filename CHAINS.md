@@ -104,6 +104,21 @@ The registry keeper re-audits the commit and fills the closure record below.
 | 2 | CG-18 | missing (no equation), assigned by the controller | Typed event contracts (type, payload, producer, consumers) | Kernel | controller, all engines |
 | 3 | CG-1, 2, 5, 6, 7, 8, 10, 11, 14, 15 | missing (no equation) | Research units (web tools) by each holder; implementation later | holders in the gap table | — |
 
+### Controller decisions after approval (2026-11-01)
+
+- **§7a transfer service: go.** The kernel adds `transfer()` (row `kernel.transfer`, planned, kernel unit 3006): debit,
+  credit, record and check inside `kernel.transaction`. It is bookkeeping only, with no formula and no unit conversion.
+  Every engine's flows go through it, and the CG-19, CG-20 and CG-21 fixes adopt it. Economy and Settlement ledgers
+  migrate in paired units after kernel v0.1.0.
+- **CG-18 events contract: yes.** `registry/events.json` is owned by the registry keeper and created empty. The kernel's
+  `checkEventContracts` (unit 3007) warns, never fails, until the file is populated. The first unit is the event inventory.
+
+### In progress
+
+| Gap | Unit | Equation | Unit of q | Owner | Verification planned |
+|---|---|---|---|---|---|
+| CG-19 | economy 2999-economy-goods-mass-transfers (running) | `takeMass`: Δinventory = −q with q = units × `Good.weight`; `eatMeal({food, kg: q})`: Δbody = +q, in one transaction | kg (`economy.mass_taken`; `economy.good_mass_per_unit` kg/count, owned by `economy.recipe.definition`) | Economy (Life agrees) | economy test/mass.test.ts and the goldens at 2999's commit, then Life's coupled test. Open: goods carry no kcal; a good names its Life food id, and Life confirms it owns kcal per kg. |
+
 ### Closure record
 
 | Gap | Unit | Equation | Unit of q | Owner | Verification | Re-audit |

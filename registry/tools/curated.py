@@ -2828,3 +2828,29 @@ for _g in INTERFACE_GAPS:
     if _g["interface"] == "CG-18":
         _g["progress"] = ("Kernel keeper 2026-11-01 proposes registry/events.json (registry keeper owns: type, producer, consumers, payload field schema, cause), "
                           "a checker in check-registry.ts and an opt-in bus contract hook; first unit an event inventory. Registry keeper agrees; waits on the controller")
+
+# --- 2026-11-01: controller decisions on CG-18 and §7a; CG-19 progress (Economy keeper) ---
+EXTRA_ROWS.append({"id": "kernel.transfer", "name": "Transfer service (one transfer per physical flow)", "engine": "kernel",
+    "home": "Toolchain/kernel/src/transfer.ts (planned: kernel unit 3006-kernel-transfer-service; design §17 in 3008)", "status": "planned", "domain": "infra", "scope": "universal",
+    "inputs": [], "outputs": [], "state": "TransferJournal entries per instant",
+    "formulation": "transfer(source, destination, q) inside kernel.transaction: delta source = -q and delta destination = +q committed together; losses are ordinary transfers to a loss account in the same call; bookkeeping only: no formula, no knowledge of the quantity, no unit conversion (request and both ledgers in one unit); owners implement TransferLedger and decide their own refusals",
+    "dependencies": ["kernel.transaction"], "timescale": "per call",
+    "invariants": "PLATFORM §7a: per quantity per instant, debits equal credits; every engine's transfers (nutrients, water, mass, energy, money) go through it (controller 2026-11-01, recorded for Rex to overrule)",
+    "sources": "bookkeeping identity", "evidence": 1, "approximations": "none (accounting)", "tests": "planned: test/transfer.test.ts (unit 3006)",
+    "consumers": [], "notes": "controller decision 2026-11-01 (go): Economy and Settlement ledgers migrate in paired units after kernel v0.1.0; CHAINS CG-19/20/21 adopt it",
+    "audit_batch": "controller-2026-11-01-transfer"})
+EXTRA_QUANTITIES += [
+ {"id": "economy.good_mass_per_unit", "kind": "quantity", "unit": "kg/count", "scope": "economy", "writer": "economy.recipe.definition",
+  "description": "Good.weight: kg per unit of a good, owned once by the goods catalogue (CG-19)", "status": "planned (CG-19, Economy keeper 2026-11-01; unit 2999)"},
+ {"id": "economy.mass_taken", "kind": "quantity", "unit": "kg", "scope": "economy", "writer": "economy.inventory.holdings",
+  "description": "q of a mass transfer out of an inventory: units removed x good_mass_per_unit; the same q is added to the destination (a body through eat_meal, IF-36) in one transaction (CG-19, PLATFORM §7a)", "status": "planned (CG-19, Economy keeper 2026-11-01; unit 2999)"},
+]
+for _g in INTERFACE_GAPS:
+    if _g["interface"] == "CG-19":
+        _g["progress"] = ("Economy keeper 2026-11-01: unit 2999-economy-goods-mass-transfers (running). takeMass: delta inventory = -q, q = units x Good.weight (kg); "
+            "eatMeal({food, kg: q}): delta body = +q in one kernel transaction; quantities economy.good_mass_per_unit (kg/count) and economy.mass_taken (kg) registered planned; "
+            "energy: proposed amendment: goods carry no kcal, a good names its Life food id (Good.food) and Life's nutrition owns kcal per kg (Life to confirm); "
+            "verification: economy test/mass.test.ts and goldens at 2999's commit, then Life's coupled test; adopts kernel.transfer (controller go)")
+    if _g["interface"] == "CG-18":
+        _g["progress"] = ("controller go 2026-11-01: registry/events.json (registry keeper owns; created empty) with type, producer, consumers, cause, payload schema; "
+            "kernel 3007 adds checkEventContracts (warns until populated); the first unit is the event inventory")
