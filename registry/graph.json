@@ -892,6 +892,14 @@
    "scope": "universal"
   },
   {
+   "id": "cognition.valuation.payment_acceptance",
+   "engine": "cognition",
+   "status": "planned",
+   "kind": "mechanism",
+   "domain": "C",
+   "scope": "universal"
+  },
+  {
    "id": "economy.accounting.view",
    "engine": "economy",
    "status": "built",
@@ -919,6 +927,14 @@
    "id": "economy.example.three_ports",
    "engine": "economy",
    "status": "built",
+   "kind": "mechanism",
+   "domain": "D",
+   "scope": "universal"
+  },
+  {
+   "id": "economy.exchange.observed_ratios",
+   "engine": "economy",
+   "status": "planned",
    "kind": "mechanism",
    "domain": "D",
    "scope": "universal"
@@ -996,6 +1012,14 @@
    "scope": "universal"
   },
   {
+   "id": "economy.market.offers",
+   "engine": "economy",
+   "status": "planned",
+   "kind": "mechanism",
+   "domain": "D",
+   "scope": "universal"
+  },
+  {
    "id": "economy.material.available",
    "engine": "economy",
    "status": "built",
@@ -1007,6 +1031,14 @@
    "id": "economy.material.produce",
    "engine": "economy",
    "status": "built",
+   "kind": "mechanism",
+   "domain": "D",
+   "scope": "universal"
+  },
+  {
+   "id": "economy.money.currencies",
+   "engine": "economy",
+   "status": "planned",
    "kind": "mechanism",
    "domain": "D",
    "scope": "universal"
@@ -1173,6 +1205,14 @@
   },
   {
    "id": "government.military.organisation",
+   "engine": "government",
+   "status": "planned",
+   "kind": "mechanism",
+   "domain": "E",
+   "scope": "universal"
+  },
+  {
+   "id": "government.monetary.authority",
    "engine": "government",
    "status": "planned",
    "kind": "mechanism",
@@ -4964,6 +5004,14 @@
    "scope": "universal"
   },
   {
+   "id": "society.convention.payment_acceptance",
+   "engine": "society",
+   "status": "planned",
+   "kind": "mechanism",
+   "domain": "F",
+   "scope": "universal"
+  },
+  {
    "id": "society.culture.salience",
    "engine": "society",
    "status": "planned",
@@ -6675,6 +6723,21 @@
   {
    "from": "shared.host.work_resolution",
    "to": "kernel.transaction",
+   "type": "depends_on"
+  },
+  {
+   "from": "cognition.valuation.payment_acceptance",
+   "to": "cognition.decision.evaluate",
+   "type": "depends_on"
+  },
+  {
+   "from": "society.convention.payment_acceptance",
+   "to": "society.norm.sanction",
+   "type": "depends_on"
+  },
+  {
+   "from": "government.monetary.authority",
+   "to": "government.law.schema",
    "type": "depends_on"
   },
   {
@@ -9218,10 +9281,17 @@
     "settlement.production.equipment_cap"
    ],
    "proposed_owner": "settlement ledger (contract agreed); shared types in one package.",
-   "approved_owner": null,
-   "state": "proposed",
-   "decision": null,
-   "progress": []
+   "approved_owner": "settlement (settlement.ledger.pay) for the ledger part",
+   "state": "closing",
+   "decision": "ledger part settled (multi-economy v2, Rex 2026-11-01, through the controller): settlement.ledger.pay is the one money ledger, one balance per currency per account; Economy's StubLedger/LedgerRow is a type of shared.contract.ledger_provider over it, never a second ledger. The Rates and equipment-list part is untouched and stays open",
+   "progress": [
+    {
+     "date": "2026-11-01",
+     "step": "decided",
+     "by": "registry keeper (controller's go)",
+     "note": "MULTI-ECONOMY-DESIGN v2 §7, Settlement S1-S5; closes when Settlement's multi-currency unit lands and the shared LedgerRow type is re-audited"
+    }
+   ]
   },
   {
    "id": "DUP-31",
@@ -9559,10 +9629,17 @@
     "settlement.ledger.pay"
    ],
    "proposed_owner": "economy (pricing and money supply), pending Rex §12.3.",
-   "approved_owner": null,
-   "state": "proposed",
-   "decision": null,
-   "progress": []
+   "approved_owner": "government (money supply); economy (valuation views); settlement (the logged move)",
+   "state": "closing",
+   "decision": "settled (multi-economy v2, Rex 2026-11-01, through the controller): money supply is government.monetary.authority's (issue/mint under an empower grant); Settlement's credit/debit take a currency and a required process name and are the only non-conserving moves, each logged; valuation across currencies uses only economy.exchange.observed_ratios (dated, per market), never a table; PriceProvider.valueOf stays unimplemented until a consumer needs it",
+   "progress": [
+    {
+     "date": "2026-11-01",
+     "step": "decided",
+     "by": "registry keeper (controller's go)",
+     "note": "MULTI-ECONOMY-DESIGN v2 §4 Government and S4; closes when S4 (process name required) lands"
+    }
+   ]
   },
   {
    "id": "DUP-44",

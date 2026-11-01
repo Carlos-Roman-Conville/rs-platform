@@ -3237,3 +3237,85 @@ _plp["notes"] = _plp["notes"].replace(
     "OPEN (Settlement, Economy; REG-32): CONTRACTS §18 'hours left after the day's grants' vs Settlement's own namedUsed subtraction for named persons",
     "REG-32 resolved by CONTRACTS §21 (settlement e3c8a69): named hours are netted by the client, the provider subtracts nothing; offers, refusals and expiry are provider policy")
 assert "CONTRACTS §21" in _plp["notes"]
+
+# --- 2026-11-01: competing economies and endogenous money (Rex, ENGINES.md 2026-11-01). Design: HQ/handoffs/economy/MULTI-ECONOMY-DESIGN.md v2 §7,
+# agreed by Economy, Settlement, Society, Government and Cognition through the controller; ECON-27/28 resolved by research (Harris 2003 price-time priority;
+# Spufford 1986 owners post offers). Registered per the registry keeper's audit: two rows extended, three specialisations, three new Economy rows, four quantities;
+# DUP-30 and DUP-43 settled alongside; pirate GOODS Open 2 (money vs goods) closed by pointer. Nothing built yet ---
+_ME_HOME = "HQ/handoffs/economy/MULTI-ECONOMY-DESIGN.md v2 (Rex 2026-11-01, ENGINES.md 'Competing economies and endogenous money'); planned"
+_tt = ROW_PATCHES.setdefault("economy.trade.trade", {})
+_tt["formulation"] = (_tt.get("formulation") or "amount=unit*units; unit=given ?? priceOf(...); money via LedgerProvider; goods move holder<->stall; refused if no price or beyond stock") + (
+    "; PLANNED EXTENSION (multi-economy v2 §5, 2026-11-01): the N-leg exchange: legs [{from, to, asset, units}], goods legs on economy.goods, currency legs on settlement.money "
+    "with the currency id as the quantity, all in one kernel transfer() or none (barter = two goods legs; currency exchange = two money legs); buy and sell are the stall case "
+    "(the stall quotes only in currencies its owner accepts; otherwise refused 'not-accepted', never converted)")
+_tt["notes"] = (_tt.get("notes") or "No market clearing or matching: trades are host commands at a given price. Duty/tax is only a ledger kind string, not implemented") + (
+    "; multi-economy v2 §7 (2026-11-01): this row IS the exchange (economy.exchange.legs proposed and folded in here, one gear); keeps its built status, tests and kernel.transfer consumer link")
+_lp2 = ROW_PATCHES.setdefault("settlement.ledger.pay", {})
+_lp2["formulation"] = (_lp2.get("formulation") or "payer.balance -= amount; payee.balance += amount; one Transaction row; accounts created lazily per holder") + (
+    "; PLANNED EXTENSION (multi-economy v2 S1-S5, 2026-11-01): one balance per currency per account (balance = money, balances{currencyId}); quantity = currency id, accepted only "
+    "when Economy's isCurrency(id) confirms (no provider: money only; unknown throws 'unknown currency'); pay takes N legs (money legs each naming a currency, then goods legs) on one transfer(), "
+    "one txn row per money leg with currency and a shared batch id; credit/debit take currency and a required process name and are the only non-conserving moves, each logged; "
+    "wage and rent currency on the post or lease (default money); tax currency from Government's legalTender")
+_lp2["notes"] = (_lp2.get("notes") or "This is the single money home per CONTRACTS s3; economy has only a StubLedger. Open: Q7 port.cash=treasury") + (
+    "; multi-economy v2 §7: settlement.ledger.multi_currency proposed and folded in here (one ledger gear); DUP-30 and DUP-43 settled 2026-11-01")
+def _me(k, name, dom, eng, form, writes, reads, consumers, notes, spec=None):
+    return {"id": k, "name": name, "engine": eng, "home": _ME_HOME, "status": "planned", "domain": dom, "scope": "universal",
+            "inputs": [{"name": x, "unit": "see quantities.json"} for x in reads], "outputs": [{"name": x, "unit": "see quantities.json"} for x in writes],
+            "state": "planned", "formulation": form, "dependencies": [spec] if spec else [], "timescale": "planned",
+            "invariants": "no conversion table; acceptance is a relation between a holder and an asset, never a flag on the asset; no date, population or count unlock (Rex 2026-11-01)",
+            "sources": "MULTI-ECONOMY-DESIGN v2; ECON-27/28: Harris 2003 (price-time priority), Spufford 1986 (owners post offers)", "evidence": "?", "approximations": "planned",
+            "tests": "planned: the two-island demonstration acceptance tests (design §8)", "consumers": consumers,
+            "notes": ("SPECIALISATION of " + spec + ", not a new gear; " if spec else "") + notes, "audit_batch": "registry-keeper-2026-11-01-multi-economy", "planned_writes": writes}
+EXTRA_ROWS += [
+ _me("economy.market.offers", "Open offers and their matching", "D", "economy",
+     "a market holds open offers (holder gives x of A for y of B until expiry); an exchange happens when an intention accepts an offer, or two offers cross exactly at price-time priority "
+     "(the older offer's ratio; ECON-27/28 by research); owners post offers; expired offers are withdrawn on the tick; Economy decides no acceptance",
+     [], ["mind.intention"], ["economy.trade.trade", "economy.exchange.observed_ratios"], "commands offer, withdraw; uses economy.market.five_numbers (the market record)"),
+ _me("economy.money.currencies", "Currency records", "D", "economy",
+     "currency records: id, issuer (Government, a bank, or none), backing good if any; isCurrency(id) answers Settlement; stall quotes per (good, currency) from the price rule on that currency's base price",
+     ["economy.currency"], [], ["settlement.ledger.pay", "economy.trade.trade", "economy.accounting.view"], "the one currency list; Settlement owns none (S2)"),
+ _me("economy.exchange.observed_ratios", "Observed exchange ratios (view)", "D", "economy",
+     "ratios(market, A, B, fromDay, toDay) and mediaInUse(market) summarised from completed exchanges; a view, never state; no rule reads it",
+     ["economy.observed_ratio"], [], ["economy.accounting.view"], "valuing an inventory in another currency uses only a dated observed ratio from a named market"),
+ _me("cognition.valuation.payment_acceptance", "Willingness to accept a payment asset", "C", "cognition",
+     "decision.evaluate applied to an offer: direct usefulness from needs; expected exchangeability as a belief (cognition.belief.update) from observed acceptances, refusals and testimony; "
+     "trust from cognition.relationship.trust and cognition.communication.credibility; cost as the action's cost; ratioMin derived where expected utility equals the best alternative, never stored",
+     [], ["mind.observation"], ["cognition.decision.select"], "a specialisation or documented composition, never a second evaluator; Society's acceptance and Government's legal tender reach a mind only as perceived observations or testimony",
+     spec="cognition.decision.evaluate"),
+ _me("society.convention.payment_acceptance", "Payment acceptance conventions", "F", "society",
+     "acceptance(group, asset, window) = share of the group's members who took the asset in a completed exchange in the window, counting completed exchanges and logged not-accepted refusals; "
+     "null when no member was observed; a null window is refused; trade is one tie kind on the one network (DUP-60); sanctions only as a person's or organisation's own act under society.norm.sanction",
+     ["society.payment_acceptance_share"], [], [], "measured from behaviour, never willingness; the true share is a view for hosts, reports and tests and is never fed into minds",
+     spec="society.norm.sanction"),
+ _me("government.monetary.authority", "Legal tender and monetary authority", "E", "government",
+     "legalTender(jurisdiction, day, purpose tax|debt) computed when read from the legal-tender laws in force (never stored; [] with no Government or law); monetary authority is an empower grant "
+     "over the powers issue and mint, checked by AuthorityProvider.may(office, power, currency, day); issuing credits Settlement through a named, logged Government command (the only conservation exception); "
+     "minting turns metal held as a good into coin goods through one transfer() and never creates metal",
+     ["government.legal_tender"], [], ["settlement.ledger.pay", "government.fiscal.taxation", "government.compliance.enforcement"],
+     "minting that credits Settlement is a host-carried command, like shared.host.work_resolution", spec="government.law.schema"),
+]
+EXTRA_QUANTITIES += [
+ {"id": "society.payment_acceptance_share", "kind": "quantity", "unit": "1", "scope": "society", "writer": "society.convention.payment_acceptance",
+  "description": "share of a group's members who took an asset in a completed exchange in a window; nullable (null: no member observed); out port of its writer when built", "status": "planned (multi-economy v2, 2026-11-01)"},
+ {"id": "government.legal_tender", "kind": "record", "unit": None, "scope": "government", "writer": "government.monetary.authority",
+  "description": "asset ids that are legal tender for (jurisdiction, day, purpose tax|debt), computed when read from laws in force; out port of its writer when built", "status": "planned (multi-economy v2, 2026-11-01)"},
+ {"id": "economy.observed_ratio", "kind": "record", "unit": None, "scope": "economy", "writer": "economy.exchange.observed_ratios",
+  "description": "a view: B-per-A ratios of completed exchanges per market and day range; written by no rule and read by no rule; out port of its writer when built", "status": "planned (multi-economy v2, 2026-11-01)"},
+ {"id": "economy.currency", "kind": "record", "unit": None, "scope": "economy", "writer": "economy.money.currencies",
+  "description": "currency records (id, issuer, backing good); isCurrency(id) is the out port Settlement reads (S2)", "status": "planned (multi-economy v2, 2026-11-01)"},
+]
+_og = ROW_PATCHES.setdefault("pirate.goods.open_items", {})
+_og["notes"] = (_og.get("notes") or "Open 2 (money or goods) is ownership of currency: Domain D needs currencies/money as a mechanism. Open 4 raw vs manufactured: recipes decide. Open 5 live cargo: the settlement/economy has no livestock mechanism (ecology.ts stocks only).") + (
+    " CLOSED 2026-11-01, Open 2 (money vs goods): Rex, ENGINES.md 2026-11-01 'Competing economies and endogenous money': money is a role an asset acquires through acceptance and exchange, "
+    "it depends on the society (supersedes econ 1's 'coin is money; gold dust and pearls are goods'); mechanisms economy.money.currencies, economy.market.offers, cognition.valuation.payment_acceptance, society.convention.payment_acceptance, government.monetary.authority")
+DECISIONS.setdefault("DUP-30", {"decision": None, "state": "proposed", "progress": []})
+DECISIONS["DUP-30"].update({"decision": "ledger part settled (multi-economy v2, Rex 2026-11-01, through the controller): settlement.ledger.pay is the one money ledger, one balance per currency per account; "
+                            "Economy's StubLedger/LedgerRow is a type of shared.contract.ledger_provider over it, never a second ledger. The Rates and equipment-list part is untouched and stays open",
+                            "state": "closing", "approved_owner": "settlement (settlement.ledger.pay) for the ledger part"})
+DECISIONS["DUP-30"]["progress"].append({"date": "2026-11-01", "step": "decided", "by": "registry keeper (controller's go)", "note": "MULTI-ECONOMY-DESIGN v2 §7, Settlement S1-S5; closes when Settlement's multi-currency unit lands and the shared LedgerRow type is re-audited"})
+DECISIONS.setdefault("DUP-43", {"decision": None, "state": "proposed", "progress": []})
+DECISIONS["DUP-43"].update({"decision": "settled (multi-economy v2, Rex 2026-11-01, through the controller): money supply is government.monetary.authority's (issue/mint under an empower grant); "
+                            "Settlement's credit/debit take a currency and a required process name and are the only non-conserving moves, each logged; valuation across currencies uses only "
+                            "economy.exchange.observed_ratios (dated, per market), never a table; PriceProvider.valueOf stays unimplemented until a consumer needs it",
+                            "state": "closing", "approved_owner": "government (money supply); economy (valuation views); settlement (the logged move)"})
+DECISIONS["DUP-43"]["progress"].append({"date": "2026-11-01", "step": "decided", "by": "registry keeper (controller's go)", "note": "MULTI-ECONOMY-DESIGN v2 §4 Government and S4; closes when S4 (process name required) lands"})

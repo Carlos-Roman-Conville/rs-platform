@@ -68,17 +68,17 @@ mechanisms, and are not itemised. Coverage limits are listed in `HQ/handoffs/reg
 | life mechanisms | 83 | 3 | 50 | 136 |
 | kernel mechanisms | 4 | 0 | 0 | 4 |
 | settlement mechanisms | 23 | 0 | 1 | 24 |
-| economy mechanisms | 21 | 0 | 5 | 26 |
-| cognition mechanisms | 13 | 0 | 41 | 54 |
-| society mechanisms | 0 | 0 | 17 | 17 |
-| government mechanisms | 4 | 0 | 11 | 15 |
+| economy mechanisms | 21 | 0 | 8 | 29 |
+| cognition mechanisms | 13 | 0 | 42 | 55 |
+| society mechanisms | 0 | 0 | 18 | 18 |
+| government mechanisms | 4 | 0 | 12 | 16 |
 | knowledge mechanisms | 0 | 0 | 7 | 7 |
 | history mechanisms | 0 | 0 | 1 | 1 |
 | catalogue mechanisms | 0 | 0 | 7 | 7 |
 | shared mechanisms | 7 | 5 | 5 | 17 |
 | pirate-ship mechanisms | 24 | 63 | 15 | 102 |
 | restatements (pirate docs and adapters) | 0 | 90 | 2 | 92 |
-| **all rows** | 223 | 161 | 200 | 584 |
+| **all rows** | 223 | 161 | 206 | 590 |
 
 **Restatements** are not errors: the pirate body docs are rendered from the same library JSON as the realism
 code (`body/build-body-data.py`), so their tables cannot disagree with the code. Disagreements live only in their
@@ -390,7 +390,7 @@ stability/conservation/boundary tests, `integration_tested_with`, integration te
 | `settlement.wage.pay` | B | D | U | 4 | IT- | DUP-28 DUP-42 | settlement/src/tick/wages.ts wages() |
 | `settlement.wage.set_wage` | B | D | U | 4 | I-- | DUP-28 | settlement/src/commands.ts setWage |
 
-### economy (26)
+### economy (29)
 
 | id | st | dom | sc | ev | V&V | overlaps | home |
 |---|---|---|---|---|---|---|---|
@@ -398,6 +398,7 @@ stability/conservation/boundary tests, `integration_tested_with`, integration te
 | `economy.burial_waste` | P | D | U | 5 | --- | DUP-45 | economy/PLAN.md step 12; README 'Scope added' |
 | `economy.consumption.demand` | B | D | U | 4 | IT- | DUP-21 DUP-31 | economy/src/tick/index.ts consumption() |
 | `economy.example.three_ports` | B | D | U | 5 | I-- |  | economy/examples/three-ports.ts |
+| `economy.exchange.observed_ratios` | P | D | U | ? | --- |  | HQ/handoffs/economy/MULTI-ECONOMY-DESIGN.md v2 (Rex 2026-11-01, ENGINES.md 'Competing econ |
 | `economy.goods.record_object` | P | D | U | ? | --- |  | ENGINES.md 'History is the backend record; knowledge of history is Cognition's' (Rex 2026- |
 | `economy.household.budget` | P | D | U | ? | --- | DUP-59 | ROADMAP P5 Grounded economy (planned) |
 | `economy.infra.id_scheme` | B | infra | U | 4 | I-- |  | economy/src/ids.ts |
@@ -407,8 +408,10 @@ stability/conservation/boundary tests, `integration_tested_with`, integration te
 | `economy.labour.wage_quote` | B | D | U | 5 | IT- | DUP-28 | economy/src/labour.ts wageQuote/wageQuotes |
 | `economy.market.five_numbers` | B | D | U | 3 | IT- |  | economy/src/state.ts MarketGood; commands.ts setMarketGood |
 | `economy.market.observed_production` | B | D | U | 4 | IT- | DUP-27 | economy/src/tick/index.ts production() (roll), commands.ts produce |
+| `economy.market.offers` | P | D | U | ? | --- |  | HQ/handoffs/economy/MULTI-ECONOMY-DESIGN.md v2 (Rex 2026-11-01, ENGINES.md 'Competing econ |
 | `economy.material.available` | B | D | U | 4 | IT- |  | economy/src/material.ts availableUnits |
 | `economy.material.produce` | B | D | U | 4 | IT- | DUP-27 DUP-52 | economy/src/commands.ts produce; src/material.ts consumeInputs |
+| `economy.money.currencies` | P | D | U | ? | --- |  | HQ/handoffs/economy/MULTI-ECONOMY-DESIGN.md v2 (Rex 2026-11-01, ENGINES.md 'Competing econ |
 | `economy.org.organisation` | B | F | U | 4 | IT- | DUP-58 | economy/src/commands.ts openOrganisation |
 | `economy.presentation.worn_items` | P | D | U | ? | --- |  | ENGINES.md 'Style and presentation' (Rex 2026-10-30; a shared planned mechanism, not an en |
 | `economy.price.king_davenant` | P | D | M | 3 | --- |  | economy/RESEARCH.md s1 |
@@ -421,7 +424,7 @@ stability/conservation/boundary tests, `integration_tested_with`, integration te
 | `economy.trade.shipment` | B | D | U | 4 | IT- |  | economy/src/commands.ts ship(); tick shipments() |
 | `economy.trade.trade` | B | D | U | 4 | IT- |  | economy/src/commands.ts trade() |
 
-### cognition (54)
+### cognition (55)
 
 | id | st | dom | sc | ev | V&V | overlaps | home |
 |---|---|---|---|---|---|---|---|
@@ -478,15 +481,17 @@ stability/conservation/boundary tests, `integration_tested_with`, integration te
 | `cognition.reproduction.behaviour` | P | C | U | ? | --- |  | ENGINES.md 'Attraction and partner selection' (Rex 2026-10-30; planned, after the P7 Cogni |
 | `cognition.skill.practice` | P | C | U | ? | --- |  | cognition/DESIGN.md (design approved by Rex 2026-10-30, cognition 0291ac8; lane running) |
 | `cognition.substance.adaptation` | P | C | U | ? | --- |  | ENGINES.md 'Five Cognition directions' (Rex 2026-10-31; planned; cognition DESIGN §14) |
+| `cognition.valuation.payment_acceptance` | P | C | U | ? | --- |  | HQ/handoffs/economy/MULTI-ECONOMY-DESIGN.md v2 (Rex 2026-11-01, ENGINES.md 'Competing econ |
 | `shared.presentation.set` | P | C | U | ? | --- |  | ENGINES.md 'Style and presentation' (Rex 2026-10-30; a shared planned mechanism, not an en |
 
-### society (17)
+### society (18)
 
 | id | st | dom | sc | ev | V&V | overlaps | home |
 |---|---|---|---|---|---|---|---|
 | `society.affordance.offer` | P | F | U | 4 | --- |  | society/DESIGN.md (society 1515974; proposed, awaiting Rex) |
 | `society.class.structure` | P | F | U | 3 | --- |  | society/DESIGN.md (society 1515974; proposed, awaiting Rex) |
 | `society.collective.action` | P | F | U | ? | --- |  | society/DESIGN.md (society 1515974; proposed, awaiting Rex) |
+| `society.convention.payment_acceptance` | P | F | U | ? | --- |  | HQ/handoffs/economy/MULTI-ECONOMY-DESIGN.md v2 (Rex 2026-11-01, ENGINES.md 'Competing econ |
 | `society.culture.salience` | P | F | U | ? | --- |  | ENGINES.md 'Cultural salience and the zeitgeist in attraction' (Rex 2026-10-30; planned, i |
 | `society.doctrine.transmission_divergence` | P | F | U | ? | --- |  | ENGINES.md 'Institutions, government and religion emerge' (Rex 2026-10-31; planned) |
 | `society.household.structure` | P | F | U | ? | --- | DUP-59 | ROADMAP P6 Society (planned) |
@@ -502,7 +507,7 @@ stability/conservation/boundary tests, `integration_tested_with`, integration te
 | `society.religion.community_ritual` | P | F | U | ? | --- |  | ENGINES.md 'Institutions, government and religion emerge' (Rex 2026-10-31; planned) |
 | `society.transmission.preferences` | P | F | U | ? | --- | DUP-60 | ENGINES.md 'General preference learning' (Rex 2026-10-30; Cognition, planned, built after  |
 
-### government (15)
+### government (16)
 
 | id | st | dom | sc | ev | V&V | overlaps | home |
 |---|---|---|---|---|---|---|---|
@@ -516,6 +521,7 @@ stability/conservation/boundary tests, `integration_tested_with`, integration te
 | `government.law.schema` | B | E | U | ? | I-- |  | government/src/law/schema.ts, load.ts, predicate.ts (705ce83 (2863)) |
 | `government.legitimacy.aggregate` | P | E | U | ? | --- |  | government/DESIGN.md (approved by Rex 2026-10-31) §1.8 |
 | `government.military.organisation` | P | E | U | ? | --- |  | government/DESIGN.md (approved by Rex 2026-10-31) §1.13 |
+| `government.monetary.authority` | P | E | U | ? | --- |  | HQ/handoffs/economy/MULTI-ECONOMY-DESIGN.md v2 (Rex 2026-11-01, ENGINES.md 'Competing econ |
 | `government.polity.structure` | P | E | U | ? | --- |  | government/DESIGN.md (approved by Rex 2026-10-31) §1.14 |
 | `government.property.regime` | P | E | U | ? | --- |  | government/DESIGN.md (approved by Rex 2026-10-31) §1.11 |
 | `government.rule.creation_amendment` | P | E | U | ? | --- |  | ENGINES.md 'Institutions, government and religion emerge' (Rex 2026-10-31; planned) |

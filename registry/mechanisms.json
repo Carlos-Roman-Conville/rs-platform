@@ -8,11 +8,11 @@
   "evidence_scale": "PLATFORM.md §4 (1 law ... 6 fiction)",
   "counts": {
    "built": 223,
-   "planned": 200,
+   "planned": 206,
    "documented-only": 161
   },
   "kinds": {
-   "mechanism": 492,
+   "mechanism": 498,
    "restatement": 92
   },
   "schema_version": 4,
@@ -4986,6 +4986,77 @@
    "failure_mode": null
   },
   {
+   "id": "cognition.valuation.payment_acceptance",
+   "name": "Willingness to accept a payment asset",
+   "owning_engine": "cognition",
+   "home": "HQ/handoffs/economy/MULTI-ECONOMY-DESIGN.md v2 (Rex 2026-11-01, ENGINES.md 'Competing economies and endogenous money'); planned",
+   "home_kind": "docs",
+   "status": "planned",
+   "status_note": "",
+   "kind": "mechanism",
+   "restates": null,
+   "domain": "C",
+   "scope": "universal",
+   "scope_note": "",
+   "inputs": [
+    {
+     "name": "mind.observation",
+     "unit": "see quantities.json"
+    }
+   ],
+   "outputs": [],
+   "state": "planned",
+   "formulation": "decision.evaluate applied to an offer: direct usefulness from needs; expected exchangeability as a belief (cognition.belief.update) from observed acceptances, refusals and testimony; trust from cognition.relationship.trust and cognition.communication.credibility; cost as the action's cost; ratioMin derived where expected utility equals the best alternative, never stored",
+   "dependencies": [
+    "cognition.decision.evaluate"
+   ],
+   "timescale": "planned",
+   "invariants": "no conversion table; acceptance is a relation between a holder and an asset, never a flag on the asset; no date, population or count unlock (Rex 2026-11-01)",
+   "sources": "MULTI-ECONOMY-DESIGN v2; ECON-27/28: Harris 2003 (price-time priority), Spufford 1986 (owners post offers)",
+   "evidence": null,
+   "evidence_note": "?",
+   "approximations": "planned",
+   "tests": "planned: the two-island demonstration acceptance tests (design §8)",
+   "consumers": [
+    "cognition.decision.select"
+   ],
+   "notes": "SPECIALISATION of cognition.decision.evaluate, not a new gear; a specialisation or documented composition, never a second evaluator; Society's acceptance and Government's legal tender reach a mind only as perceived observations or testimony",
+   "overlap_groups": [],
+   "unit_issues": [],
+   "audit_batch": "registry-keeper-2026-11-01-multi-economy",
+   "audit_id": null,
+   "writes": [],
+   "reads": [],
+   "aggregates": null,
+   "vv": {
+    "implemented": false,
+    "integrated": "no (not built)",
+    "validated": "n/a",
+    "record": {
+     "sources_and_model": {
+      "sources": "MULTI-ECONOMY-DESIGN v2; ECON-27/28: Harris 2003 (price-time priority), Spufford 1986 (owners post offers)",
+      "model": "decision.evaluate applied to an offer: direct usefulness from needs; expected exchangeability as a belief (cognition.belief.update) from observed acceptances, refusals and testimony; trust from cognition.relationship.trust and cognition.communication.credibility; cost as the action's cost; ratioMin derived where expected utility equals the best alternative, never stored",
+      "evidence_level": null
+     },
+     "applicability": "planned",
+     "verification_tests": "planned: the two-island demonstration acceptance tests (design §8)",
+     "validation_evidence": [],
+     "tolerance": null,
+     "stability_conservation_boundary": [],
+     "numerical": {
+      "stability": null,
+      "coupled_update_consistency": null,
+      "sensitivity": null
+     },
+     "integration_tested_with": [],
+     "integration_tests": [],
+     "report": "SPECIALISATION of cognition.decision.evaluate, not a new gear; a specialisation or documented composition, never a second evaluator; Society's acceptance and Government's legal tender reach a mind only as perceived observations or testimony"
+    }
+   },
+   "rate_limiter": null,
+   "failure_mode": null
+  },
+  {
    "id": "economy.accounting.view",
    "name": "Accounting view",
    "owning_engine": "economy",
@@ -5419,6 +5490,75 @@
      "integration_tested_with": [],
      "integration_tests": [],
      "report": "Port names appear only in the example; src/ has no pirate-specific text"
+    }
+   },
+   "rate_limiter": null,
+   "failure_mode": null
+  },
+  {
+   "id": "economy.exchange.observed_ratios",
+   "name": "Observed exchange ratios (view)",
+   "owning_engine": "economy",
+   "home": "HQ/handoffs/economy/MULTI-ECONOMY-DESIGN.md v2 (Rex 2026-11-01, ENGINES.md 'Competing economies and endogenous money'); planned",
+   "home_kind": "code",
+   "status": "planned",
+   "status_note": "",
+   "kind": "mechanism",
+   "restates": null,
+   "domain": "D",
+   "scope": "universal",
+   "scope_note": "",
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "economy.observed_ratio",
+     "unit": "see quantities.json"
+    }
+   ],
+   "state": "planned",
+   "formulation": "ratios(market, A, B, fromDay, toDay) and mediaInUse(market) summarised from completed exchanges; a view, never state; no rule reads it",
+   "dependencies": [],
+   "timescale": "planned",
+   "invariants": "no conversion table; acceptance is a relation between a holder and an asset, never a flag on the asset; no date, population or count unlock (Rex 2026-11-01)",
+   "sources": "MULTI-ECONOMY-DESIGN v2; ECON-27/28: Harris 2003 (price-time priority), Spufford 1986 (owners post offers)",
+   "evidence": null,
+   "evidence_note": "?",
+   "approximations": "planned",
+   "tests": "planned: the two-island demonstration acceptance tests (design §8)",
+   "consumers": [
+    "economy.accounting.view"
+   ],
+   "notes": "valuing an inventory in another currency uses only a dated observed ratio from a named market",
+   "overlap_groups": [],
+   "unit_issues": [],
+   "audit_batch": "registry-keeper-2026-11-01-multi-economy",
+   "audit_id": null,
+   "writes": [],
+   "reads": [],
+   "aggregates": null,
+   "vv": {
+    "implemented": false,
+    "integrated": "no (not built)",
+    "validated": "n/a",
+    "record": {
+     "sources_and_model": {
+      "sources": "MULTI-ECONOMY-DESIGN v2; ECON-27/28: Harris 2003 (price-time priority), Spufford 1986 (owners post offers)",
+      "model": "ratios(market, A, B, fromDay, toDay) and mediaInUse(market) summarised from completed exchanges; a view, never state; no rule reads it",
+      "evidence_level": null
+     },
+     "applicability": "planned",
+     "verification_tests": "planned: the two-island demonstration acceptance tests (design §8)",
+     "validation_evidence": [],
+     "tolerance": null,
+     "stability_conservation_boundary": [],
+     "numerical": {
+      "stability": null,
+      "coupled_update_consistency": null,
+      "sensitivity": null
+     },
+     "integration_tested_with": [],
+     "integration_tests": [],
+     "report": "valuing an inventory in another currency uses only a dated observed ratio from a named market"
     }
    },
    "rate_limiter": null,
@@ -6327,6 +6467,76 @@
    "failure_mode": null
   },
   {
+   "id": "economy.market.offers",
+   "name": "Open offers and their matching",
+   "owning_engine": "economy",
+   "home": "HQ/handoffs/economy/MULTI-ECONOMY-DESIGN.md v2 (Rex 2026-11-01, ENGINES.md 'Competing economies and endogenous money'); planned",
+   "home_kind": "code",
+   "status": "planned",
+   "status_note": "",
+   "kind": "mechanism",
+   "restates": null,
+   "domain": "D",
+   "scope": "universal",
+   "scope_note": "",
+   "inputs": [
+    {
+     "name": "mind.intention",
+     "unit": "see quantities.json"
+    }
+   ],
+   "outputs": [],
+   "state": "planned",
+   "formulation": "a market holds open offers (holder gives x of A for y of B until expiry); an exchange happens when an intention accepts an offer, or two offers cross exactly at price-time priority (the older offer's ratio; ECON-27/28 by research); owners post offers; expired offers are withdrawn on the tick; Economy decides no acceptance",
+   "dependencies": [],
+   "timescale": "planned",
+   "invariants": "no conversion table; acceptance is a relation between a holder and an asset, never a flag on the asset; no date, population or count unlock (Rex 2026-11-01)",
+   "sources": "MULTI-ECONOMY-DESIGN v2; ECON-27/28: Harris 2003 (price-time priority), Spufford 1986 (owners post offers)",
+   "evidence": null,
+   "evidence_note": "?",
+   "approximations": "planned",
+   "tests": "planned: the two-island demonstration acceptance tests (design §8)",
+   "consumers": [
+    "economy.trade.trade",
+    "economy.exchange.observed_ratios"
+   ],
+   "notes": "commands offer, withdraw; uses economy.market.five_numbers (the market record)",
+   "overlap_groups": [],
+   "unit_issues": [],
+   "audit_batch": "registry-keeper-2026-11-01-multi-economy",
+   "audit_id": null,
+   "writes": [],
+   "reads": [],
+   "aggregates": null,
+   "vv": {
+    "implemented": false,
+    "integrated": "no (not built)",
+    "validated": "n/a",
+    "record": {
+     "sources_and_model": {
+      "sources": "MULTI-ECONOMY-DESIGN v2; ECON-27/28: Harris 2003 (price-time priority), Spufford 1986 (owners post offers)",
+      "model": "a market holds open offers (holder gives x of A for y of B until expiry); an exchange happens when an intention accepts an offer, or two offers cross exactly at price-time priority (the older offer's ratio; ECON-27/28 by research); owners post offers; expired offers are withdrawn on the tick; Economy decides no acceptance",
+      "evidence_level": null
+     },
+     "applicability": "planned",
+     "verification_tests": "planned: the two-island demonstration acceptance tests (design §8)",
+     "validation_evidence": [],
+     "tolerance": null,
+     "stability_conservation_boundary": [],
+     "numerical": {
+      "stability": null,
+      "coupled_update_consistency": null,
+      "sensitivity": null
+     },
+     "integration_tested_with": [],
+     "integration_tests": [],
+     "report": "commands offer, withdraw; uses economy.market.five_numbers (the market record)"
+    }
+   },
+   "rate_limiter": null,
+   "failure_mode": null
+  },
+  {
    "id": "economy.material.available",
    "name": "Material availability",
    "owning_engine": "economy",
@@ -6567,6 +6777,77 @@
       "pirate-ship web/src/economy/economy.test.ts I1, I1b, I2 (Toolchain/economy/TESTS.md)"
      ],
      "report": "Same 'production' as settlement.production.constraint_Q split by contract: settlement decides Q, economy executes it"
+    }
+   },
+   "rate_limiter": null,
+   "failure_mode": null
+  },
+  {
+   "id": "economy.money.currencies",
+   "name": "Currency records",
+   "owning_engine": "economy",
+   "home": "HQ/handoffs/economy/MULTI-ECONOMY-DESIGN.md v2 (Rex 2026-11-01, ENGINES.md 'Competing economies and endogenous money'); planned",
+   "home_kind": "code",
+   "status": "planned",
+   "status_note": "",
+   "kind": "mechanism",
+   "restates": null,
+   "domain": "D",
+   "scope": "universal",
+   "scope_note": "",
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "economy.currency",
+     "unit": "see quantities.json"
+    }
+   ],
+   "state": "planned",
+   "formulation": "currency records: id, issuer (Government, a bank, or none), backing good if any; isCurrency(id) answers Settlement; stall quotes per (good, currency) from the price rule on that currency's base price",
+   "dependencies": [],
+   "timescale": "planned",
+   "invariants": "no conversion table; acceptance is a relation between a holder and an asset, never a flag on the asset; no date, population or count unlock (Rex 2026-11-01)",
+   "sources": "MULTI-ECONOMY-DESIGN v2; ECON-27/28: Harris 2003 (price-time priority), Spufford 1986 (owners post offers)",
+   "evidence": null,
+   "evidence_note": "?",
+   "approximations": "planned",
+   "tests": "planned: the two-island demonstration acceptance tests (design §8)",
+   "consumers": [
+    "settlement.ledger.pay",
+    "economy.trade.trade",
+    "economy.accounting.view"
+   ],
+   "notes": "the one currency list; Settlement owns none (S2)",
+   "overlap_groups": [],
+   "unit_issues": [],
+   "audit_batch": "registry-keeper-2026-11-01-multi-economy",
+   "audit_id": null,
+   "writes": [],
+   "reads": [],
+   "aggregates": null,
+   "vv": {
+    "implemented": false,
+    "integrated": "no (not built)",
+    "validated": "n/a",
+    "record": {
+     "sources_and_model": {
+      "sources": "MULTI-ECONOMY-DESIGN v2; ECON-27/28: Harris 2003 (price-time priority), Spufford 1986 (owners post offers)",
+      "model": "currency records: id, issuer (Government, a bank, or none), backing good if any; isCurrency(id) answers Settlement; stall quotes per (good, currency) from the price rule on that currency's base price",
+      "evidence_level": null
+     },
+     "applicability": "planned",
+     "verification_tests": "planned: the two-island demonstration acceptance tests (design §8)",
+     "validation_evidence": [],
+     "tolerance": null,
+     "stability_conservation_boundary": [],
+     "numerical": {
+      "stability": null,
+      "coupled_update_consistency": null,
+      "sensitivity": null
+     },
+     "integration_tested_with": [],
+     "integration_tests": [],
+     "report": "the one currency list; Settlement owns none (S2)"
     }
    },
    "rate_limiter": null,
@@ -7691,7 +7972,7 @@
     }
    ],
    "state": "Inventory.stock; ledger via provider",
-   "formulation": "amount=unit*units; unit=given ?? priceOf(...); money via LedgerProvider; goods move holder<->stall; refused if no price or beyond stock",
+   "formulation": "amount=unit*units; unit=given ?? priceOf(...); money via LedgerProvider; goods move holder<->stall; refused if no price or beyond stock; PLANNED EXTENSION (multi-economy v2 §5, 2026-11-01): the N-leg exchange: legs [{from, to, asset, units}], goods legs on economy.goods, currency legs on settlement.money with the currency id as the quantity, all in one kernel transfer() or none (barter = two goods legs; currency exchange = two money legs); buy and sell are the stall case (the stall quotes only in currencies its owner accepts; otherwise refused 'not-accepted', never converted)",
    "dependencies": [
     "economy.price.rule",
     "shared.contract.ledger_provider"
@@ -7707,7 +7988,7 @@
     "economy.accounting.view",
     "example policy"
    ],
-   "notes": "No market clearing or matching: trades are host commands at a given price. Duty/tax is only a ledger kind string, not implemented",
+   "notes": "No market clearing or matching: trades are host commands at a given price. Duty/tax is only a ledger kind string, not implemented; multi-economy v2 §7 (2026-11-01): this row IS the exchange (economy.exchange.legs proposed and folded in here, one gear); keeps its built status, tests and kernel.transfer consumer link",
    "overlap_groups": [],
    "unit_issues": [],
    "audit_batch": "setl-econ",
@@ -7728,7 +8009,7 @@
     "record": {
      "sources_and_model": {
       "sources": "CONTRACTS s7",
-      "model": "amount=unit*units; unit=given ?? priceOf(...); money via LedgerProvider; goods move holder<->stall; refused if no price or beyond stock",
+      "model": "amount=unit*units; unit=given ?? priceOf(...); money via LedgerProvider; goods move holder<->stall; refused if no price or beyond stock; PLANNED EXTENSION (multi-economy v2 §5, 2026-11-01): the N-leg exchange: legs [{from, to, asset, units}], goods legs on economy.goods, currency legs on settlement.money with the currency id as the quantity, all in one kernel transfer() or none (barter = two goods legs; currency exchange = two money legs); buy and sell are the stall case (the stall quotes only in currencies its owner accepts; otherwise refused 'not-accepted', never converted)",
       "evidence_level": 4
      },
      "applicability": "buyer balance not checked (debt allowed); no spread, no price impact of trade size (price changes only at tick), no fees/duties; counterparty is the market id as a ledger holder",
@@ -7758,7 +8039,7 @@
      "integration_tests": [
       "Toolchain/economy examples/three-ports.ts; test/labour-and-sim.test.ts"
      ],
-     "report": "No market clearing or matching: trades are host commands at a given price. Duty/tax is only a ledger kind string, not implemented"
+     "report": "No market clearing or matching: trades are host commands at a given price. Duty/tax is only a ledger kind string, not implemented; multi-economy v2 §7 (2026-11-01): this row IS the exchange (economy.exchange.legs proposed and folded in here, one gear); keeps its built status, tests and kernel.transfer consumer link"
     }
    },
    "rate_limiter": null,
@@ -8523,6 +8804,79 @@
      "report": "Government keeper 2026-10-31 (design approved). the DUP-58 seam: one organisation store (Society); GOV-Q7: battle-scale aggregation is a shared aggregation interface, Reality owns the physics, Government the decision"
     }
    }
+  },
+  {
+   "id": "government.monetary.authority",
+   "name": "Legal tender and monetary authority",
+   "owning_engine": "government",
+   "home": "HQ/handoffs/economy/MULTI-ECONOMY-DESIGN.md v2 (Rex 2026-11-01, ENGINES.md 'Competing economies and endogenous money'); planned",
+   "home_kind": "docs",
+   "status": "planned",
+   "status_note": "",
+   "kind": "mechanism",
+   "restates": null,
+   "domain": "E",
+   "scope": "universal",
+   "scope_note": "",
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "government.legal_tender",
+     "unit": "see quantities.json"
+    }
+   ],
+   "state": "planned",
+   "formulation": "legalTender(jurisdiction, day, purpose tax|debt) computed when read from the legal-tender laws in force (never stored; [] with no Government or law); monetary authority is an empower grant over the powers issue and mint, checked by AuthorityProvider.may(office, power, currency, day); issuing credits Settlement through a named, logged Government command (the only conservation exception); minting turns metal held as a good into coin goods through one transfer() and never creates metal",
+   "dependencies": [
+    "government.law.schema"
+   ],
+   "timescale": "planned",
+   "invariants": "no conversion table; acceptance is a relation between a holder and an asset, never a flag on the asset; no date, population or count unlock (Rex 2026-11-01)",
+   "sources": "MULTI-ECONOMY-DESIGN v2; ECON-27/28: Harris 2003 (price-time priority), Spufford 1986 (owners post offers)",
+   "evidence": null,
+   "evidence_note": "?",
+   "approximations": "planned",
+   "tests": "planned: the two-island demonstration acceptance tests (design §8)",
+   "consumers": [
+    "settlement.ledger.pay",
+    "government.fiscal.taxation",
+    "government.compliance.enforcement"
+   ],
+   "notes": "SPECIALISATION of government.law.schema, not a new gear; minting that credits Settlement is a host-carried command, like shared.host.work_resolution",
+   "overlap_groups": [],
+   "unit_issues": [],
+   "audit_batch": "registry-keeper-2026-11-01-multi-economy",
+   "audit_id": null,
+   "writes": [],
+   "reads": [],
+   "aggregates": null,
+   "vv": {
+    "implemented": false,
+    "integrated": "no (not built)",
+    "validated": "n/a",
+    "record": {
+     "sources_and_model": {
+      "sources": "MULTI-ECONOMY-DESIGN v2; ECON-27/28: Harris 2003 (price-time priority), Spufford 1986 (owners post offers)",
+      "model": "legalTender(jurisdiction, day, purpose tax|debt) computed when read from the legal-tender laws in force (never stored; [] with no Government or law); monetary authority is an empower grant over the powers issue and mint, checked by AuthorityProvider.may(office, power, currency, day); issuing credits Settlement through a named, logged Government command (the only conservation exception); minting turns metal held as a good into coin goods through one transfer() and never creates metal",
+      "evidence_level": null
+     },
+     "applicability": "planned",
+     "verification_tests": "planned: the two-island demonstration acceptance tests (design §8)",
+     "validation_evidence": [],
+     "tolerance": null,
+     "stability_conservation_boundary": [],
+     "numerical": {
+      "stability": null,
+      "coupled_update_consistency": null,
+      "sensitivity": null
+     },
+     "integration_tested_with": [],
+     "integration_tests": [],
+     "report": "SPECIALISATION of government.law.schema, not a new gear; minting that credits Settlement is a host-carried command, like shared.host.work_resolution"
+    }
+   },
+   "rate_limiter": null,
+   "failure_mode": null
   },
   {
    "id": "government.polity.structure",
@@ -19634,7 +19988,7 @@
    "approximations": "",
    "tests": "none",
    "consumers": [],
-   "notes": "Open 2 (money or goods) is ownership of currency: Domain D needs currencies/money as a mechanism. Open 4 raw vs manufactured: recipes decide. Open 5 live cargo: the settlement/economy has no livestock mechanism (ecology.ts stocks only).",
+   "notes": "Open 2 (money or goods) is ownership of currency: Domain D needs currencies/money as a mechanism. Open 4 raw vs manufactured: recipes decide. Open 5 live cargo: the settlement/economy has no livestock mechanism (ecology.ts stocks only). CLOSED 2026-11-01, Open 2 (money vs goods): Rex, ENGINES.md 2026-11-01 'Competing economies and endogenous money': money is a role an asset acquires through acceptance and exchange, it depends on the society (supersedes econ 1's 'coin is money; gold dust and pearls are goods'); mechanisms economy.money.currencies, economy.market.offers, cognition.valuation.payment_acceptance, society.convention.payment_acceptance, government.monetary.authority",
    "overlap_groups": [],
    "unit_issues": [],
    "audit_batch": "pirate-world",
@@ -19664,7 +20018,7 @@
      },
      "integration_tested_with": [],
      "integration_tests": [],
-     "report": "Open 2 (money or goods) is ownership of currency: Domain D needs currencies/money as a mechanism. Open 4 raw vs manufactured: recipes decide. Open 5 live cargo: the settlement/economy has no livestock mechanism (ecology.ts stocks only)."
+     "report": "Open 2 (money or goods) is ownership of currency: Domain D needs currencies/money as a mechanism. Open 4 raw vs manufactured: recipes decide. Open 5 live cargo: the settlement/economy has no livestock mechanism (ecology.ts stocks only). CLOSED 2026-11-01, Open 2 (money vs goods): Rex, ENGINES.md 2026-11-01 'Competing economies and endogenous money': money is a role an asset acquires through acceptance and exchange, it depends on the society (supersedes econ 1's 'coin is money; gold dust and pearls are goods'); mechanisms economy.money.currencies, economy.market.offers, cognition.valuation.payment_acceptance, society.convention.payment_acceptance, government.monetary.authority"
     }
    },
    "rate_limiter": null,
@@ -49058,7 +49412,7 @@
     }
    ],
    "state": "accounts, ledger (append-only)",
-   "formulation": "payer.balance -= amount; payee.balance += amount; one Transaction row; accounts created lazily per holder",
+   "formulation": "payer.balance -= amount; payee.balance += amount; one Transaction row; accounts created lazily per holder; PLANNED EXTENSION (multi-economy v2 S1-S5, 2026-11-01): one balance per currency per account (balance = money, balances{currencyId}); quantity = currency id, accepted only when Economy's isCurrency(id) confirms (no provider: money only; unknown throws 'unknown currency'); pay takes N legs (money legs each naming a currency, then goods legs) on one transfer(), one txn row per money leg with currency and a shared batch id; credit/debit take currency and a required process name and are the only non-conserving moves, each logged; wage and rent currency on the post or lease (default money); tax currency from Government's legalTender",
    "dependencies": [],
    "timescale": "per event",
    "invariants": "total money conserved except explicit credit/debit; negative balances allowed; every change one row",
@@ -49071,7 +49425,7 @@
     "shared.contract.ledger_provider",
     "economy.accounting.view"
    ],
-   "notes": "This is the single money home per CONTRACTS s3; economy has only a StubLedger. Open: Q7 port.cash=treasury",
+   "notes": "This is the single money home per CONTRACTS s3; economy has only a StubLedger. Open: Q7 port.cash=treasury; multi-economy v2 §7: settlement.ledger.multi_currency proposed and folded in here (one ledger gear); DUP-30 and DUP-43 settled 2026-11-01",
    "overlap_groups": [
     "DUP-30",
     "DUP-43"
@@ -49092,7 +49446,7 @@
     "record": {
      "sources_and_model": {
       "sources": "CONTRACTS s3",
-      "model": "payer.balance -= amount; payee.balance += amount; one Transaction row; accounts created lazily per holder",
+      "model": "payer.balance -= amount; payee.balance += amount; one Transaction row; accounts created lazily per holder; PLANNED EXTENSION (multi-economy v2 S1-S5, 2026-11-01): one balance per currency per account (balance = money, balances{currencyId}); quantity = currency id, accepted only when Economy's isCurrency(id) confirms (no provider: money only; unknown throws 'unknown currency'); pay takes N legs (money legs each naming a currency, then goods legs) on one transfer(), one txn row per money leg with currency and a shared batch id; credit/debit take currency and a required process name and are the only non-conserving moves, each logged; wage and rent currency on the post or lease (default money); tax currency from Government's legalTender",
       "evidence_level": 1
      },
      "applicability": "no interest, currency or money-supply rule; credit/debit commands create/destroy money outside conservation",
@@ -49136,7 +49490,7 @@
      "integration_tests": [
       "pirate-ship web/src/economy/economy.test.ts I1, I1b, I2 (Toolchain/economy/TESTS.md)"
      ],
-     "report": "This is the single money home per CONTRACTS s3; economy has only a StubLedger. Open: Q7 port.cash=treasury"
+     "report": "This is the single money home per CONTRACTS s3; economy has only a StubLedger. Open: Q7 port.cash=treasury; multi-economy v2 §7: settlement.ledger.multi_currency proposed and folded in here (one ledger gear); DUP-30 and DUP-43 settled 2026-11-01"
     }
    },
    "rate_limiter": null,
@@ -52383,6 +52737,75 @@
      "integration_tested_with": [],
      "integration_tests": [],
      "report": "proposed by the Society keeper 2026-10-31, not yet approved by Rex. "
+    }
+   },
+   "rate_limiter": null,
+   "failure_mode": null
+  },
+  {
+   "id": "society.convention.payment_acceptance",
+   "name": "Payment acceptance conventions",
+   "owning_engine": "society",
+   "home": "HQ/handoffs/economy/MULTI-ECONOMY-DESIGN.md v2 (Rex 2026-11-01, ENGINES.md 'Competing economies and endogenous money'); planned",
+   "home_kind": "docs",
+   "status": "planned",
+   "status_note": "",
+   "kind": "mechanism",
+   "restates": null,
+   "domain": "F",
+   "scope": "universal",
+   "scope_note": "",
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "society.payment_acceptance_share",
+     "unit": "see quantities.json"
+    }
+   ],
+   "state": "planned",
+   "formulation": "acceptance(group, asset, window) = share of the group's members who took the asset in a completed exchange in the window, counting completed exchanges and logged not-accepted refusals; null when no member was observed; a null window is refused; trade is one tie kind on the one network (DUP-60); sanctions only as a person's or organisation's own act under society.norm.sanction",
+   "dependencies": [
+    "society.norm.sanction"
+   ],
+   "timescale": "planned",
+   "invariants": "no conversion table; acceptance is a relation between a holder and an asset, never a flag on the asset; no date, population or count unlock (Rex 2026-11-01)",
+   "sources": "MULTI-ECONOMY-DESIGN v2; ECON-27/28: Harris 2003 (price-time priority), Spufford 1986 (owners post offers)",
+   "evidence": null,
+   "evidence_note": "?",
+   "approximations": "planned",
+   "tests": "planned: the two-island demonstration acceptance tests (design §8)",
+   "consumers": [],
+   "notes": "SPECIALISATION of society.norm.sanction, not a new gear; measured from behaviour, never willingness; the true share is a view for hosts, reports and tests and is never fed into minds",
+   "overlap_groups": [],
+   "unit_issues": [],
+   "audit_batch": "registry-keeper-2026-11-01-multi-economy",
+   "audit_id": null,
+   "writes": [],
+   "reads": [],
+   "aggregates": null,
+   "vv": {
+    "implemented": false,
+    "integrated": "no (not built)",
+    "validated": "n/a",
+    "record": {
+     "sources_and_model": {
+      "sources": "MULTI-ECONOMY-DESIGN v2; ECON-27/28: Harris 2003 (price-time priority), Spufford 1986 (owners post offers)",
+      "model": "acceptance(group, asset, window) = share of the group's members who took the asset in a completed exchange in the window, counting completed exchanges and logged not-accepted refusals; null when no member was observed; a null window is refused; trade is one tie kind on the one network (DUP-60); sanctions only as a person's or organisation's own act under society.norm.sanction",
+      "evidence_level": null
+     },
+     "applicability": "planned",
+     "verification_tests": "planned: the two-island demonstration acceptance tests (design §8)",
+     "validation_evidence": [],
+     "tolerance": null,
+     "stability_conservation_boundary": [],
+     "numerical": {
+      "stability": null,
+      "coupled_update_consistency": null,
+      "sensitivity": null
+     },
+     "integration_tested_with": [],
+     "integration_tests": [],
+     "report": "SPECIALISATION of society.norm.sanction, not a new gear; measured from behaviour, never willingness; the true share is a view for hosts, reports and tests and is never fed into minds"
     }
    },
    "rate_limiter": null,

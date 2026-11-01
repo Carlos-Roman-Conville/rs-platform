@@ -10,8 +10,8 @@
    "checked": "2026-10-30",
    "parser": "Toolchain/kernel/src/units.ts parse (unit 2592)",
    "tally": {
-    "parses": 327,
-    "kind record": 128,
+    "parses": 328,
+    "kind record": 131,
     "kind text": 1,
     "kind categorical": 8,
     "unknown: the": 38
@@ -2491,6 +2491,16 @@
    "unit_parses": true
   },
   {
+   "id": "economy.currency",
+   "kind": "record",
+   "unit": null,
+   "scope": "economy",
+   "writer": "economy.money.currencies",
+   "description": "currency records (id, issuer, backing good); isCurrency(id) is the out port Settlement reads (S2)",
+   "status": "planned (multi-economy v2, 2026-11-01)",
+   "unit_parses": null
+  },
+  {
    "id": "economy.events",
    "unit": "1",
    "unit_text": "unitless",
@@ -2658,6 +2668,16 @@
    "status": "seed",
    "kind": "quantity",
    "unit_parses": true
+  },
+  {
+   "id": "economy.observed_ratio",
+   "kind": "record",
+   "unit": null,
+   "scope": "economy",
+   "writer": "economy.exchange.observed_ratios",
+   "description": "a view: B-per-A ratios of completed exchanges per market and day range; written by no rule and read by no rule; out port of its writer when built",
+   "status": "planned (multi-economy v2, 2026-11-01)",
+   "unit_parses": null
   },
   {
    "id": "economy.organisation_record",
@@ -3062,6 +3082,16 @@
    "writer": "government.rule.creation_amendment",
    "description": "law records: jurisdiction, regulated action, condition, consequence, enforcing body, exceptions",
    "status": "planned (Rex 2026-10-31, institutions)",
+   "unit_parses": null
+  },
+  {
+   "id": "government.legal_tender",
+   "kind": "record",
+   "unit": null,
+   "scope": "government",
+   "writer": "government.monetary.authority",
+   "description": "asset ids that are legal tender for (jurisdiction, day, purpose tax|debt), computed when read from laws in force; out port of its writer when built",
+   "status": "planned (multi-economy v2, 2026-11-01)",
    "unit_parses": null
   },
   {
@@ -4959,6 +4989,16 @@
    "description": "beauty ideals, family expectation, peer pressure, status norms acting on an individual",
    "status": "planned (Rex 2026-10-30, attraction and partner selection); exists once its units pass, after the P7 baseline",
    "unit_parses": null
+  },
+  {
+   "id": "society.payment_acceptance_share",
+   "kind": "quantity",
+   "unit": "1",
+   "scope": "society",
+   "writer": "society.convention.payment_acceptance",
+   "description": "share of a group's members who took an asset in a completed exchange in a window; nullable (null: no member observed); out port of its writer when built",
+   "status": "planned (multi-economy v2, 2026-11-01)",
+   "unit_parses": true
   },
   {
    "id": "society.population",

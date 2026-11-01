@@ -268,6 +268,28 @@ accepts it (IF-26, IF-27, IF-43), and the kernel event carries it as an `unknown
 | **Uncertainty (no silent constants)** | Evidence levels; LIFE-3 labels (null+flag); legitimacy null, never 0; schema 4 `numerical.sensitivity` | `sensitivity` is null on all 579 rows. These constants carry only a row-level source: rmr fallback; fat floor 3 kg; glycogen cap 400 g; starvation at 60 % of start mass; soil_fertility steps +0.03, +0.02, −0.02 and ×0.5 (conf low). | owners to label; not a chain failure type |
 | **Cross-engine event contracts** | `KernelEvent {id, t, source, type, payload, cause}` (kernel, built); typed records `body.crisis`, `body.conception`, `contact_event`, `economy.shortage.event`, `mind.intention` | The payload is `unknown`. No list of event types with payload schema, producer and consumers exists (CG-18). | missing (no equation) |
 
+## Competing economies and endogenous money (planned; Rex, 2026-11-01)
+
+A cross-engine chain, not a new engine. Design: `HQ/handoffs/economy/MULTI-ECONOMY-DESIGN.md` v2, agreed by Economy,
+Settlement, Society, Government and Cognition through the controller; Rex's terms in ENGINES.md 2026-11-01. Registered
+by the registry keeper on 2026-11-01. Nothing is built yet.
+
+| Link | Mechanism (registry) | What flows | Unit of q | Owner |
+|---|---|---|---|---|
+| A mind weighs an offer | `cognition.valuation.payment_acceptance` (specialises `cognition.decision.evaluate`) | an `offer` or `accept` intention on `cognition.intention` | — | Cognition |
+| The offer waits or crosses | `economy.market.offers` (price-time priority, ECON-27/28 by research) | an accepted offer becomes an exchange | — | Economy |
+| The exchange | `economy.trade.trade`, extended to N legs | goods legs on `economy.goods`, money legs on `settlement.money` (quantity = currency id), one `kernel.transfer()` | count per good; amount per currency | Economy; Settlement (ledger) |
+| The ledger | `settlement.ledger.pay`, extended (S1–S5) | one balance per currency per account; one txn row per money leg | amount per currency | Settlement |
+| The result | `shared.action.outcome` | completed, or failed with the reason (incl. `not-accepted`) | — | the resolving engine |
+| Conventions | `society.convention.payment_acceptance` (may specialise `society.norm.sanction`) | `society.payment_acceptance_share` (1, nullable), measured from completed exchanges and refusals | 1 | Society |
+| Legal tender and issue | `government.monetary.authority` (specialises `government.law.schema`) | `government.legal_tender` (record); issue credits Settlement through a named, logged command; mint turns metal goods into coin goods | per currency; kg | Government |
+| Currencies and ratios | `economy.money.currencies` (`economy.currency`, `isCurrency`); `economy.exchange.observed_ratios` (`economy.observed_ratio`, a view no rule reads) | — | — | Economy |
+
+Coupling rules: minds perceive acceptance and legal tender, never read them (Cognition). Money is conserved per currency
+except Government's issue and retire (DUP-43) and credit below zero (ECON-26, Rex's). One money ledger (DUP-30, ledger
+part). Pirate GOODS Open 2 ("money vs goods") is closed by this design. Verification: the two-island demonstration's
+acceptance tests (design §8), recorded here when they run.
+
 ## Gaps recorded (integration_gaps.interface_gaps)
 
 | Id | Gap | Failure type | Holder (to propose; the registry decides nothing) |
