@@ -557,7 +557,7 @@ stability/conservation/boundary tests, `integration_tested_with`, integration te
 | id | st | dom | sc | ev | V&V | overlaps | home |
 |---|---|---|---|---|---|---|---|
 | `shared.action.kind` | P | infra | U | ? | --- |  | government/DESIGN.md (approved by Rex 2026-10-31) § GOV-Q4 |
-| `shared.action.resolution` | P | infra | U | ? | --- |  | cognition/DESIGN.md §2.4 (proposed by the Cognition keeper 2026-11-01 as CG-16 lead; succe |
+| `shared.action.resolution` | P | infra | U | ? | --- |  | cognition/DESIGN.md §2.4 (cognition 1e229d1, unit 3043; d6abcdc, unit 3046); success equat |
 | `shared.contract.day_order` | B | infra | U | 4 | IT- | DUP-33 | settlement/CONTRACTS.md s9 |
 | `shared.contract.inventory_ownership` | B | D | U | 4 | -T- |  | settlement/CONTRACTS.md s2 and s15 (= economy/CONTRACTS.md) |
 | `shared.contract.labour_supply` | P | D | U | 4 | --- |  | settlement/CONTRACTS.md s16 (= economy); declaration in settlement/src/providers.ts and ec |

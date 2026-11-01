@@ -50459,7 +50459,7 @@
    "id": "shared.action.resolution",
    "name": "Action resolution (shared contract)",
    "owning_engine": "shared",
-   "home": "Toolchain/cognition/DESIGN.md §2.4 (proposed by the Cognition keeper 2026-11-01 as CG-16 lead; success equations stay with the owning engines)",
+   "home": "Toolchain/cognition/DESIGN.md §2.4 (cognition 1e229d1, unit 3043; d6abcdc, unit 3046); success equations stay with the owning engines",
    "home_kind": "code",
    "status": "planned",
    "status_note": "",
@@ -50487,7 +50487,7 @@
    "consumers": [
     "cognition.learning.outcome"
    ],
-   "notes": "CG-16 (CHAINS.md priority 2); agreed by Reality, Life and Economy 2026-11-01, Settlement's IF-27 answer pending. Implemented per action kind: Reality move/gather (after realism 3020); Life eat and body.capacity_functional (after kernel 3006 + economy 2999); Economy buy/sell/consume (after cognition 3044); Settlement + Economy work; Society IF-46; Government IF-43. Outcome event shared.action.outcome {cause: intention event id, status, stimuli, payload?} (CG-18), consumer cognition.learning.outcome via the host outcome command; open: C-Q25 (refusal = failed? Rex), C-Q26 (who excludes simulated minds from the headcount, CG-23 never-both; controller)",
+   "notes": "CG-16 (CHAINS.md priority 2); agreed by Reality, Life and Economy 2026-11-01, Settlement's IF-27 answer pending. Implemented per action kind: Reality move/gather (after realism 3020); Life eat and body.capacity_functional (after kernel 3006 + economy 2999); Economy buy/sell/consume (after cognition 3044); Settlement + Economy work; Society IF-46; Government IF-43. Outcome event shared.action.outcome {cause: intention event id, status, stimuli, payload?} (CG-18), consumer cognition.learning.outcome via the host outcome command; C-Q25 decided by the controller (a refusal is failed, the reason among the stimuli); C-Q26 (headcount, CG-23) assigned to Life",
    "overlap_groups": [],
    "unit_issues": [],
    "audit_batch": "cognition-keeper-2026-11-01-cg16",
@@ -50517,7 +50517,7 @@
      },
      "integration_tested_with": [],
      "integration_tests": [],
-     "report": "CG-16 (CHAINS.md priority 2); agreed by Reality, Life and Economy 2026-11-01, Settlement's IF-27 answer pending. Implemented per action kind: Reality move/gather (after realism 3020); Life eat and body.capacity_functional (after kernel 3006 + economy 2999); Economy buy/sell/consume (after cognition 3044); Settlement + Economy work; Society IF-46; Government IF-43. Outcome event shared.action.outcome {cause: intention event id, status, stimuli, payload?} (CG-18), consumer cognition.learning.outcome via the host outcome command; open: C-Q25 (refusal = failed? Rex), C-Q26 (who excludes simulated minds from the headcount, CG-23 never-both; controller)"
+     "report": "CG-16 (CHAINS.md priority 2); agreed by Reality, Life and Economy 2026-11-01, Settlement's IF-27 answer pending. Implemented per action kind: Reality move/gather (after realism 3020); Life eat and body.capacity_functional (after kernel 3006 + economy 2999); Economy buy/sell/consume (after cognition 3044); Settlement + Economy work; Society IF-46; Government IF-43. Outcome event shared.action.outcome {cause: intention event id, status, stimuli, payload?} (CG-18), consumer cognition.learning.outcome via the host outcome command; C-Q25 decided by the controller (a refusal is failed, the reason among the stimuli); C-Q26 (headcount, CG-23) assigned to Life"
     }
    },
    "rate_limiter": null,

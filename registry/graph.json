@@ -11289,7 +11289,7 @@
      "all engines"
     ],
     "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)",
-    "progress": "controller go 2026-11-01: registry/events.json (registry keeper owns; created empty) with type, producer, consumers, cause, payload schema; kernel 3007 adds checkEventContracts (warns until populated); the first unit is the event inventory; Cognition keeper 2026-11-01: cognition.intention payload {id, mind, action, target?, t, expectedOutcomes: Categorical, status} (built, cognition 2106314), producer cognition.decision.select, consumers the resolvers; proposed terms?: Record<string, number>; enters events.json with the 3011 inventory; proposed event shared.action.outcome {cause, status, stimuli, payload?} (producer: the resolver), consumer cognition.learning.outcome; cognition.intention gains terms? (cognition 3044); registry/events.json populated 2026-11-01 with shared.action.outcome and settlement.post_filled (IF-27, Settlement keeper); kernel 3007 (c171702): checkEventContracts + opt-in EventBus hook, advisory; registry keeper ran the belt check with events.json: exit 0, one warning (shared.action.outcome stimuli list has no 'of'; element schema open); kernel test suite 205/205; DESIGN §17 (e1a35bb); inventory 3011 requeued on codex"
+    "progress": "controller go 2026-11-01: registry/events.json (registry keeper owns; created empty) with type, producer, consumers, cause, payload schema; kernel 3007 adds checkEventContracts (warns until populated); the first unit is the event inventory; Cognition keeper 2026-11-01: cognition.intention payload {id, mind, action, target?, t, expectedOutcomes: Categorical, status} (built, cognition 2106314), producer cognition.decision.select, consumers the resolvers; proposed terms?: Record<string, number>; enters events.json with the 3011 inventory; proposed event shared.action.outcome {cause, status, stimuli, payload?} (producer: the resolver), consumer cognition.learning.outcome; cognition.intention gains terms? (cognition 3044); registry/events.json populated 2026-11-01 with shared.action.outcome and settlement.post_filled (IF-27, Settlement keeper); kernel 3007 (c171702): checkEventContracts + opt-in EventBus hook, advisory; registry keeper ran the belt check with events.json: exit 0, one warning (shared.action.outcome stimuli list has no 'of'; element schema open); kernel test suite 205/205; DESIGN §17 (e1a35bb); inventory 3011 requeued on codex; cognition.intention payload now {id, mind, action, target?, t, expectedOutcomes, status, terms?} (cognition f53f16d, unit 3044)"
    },
    {
     "interface": "CG-19",
@@ -11370,7 +11370,7 @@
      "economy"
     ],
     "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)",
-    "progress": "Life keeper 2026-11-01: trophic_flux over a period = sum of kg eaten by individually resolved consumers + cohort consumption of population-resolved ones, never both for one consumer; E = m x e_food from Life's food table. Designed; built with phase 19; open C-Q26 (controller): who excludes simulated minds from the population headcount"
+    "progress": "Life keeper 2026-11-01: trophic_flux over a period = sum of kg eaten by individually resolved consumers + cohort consumption of population-resolved ones, never both for one consumer; E = m x e_food from Life's food table. Designed; built with phase 19; open C-Q26 (controller): who excludes simulated minds from the population headcount; C-Q26 assigned to Life (controller)"
    },
    {
     "interface": "CG-24",

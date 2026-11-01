@@ -2993,3 +2993,13 @@ for _g in INTERFACE_GAPS:
     if _g["interface"] == "CG-18":
         _g["progress"] += ("; kernel 3007 (c171702): checkEventContracts + opt-in EventBus hook, advisory; registry keeper ran the belt check with events.json: exit 0, one warning "
                            "(shared.action.outcome stimuli list has no 'of'; element schema open); kernel test suite 205/205; DESIGN §17 (e1a35bb); inventory 3011 requeued on codex")
+
+# --- 2026-11-01: Cognition re-audit pointers: DESIGN §2.4 at cognition 1e229d1 (3043) and d6abcdc (3046); intention payload gains terms? at f53f16d (3044); C-Q25 decided (refusal = failed, controller); C-Q26 = Life ---
+for _r in EXTRA_ROWS:
+    if _r["id"] == "shared.action.resolution":
+        _r["home"] = "Toolchain/cognition/DESIGN.md §2.4 (cognition 1e229d1, unit 3043; d6abcdc, unit 3046); success equations stay with the owning engines"
+        _r["notes"] = _r["notes"].replace("open: C-Q25 (refusal = failed? Rex), C-Q26 (who excludes simulated minds from the headcount, CG-23 never-both; controller)",
+                                          "C-Q25 decided by the controller (a refusal is failed, the reason among the stimuli); C-Q26 (headcount, CG-23) assigned to Life")
+for _g in INTERFACE_GAPS:
+    if _g["interface"] == "CG-18": _g["progress"] += "; cognition.intention payload now {id, mind, action, target?, t, expectedOutcomes, status, terms?} (cognition f53f16d, unit 3044)"
+    if _g["interface"] == "CG-23": _g["progress"] += "; C-Q26 assigned to Life (controller)"
