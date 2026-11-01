@@ -8,11 +8,11 @@
   "evidence_scale": "PLATFORM.md §4 (1 law ... 6 fiction)",
   "counts": {
    "built": 219,
-   "planned": 194,
+   "planned": 195,
    "documented-only": 161
   },
   "kinds": {
-   "mechanism": 482,
+   "mechanism": 483,
    "restatement": 92
   },
   "schema_version": 4,
@@ -3707,6 +3707,84 @@
      "integration_tested_with": [],
      "integration_tests": [],
      "report": "personality layer (DESIGN §9); writes the processing share per function, which is not the share of decision influence (Rex's paste was cut off at the last point; the rest to be supplied)"
+    }
+   },
+   "rate_limiter": null,
+   "failure_mode": null
+  },
+  {
+   "id": "cognition.personality.function_development",
+   "name": "Developmental function experience and competence",
+   "owning_engine": "cognition",
+   "home": "Toolchain/ENGINES.md 'Developmental cognitive functions' (Rex 2026-10-31; cognition DESIGN §19)",
+   "home_kind": "docs",
+   "status": "planned",
+   "status_note": "",
+   "kind": "mechanism",
+   "restates": null,
+   "domain": "C",
+   "scope": "universal",
+   "scope_note": "",
+   "inputs": [
+    {
+     "name": "mind.function_allocation",
+     "unit": "see quantities.json"
+    }
+   ],
+   "outputs": [
+    {
+     "name": "mind.function_experience",
+     "unit": "see quantities.json"
+    },
+    {
+     "name": "mind.function_competence",
+     "unit": "see quantities.json"
+    }
+   ],
+   "state": "planned",
+   "formulation": "accumulated function-relevant experience E_f(t+dt) = E_f(t) + A_f(t) R_f(t) dt per function; developed competence C_f = C_f,0 + k_f log(1 + E_f), provisional; competence feeds back into allocation as the L_f term",
+   "dependencies": [],
+   "timescale": "planned",
+   "invariants": "all four stack functions exist from birth: no age unlocks or maturity thresholds; the hierarchy sets speed and focus, never existence; cognitive competence != domain knowledge != learned skill != intelligence (distinct from mind.skill and from K&T's holder port); the baseline B_f never changes",
+   "sources": "to research per unit (evidence levels stated); ENGINES.md",
+   "evidence": 5,
+   "evidence_note": "",
+   "approximations": "planned",
+   "tests": "none",
+   "consumers": [
+    "cognition.personality.function_allocation"
+   ],
+   "notes": "a separate row so each quantity has one writer (allocation owns A_f); not built; does not interrupt the baseline or T-1/T-2; open: C-Q20 (sources for k_f, C_f,0, R_f), C-Q21 (how C_f enters L_f; decay of E_f)",
+   "overlap_groups": [],
+   "unit_issues": [],
+   "audit_batch": "rex-2026-10-31-function-development",
+   "audit_id": null,
+   "writes": [],
+   "reads": [],
+   "aggregates": null,
+   "vv": {
+    "implemented": false,
+    "integrated": "no (not built)",
+    "validated": "n/a",
+    "record": {
+     "sources_and_model": {
+      "sources": "to research per unit (evidence levels stated); ENGINES.md",
+      "model": "accumulated function-relevant experience E_f(t+dt) = E_f(t) + A_f(t) R_f(t) dt per function; developed competence C_f = C_f,0 + k_f log(1 + E_f), provisional; competence feeds back into allocation as the L_f term",
+      "evidence_level": 5
+     },
+     "applicability": "planned",
+     "verification_tests": "none",
+     "validation_evidence": [],
+     "tolerance": null,
+     "stability_conservation_boundary": [],
+     "numerical": {
+      "stability": null,
+      "coupled_update_consistency": null,
+      "sensitivity": null
+     },
+     "integration_tested_with": [],
+     "integration_tests": [],
+     "report": "a separate row so each quantity has one writer (allocation owns A_f); not built; does not interrupt the baseline or T-1/T-2; open: C-Q20 (sources for k_f, C_f,0, R_f), C-Q21 (how C_f enters L_f; decay of E_f)"
     }
    },
    "rate_limiter": null,

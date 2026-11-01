@@ -2606,3 +2606,16 @@ for _k, _src, _t, _c, _n in [
                         "evidence": "re-audit 2026-10-31 of " + _c + ": " + _n}
 DECISIONS["DUP-62"]["progress"].append({"date": "2026-10-31", "step": "units queued", "by": "Government keeper",
     "note": "the closing combined test is government 2892 (contract §7 tests 1-4 with both real packages), after government 2870 (the provider alone), settlement 2891 (subjects passed to may) and government 2888 (law fixture)"})
+
+# --- Rex 2026-10-31, ENGINES.md "Developmental cognitive functions" (cognition DESIGN §19, unit 2896; Cognition keeper's request). Planned ---
+_DEV_INV = ("all four stack functions exist from birth: no age unlocks or maturity thresholds; the hierarchy sets speed and focus, never existence; "
+            "cognitive competence != domain knowledge != learned skill != intelligence (distinct from mind.skill and from K&T's holder port); the baseline B_f never changes")
+EXTRA_ROWS.append(_sal("cognition.personality.function_development", "Developmental function experience and competence", "C",
+    "accumulated function-relevant experience E_f(t+dt) = E_f(t) + A_f(t) R_f(t) dt per function; developed competence C_f = C_f,0 + k_f log(1 + E_f), provisional; competence feeds back into allocation as the L_f term",
+    ["mind.function_experience", "mind.function_competence"], ["mind.function_allocation"], ["cognition.personality.function_allocation"],
+    "a separate row so each quantity has one writer (allocation owns A_f); not built; does not interrupt the baseline or T-1/T-2; open: C-Q20 (sources for k_f, C_f,0, R_f), C-Q21 (how C_f enters L_f; decay of E_f)",
+    ev="5", home="Toolchain/ENGINES.md 'Developmental cognitive functions' (Rex 2026-10-31; cognition DESIGN §19)", inv=_DEV_INV, batch="rex-2026-10-31-function-development"))
+for _id, _d in [("mind.function_experience", "per mind, one value per function f: accumulated function-relevant experience E_f"),
+                ("mind.function_competence", "per mind, one value per function f: developed competence C_f (provisional log form), read by function_allocation as L_f")]:
+    EXTRA_QUANTITIES.append({"id": _id, "kind": "record", "unit": None, "scope": "mind", "writer": "cognition.personality.function_development",
+                             "description": _d + ". " + _DEV_INV, "status": "planned (Rex 2026-10-31, cognition DESIGN §19)"})

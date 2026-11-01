@@ -736,6 +736,14 @@
    "scope": "universal"
   },
   {
+   "id": "cognition.personality.function_development",
+   "engine": "cognition",
+   "status": "planned",
+   "kind": "mechanism",
+   "domain": "C",
+   "scope": "universal"
+  },
+  {
    "id": "cognition.personality.function_sensitivity",
    "engine": "cognition",
    "status": "planned",

@@ -11,7 +11,7 @@
    "parser": "Toolchain/kernel/src/units.ts parse (unit 2592)",
    "tally": {
     "parses": 301,
-    "kind record": 123,
+    "kind record": 125,
     "kind text": 1,
     "kind categorical": 8,
     "unknown: the": 38
@@ -3277,6 +3277,26 @@
    "description": "A_f(t), per function, processing share (0-1, sums to 1); not decision influence",
    "status": "planned (Rex 2026-10-30, dynamic function allocation; evidence 5); exists once its units pass, after the P7 baseline",
    "unit_parses": true
+  },
+  {
+   "id": "mind.function_competence",
+   "kind": "record",
+   "unit": null,
+   "scope": "mind",
+   "writer": "cognition.personality.function_development",
+   "description": "per mind, one value per function f: developed competence C_f (provisional log form), read by function_allocation as L_f. all four stack functions exist from birth: no age unlocks or maturity thresholds; the hierarchy sets speed and focus, never existence; cognitive competence != domain knowledge != learned skill != intelligence (distinct from mind.skill and from K&T's holder port); the baseline B_f never changes",
+   "status": "planned (Rex 2026-10-31, cognition DESIGN §19)",
+   "unit_parses": null
+  },
+  {
+   "id": "mind.function_experience",
+   "kind": "record",
+   "unit": null,
+   "scope": "mind",
+   "writer": "cognition.personality.function_development",
+   "description": "per mind, one value per function f: accumulated function-relevant experience E_f. all four stack functions exist from birth: no age unlocks or maturity thresholds; the hierarchy sets speed and focus, never existence; cognitive competence != domain knowledge != learned skill != intelligence (distinct from mind.skill and from K&T's holder port); the baseline B_f never changes",
+   "status": "planned (Rex 2026-10-31, cognition DESIGN §19)",
+   "unit_parses": null
   },
   {
    "id": "mind.gaze_hypotheses",
