@@ -2774,3 +2774,19 @@ _CG_TYPE = {"CG-1": "missing mechanism (no equation)", "CG-2": "missing mechanis
     "CG-24": "missing mechanism (not implemented)", "CG-25": "missing mechanism (not implemented)", "IF-26": "broken connection", "IF-27": "broken connection"}
 for _g in INTERFACE_GAPS:
     if _g["interface"] in _CG_TYPE: _g["failure_type"] = _CG_TYPE[_g["interface"]]
+
+# --- 2026-11-01: Rex approved CHAINS.md, integration first (PLATFORM §7a: one transfer per physical flow). Priority, owner and agreeing keepers per gap ---
+_CG_ASSIGN = {
+ "CG-20": (1, "reality", ["life"]), "CG-21": (1, "life", ["reality"]), "CG-19": (1, "economy", ["life"]), "CG-9": (1, "reality", ["life"]),
+ "CG-22": (1, "reality", ["life", "kernel"]), "CG-13": (1, "life", []),
+ "CG-16": (2, "cognition", ["reality", "life", "economy"]), "IF-26": (2, "cognition", ["economy"]), "IF-27": (2, "cognition", ["economy", "settlement"]),
+ "CG-3": (2, "life", ["reality"]), "CG-4": (2, "life", ["reality"]), "CG-12": (2, "life", []), "CG-23": (2, "life", ["economy"]),
+ "CG-17": (2, "kernel", ["registry keeper"]), "CG-18": (2, "kernel", ["controller", "all engines"]),
+}
+for _g in INTERFACE_GAPS:
+    _id = _g["interface"]
+    if _id in _CG_ASSIGN:
+        _p, _o, _a = _CG_ASSIGN[_id]
+        _g.update({"priority": _p, "owner": _o, "agreeing": _a, "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)"})
+    elif _id.startswith("CG-"):
+        _g.update({"priority": 3, "approved": "Rex 2026-11-01: research units now (web tools), implementation later"})

@@ -10960,7 +10960,13 @@
     "state": "planned, no built edge",
     "gap": "Cognition outputs intentions (mind.intention) with no consumer; Economy demand is per-capita host numbers with no individual input",
     "joins": "Economy -> Settlement wage channel (built, tested: pirate I4a/I4b) and LabourSupply (CONTRACTS s16)",
-    "failure_type": "broken connection"
+    "failure_type": "broken connection",
+    "priority": 2,
+    "owner": "cognition",
+    "agreeing": [
+     "economy"
+    ],
+    "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)"
    },
    {
     "interface": "IF-27",
@@ -10969,7 +10975,14 @@
     "state": "planned, no built edge",
     "gap": "labour supply is the population aggregate only; wages are posted-median with no individual offer or refusal",
     "joins": "LabourSupply (CONTRACTS s16; settlement and economy built, population supply closing in DUP-26)",
-    "failure_type": "broken connection"
+    "failure_type": "broken connection",
+    "priority": 2,
+    "owner": "cognition",
+    "agreeing": [
+     "economy",
+     "settlement"
+    ],
+    "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)"
    },
    {
     "interface": "CG-1",
@@ -10978,7 +10991,9 @@
     "state": "gap (CHAINS.md 2026-11-01)",
     "gap": "chain 1.1: place.par (mol/m^2/d) has no writer; LIFE-2 says Reality writes it (phases 8, 13, 16)",
     "joins": "Toolchain/CHAINS.md",
-    "failure_type": "missing mechanism (no equation)"
+    "failure_type": "missing mechanism (no equation)",
+    "priority": 3,
+    "approved": "Rex 2026-11-01: research units now (web tools), implementation later"
    },
    {
     "interface": "CG-2",
@@ -10987,7 +11002,9 @@
     "state": "gap (CHAINS.md 2026-11-01)",
     "gap": "chain 1.2: place.rain, place.vpd and world.soil_water have no writer; hydrology writes only groundwater and drainage",
     "joins": "Toolchain/CHAINS.md",
-    "failure_type": "missing mechanism (no equation)"
+    "failure_type": "missing mechanism (no equation)",
+    "priority": 3,
+    "approved": "Rex 2026-11-01: research units now (web tools), implementation later"
    },
    {
     "interface": "CG-3",
@@ -10996,7 +11013,13 @@
     "state": "gap (CHAINS.md 2026-11-01)",
     "gap": "chain 1.4: no plant uptake flux quantity (water, N, P, K) although realism.terrain.soils integrates uptake",
     "joins": "Toolchain/CHAINS.md",
-    "failure_type": "broken connection"
+    "failure_type": "broken connection",
+    "priority": 2,
+    "owner": "life",
+    "agreeing": [
+     "reality"
+    ],
+    "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)"
    },
    {
     "interface": "CG-4",
@@ -11005,7 +11028,13 @@
     "state": "gap (CHAINS.md 2026-11-01)",
     "gap": "chain 1.4: realism.plant.physiology inputs omit the LIFE-2 quantities (par, vpd, rain, soil_water, salinity, water)",
     "joins": "Toolchain/CHAINS.md",
-    "failure_type": "broken connection"
+    "failure_type": "broken connection",
+    "priority": 2,
+    "owner": "life",
+    "agreeing": [
+     "reality"
+    ],
+    "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)"
    },
    {
     "interface": "CG-5",
@@ -11014,7 +11043,9 @@
     "state": "gap (CHAINS.md 2026-11-01)",
     "gap": "chain 1.7: no Reality or Life row moves an organism between places (only the plugin pirate.align.step)",
     "joins": "Toolchain/CHAINS.md",
-    "failure_type": "missing mechanism (no equation)"
+    "failure_type": "missing mechanism (no equation)",
+    "priority": 3,
+    "approved": "Rex 2026-11-01: research units now (web tools), implementation later"
    },
    {
     "interface": "CG-6",
@@ -11023,7 +11054,9 @@
     "state": "gap (CHAINS.md 2026-11-01)",
     "gap": "chain 1.8: no excreta mass or nutrient quantity for people or animals (body.urine is water only); DUP-45 undecided",
     "joins": "Toolchain/CHAINS.md",
-    "failure_type": "missing mechanism (no equation)"
+    "failure_type": "missing mechanism (no equation)",
+    "priority": 3,
+    "approved": "Rex 2026-11-01: research units now (web tools), implementation later"
    },
    {
     "interface": "CG-7",
@@ -11032,7 +11065,9 @@
     "state": "gap (CHAINS.md 2026-11-01)",
     "gap": "N balance: no nitrogen input quantities (deposition, biological fixation, manure as mass)",
     "joins": "Toolchain/CHAINS.md",
-    "failure_type": "missing mechanism (no equation)"
+    "failure_type": "missing mechanism (no equation)",
+    "priority": 3,
+    "approved": "Rex 2026-11-01: research units now (web tools), implementation later"
    },
    {
     "interface": "CG-8",
@@ -11041,7 +11076,9 @@
     "state": "gap (CHAINS.md 2026-11-01)",
     "gap": "N balance: no gaseous nitrogen losses (denitrification, volatilisation)",
     "joins": "Toolchain/CHAINS.md",
-    "failure_type": "missing mechanism (no equation)"
+    "failure_type": "missing mechanism (no equation)",
+    "priority": 3,
+    "approved": "Rex 2026-11-01: research units now (web tools), implementation later"
    },
    {
     "interface": "CG-9",
@@ -11050,7 +11087,13 @@
     "state": "gap (CHAINS.md 2026-11-01)",
     "gap": "N balance: world.soil_nutrient_pool and the nutrient fluxes join N, P and K in one kg quantity described per area",
     "joins": "Toolchain/CHAINS.md",
-    "failure_type": "invalid coupling"
+    "failure_type": "invalid coupling",
+    "priority": 1,
+    "owner": "reality",
+    "agreeing": [
+     "life"
+    ],
+    "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)"
    },
    {
     "interface": "CG-10",
@@ -11059,7 +11102,9 @@
     "state": "gap (CHAINS.md 2026-11-01)",
     "gap": "microbiology: no gut microbial digestion term (feed_gate, absorption, flux_digestion_atp)",
     "joins": "Toolchain/CHAINS.md",
-    "failure_type": "missing mechanism (no equation)"
+    "failure_type": "missing mechanism (no equation)",
+    "priority": 3,
+    "approved": "Rex 2026-11-01: research units now (web tools), implementation later"
    },
    {
     "interface": "CG-11",
@@ -11068,7 +11113,9 @@
     "state": "gap (CHAINS.md 2026-11-01)",
     "gap": "X1 acceptance (1): mass leaving bodies as faeces has no destination row or declared boundary",
     "joins": "Toolchain/CHAINS.md",
-    "failure_type": "missing mechanism (no equation)"
+    "failure_type": "missing mechanism (no equation)",
+    "priority": 3,
+    "approved": "Rex 2026-11-01: research units now (web tools), implementation later"
    },
    {
     "interface": "CG-12",
@@ -11077,7 +11124,11 @@
     "state": "gap (CHAINS.md 2026-11-01)",
     "gap": "chain 2.2: the genetic profile (record 1) has no quantity id; maturation lists the row id as an input",
     "joins": "Toolchain/CHAINS.md",
-    "failure_type": "broken connection"
+    "failure_type": "broken connection",
+    "priority": 2,
+    "owner": "life",
+    "agreeing": [],
+    "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)"
    },
    {
     "interface": "CG-13",
@@ -11086,7 +11137,11 @@
     "state": "gap (CHAINS.md 2026-11-01)",
     "gap": "chain 2.4: realism.nutrition.energy_store reads 'intake'; whether energy enters as eaten or absorbed is unstated",
     "joins": "Toolchain/CHAINS.md",
-    "failure_type": "invalid coupling (to confirm by the owner)"
+    "failure_type": "invalid coupling (to confirm by the owner)",
+    "priority": 1,
+    "owner": "life",
+    "agreeing": [],
+    "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)"
    },
    {
     "interface": "CG-14",
@@ -11095,7 +11150,9 @@
     "state": "gap (CHAINS.md 2026-11-01)",
     "gap": "chain 2.4: expenditure has no growth, thermoregulation (shivering) or reproduction term",
     "joins": "Toolchain/CHAINS.md",
-    "failure_type": "missing mechanism (no equation)"
+    "failure_type": "missing mechanism (no equation)",
+    "priority": 3,
+    "approved": "Rex 2026-11-01: research units now (web tools), implementation later"
    },
    {
     "interface": "CG-15",
@@ -11104,7 +11161,9 @@
     "state": "gap (CHAINS.md 2026-11-01)",
     "gap": "chain 2.5: tissue populations have no dN/dt = B - D equation or quantities (population_state outputs empty)",
     "joins": "Toolchain/CHAINS.md",
-    "failure_type": "missing mechanism (no equation)"
+    "failure_type": "missing mechanism (no equation)",
+    "priority": 3,
+    "approved": "Rex 2026-11-01: research units now (web tools), implementation later"
    },
    {
     "interface": "CG-16",
@@ -11113,7 +11172,15 @@
     "state": "gap (CHAINS.md 2026-11-01)",
     "gap": "chain 3.6: no row resolves an intention into a physical outcome (IF-43 names Reality and Life); body.capacity_functional has no writer (DUP-15)",
     "joins": "Toolchain/CHAINS.md",
-    "failure_type": "missing mechanism (no equation)"
+    "failure_type": "missing mechanism (no equation)",
+    "priority": 2,
+    "owner": "cognition",
+    "agreeing": [
+     "reality",
+     "life",
+     "economy"
+    ],
+    "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)"
    },
    {
     "interface": "CG-17",
@@ -11122,7 +11189,13 @@
     "state": "gap (CHAINS.md 2026-11-01)",
     "gap": "structures: the kernel ConservedQuantity / ResolutionService (kernel src/resolution.ts) has no registry row",
     "joins": "Toolchain/CHAINS.md",
-    "failure_type": "broken connection"
+    "failure_type": "broken connection",
+    "priority": 2,
+    "owner": "kernel",
+    "agreeing": [
+     "registry keeper"
+    ],
+    "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)"
    },
    {
     "interface": "CG-18",
@@ -11131,7 +11204,14 @@
     "state": "gap (CHAINS.md 2026-11-01)",
     "gap": "structures: KernelEvent payload is unknown; no list of event types with payload schema, producer and consumers",
     "joins": "Toolchain/CHAINS.md",
-    "failure_type": "missing mechanism (no equation)"
+    "failure_type": "missing mechanism (no equation)",
+    "priority": 2,
+    "owner": "kernel",
+    "agreeing": [
+     "controller",
+     "all engines"
+    ],
+    "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)"
    },
    {
     "interface": "CG-19",
@@ -11140,7 +11220,13 @@
     "state": "gap (CHAINS.md 2026-11-01)",
     "gap": "IF-36 and IF-42 require mass; economy.material.produce, inventory.holdings and consumption.demand count goods unitless; eat_meal takes kg and kcal; no row converts a good to mass or energy",
     "joins": "Toolchain/CHAINS.md",
-    "failure_type": "invalid coupling"
+    "failure_type": "invalid coupling",
+    "priority": 1,
+    "owner": "economy",
+    "agreeing": [
+     "life"
+    ],
+    "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)"
    },
    {
     "interface": "CG-20",
@@ -11149,7 +11235,13 @@
     "state": "gap (CHAINS.md 2026-11-01)",
     "gap": "one transfer calculated twice: built realism.eco.soil_fertility drains soil on harvest (f -= crop demand) apart from plant uptake (DUP-51, DUP-53)",
     "joins": "Toolchain/CHAINS.md",
-    "failure_type": "invalid coupling"
+    "failure_type": "invalid coupling",
+    "priority": 1,
+    "owner": "reality",
+    "agreeing": [
+     "life"
+    ],
+    "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)"
    },
    {
     "interface": "CG-21",
@@ -11158,7 +11250,13 @@
     "state": "gap (CHAINS.md 2026-11-01)",
     "gap": "plant biomass in two quantities: world.plant_state (plant.physiology, fast) and world.vegetation_stock (vegetation_stocks, yearly), no aggregation (DUP-53)",
     "joins": "Toolchain/CHAINS.md",
-    "failure_type": "invalid coupling"
+    "failure_type": "invalid coupling",
+    "priority": 1,
+    "owner": "life",
+    "agreeing": [
+     "reality"
+    ],
+    "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)"
    },
    {
     "interface": "CG-22",
@@ -11167,7 +11265,14 @@
     "state": "gap (CHAINS.md 2026-11-01)",
     "gap": "realism.terrain.soils and hydrology timescale is once per world / yearly while the uptake and mineralisation fluxes they integrate run on the fast scheduler; no integration rule",
     "joins": "Toolchain/CHAINS.md",
-    "failure_type": "invalid coupling"
+    "failure_type": "invalid coupling",
+    "priority": 1,
+    "owner": "reality",
+    "agreeing": [
+     "life",
+     "kernel"
+    ],
+    "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)"
    },
    {
     "interface": "CG-23",
@@ -11176,7 +11281,13 @@
     "state": "gap (CHAINS.md 2026-11-01)",
     "gap": "population consumption (world.trophic_flux kg/a) and individual consumption (body.kcal_in per meal) are not joined across resolutions",
     "joins": "Toolchain/CHAINS.md",
-    "failure_type": "broken connection"
+    "failure_type": "broken connection",
+    "priority": 2,
+    "owner": "life",
+    "agreeing": [
+     "economy"
+    ],
+    "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)"
    },
    {
     "interface": "CG-24",
@@ -11185,7 +11296,9 @@
     "state": "gap (CHAINS.md 2026-11-01)",
     "gap": "body.hunger_signal's writer realism.nutrition.hunger_fullness is documented-only; Cognition reads a host stub",
     "joins": "Toolchain/CHAINS.md",
-    "failure_type": "missing mechanism (not implemented)"
+    "failure_type": "missing mechanism (not implemented)",
+    "priority": 3,
+    "approved": "Rex 2026-11-01: research units now (web tools), implementation later"
    },
    {
     "interface": "CG-25",
@@ -11194,7 +11307,9 @@
     "state": "gap (CHAINS.md 2026-11-01)",
     "gap": "body.detectability's writer realism.perception.detectability is planned; Cognition reads a host stub",
     "joins": "Toolchain/CHAINS.md",
-    "failure_type": "missing mechanism (not implemented)"
+    "failure_type": "missing mechanism (not implemented)",
+    "priority": 3,
+    "approved": "Rex 2026-11-01: research units now (web tools), implementation later"
    }
   ]
  }

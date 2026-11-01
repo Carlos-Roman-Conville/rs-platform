@@ -1,7 +1,7 @@
 # CHAINS: causal-chain completeness audit
 
 *Registry keeper, 2026-11-01, at Rex's direction (relayed by the controller), revised the same day for Rex's
-addendum. It is a targeted audit of three chains and seven structures, not a broad review.*
+addendum. **Approved by Rex 2026-11-01: integration first (see "Approved").** A targeted audit of three chains and seven structures, not a broad review.*
 
 **Sources.** Only committed files were used:
 - rs-platform `registry/mechanisms.json`, `quantities.json` and `graph.json` at 8fcfdf8;
@@ -55,6 +55,60 @@ Every link cites a registry row. Nothing here is a new rule. Every gap is record
   (IF-26, IF-27).
 
 The choice of next investment is Rex's. This table is the evidence for it.
+
+## Approved: integration first (Rex, 2026-11-01)
+
+**Status: approved.** Rex approved the integration-first investment order. No new top-level engine and no duplicate
+mechanism may be introduced.
+
+**The rule (PLATFORM §7a, controller 2026-11-01):** one transfer per physical flow. Δsource = −q and
+Δdestination = +q happen in one transaction, and losses are accounted separately. This holds for nutrients, water,
+mass, energy and money alike.
+
+**The order:**
+1. **Priority 1: close the five invalid couplings.** For each shared physical flow, establish one authoritative
+   quantity and one conservation-preserving transfer. That means eliminating the duplicate biomass and soil-fertility
+   calculations, resolving the unit mismatches, aligning the timescales, and separating N, P and K into their own
+   quantities.
+2. **Priority 2: close the broken connections.** Intention-to-outcome resolution comes first, then the physical
+   resource, nutrition and Cognition-to-Economy interfaces.
+3. **Priority 3: write Chain 1's missing ecological equations,** then the remaining lifecycle and decision-chain
+   gaps. These are research units now (web tools), with implementation later. Independent mathematical research may
+   run in parallel, but implementation respects unresolved dependencies and registry ownership.
+
+**Testing:** targeted tests for each corrected coupling or interface. Larger integrated demonstrations run at
+milestones, not after every minor change.
+
+**Evidence required to close a gap:** the responsible unit; the equation (the transfer, with Δsource = −q and
+Δdestination = +q); the unit; the authoritative owner; and the verification result (a targeted test at a commit).
+The registry keeper re-audits the commit and fills the closure record below.
+
+### Assignments
+
+| Pri | Gap | Failure type | What closes it | Owner | Agreeing |
+|---|---|---|---|---|---|
+| 1 | CG-20 | invalid coupling | One soil-nutrient transfer: harvest and uptake leave the soil pool once, so the built `realism.eco.soil_fertility` drain stops being a second calculation (DUP-51, DUP-53) | Reality | Life |
+| 1 | CG-21 | invalid coupling | One authoritative plant biomass quantity (`world.plant_state` vs `world.vegetation_stock`), with the other a declared aggregate (DUP-53) | Life | Reality |
+| 1 | CG-19 | invalid coupling | Goods carry mass (and energy for food) so IF-36 and IF-42 transfer kg; a unit conversion owned once | Economy | Life |
+| 1 | CG-9 | invalid coupling | N, P and K as separate quantities; area in the unit (or per-cell scope declared) | Reality | Life |
+| 1 | CG-22 | invalid coupling | A stated rule for integrating fast fluxes into the soil and water stocks; aligned timescales | Reality | Life, Kernel (scheduler) |
+| 1 | CG-13 | invalid coupling (to confirm) | Confirm whether energy enters `energy_store` as eaten or as absorbed; fix if it is counted twice or lost | Life | — |
+| 2 | CG-16 | missing (no equation), prioritised by Rex | Intention-to-outcome resolution. IF-43 puts success with Reality and Life. | Cognition (lead, as the controller assigned) | Reality, Life, Economy |
+| 2 | IF-26 | broken connection | `mind.intention` to Economy demand | Cognition | Economy |
+| 2 | IF-27 | broken connection | `mind.intention` to labour offers (LabourSupply) | Cognition | Economy, Settlement |
+| 2 | CG-3 | broken connection | The plant uptake quantity (water, N, P, K), one transfer from the soil pool | Life | Reality |
+| 2 | CG-4 | broken connection | `realism.plant.physiology` reads the LIFE-2 quantities | Life | Reality |
+| 2 | CG-12 | broken connection | A quantity id for the genetic profile | Life | — |
+| 2 | CG-23 | broken connection | Population and individual consumption joined across resolutions | Life | Economy |
+| 2 | CG-17 | broken connection | A registry row for the kernel's `ConservedQuantity` and `ResolutionService` | Kernel | registry keeper |
+| 2 | CG-18 | missing (no equation), assigned by the controller | Typed event contracts (type, payload, producer, consumers) | Kernel | controller, all engines |
+| 3 | CG-1, 2, 5, 6, 7, 8, 10, 11, 14, 15 | missing (no equation) | Research units (web tools) by each holder; implementation later | holders in the gap table | — |
+
+### Closure record
+
+| Gap | Unit | Equation | Unit of q | Owner | Verification | Re-audit |
+|---|---|---|---|---|---|---|
+| *(none closed yet)* | | | | | | |
 
 ## Chain 1: ecological
 
