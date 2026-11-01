@@ -51795,7 +51795,7 @@
    "id": "shared.host.work_resolution",
    "name": "Host role: resolving work intentions (shared contract)",
    "owning_engine": "shared",
-   "home": "contract (controller 2026-11-01); implemented in Toolchain/kernel/harness/ (Kernel keeper, after kernel v0.1.0), specified by the History keeper as part of X1; in a game the game adapter plays the same role; specification: Toolchain/history DESIGN.md §3.8 (history 0c53036), X1 seams S6 and S7",
+   "home": "contract (controller 2026-11-01); implemented in Toolchain/kernel/harness/ (Kernel keeper, after kernel v0.1.0), specified by the History keeper as part of X1; in a game the game adapter plays the same role; specification: Toolchain/history DESIGN.md §3.8 (history 0c53036; e1ff6ea cites this contract, H1 checks the accepted rule), X1 seams S6 and S7",
    "home_kind": "code",
    "status": "planned",
    "status_note": "",

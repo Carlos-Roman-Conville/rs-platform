@@ -3084,3 +3084,8 @@ for _r in EXTRA_ROWS:
 for _g in INTERFACE_GAPS:
     if _g["interface"] == "CG-18": _g["progress"] += "; cognition.intention row added to events.json 2026-11-01 (expectedOutcomes and terms untyped: no map kind)"
     if _g["interface"] == "IF-27": _g["progress"] += "; Life's provider drafted (HQ/handoffs/life/drafts/life-20-labour-supply-from-intentions.md, LIFE-16): hours = terms.hours, reservationWage = terms.wage_min, reads cognition.intention from the EventBus, pure"
+
+# --- 2026-11-01: History DESIGN §3.8 cites the contract and checks the ruling in H1 (history e1ff6ea); History also flags the role-in-terms conflict (already escalated) ---
+for _r in EXTRA_ROWS:
+    if _r["id"] == "shared.host.work_resolution":
+        _r["home"] = _r["home"].replace("(history 0c53036)", "(history 0c53036; e1ff6ea cites this contract, H1 checks the accepted rule)")
