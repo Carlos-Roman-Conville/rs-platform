@@ -50247,6 +50247,7 @@
    "unit_issues": [],
    "audit_batch": "setl-econ",
    "audit_id": null,
+   "rate_limiter": "once per tick (step 5 of 7), each filled post with wage > 0 pays its holder exactly post.wage from the business's account (the treasury for a public-works business): one ledger row and one wagePaid per post per day, so the daily outflow is the sum of wages over filled posts; pay checks no balance, so the payer's funds do not limit the rate (a statement of the current code, not a rule; settlement src/tick/wages.ts, ae07c4c)",
    "writes": [],
    "reads": [],
    "aggregates": null,
@@ -50304,7 +50305,6 @@
      "report": "OVERLAP: fixed post wage (settlement) vs market wage quote (economy, never applied). Project wages paid separately in tick/projects.ts, same kind 'wage' but subject = project id"
     }
    },
-   "rate_limiter": null,
    "failure_mode": null
   },
   {

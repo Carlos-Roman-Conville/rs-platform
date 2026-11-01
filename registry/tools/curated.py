@@ -3017,3 +3017,9 @@ for _g in INTERFACE_GAPS:
         _g["progress"] += ("; cognition 3044 f53f16d: intention terms? (test/intention-terms.test.ts 4/4, registry keeper rerun). Still missing: the LabourSupply provider that reads the latest "
                            "work/refuse_work intention and answers hours(person, role, day) with the intention event id as cause (owner not yet named: Reality's population provider or the host); "
                            "Economy's wage-quote floor (their wage rule, open for Rex). Units: person-hours per day (h); wage money per filled post-day")
+
+# --- 2026-11-01: settlement.wage.pay rate_limiter (Settlement keeper's wording; code at settlement src/tick/wages.ts, ae07c4c, unchanged since). failure_mode left null: whether an account may go negative is open (Rex and Economy) ---
+ROW_PATCHES.setdefault("settlement.wage.pay", {})["rate_limiter"] = (
+    "once per tick (step 5 of 7), each filled post with wage > 0 pays its holder exactly post.wage from the business's account (the treasury for a public-works business): "
+    "one ledger row and one wagePaid per post per day, so the daily outflow is the sum of wages over filled posts; pay checks no balance, so the payer's funds do not limit the rate "
+    "(a statement of the current code, not a rule; settlement src/tick/wages.ts, ae07c4c)")
