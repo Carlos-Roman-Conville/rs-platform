@@ -3090,8 +3090,8 @@
    "unit": null,
    "scope": "government",
    "writer": "government.monetary.authority",
-   "description": "asset ids that are legal tender for (jurisdiction, day, purpose tax|debt), computed when read from laws in force; out port of its writer when built",
-   "status": "planned (multi-economy v2, 2026-11-01)",
+   "description": "asset ids that are legal tender for (jurisdiction, day, purpose tax|debt), computed when read from laws in force; out port of its writer when built; read shape for every consumer (Cognition, Settlement): legalTender(laws, {actor, place, authority?, facts}, day, purpose 'tax'|'debt') -> sorted asset ids; the jurisdiction is an actor plus a place scope (TenderJurisdiction, government/src/monetary/legal-tender.ts), never a place id; authority omitted = every competing set; computed on every read",
+   "status": "built (government 5290 7e1c179; out port at ebe49f6, 2026-11-01)",
    "unit_parses": null
   },
   {

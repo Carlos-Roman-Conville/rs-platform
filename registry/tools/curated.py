@@ -3350,3 +3350,25 @@ _tt["notes"] += ("; BUILT 2026-11-01: the N-leg exchange command (5268, 21b5ebe;
                  "(5270, 685807d); the PLANNED EXTENSION in the formulation is now built (Settlement's multi-currency ledger side still to land)")
 _av = ROW_PATCHES.setdefault("economy.accounting.view", {})
 _av["notes"] = (_av.get("notes") or "Contract s8 vs code mismatch") + "; 2026-11-01: accounts per currency (economy 5270, 685807d); valuing across currencies only through economy.exchange.observed_ratios"
+
+# --- 2026-11-01: Government multi-economy units landed: 5290 (7e1c179 legalTender read + out port government.legal_tender), 5291 (907b3a8 issue/retire/mint),
+# 5292 (5a327d2 legal-tender refusal -> breach, reading Economy's refusal 'purpose' from economy 61356da), 5293 (ebe49f6 §8 monetary acceptance tests).
+# Registry keeper re-audited at government ebe49f6 (tree clean): vitest 990/990 (36 files), tsc --noEmit clean ---
+_LT_SIG = ("legalTender(laws, {actor, place, authority?, facts}, day, purpose 'tax'|'debt') -> sorted asset ids; the jurisdiction is an actor plus a place scope "
+           "(TenderJurisdiction, government/src/monetary/legal-tender.ts), never a place id; authority omitted = every competing set; computed on every read")
+for _r in EXTRA_ROWS:
+    if _r["id"] == "government.monetary.authority":
+        _r["status"] = "built"; _r["state"] = "computed when read (no stored tender)"; _r["timescale"] = "per read / per command"
+        _r["home"] = ("government/src/monetary/legal-tender.ts legalTender (5290, 7e1c179); src/monetary/authority.ts issue, retire, mint (5291, 907b3a8); "
+                      "refusal -> breach (5292, 5a327d2); design " + _r["home"].replace("; planned", "") + "; Government DESIGN §1.16 (c53327a)")
+        _r["tests"] = ("Toolchain/government vitest 990/990 at ebe49f6 (registry keeper rerun 2026-11-01): test/legal-tender.test.ts, monetary-authority.test.ts, "
+                       "legal-tender-refusal.test.ts, monetary-acceptance.test.ts (§8 Government part, 5293)")
+        _r["notes"] += ("; built 2026-11-01: consumer signature " + _LT_SIG + "; a not-accepted refusal of legal tender is recorded as a breach using Economy's refusal purpose (economy 61356da)")
+        assert "legal-tender.ts" in _r["home"]
+VV_OVERRIDES["government.monetary.authority"] = {"validated": "no (§8 two-island tests: Government part passes; Society and Cognition parts still running)",
+                                                 "integrated": "yes (out port government.legal_tender wired in government kernel.json at ebe49f6; Cognition and Settlement readers not landed)",
+                                                 "evidence": "re-audit 2026-11-01 at government ebe49f6: 990/990, tsc clean"}
+for _q in EXTRA_QUANTITIES:
+    if _q["id"] == "government.legal_tender":
+        _q["status"] = "built (government 5290 7e1c179; out port at ebe49f6, 2026-11-01)"
+        _q["description"] += "; read shape for every consumer (Cognition, Settlement): " + _LT_SIG

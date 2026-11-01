@@ -247,7 +247,7 @@ Each mechanism is **implemented** (code and unit tests pass), **integrated** (wi
 what it reads and feeds), and **validated** (its behaviour matches independent evidence within declared
 tolerances): three separate states, recorded per row in `mechanisms.json` (`vv`). Seeded 2026-10-30:
 
-- built mechanisms 226; **implemented** 224; with a combined (integration) test 122; **integrated (yes)** 127; **validated (yes)** 0; 6 candidates; 2 failed. 'Integrated' means a named combined test runs the row with what it reads and feeds (REVIEWS.md, V&V states); wiring by prop names alone is 'no'. That most rows are implemented-not-validated is the honest starting point (Rex).
+- built mechanisms 227; **implemented** 225; with a combined (integration) test 122; **integrated (yes)** 128; **validated (yes)** 0; 6 candidates; 2 failed. 'Integrated' means a named combined test runs the row with what it reads and feeds (REVIEWS.md, V&V states); wiring by prop names alone is 'no'. That most rows are implemented-not-validated is the honest starting point (Rex).
 
 The combined tests counted as integration evidence:
 
@@ -272,7 +272,7 @@ The combined tests counted as integration evidence:
 | Toolchain/cognition test/bench-world.test.ts ('hungry pair kernel integration': 144 body/cognition/resolution epochs, replay) and test/bench-acceptance.test.ts (DESIGN §6 fixture; rules verified, never validated; cognition 3a2bdcd) | 12 | yes |
 | Toolchain/cognition test/personality-versions.test.ts; bench/personality-versions.ts runs the hungry pair per personality version (DESIGN §9 T-3; cognition 3a2bdcd) | 4 | yes |
 
-Of the connected pairs (a `depends_on` edge between two built mechanisms), 67 run together in one of these tests and **61 do not**:
+Of the connected pairs (a `depends_on` edge between two built mechanisms), 67 run together in one of these tests and **62 do not**:
 
 | Reader | Reads | Engines |
 |---|---|---|
@@ -282,6 +282,7 @@ Of the connected pairs (a `depends_on` edge between two built mechanisms), 67 ru
 | `economy.labour.wage_quote` | `shared.contract.settlement_reader` | economy, shared |
 | `economy.trade.shipment` | `shared.contract.ledger_provider` | economy, shared |
 | `economy.trade.trade` | `shared.contract.ledger_provider` | economy, shared |
+| `government.monetary.authority` | `government.law.schema` | government |
 | `kernel.resolution.handoff` | `kernel.transaction` | kernel |
 | `kernel.transfer` | `kernel.transaction` | kernel |
 | `realism.infra.operator_control` | `realism.infra.rng` | kernel, reality |

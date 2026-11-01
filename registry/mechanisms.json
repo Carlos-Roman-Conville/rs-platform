@@ -7,8 +7,8 @@
   "contract_fields": "PLATFORM.md §7",
   "evidence_scale": "PLATFORM.md §4 (1 law ... 6 fiction)",
   "counts": {
-   "built": 226,
-   "planned": 203,
+   "built": 227,
+   "planned": 202,
    "documented-only": 161
   },
   "kinds": {
@@ -20,10 +20,10 @@
   "schema_4": "adds rate_limiter and failure_mode to the §7 contract fields (with inputs = what enters, outputs = what leaves, state = what accumulates), null until owners fill them; widens vv.record item 5 with numerical {stability, coupled_update_consistency, sensitivity} (PLATFORM §11a item 5, Rex 2026-10-31); check-registry warns, never fails, on empty fields of built rows",
   "schema_3": "each row carries vv {implemented, integrated, validated, record{sources_and_model, applicability, verification_tests, validation_evidence, tolerance, stability_conservation_boundary, integration_tested_with, integration_tests, report}} (PLATFORM.md §11a); seeded 2026-10-30 from the audit and the combined tests; owners complete it, the registry keeper re-audits",
   "vv_counts": {
-   "implemented": 224,
-   "built_mechanisms": 226,
+   "implemented": 225,
+   "built_mechanisms": 227,
    "with_integration_test": 122,
-   "integrated_yes": 127,
+   "integrated_yes": 128,
    "validated_yes": 0,
    "validated_candidate": 6,
    "validation_failed": 2
@@ -8819,9 +8819,9 @@
    "id": "government.monetary.authority",
    "name": "Legal tender and monetary authority",
    "owning_engine": "government",
-   "home": "HQ/handoffs/economy/MULTI-ECONOMY-DESIGN.md v2 (Rex 2026-11-01, ENGINES.md 'Competing economies and endogenous money'); planned",
+   "home": "government/src/monetary/legal-tender.ts legalTender (5290, 7e1c179); src/monetary/authority.ts issue, retire, mint (5291, 907b3a8); refusal -> breach (5292, 5a327d2); design HQ/handoffs/economy/MULTI-ECONOMY-DESIGN.md v2 (Rex 2026-11-01, ENGINES.md 'Competing economies and endogenous money'); Government DESIGN §1.16 (c53327a)",
    "home_kind": "docs",
-   "status": "planned",
+   "status": "built",
    "status_note": "",
    "kind": "mechanism",
    "restates": null,
@@ -8835,35 +8835,37 @@
      "unit": "see quantities.json"
     }
    ],
-   "state": "planned",
+   "state": "computed when read (no stored tender)",
    "formulation": "legalTender(jurisdiction, day, purpose tax|debt) computed when read from the legal-tender laws in force (never stored; [] with no Government or law); monetary authority is an empower grant over the powers issue and mint, checked by AuthorityProvider.may(office, power, currency, day); issuing credits Settlement through a named, logged Government command (the only conservation exception); minting turns metal held as a good into coin goods through one transfer() and never creates metal",
    "dependencies": [
     "government.law.schema"
    ],
-   "timescale": "planned",
+   "timescale": "per read / per command",
    "invariants": "no conversion table; acceptance is a relation between a holder and an asset, never a flag on the asset; no date, population or count unlock (Rex 2026-11-01)",
    "sources": "MULTI-ECONOMY-DESIGN v2; ECON-27/28: Harris 2003 (price-time priority), Spufford 1986 (owners post offers)",
    "evidence": null,
    "evidence_note": "?",
    "approximations": "planned",
-   "tests": "planned: the two-island demonstration acceptance tests (design §8)",
+   "tests": "Toolchain/government vitest 990/990 at ebe49f6 (registry keeper rerun 2026-11-01): test/legal-tender.test.ts, monetary-authority.test.ts, legal-tender-refusal.test.ts, monetary-acceptance.test.ts (§8 Government part, 5293)",
    "consumers": [
     "settlement.ledger.pay",
     "government.fiscal.taxation",
     "government.compliance.enforcement"
    ],
-   "notes": "SPECIALISATION of government.law.schema, not a new gear; minting that credits Settlement is a host-carried command, like shared.host.work_resolution",
+   "notes": "SPECIALISATION of government.law.schema, not a new gear; minting that credits Settlement is a host-carried command, like shared.host.work_resolution; built 2026-11-01: consumer signature legalTender(laws, {actor, place, authority?, facts}, day, purpose 'tax'|'debt') -> sorted asset ids; the jurisdiction is an actor plus a place scope (TenderJurisdiction, government/src/monetary/legal-tender.ts), never a place id; authority omitted = every competing set; computed on every read; a not-accepted refusal of legal tender is recorded as a breach using Economy's refusal purpose (economy 61356da)",
    "overlap_groups": [],
    "unit_issues": [],
    "audit_batch": "registry-keeper-2026-11-01-multi-economy",
    "audit_id": null,
-   "writes": [],
+   "writes": [
+    "government.legal_tender"
+   ],
    "reads": [],
    "aggregates": null,
    "vv": {
-    "implemented": false,
-    "integrated": "no (not built)",
-    "validated": "n/a",
+    "implemented": true,
+    "integrated": "yes (out port government.legal_tender wired in government kernel.json at ebe49f6; Cognition and Settlement readers not landed)",
+    "validated": "no (§8 two-island tests: Government part passes; Society and Cognition parts still running)",
     "record": {
      "sources_and_model": {
       "sources": "MULTI-ECONOMY-DESIGN v2; ECON-27/28: Harris 2003 (price-time priority), Spufford 1986 (owners post offers)",
@@ -8871,8 +8873,10 @@
       "evidence_level": null
      },
      "applicability": "planned",
-     "verification_tests": "planned: the two-island demonstration acceptance tests (design §8)",
-     "validation_evidence": [],
+     "verification_tests": "Toolchain/government vitest 990/990 at ebe49f6 (registry keeper rerun 2026-11-01): test/legal-tender.test.ts, monetary-authority.test.ts, legal-tender-refusal.test.ts, monetary-acceptance.test.ts (§8 Government part, 5293)",
+     "validation_evidence": [
+      "re-audit 2026-11-01 at government ebe49f6: 990/990, tsc clean"
+     ],
      "tolerance": null,
      "stability_conservation_boundary": [],
      "numerical": {
@@ -8882,7 +8886,7 @@
      },
      "integration_tested_with": [],
      "integration_tests": [],
-     "report": "SPECIALISATION of government.law.schema, not a new gear; minting that credits Settlement is a host-carried command, like shared.host.work_resolution"
+     "report": "SPECIALISATION of government.law.schema, not a new gear; minting that credits Settlement is a host-carried command, like shared.host.work_resolution; built 2026-11-01: consumer signature legalTender(laws, {actor, place, authority?, facts}, day, purpose 'tax'|'debt') -> sorted asset ids; the jurisdiction is an actor plus a place scope (TenderJurisdiction, government/src/monetary/legal-tender.ts), never a place id; authority omitted = every competing set; computed on every read; a not-accepted refusal of legal tender is recorded as a breach using Economy's refusal purpose (economy 61356da)"
     }
    },
    "rate_limiter": null,
