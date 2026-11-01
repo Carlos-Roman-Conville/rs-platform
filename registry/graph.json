@@ -11055,7 +11055,7 @@
      "settlement"
     ],
     "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)",
-    "progress": "; Cognition keeper 2026-11-01: contract shared.action.resolution registered planned; proposals with Reality, Life, Economy, Settlement; Settlement's answer pending; agreed by Cognition, Economy, Settlement 2026-11-01; hire takes cause? and emits shared.action.outcome + settlement.post_filled (Settlement's next unit); CONTRACTS §19 optional reservationWage (economy da42670, settlement 87ff281); settlement 3047 queued (Codex: hire.cause, postFilled, shared.action.outcome; test U24); money-ledger migration onto kernel.transfer after kernel v0.1.0"
+    "progress": "; Cognition keeper 2026-11-01: contract shared.action.resolution registered planned; proposals with Reality, Life, Economy, Settlement; Settlement's answer pending; agreed by Cognition, Economy, Settlement 2026-11-01; hire takes cause? and emits shared.action.outcome + settlement.post_filled (Settlement's next unit); CONTRACTS §19 optional reservationWage (economy da42670, settlement 87ff281); settlement 3047 queued (Codex: hire.cause, postFilled, shared.action.outcome; test U24); money-ledger migration onto kernel.transfer after kernel v0.1.0; settlement 3047 landed 7e49d3c: hire takes cause?, emits settlement.post_filled then shared.action.outcome (completed, cause, wage) in one command; unknown post throws with no event or state change; replay identical; test/engine.test.ts U24 6/6 (registry keeper rerun). Settlement's resolver part verified; closes when an intention reaches hire through the host with a targeted test (Cognition lead)"
    },
    {
     "interface": "CG-1",

@@ -3003,3 +3003,10 @@ for _r in EXTRA_ROWS:
 for _g in INTERFACE_GAPS:
     if _g["interface"] == "CG-18": _g["progress"] += "; cognition.intention payload now {id, mind, action, target?, t, expectedOutcomes, status, terms?} (cognition f53f16d, unit 3044)"
     if _g["interface"] == "CG-23": _g["progress"] += "; C-Q26 assigned to Life (controller)"
+
+# --- 2026-11-01: re-audit of settlement 3047 (7e49d3c): U24 6/6 (registry keeper rerun). Settlement's resolver part of IF-27 verified; IF-27 stays open until an intention reaches it through the host (Cognition lead) ---
+for _g in INTERFACE_GAPS:
+    if _g["interface"] == "IF-27":
+        _g["progress"] += ("; settlement 3047 landed 7e49d3c: hire takes cause?, emits settlement.post_filled then shared.action.outcome (completed, cause, wage) in one command; "
+                           "unknown post throws with no event or state change; replay identical; test/engine.test.ts U24 6/6 (registry keeper rerun). Settlement's resolver part verified; "
+                           "closes when an intention reaches hire through the host with a targeted test (Cognition lead)")
