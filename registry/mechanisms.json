@@ -44417,7 +44417,7 @@
    "approximations": "",
    "tests": "population.test.ts: outputs labour by library id",
    "consumers": "economy",
-   "notes": "life until Society exists; moves to Society under DUP-41. Owner per realism/SPLIT.md (Reality keeper 2026-10-31; pending SPLIT open question A, where the substrate lives). [package split pending, SPLIT.md; owner life since 2026-10-31]",
+   "notes": "life until Society exists; moves to Society under DUP-41. Owner per realism/SPLIT.md (Reality keeper 2026-10-31; pending SPLIT open question A, where the substrate lives).; Life's intention-backed provider built 2026-11-01: realism 5009 (4074843, fix 1008a49), src/labour-intentions.ts; hours(person, role, day) and reservationWage from the latest work/refuse_work intention, pure, no cause; never adds individual work to cohort supply (CG-23, C-Q26); labour-intentions 14/14 on the registry keeper's rerun at realism 9cec538. OPEN (Settlement, Economy; REG-32): CONTRACTS §18 'hours left after the day's grants' vs Settlement's own namedUsed subtraction for named persons [package split pending, SPLIT.md; owner life since 2026-10-31]",
    "overlap_groups": [
     "DUP-26",
     "DUP-41"
@@ -44452,7 +44452,7 @@
      },
      "integration_tested_with": [],
      "integration_tests": [],
-     "report": "life until Society exists; moves to Society under DUP-41. Owner per realism/SPLIT.md (Reality keeper 2026-10-31; pending SPLIT open question A, where the substrate lives). [package split pending, SPLIT.md; owner life since 2026-10-31]"
+     "report": "life until Society exists; moves to Society under DUP-41. Owner per realism/SPLIT.md (Reality keeper 2026-10-31; pending SPLIT open question A, where the substrate lives).; Life's intention-backed provider built 2026-11-01: realism 5009 (4074843, fix 1008a49), src/labour-intentions.ts; hours(person, role, day) and reservationWage from the latest work/refuse_work intention, pure, no cause; never adds individual work to cohort supply (CG-23, C-Q26); labour-intentions 14/14 on the registry keeper's rerun at realism 9cec538. OPEN (Settlement, Economy; REG-32): CONTRACTS §18 'hours left after the day's grants' vs Settlement's own namedUsed subtraction for named persons [package split pending, SPLIT.md; owner life since 2026-10-31]"
     }
    },
    "rate_limiter": null,

@@ -3211,3 +3211,21 @@ _lp["notes"] = (_lp.get("notes") or "contract.ledger_provider. Implemented by: h
 ROW_PATCHES["kernel.transfer"]["consumers"] = ["economy.trade.trade", "economy.trade.shipment", "settlement.ledger.pay"]
 VV_OVERRIDES["kernel.transfer"]["integrated"] = ("yes (economy goods ledger 'economy.goods': economy 1e79dbe, goods-ledger 8/8; money and goods in one transfer, CONTRACTS §20: "
     "settlement 898243b + economy 20e53a7, trade-batch and transfer-batch on the registry keeper's rerun); realism 3001 to follow")
+
+# --- 2026-11-01: Life batch. IF-27 closed: Life's intention-backed LabourSupply provider, realism 5009 (4074843 + fix 1008a49), src/labour-intentions.ts;
+# registry keeper rerun test/labour-intentions.test.ts 'labour from intentions (IF-27)' 14/14 at realism 9cec538. With Settlement 3047 (7e49d3c), Cognition terms (f53f16d)
+# and kernel 5006 (f452432) every IF-27 piece is built. CG-13 closed: realism 3014 (c5a4651), test/nutrition.test.ts 'energy enters absorbed (CG-13)' 1/1 on rerun.
+# Open for the contract owners (Settlement, Economy), recorded not decided: CONTRACTS §18 says hours is what a source has left after the day's grants, but for named persons
+# Settlement's tick/staffing.ts subtracts its own namedUsed, so the provider subtracts nothing; §18's wording or the ledger's home must say which. Silences left open by Life:
+# a refusal whose role is null, offer expiry, cancelling an offer through its status, role offers against Settlement's cross-role namedUsed ---
+_IF27 = ("Life's intention-backed provider built 2026-11-01: realism 5009 (4074843, fix 1008a49), src/labour-intentions.ts; hours(person, role, day) and reservationWage from the latest work/refuse_work "
+         "intention, pure, no cause; never adds individual work to cohort supply (CG-23, C-Q26); labour-intentions 14/14 on the registry keeper's rerun at realism 9cec538. "
+         "OPEN (Settlement, Economy; REG-32): CONTRACTS §18 'hours left after the day's grants' vs Settlement's own namedUsed subtraction for named persons")
+_plp = ROW_PATCHES.setdefault("realism.population.labour", {})
+_plp["notes"] = (_plp.get("notes") or "life until Society exists; moves to Society under DUP-41. Owner per realism/SPLIT.md (Reality keeper 2026-10-31; pending SPLIT open question A, where the substrate lives). [package split pending, SPLIT.md; owner life since 2026-10-31]") + "; " + _IF27
+for _g in INTERFACE_GAPS:
+    if _g["interface"] == "IF-27":
+        _g.update({"state": "closed 2026-11-01: every piece built and rerun: Settlement 3047 (7e49d3c, U24 6/6), Cognition terms (f53f16d, 4/4), kernel 5006 host (f452432, 10/10), "
+                            "Life provider realism 5009 (4074843 + 1008a49, 14/14); open wording point for Settlement and Economy (REG-32)"})
+    if _g["interface"] == "CG-13":
+        _g.update({"state": "closed 2026-11-01: energy enters absorbed (kept = eaten x absorbedFraction); realism 3014 c5a4651, nutrition test 'energy enters absorbed (CG-13)' passes on the registry keeper's rerun"})
