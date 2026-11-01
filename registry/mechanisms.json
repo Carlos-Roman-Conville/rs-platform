@@ -51795,7 +51795,7 @@
    "id": "shared.host.work_resolution",
    "name": "Host role: resolving work intentions (shared contract)",
    "owning_engine": "shared",
-   "home": "contract (controller 2026-11-01); implemented in Toolchain/kernel/harness/ (Kernel keeper, after kernel v0.1.0), specified by the History keeper as part of X1; in a game the game adapter plays the same role",
+   "home": "contract (controller 2026-11-01); implemented in Toolchain/kernel/harness/ (Kernel keeper, after kernel v0.1.0), specified by the History keeper as part of X1; in a game the game adapter plays the same role; specification: Toolchain/history DESIGN.md §3.8 (history 0c53036), X1 seams S6 and S7",
    "home_kind": "code",
    "status": "planned",
    "status_note": "",
@@ -51820,11 +51820,11 @@
    "evidence": null,
    "evidence_note": "None",
    "approximations": "planned",
-   "tests": "none",
+   "tests": "planned: X1 seam S6 Gate H1 (every post_filled traces through a hire to an accepted work intention; one hire per accepted intention), H2 (a rejected hire leaves no partial state), H3 (the host writes no wage field), H4 (G-inert holds)",
    "consumers": [
     "settlement.assign.workforce"
    ],
-   "notes": "IF-27 (CHAINS.md priority 2); the work resolver of the CG-16 contract for demonstration runs; open (History keeper, X1 spec): what makes a work intention accepted (hours > 0, available(), or reservation wage vs posted wage); the kernel unit (Needs 2823) waits on it; the harness already reaches Settlement's apply and LabourSupply (settlement src/providers.ts)",
+   "notes": "IF-27 (CHAINS.md priority 2); the work resolver of the CG-16 contract for demonstration runs; open (History keeper, X1 spec): what makes a work intention accepted (hours > 0, available(), or reservation wage vs posted wage); the kernel unit (Needs 2823) waits on it; the harness already reaches Settlement's apply and LabourSupply (settlement src/providers.ts); History §3.8 defers 'accepted' and the host's phase to the contract and kernel order.json, and the Kernel keeper defers it to History: escalated to the controller 2026-11-01",
    "overlap_groups": [],
    "unit_issues": [],
    "audit_batch": "controller-2026-11-01-if27-host",
@@ -51843,7 +51843,7 @@
       "evidence_level": null
      },
      "applicability": "planned",
-     "verification_tests": "none",
+     "verification_tests": "planned: X1 seam S6 Gate H1 (every post_filled traces through a hire to an accepted work intention; one hire per accepted intention), H2 (a rejected hire leaves no partial state), H3 (the host writes no wage field), H4 (G-inert holds)",
      "validation_evidence": [],
      "tolerance": null,
      "stability_conservation_boundary": [],
@@ -51854,7 +51854,7 @@
      },
      "integration_tested_with": [],
      "integration_tests": [],
-     "report": "IF-27 (CHAINS.md priority 2); the work resolver of the CG-16 contract for demonstration runs; open (History keeper, X1 spec): what makes a work intention accepted (hours > 0, available(), or reservation wage vs posted wage); the kernel unit (Needs 2823) waits on it; the harness already reaches Settlement's apply and LabourSupply (settlement src/providers.ts)"
+     "report": "IF-27 (CHAINS.md priority 2); the work resolver of the CG-16 contract for demonstration runs; open (History keeper, X1 spec): what makes a work intention accepted (hours > 0, available(), or reservation wage vs posted wage); the kernel unit (Needs 2823) waits on it; the harness already reaches Settlement's apply and LabourSupply (settlement src/providers.ts); History §3.8 defers 'accepted' and the host's phase to the contract and kernel order.json, and the Kernel keeper defers it to History: escalated to the controller 2026-11-01"
     }
    },
    "rate_limiter": null,

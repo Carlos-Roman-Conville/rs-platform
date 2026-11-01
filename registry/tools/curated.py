@@ -3056,3 +3056,12 @@ for _g in INTERFACE_GAPS:
 for _r in EXTRA_ROWS:
     if _r["id"] == "shared.host.work_resolution":
         _r["notes"] += "; open (History keeper, X1 spec): what makes a work intention accepted (hours > 0, available(), or reservation wage vs posted wage); the kernel unit (Needs 2823) waits on it; the harness already reaches Settlement's apply and LabourSupply (settlement src/providers.ts)"
+
+# --- 2026-11-01: History keeper: host work resolution specified in Toolchain/history DESIGN.md §3.8 (history 0c53036), carried by X1 seams S6 and S7; S6 Gate H1-H4.
+# §3.8 does not define an accepted work intention or the host's phase (defers to the contract and kernel order.json); the Kernel keeper also waits on that: open, escalated to the controller ---
+for _r in EXTRA_ROWS:
+    if _r["id"] == "shared.host.work_resolution":
+        _r["home"] += "; specification: Toolchain/history DESIGN.md §3.8 (history 0c53036), X1 seams S6 and S7"
+        _r["tests"] = ("planned: X1 seam S6 Gate H1 (every post_filled traces through a hire to an accepted work intention; one hire per accepted intention), "
+                       "H2 (a rejected hire leaves no partial state), H3 (the host writes no wage field), H4 (G-inert holds)")
+        _r["notes"] += "; History §3.8 defers 'accepted' and the host's phase to the contract and kernel order.json, and the Kernel keeper defers it to History: escalated to the controller 2026-11-01"
