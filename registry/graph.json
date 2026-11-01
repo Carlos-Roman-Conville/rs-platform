@@ -9946,6 +9946,13 @@
      "step": "contract agreed",
      "by": "Government and Settlement keepers",
      "note": "GOVERNMENT-SETTLEMENT.md AGREED and byte-identical (settlement ac0a81d, government dd75837); quantity government.office_may registered for the AuthorityProvider.may port"
+    },
+    {
+     "date": "2026-10-31",
+     "step": "unit passed (Settlement code part)",
+     "by": "registry keeper",
+     "commit": "settlement e52afbd (2871)",
+     "note": "re-audited: every office power check goes through officeHas -> AuthorityProvider.may (src/context.ts:78-82) at the four sites (commands.ts:178 public title, :212 seize, :624 and :637 permit); default provider officePowersAuthority reads Office.powers[]; kernel.json declares the in port on government.office_may; belt check exits 0; Settlement reports 72 tests and a byte-identical pirate golden (test (4)). Waits for Government's provider (government 2870) and test (2) through appoint / vacate / inherit"
     }
    ]
   },
