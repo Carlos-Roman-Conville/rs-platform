@@ -3023,3 +3023,17 @@ ROW_PATCHES.setdefault("settlement.wage.pay", {})["rate_limiter"] = (
     "once per tick (step 5 of 7), each filled post with wage > 0 pays its holder exactly post.wage from the business's account (the treasury for a public-works business): "
     "one ledger row and one wagePaid per post per day, so the daily outflow is the sum of wages over filled posts; pay checks no balance, so the payer's funds do not limit the rate "
     "(a statement of the current code, not a rule; settlement src/tick/wages.ts, ae07c4c)")
+
+# --- 2026-11-01: IF-27 remaining pieces. Controller: the LabourSupply provider is Life's (population and labour supply sit on Life's side of SPLIT.md; Life owns C-Q26; a host-written provider would be a second labour authority).
+# Settlement and Cognition point of fact: the provider answers pure queries (hours(person, role, day) §16/§17, reservationWage? §19), changes nothing and passes no cause;
+# the cause reaches Settlement through the host's hire command {type: 'hire', post, holder, cause} via Settlement's apply. Population rows realism.population.* are already engine life ---
+for _r in EXTRA_ROWS:
+    pass
+ROW_PATCHES.setdefault("shared.contract.labour_supply_provider", {})["notes"] = (
+    "provider owner: Life (controller 2026-11-01, IF-27): the individual half of the one population count (C-Q26) feeding LabourSupply; reads each person's latest work/refuse_work intention; "
+    "pure queries hours(person, role, day) (CONTRACTS §16/§17) and reservationWage? (§19); changes nothing, passes no cause; waits on kernel 3006 and the §19 ids")
+for _g in INTERFACE_GAPS:
+    if _g["interface"] == "IF-27":
+        _g["progress"] += ("; remaining pieces (2026-11-01): (1) the LabourSupply provider, owner Life (controller): pure queries hours(person, role, day) and reservationWage?, no cause; "
+                           "(2) the host's hire command {type: 'hire', post, holder, cause: intention event id} through Settlement's apply, owner the host adapter. Economy's wage-quote floor stays with Rex (ECON-24)")
+        _g["owner_remaining"] = ["life (LabourSupply provider)", "host adapter (hire command with cause)"]

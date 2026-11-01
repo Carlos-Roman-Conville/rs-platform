@@ -50949,7 +50949,7 @@
    "consumers": [
     "economy.labour.wage_quote"
    ],
-   "notes": "CONTRACTS s16 agreed 2026-10-30 (economy 91e374a): merged into shared.contract.labour_supply; retired (alias) when economy units 2627-2632 pass.",
+   "notes": "provider owner: Life (controller 2026-11-01, IF-27): the individual half of the one population count (C-Q26) feeding LabourSupply; reads each person's latest work/refuse_work intention; pure queries hours(person, role, day) (CONTRACTS §16/§17) and reservationWage? (§19); changes nothing, passes no cause; waits on kernel 3006 and the §19 ids",
    "overlap_groups": [
     "DUP-26",
     "DUP-29"
@@ -50983,7 +50983,7 @@
      },
      "integration_tested_with": [],
      "integration_tests": [],
-     "report": "CONTRACTS s16 agreed 2026-10-30 (economy 91e374a): merged into shared.contract.labour_supply; retired (alias) when economy units 2627-2632 pass."
+     "report": "provider owner: Life (controller 2026-11-01, IF-27): the individual half of the one population count (C-Q26) feeding LabourSupply; reads each person's latest work/refuse_work intention; pure queries hours(person, role, day) (CONTRACTS §16/§17) and reservationWage? (§19); changes nothing, passes no cause; waits on kernel 3006 and the §19 ids"
     }
    },
    "rate_limiter": null,
