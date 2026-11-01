@@ -11082,7 +11082,7 @@
      "economy"
     ],
     "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)",
-    "progress": "; Cognition keeper 2026-11-01: contract shared.action.resolution registered planned; proposals with Reality, Life, Economy, Settlement; agreed by Reality, Life, Economy 2026-11-01 (cognition DESIGN §2.4, unit 3043)"
+    "progress": "; Cognition keeper 2026-11-01: contract shared.action.resolution registered planned; proposals with Reality, Life, Economy, Settlement; agreed by Reality, Life, Economy 2026-11-01 (cognition DESIGN §2.4, unit 3043); Economy's resolver part built 2026-11-01: economy 3045 4192e27 (price limits, refused) and 5050 4831b5a (outcome event for caused buy, sell, takeMass); outcome.test.ts 13/13 on the registry keeper's rerun"
    },
    {
     "interface": "IF-27",
@@ -11305,7 +11305,7 @@
      "economy"
     ],
     "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)",
-    "progress": "Life keeper 2026-11-01: Life owns body.capacity_functional (DUP-15), designed with the human sections; lead Cognition; Cognition keeper 2026-11-01: contract shared.action.resolution registered planned; proposals with Reality, Life, Economy, Settlement; agreed by Reality, Life, Economy 2026-11-01 (cognition DESIGN §2.4, unit 3043)"
+    "progress": "Life keeper 2026-11-01: Life owns body.capacity_functional (DUP-15), designed with the human sections; lead Cognition; Cognition keeper 2026-11-01: contract shared.action.resolution registered planned; proposals with Reality, Life, Economy, Settlement; agreed by Reality, Life, Economy 2026-11-01 (cognition DESIGN §2.4, unit 3043); Economy's resolver part built 2026-11-01: economy 3045 4192e27 (price limits, refused) and 5050 4831b5a (outcome event for caused buy, sell, takeMass); outcome.test.ts 13/13 on the registry keeper's rerun"
    },
    {
     "interface": "CG-17",

@@ -3179,3 +3179,8 @@ for _g in INTERFACE_GAPS:
     if _g["interface"] == "CG-18":
         _g["progress"] += ("; REG-31 points 1 and 4 fixed 2026-11-01: kernel 5066 cd2feee forwards cause to the envelope, kernel 5067 1080dec adds 'record' and nullable; "
                            "lists typed of 'record'; event-contract warnings 0. Still open: Society local kinds and Government returned records have no bus path; 'refused' name collision")
+
+# --- 2026-11-01: economy 5050 (4831b5a): Economy emits shared.action.outcome for caused buy, sell and takeMass (completed | failed, never impossible); recorded in events.json notes; outcome.test.ts 13/13 on the registry keeper's rerun ---
+for _g in INTERFACE_GAPS:
+    if _g["interface"] in ("IF-26", "CG-16"):
+        _g["progress"] = _g.get("progress", "") + "; Economy's resolver part built 2026-11-01: economy 3045 4192e27 (price limits, refused) and 5050 4831b5a (outcome event for caused buy, sell, takeMass); outcome.test.ts 13/13 on the registry keeper's rerun"
