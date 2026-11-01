@@ -3197,3 +3197,17 @@ for _r in EXTRA_ROWS:
     if _r["id"] == "kernel.transfer":
         _r["notes"] += ("; first migration 2026-11-01: Economy's goods ledger (economy 5068, 1e79dbe): buy/sell legs and shipment dispatch/arrival through transfer() on ledger economy.goods "
                         "(accounts inventory ids or shipment:<id>, quantity = good id, unit count); production, spoilage, consumption and mass commands keep adjust; money waits on settlement 5069")
+
+# --- 2026-11-01: CONTRACTS §20 (money and goods in one transfer) built on three sides: settlement 898243b (5206, pay takes an optional goods leg; live ledger in Runner.run opts),
+# pirate 1ae7e99 (5207, host settlementLedger passes the leg), economy 20e53a7 (5208, LedgerProvider.transfer goods?; buy/sell pass it; own-stall trades pass none; ship/arrival keep their own).
+# Each buy/sell = one kernel transfer() with legs settlement.money and economy.goods under process economy.trade.trade; a refusal in either leg rolls both back.
+# Registry keeper reruns: economy trade-batch + goods-ledger 14/14 at 1b29ae8; settlement transfer-batch 10/10 at HEAD; CONTRACTS md5 3fe3bdc5 in both repos. No leg refuses on balance (Q19, ECON-26 open for Rex) ---
+_S20 = ("CONTRACTS §20 built 2026-11-01 (settlement 898243b, pirate 1ae7e99, economy 20e53a7): LedgerProvider.transfer takes an optional goods leg; each buy/sell is one kernel transfer() "
+        "with money (settlement.money) and goods (economy.goods) legs, process economy.trade.trade, all-or-nothing; reruns: economy trade-batch+goods-ledger 14/14 at 1b29ae8, settlement transfer-batch 10/10; "
+        "no leg refuses on balance (Q19, ECON-26 open for Rex)")
+ROW_PATCHES.setdefault("shared.contract.ledger_provider", {})
+_lp = ROW_PATCHES["shared.contract.ledger_provider"]
+_lp["notes"] = (_lp.get("notes") or "contract.ledger_provider. Implemented by: host over settlement pay/balanceOf/ledger. Consumed by: economy. LedgerRow == settlement Transaction (structural duplicate)") + "; " + _S20
+ROW_PATCHES["kernel.transfer"]["consumers"] = ["economy.trade.trade", "economy.trade.shipment", "settlement.ledger.pay"]
+VV_OVERRIDES["kernel.transfer"]["integrated"] = ("yes (economy goods ledger 'economy.goods': economy 1e79dbe, goods-ledger 8/8; money and goods in one transfer, CONTRACTS §20: "
+    "settlement 898243b + economy 20e53a7, trade-batch and transfer-batch on the registry keeper's rerun); realism 3001 to follow")

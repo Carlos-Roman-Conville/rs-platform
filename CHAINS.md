@@ -114,7 +114,10 @@ The registry keeper re-audits the commit and fills the closure record below.
   **First migration (2026-11-01):** Economy's goods ledger `economy.goods` (economy 5068, 1e79dbe, on kernel v0.1.1): buy and sell legs and shipment
   dispatch and arrival go through `transfer()` (account = inventory id or `shipment:<id>`; quantity = good id; unit count). Production, spoilage,
   consumption and the mass commands keep `adjust`, since they are not transfers between two holders. Registry rerun: goods-ledger T1–T6 8/8 at
-  economy 85a173e. Money stays on Settlement's provider until settlement 5069.
+  economy 85a173e. **Money and goods in one transfer (CONTRACTS §20, 2026-11-01):** each buy and sell is one `transfer()` with a
+  money leg (`settlement.money`) and a goods leg (`economy.goods`) under process `economy.trade.trade`; a refusal in either leg rolls both back
+  (settlement 898243b, pirate 1ae7e99, economy 20e53a7; registry reruns: economy trade-batch + goods-ledger 14/14 at 1b29ae8, settlement
+  transfer-batch 10/10). No leg refuses on balance: whether an account may go negative is Rex's (Q19, ECON-26).
 - **CG-18 events contract: yes.** `registry/events.json` is owned by the registry keeper. Its first rows are `shared.action.outcome` (CG-16) and `settlement.post_filled` (IF-27). Since 2026-11-01 it holds 36 bus types from kernel 3011's inventory; `settlement.post_filled` is retired (the bus type is `postFilled`), and lists are typed `of: 'record'` (kernel 5067), so there are no event warnings. The kernel's checker landed (kernel 3007, c171702): the belt check passes with one advisory warning, because `stimuli` has no element type yet. The kernel's
   `checkEventContracts` (unit 3007) warns, never fails, until the file is populated. The first unit is the event inventory.
 
