@@ -386,6 +386,20 @@
    "consumer": "cognition.learning.outcome",
    "summary": "Social maturation (2026-10-31): language, norms and upbringing reach a growing mind as acquired experience (observed acts and messages from household, kin and community, IF-46), never as a maturity setting; Cognition learns from them as from any experience.",
    "related_groups": []
+  },
+  {
+   "id": "IF-50",
+   "provider": "realism.cellular.chemical_injury",
+   "consumer": "realism.cellular.dna_damage_repair",
+   "summary": "Toxic exposure split (Life keeper 2026-10-31): chemical injury owns cell injury and loss from a toxic exposure; DNA damage and repair owns genomic damage from the same exposure; one exposure, two separate outputs, never the same damage counted twice.",
+   "related_groups": []
+  },
+  {
+   "id": "IF-51",
+   "provider": "realism.cellular.population_state",
+   "consumer": "realism.neurology.pk",
+   "summary": "Hepatocyte capacity to clearance (Life keeper 2026-10-31): the liver's hepatocyte population capacity sets the clearance pharmacokinetics reads; pk keeps no clearance number of its own.",
+   "related_groups": []
   }
  ],
  "nodes": [
@@ -2918,6 +2932,22 @@
    "scope": "universal"
   },
   {
+   "id": "realism.cellular.cell_architecture",
+   "engine": "life",
+   "status": "planned",
+   "kind": "mechanism",
+   "domain": "B",
+   "scope": "universal"
+  },
+  {
+   "id": "realism.cellular.chemical_injury",
+   "engine": "life",
+   "status": "planned",
+   "kind": "mechanism",
+   "domain": "B",
+   "scope": "universal"
+  },
+  {
    "id": "realism.cellular.death_replacement",
    "engine": "life",
    "status": "planned",
@@ -2991,6 +3021,14 @@
   },
   {
    "id": "realism.cellular.telomeres",
+   "engine": "life",
+   "status": "planned",
+   "kind": "mechanism",
+   "domain": "B",
+   "scope": "universal"
+  },
+  {
+   "id": "realism.cellular.tissue_remodelling",
    "engine": "life",
    "status": "planned",
    "kind": "mechanism",
@@ -7677,6 +7715,24 @@
    "group": "DUP-65"
   },
   {
+   "from": "realism.anatomy.damage_repair",
+   "to": "realism.cellular.population_state",
+   "type": "overlap",
+   "group": "DUP-66"
+  },
+  {
+   "from": "realism.anatomy.organ_function",
+   "to": "realism.cellular.population_state",
+   "type": "overlap",
+   "group": "DUP-66"
+  },
+  {
+   "from": "realism.anatomy.tissue_collagen",
+   "to": "realism.cellular.population_state",
+   "type": "overlap",
+   "group": "DUP-67"
+  },
+  {
    "from": "pirate.align.fates_forms",
    "to": "realism.infra.crisis_record",
    "type": "interface",
@@ -7969,6 +8025,18 @@
    "to": "society.household.structure",
    "type": "interface",
    "interface": "IF-49"
+  },
+  {
+   "from": "realism.cellular.dna_damage_repair",
+   "to": "realism.cellular.chemical_injury",
+   "type": "interface",
+   "interface": "IF-50"
+  },
+  {
+   "from": "realism.neurology.pk",
+   "to": "realism.cellular.population_state",
+   "type": "interface",
+   "interface": "IF-51"
   }
  ],
  "overlap_groups": [
@@ -10098,6 +10166,41 @@
     "economy.recipe.definition"
    ],
    "proposed_owner": "a good gains an optional ref to a catalogue id; nothing moves",
+   "approved_owner": null,
+   "state": "proposed",
+   "decision": null,
+   "progress": []
+  },
+  {
+   "id": "DUP-66",
+   "kind": "aggregation",
+   "authority": "aggregation",
+   "authority_note": "the one-population organ aggregate is legitimate once it reads the populations",
+   "batch": "2c",
+   "summary": "Organ damage in two homes: anatomy's built damage accumulation and repair and organ function's damage term, vs the planned tissue-population state (Life cellular design, 2026-10-31)",
+   "members": [
+    "realism.cellular.population_state",
+    "realism.anatomy.damage_repair",
+    "realism.anatomy.organ_function"
+   ],
+   "proposed_owner": "population_state owns injury per cell-type population; the anatomy rows become the documented one-population aggregate; organs with populations read damage from them; anatomy restates; no numbers move until a unit does it",
+   "approved_owner": null,
+   "state": "proposed",
+   "decision": null,
+   "progress": []
+  },
+  {
+   "id": "DUP-67",
+   "kind": "duplicate",
+   "authority": "duplicate-authority",
+   "authority_note": "",
+   "batch": "2c",
+   "summary": "Connective tissue integrity: anatomy's built collagen integrity and the anatomy.tissues integrity table vs the planned tissue-population state (Life cellular design, 2026-10-31)",
+   "members": [
+    "realism.cellular.population_state",
+    "realism.anatomy.tissue_collagen"
+   ],
+   "proposed_owner": "connective, bone and endothelial populations in population_state carry the same numbers; tissue_collagen becomes their read; the DUP-16 pathway (vitamin C to collagen to healing) runs through the population",
    "approved_owner": null,
    "state": "proposed",
    "decision": null,

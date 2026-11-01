@@ -2662,3 +2662,41 @@ DECISIONS["DUP-32"]["progress"] += [
  {"date": "2026-10-31", "step": "closed", "by": "registry keeper"}]
 DECISIONS["DUP-32"]["state"] = "closed"
 DECISIONS["DUP-33"]["progress"].append({"date": "2026-10-31", "step": "harness passed", "by": "Kernel keeper", "note": _H2887 + "; DUP-33 now waits only on Reality's counter asserts (realism 2846)"})
+
+# --- 2026-10-31: Life keeper, cellular architecture (Toolchain/life/DESIGN.md §1.10; design approved by Rex through the controller) ---
+_CELL_HOME = "Toolchain/life/DESIGN.md §1.10 (cellular architecture; approved by Rex 2026-10-31)"
+_CELL_INV = ("organ function is the combination of its cell-type populations; a regional subdivision sums to the aggregate (refinement B); "
+             "one clearance number (hepatocyte capacity), never a second one in pharmacokinetics; reversal of remodelling only where sourced")
+def _cell(k, name, form, writes, reads, consumers, notes, ev="?"):
+    return _sal(k, name, "B", form, writes, reads, consumers, "Life keeper 2026-10-31. " + notes, eng="realism", ev=ev, home=_CELL_HOME, inv=_CELL_INV, batch="life-keeper-2026-10-31-cellular")
+ROW_PATCHES.setdefault("realism.cellular.population_state", {}).update({
+    "formulation": "the tissue-population state per cell type: viable mass, capacity, injury D, repair capacity, senescent fraction, turnover, fibrotic fraction, cell type, optional region; damage D(t+1) = D(t) + damage - repair; specialised cell-type populations per organ; organ function is the combination of its populations; optional regional subdivision where the sum of regions equals the aggregate (refinement B)",
+    "notes": "adopted by the Life keeper (life DESIGN §1.10); first implementation src/tissue.ts in realism 2815 (plants first)"})
+EXTRA_ROWS += [
+ _cell("realism.cellular.cell_architecture", "Cell-type records (architecture)",
+       "cell-type records as data: kingdom; wall (none, cellulose, chitin); plastids; vacuole; nutrition mode; division capacity; specialised function; the injury, repair and regeneration parameters it brings",
+       [], [], ["realism.cellular.population_state", "realism.anatomy.species_profile"], "data, writes nothing at run time; evidence 1-2 for the cell-biology facts", ev="2"),
+ _cell("realism.cellular.chemical_injury", "Chemical injury of tissue",
+       "tissue exposure from realism.neurology.pk and medicine exposure gives an injury rate by sourced concentration-response and susceptibility; hepatocyte capacity sets the liver clearance that neurology.pk reads (no second clearance number)",
+       [], ["body.medicine_outputs"], ["realism.cellular.population_state", "realism.neurology.pk"],
+       "cell injury and loss; genomic damage stays realism.cellular.dna_damage_repair's (separate outputs; IF-50 boundary); writes injury into population_state's D through the population row"),
+ _cell("realism.cellular.tissue_remodelling", "Tissue remodelling and fibrosis",
+       "repeated injury activates the remodelling cell type (stellate cells, fibroblasts) and raises the fibrotic fraction, which lowers function; reversal only where sourced",
+       [], [], ["realism.cellular.population_state", "realism.anatomy.organ_function"], "the fibrotic fraction is a field of population_state"),
+]
+INTERFACES += [
+ ("IF-50", "realism.cellular.chemical_injury", "realism.cellular.dna_damage_repair",
+  "Toxic exposure split (Life keeper 2026-10-31): chemical injury owns cell injury and loss from a toxic exposure; DNA damage and repair owns genomic damage from the same exposure; one exposure, two separate outputs, never the same damage counted twice.", []),
+ ("IF-51", "realism.cellular.population_state", "realism.neurology.pk",
+  "Hepatocyte capacity to clearance (Life keeper 2026-10-31): the liver's hepatocyte population capacity sets the clearance pharmacokinetics reads; pk keeps no clearance number of its own.", []),
+]
+GROUPS += [
+ ("DUP-66", "aggregation", "Organ damage in two homes: anatomy's built damage accumulation and repair and organ function's damage term, vs the planned tissue-population state (Life cellular design, 2026-10-31)",
+  ["realism.cellular.population_state", "realism.anatomy.damage_repair", "realism.anatomy.organ_function"],
+  "population_state owns injury per cell-type population; the anatomy rows become the documented one-population aggregate; organs with populations read damage from them; anatomy restates; no numbers move until a unit does it"),
+ ("DUP-67", "duplicate", "Connective tissue integrity: anatomy's built collagen integrity and the anatomy.tissues integrity table vs the planned tissue-population state (Life cellular design, 2026-10-31)",
+  ["realism.cellular.population_state", "realism.anatomy.tissue_collagen"],
+  "connective, bone and endothelial populations in population_state carry the same numbers; tissue_collagen becomes their read; the DUP-16 pathway (vitamin C to collagen to healing) runs through the population"),
+]
+AUTH.update({"DUP-66": ("aggregation", "the one-population organ aggregate is legitimate once it reads the populations"), "DUP-67": ("duplicate-authority", "")})
+for _g in ("DUP-66", "DUP-67"): BATCH[_g] = "2c"

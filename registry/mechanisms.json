@@ -8,11 +8,11 @@
   "evidence_scale": "PLATFORM.md §4 (1 law ... 6 fiction)",
   "counts": {
    "built": 219,
-   "planned": 196,
+   "planned": 199,
    "documented-only": 161
   },
   "kinds": {
-   "mechanism": 484,
+   "mechanism": 487,
    "restatement": 92
   },
   "schema_version": 4,
@@ -25530,7 +25530,9 @@
    "tests": "anatomy.test.ts: applies health times input adequacy, daily repair...",
    "consumers": "host",
    "notes": "Bone repair 0.005 in library text has no organ in code; ischaemia insult (function<0.3 for >1h) unmodelled [package split pending, SPLIT.md; owner life since 2026-10-31]",
-   "overlap_groups": [],
+   "overlap_groups": [
+    "DUP-66"
+   ],
    "unit_issues": [],
    "audit_batch": "realism-bio",
    "audit_id": null,
@@ -25826,7 +25828,9 @@
    "tests": "anatomy.test.ts: reads inputs from graph edges...; applies health times input adequacy...",
    "consumers": "crisis tracking, circulation perfusion output, host",
    "notes": "Only perfusion + host signals feed it; hydration, anaemia, oxygen adequacies are not wired, so organ function is blind to dehydration (library says 6-10% deficit => kidney injury) [package split pending, SPLIT.md; owner life since 2026-10-31]",
-   "overlap_groups": [],
+   "overlap_groups": [
+    "DUP-66"
+   ],
    "unit_issues": [],
    "audit_batch": "realism-bio",
    "audit_id": null,
@@ -26166,7 +26170,8 @@
    "consumers": "organ inputs (skin), host",
    "notes": "Third consumer of the same vit_c<300 mg threshold: nutrition deficiency stage 1, medicine healing x3, and this. Medicine flags say anatomy collagen 'carries' scurvy while medicine.healing also multiplies healing time x3 [package split pending, SPLIT.md; owner life since 2026-10-31]",
    "overlap_groups": [
-    "DUP-16"
+    "DUP-16",
+    "DUP-67"
    ],
    "unit_issues": [],
    "audit_batch": "realism-bio",
@@ -26673,6 +26678,144 @@
    "failure_mode": null
   },
   {
+   "id": "realism.cellular.cell_architecture",
+   "name": "Cell-type records (architecture)",
+   "owning_engine": "life",
+   "home": "Toolchain/life/DESIGN.md §1.10 (cellular architecture; approved by Rex 2026-10-31)",
+   "home_kind": "code",
+   "status": "planned",
+   "status_note": "",
+   "kind": "mechanism",
+   "restates": null,
+   "domain": "B",
+   "scope": "universal",
+   "scope_note": "",
+   "inputs": [],
+   "outputs": [],
+   "state": "planned",
+   "formulation": "cell-type records as data: kingdom; wall (none, cellulose, chitin); plastids; vacuole; nutrition mode; division capacity; specialised function; the injury, repair and regeneration parameters it brings",
+   "dependencies": [],
+   "timescale": "planned",
+   "invariants": "organ function is the combination of its cell-type populations; a regional subdivision sums to the aggregate (refinement B); one clearance number (hepatocyte capacity), never a second one in pharmacokinetics; reversal of remodelling only where sourced",
+   "sources": "to research per unit (evidence levels stated); ENGINES.md",
+   "evidence": 2,
+   "evidence_note": "",
+   "approximations": "planned",
+   "tests": "none",
+   "consumers": [
+    "realism.cellular.population_state",
+    "realism.anatomy.species_profile"
+   ],
+   "notes": "Life keeper 2026-10-31. data, writes nothing at run time; evidence 1-2 for the cell-biology facts [package split pending, SPLIT.md; owner life since 2026-10-31]",
+   "overlap_groups": [],
+   "unit_issues": [],
+   "audit_batch": "life-keeper-2026-10-31-cellular",
+   "audit_id": null,
+   "writes": [],
+   "reads": [],
+   "aggregates": null,
+   "vv": {
+    "implemented": false,
+    "integrated": "no (not built)",
+    "validated": "n/a",
+    "record": {
+     "sources_and_model": {
+      "sources": "to research per unit (evidence levels stated); ENGINES.md",
+      "model": "cell-type records as data: kingdom; wall (none, cellulose, chitin); plastids; vacuole; nutrition mode; division capacity; specialised function; the injury, repair and regeneration parameters it brings",
+      "evidence_level": 2
+     },
+     "applicability": "planned",
+     "verification_tests": "none",
+     "validation_evidence": [],
+     "tolerance": null,
+     "stability_conservation_boundary": [],
+     "numerical": {
+      "stability": null,
+      "coupled_update_consistency": null,
+      "sensitivity": null
+     },
+     "integration_tested_with": [],
+     "integration_tests": [],
+     "report": "Life keeper 2026-10-31. data, writes nothing at run time; evidence 1-2 for the cell-biology facts [package split pending, SPLIT.md; owner life since 2026-10-31]"
+    }
+   },
+   "rate_limiter": null,
+   "failure_mode": null
+  },
+  {
+   "id": "realism.cellular.chemical_injury",
+   "name": "Chemical injury of tissue",
+   "owning_engine": "life",
+   "home": "Toolchain/life/DESIGN.md §1.10 (cellular architecture; approved by Rex 2026-10-31)",
+   "home_kind": "code",
+   "status": "planned",
+   "status_note": "",
+   "kind": "mechanism",
+   "restates": null,
+   "domain": "B",
+   "scope": "universal",
+   "scope_note": "",
+   "inputs": [
+    {
+     "name": "body.medicine_outputs",
+     "unit": "see quantities.json"
+    }
+   ],
+   "outputs": [],
+   "state": "planned",
+   "formulation": "tissue exposure from realism.neurology.pk and medicine exposure gives an injury rate by sourced concentration-response and susceptibility; hepatocyte capacity sets the liver clearance that neurology.pk reads (no second clearance number)",
+   "dependencies": [],
+   "timescale": "planned",
+   "invariants": "organ function is the combination of its cell-type populations; a regional subdivision sums to the aggregate (refinement B); one clearance number (hepatocyte capacity), never a second one in pharmacokinetics; reversal of remodelling only where sourced",
+   "sources": "to research per unit (evidence levels stated); ENGINES.md",
+   "evidence": null,
+   "evidence_note": "?",
+   "approximations": "planned",
+   "tests": "none",
+   "consumers": [
+    "realism.cellular.population_state",
+    "realism.neurology.pk"
+   ],
+   "notes": "Life keeper 2026-10-31. cell injury and loss; genomic damage stays realism.cellular.dna_damage_repair's (separate outputs; IF-50 boundary); writes injury into population_state's D through the population row [package split pending, SPLIT.md; owner life since 2026-10-31]",
+   "overlap_groups": [],
+   "unit_issues": [],
+   "audit_batch": "life-keeper-2026-10-31-cellular",
+   "audit_id": null,
+   "interfaces": [
+    "IF-50"
+   ],
+   "writes": [],
+   "reads": [],
+   "aggregates": null,
+   "vv": {
+    "implemented": false,
+    "integrated": "no (not built)",
+    "validated": "n/a",
+    "record": {
+     "sources_and_model": {
+      "sources": "to research per unit (evidence levels stated); ENGINES.md",
+      "model": "tissue exposure from realism.neurology.pk and medicine exposure gives an injury rate by sourced concentration-response and susceptibility; hepatocyte capacity sets the liver clearance that neurology.pk reads (no second clearance number)",
+      "evidence_level": null
+     },
+     "applicability": "planned",
+     "verification_tests": "none",
+     "validation_evidence": [],
+     "tolerance": null,
+     "stability_conservation_boundary": [],
+     "numerical": {
+      "stability": null,
+      "coupled_update_consistency": null,
+      "sensitivity": null
+     },
+     "integration_tested_with": [],
+     "integration_tests": [],
+     "report": "Life keeper 2026-10-31. cell injury and loss; genomic damage stays realism.cellular.dna_damage_repair's (separate outputs; IF-50 boundary); writes injury into population_state's D through the population row [package split pending, SPLIT.md; owner life since 2026-10-31]"
+    }
+   },
+   "rate_limiter": null,
+   "failure_mode": null
+  },
+  {
    "id": "realism.cellular.death_replacement",
    "name": "Cell death and replacement",
    "owning_engine": "life",
@@ -26783,6 +26926,9 @@
    "unit_issues": [],
    "audit_batch": "rex-2026-10-30",
    "audit_id": null,
+   "interfaces": [
+    "IF-50"
+   ],
    "writes": [],
    "reads": [],
    "aggregates": null,
@@ -27043,7 +27189,7 @@
    "inputs": [],
    "outputs": [],
    "state": "planned",
-   "formulation": "per tissue population: size, capacity, energy, damage, repair, senescent fraction, turnover; damage D(t+1) = D(t) + damage - repair; writes realism.records.cellular_state",
+   "formulation": "the tissue-population state per cell type: viable mass, capacity, injury D, repair capacity, senescent fraction, turnover, fibrotic fraction, cell type, optional region; damage D(t+1) = D(t) + damage - repair; specialised cell-type populations per organ; organ function is the combination of its populations; optional regional subdivision where the sum of regions equals the aggregate (refinement B)",
    "dependencies": [],
    "timescale": "planned",
    "invariants": "planned",
@@ -27062,11 +27208,17 @@
     "reproduction",
     "organ capacity"
    ],
-   "notes": "registry task R-CELL after P0 and P1: audit what moves under cellular ownership (DUP-17 among it) [package split pending, SPLIT.md; owner life since 2026-10-31]",
-   "overlap_groups": [],
+   "notes": "adopted by the Life keeper (life DESIGN §1.10); first implementation src/tissue.ts in realism 2815 (plants first) [package split pending, SPLIT.md; owner life since 2026-10-31]",
+   "overlap_groups": [
+    "DUP-66",
+    "DUP-67"
+   ],
    "unit_issues": [],
    "audit_batch": "rex-2026-10-30",
    "audit_id": null,
+   "interfaces": [
+    "IF-51"
+   ],
    "writes": [],
    "reads": [],
    "aggregates": null,
@@ -27077,7 +27229,7 @@
     "record": {
      "sources_and_model": {
       "sources": "to research; established processes labelled apart from simplified or experimental ageing models (Rex)",
-      "model": "per tissue population: size, capacity, energy, damage, repair, senescent fraction, turnover; damage D(t+1) = D(t) + damage - repair; writes realism.records.cellular_state",
+      "model": "the tissue-population state per cell type: viable mass, capacity, injury D, repair capacity, senescent fraction, turnover, fibrotic fraction, cell type, optional region; damage D(t+1) = D(t) + damage - repair; specialised cell-type populations per organ; organ function is the combination of its populations; optional regional subdivision where the sum of regions equals the aggregate (refinement B)",
       "evidence_level": null
      },
      "applicability": "cell populations with representative states, never individual cells",
@@ -27092,7 +27244,7 @@
      },
      "integration_tested_with": [],
      "integration_tests": [],
-     "report": "registry task R-CELL after P0 and P1: audit what moves under cellular ownership (DUP-17 among it) [package split pending, SPLIT.md; owner life since 2026-10-31]"
+     "report": "adopted by the Life keeper (life DESIGN §1.10); first implementation src/tissue.ts in realism 2815 (plants first) [package split pending, SPLIT.md; owner life since 2026-10-31]"
     }
    },
    "rate_limiter": null,
@@ -27377,6 +27529,71 @@
      "integration_tested_with": [],
      "integration_tests": [],
      "report": "registry task R-CELL after P0 and P1: audit what moves under cellular ownership (DUP-17 among it) [package split pending, SPLIT.md; owner life since 2026-10-31]"
+    }
+   },
+   "rate_limiter": null,
+   "failure_mode": null
+  },
+  {
+   "id": "realism.cellular.tissue_remodelling",
+   "name": "Tissue remodelling and fibrosis",
+   "owning_engine": "life",
+   "home": "Toolchain/life/DESIGN.md §1.10 (cellular architecture; approved by Rex 2026-10-31)",
+   "home_kind": "code",
+   "status": "planned",
+   "status_note": "",
+   "kind": "mechanism",
+   "restates": null,
+   "domain": "B",
+   "scope": "universal",
+   "scope_note": "",
+   "inputs": [],
+   "outputs": [],
+   "state": "planned",
+   "formulation": "repeated injury activates the remodelling cell type (stellate cells, fibroblasts) and raises the fibrotic fraction, which lowers function; reversal only where sourced",
+   "dependencies": [],
+   "timescale": "planned",
+   "invariants": "organ function is the combination of its cell-type populations; a regional subdivision sums to the aggregate (refinement B); one clearance number (hepatocyte capacity), never a second one in pharmacokinetics; reversal of remodelling only where sourced",
+   "sources": "to research per unit (evidence levels stated); ENGINES.md",
+   "evidence": null,
+   "evidence_note": "?",
+   "approximations": "planned",
+   "tests": "none",
+   "consumers": [
+    "realism.cellular.population_state",
+    "realism.anatomy.organ_function"
+   ],
+   "notes": "Life keeper 2026-10-31. the fibrotic fraction is a field of population_state [package split pending, SPLIT.md; owner life since 2026-10-31]",
+   "overlap_groups": [],
+   "unit_issues": [],
+   "audit_batch": "life-keeper-2026-10-31-cellular",
+   "audit_id": null,
+   "writes": [],
+   "reads": [],
+   "aggregates": null,
+   "vv": {
+    "implemented": false,
+    "integrated": "no (not built)",
+    "validated": "n/a",
+    "record": {
+     "sources_and_model": {
+      "sources": "to research per unit (evidence levels stated); ENGINES.md",
+      "model": "repeated injury activates the remodelling cell type (stellate cells, fibroblasts) and raises the fibrotic fraction, which lowers function; reversal only where sourced",
+      "evidence_level": null
+     },
+     "applicability": "planned",
+     "verification_tests": "none",
+     "validation_evidence": [],
+     "tolerance": null,
+     "stability_conservation_boundary": [],
+     "numerical": {
+      "stability": null,
+      "coupled_update_consistency": null,
+      "sensitivity": null
+     },
+     "integration_tested_with": [],
+     "integration_tests": [],
+     "report": "Life keeper 2026-10-31. the fibrotic fraction is a field of population_state [package split pending, SPLIT.md; owner life since 2026-10-31]"
     }
    },
    "rate_limiter": null,
@@ -38550,6 +38767,9 @@
    "audit_id": null,
    "closed_overlap_groups": [
     "DUP-22"
+   ],
+   "interfaces": [
+    "IF-51"
    ],
    "writes": [
     "body.conc",
