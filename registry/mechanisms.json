@@ -3581,7 +3581,7 @@
    "approximations": "baseline decision engine; see DESIGN.md §2",
    "tests": "Toolchain/cognition test/personality-v1.test.ts, test/personality-versions.test.ts (cognition 3a2bdcd; suite 307/307)",
    "consumers": [],
-   "notes": "CTRL-7; design only",
+   "notes": "Rex's theory as a hypothesis, one optional configuration of the slot (DESIGN.md §9); CTRL-7. Diagnostic tooling (Rex 2026-11-01, not a mechanism): the Function Activation Ledger, id cognition.diagnostics.function_ledger, Toolchain/cognition/bench/diagnostics/DESIGN.md (units 2917 design, 2918 implementation, 2919 dashboard); writes no mind.* quantity and changes no decision; reads the existing processing trace (scenarios DESIGN §9) plus counterfactual ablation reruns; no second event or log system; F1-F13 unmodified during the initial experiments; the intended relevance map is never read by code.",
    "overlap_groups": [],
    "unit_issues": [],
    "audit_batch": "cognition-keeper-2026-10-30",
@@ -3623,7 +3623,7 @@
      "integration_tests": [
       "Toolchain/cognition test/personality-versions.test.ts; bench/personality-versions.ts runs the hungry pair per personality version (DESIGN §9 T-3; cognition 3a2bdcd)"
      ],
-     "report": "CTRL-7; design only"
+     "report": "Rex's theory as a hypothesis, one optional configuration of the slot (DESIGN.md §9); CTRL-7. Diagnostic tooling (Rex 2026-11-01, not a mechanism): the Function Activation Ledger, id cognition.diagnostics.function_ledger, Toolchain/cognition/bench/diagnostics/DESIGN.md (units 2917 design, 2918 implementation, 2919 dashboard); writes no mind.* quantity and changes no decision; reads the existing processing trace (scenarios DESIGN §9) plus counterfactual ablation reruns; no second event or log system; F1-F13 unmodified during the initial experiments; the intended relevance map is never read by code."
     }
    }
   },

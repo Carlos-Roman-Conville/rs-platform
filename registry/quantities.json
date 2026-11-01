@@ -10,12 +10,11 @@
    "checked": "2026-10-30",
    "parser": "Toolchain/kernel/src/units.ts parse (unit 2592)",
    "tally": {
-    "parses": 311,
+    "parses": 312,
     "kind record": 127,
     "kind text": 1,
     "kind categorical": 8,
-    "unknown: the": 38,
-    "fails the": 1
+    "unknown: the": 38
    }
   }
  },
@@ -5545,9 +5544,7 @@
    "writer": null,
    "description": "soil salinity (electrical conductivity)",
    "status": "planned (LIFE-2, Life keeper 2026-10-31): read by Life's plants; Reality writes it (phases 8, 13, 16) and registers the writer with its design",
-   "unit_parses": false,
-   "unit_error": "unknown unit symbol: dS",
-   "unit_status": "fails the kernel parser: unknown unit symbol: dS"
+   "unit_parses": true
   },
   {
    "id": "world.soil_water",

@@ -2723,3 +2723,10 @@ for _g in ("DUP-66", "DUP-67"):
                      "state": "closing", "progress": [{"date": "2026-10-31", "step": "owner approved", "by": "Rex (via the Life keeper)", "note": "life DESIGN §1.10; realism 2815 implements the matrix integrity field"}]}
 ROW_PATCHES["realism.cellular.population_state"]["formulation"] = ("the tissue-population state per cell type: viable mass, capacity, injury D, repair capacity, senescent fraction, turnover, fibrotic fraction, matrix integrity (0-1; extracellular matrix and mechanical structure, Rex 2026-10-31), cell type, optional region; "
     "damage D(t+1) = D(t) + damage - repair; specialised cell-type populations per organ; organ function is the combination of its populations; the organ-integrity read combines viable mass, fibrotic fraction and matrix integrity; optional regional subdivision where the sum of regions equals the aggregate (refinement B)")
+
+# --- Rex 2026-11-01 (Cognition keeper): Function Activation Ledger, diagnostic tooling, recorded as a note (the registry has no tooling kind) ---
+_FAL = (" Diagnostic tooling (Rex 2026-11-01, not a mechanism): the Function Activation Ledger, id cognition.diagnostics.function_ledger, "
+        "Toolchain/cognition/bench/diagnostics/DESIGN.md (units 2917 design, 2918 implementation, 2919 dashboard); writes no mind.* quantity and changes no decision; "
+        "reads the existing processing trace (scenarios DESIGN §9) plus counterfactual ablation reruns; no second event or log system; F1-F13 unmodified during the initial experiments; the intended relevance map is never read by code.")
+_o = ROW_PATCHES.get("cognition.personality.eight_function", {}).get("notes")
+ROW_PATCHES.setdefault("cognition.personality.eight_function", {})["notes"] = ((_o or "Rex's theory as a hypothesis, one optional configuration of the slot (DESIGN.md §9); CTRL-7.") + _FAL)
