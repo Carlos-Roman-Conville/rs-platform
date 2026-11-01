@@ -23,7 +23,7 @@
    "implemented": 221,
    "built_mechanisms": 223,
    "with_integration_test": 122,
-   "integrated_yes": 122,
+   "integrated_yes": 123,
    "validated_yes": 0,
    "validated_candidate": 6,
    "validation_failed": 2
@@ -7122,7 +7122,7 @@
    "aggregates": null,
    "vv": {
     "implemented": true,
-    "integrated": "no (no combined test; wiring by prop names, process order or CONTRACTS.md providers only)",
+    "integrated": "yes (combined test: economy test/food-to-body.test.ts F1-F5 with Life, economy 2fef178; Good.weight read by takeMass/addMass)",
     "validated": "no",
     "record": {
      "sources_and_model": {
@@ -7132,7 +7132,9 @@
      },
      "applicability": "no technology/knowledge gating logic; skill band stored opaque; weight stored but unused; recipe quantities not yet supplied for pirate data",
      "verification_tests": "engine.test E2",
-     "validation_evidence": [],
+     "validation_evidence": [
+      "CG-19 re-audit 2026-11-01 at economy 4192e27 (28/28); port declared at 730e54f"
+     ],
      "tolerance": null,
      "stability_conservation_boundary": [],
      "numerical": {

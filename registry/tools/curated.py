@@ -3163,3 +3163,12 @@ for _g in INTERFACE_GAPS:
         _g["progress"] += ("; kernel 3011 inventory (1933334) merged 2026-11-01: events.json holds 36 bus types (3 advisory warnings: list without of); "
                            "open (REG-31): the harness adapter does not forward a reducer event's cause to the kernel envelope; Society's local kinds and Government's returned records have no bus path; "
                            "'refused' name collision Economy/Society; no object/nullable/union field kind")
+
+# --- 2026-11-01: economy 5049 landed (730e54f, kernel.json only): ports recipe.definition -> economy.good_mass_per_unit (out, kg/count) and
+# inventory.holdings -> economy.mass_taken (out, kg). Registry keeper re-audit: belt check exit 0. recipe.definition's weight is now read by takeMass/addMass
+# and exercised with Life in economy test/food-to-body.test.ts F1-F5 (2fef178; 28/28 at 4192e27), so it counts as integrated ---
+for _q in EXTRA_QUANTITIES:
+    if _q["id"] in ("economy.good_mass_per_unit", "economy.mass_taken"):
+        _q["status"] = "built (economy da23966, unit 2999; CG-19 re-audit 2026-11-01 at 4192e27, 28/28); port declared at economy 730e54f (unit 5049)"
+VV_OVERRIDES["economy.recipe.definition"] = {"validated": "no", "integrated": "yes (combined test: economy test/food-to-body.test.ts F1-F5 with Life, economy 2fef178; Good.weight read by takeMass/addMass)",
+                                             "evidence": "CG-19 re-audit 2026-11-01 at economy 4192e27 (28/28); port declared at 730e54f"}

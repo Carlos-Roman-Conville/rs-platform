@@ -245,7 +245,7 @@ Each mechanism is **implemented** (code and unit tests pass), **integrated** (wi
 what it reads and feeds), and **validated** (its behaviour matches independent evidence within declared
 tolerances): three separate states, recorded per row in `mechanisms.json` (`vv`). Seeded 2026-10-30:
 
-- built mechanisms 223; **implemented** 221; with a combined (integration) test 122; **integrated (yes)** 122; **validated (yes)** 0; 6 candidates; 2 failed. 'Integrated' means a named combined test runs the row with what it reads and feeds (REVIEWS.md, V&V states); wiring by prop names alone is 'no'. That most rows are implemented-not-validated is the honest starting point (Rex).
+- built mechanisms 223; **implemented** 221; with a combined (integration) test 122; **integrated (yes)** 123; **validated (yes)** 0; 6 candidates; 2 failed. 'Integrated' means a named combined test runs the row with what it reads and feeds (REVIEWS.md, V&V states); wiring by prop names alone is 'no'. That most rows are implemented-not-validated is the honest starting point (Rex).
 
 The combined tests counted as integration evidence:
 
