@@ -18,7 +18,7 @@ owned elsewhere.
 |---|---|
 | `REGISTRY.md` (this) | how to use the registry; the summary; one line per mechanism |
 | `registry/mechanisms.json` | the full contract per row: every PLATFORM.md §7 field |
-| `registry/graph.json` | nodes, edges (depends_on, restates, overlap), the 65 overlap groups (each with its `authority` class and presentation `batch`), the 15 unit issues, cycles, unresolved dependencies |
+| `registry/graph.json` | nodes, edges (depends_on, restates, overlap), the 67 overlap groups (each with its `authority` class and presentation `batch`), the 15 unit issues, cycles, unresolved dependencies |
 | `registry/quantities.json` | the quantity vocabulary (schema 2, agreed with the Kernel keeper, `kernel/DESIGN.md` §8): one row per quantity id `<scope>.<quantity>`, its unit symbol (from `kernel/data/units.json` once it exists), its one writer. 317 seeds from the audit's output names, awaiting each owner's confirmation; 17 have several candidate writers |
 | `registry/aliases.json` | renames of mechanism and quantity ids (old → new, date, reason); a retired id is never reused |
 | `OVERLAPS-BATCH-1.md` | the first batch of overlap groups for Rex: owner, reads and aggregates, acceptance test, keepers to agree, routing |
@@ -56,7 +56,7 @@ source does not state are recorded as such ("none stated", "unknown"), never fil
 Six readers (Sonnet), each over one batch with one extraction schema: realism physical side, realism life side,
 settlement + economy, the pirate body docs and STATS.md, the pirate world/science/balance/goods/combat docs and
 their game code, and the ten keepers' handoffs and issues. The registry keeper merged the rows, linked 91
-restatements to their owners, wrote the first 47 overlap groups (DUP-1..47; 65 today) and 15 unit issues by hand, and computed the graph.
+restatements to their owners, wrote the first 47 overlap groups (DUP-1..47; 67 today) and 15 unit issues by hand, and computed the graph.
 Files over 40 KB were searched, never read whole; per-food, per-disease and per-item table rows are data, not
 mechanisms, and are not itemised. Coverage limits are listed in `HQ/handoffs/registry/HANDOFF.md`.
 
@@ -65,20 +65,20 @@ mechanisms, and are not itemised. Coverage limits are listed in `HQ/handoffs/reg
 | | built | documented-only | planned | total |
 |---|---|---|---|---|
 | reality mechanisms | 44 | 0 | 38 | 82 |
-| life mechanisms | 83 | 3 | 46 | 132 |
+| life mechanisms | 83 | 3 | 50 | 136 |
 | kernel mechanisms | 1 | 0 | 0 | 1 |
 | settlement mechanisms | 23 | 0 | 1 | 24 |
 | economy mechanisms | 21 | 0 | 5 | 26 |
-| cognition mechanisms | 13 | 0 | 40 | 53 |
+| cognition mechanisms | 13 | 0 | 41 | 54 |
 | society mechanisms | 0 | 0 | 17 | 17 |
-| government mechanisms | 0 | 0 | 7 | 7 |
+| government mechanisms | 4 | 0 | 11 | 15 |
 | knowledge mechanisms | 0 | 0 | 7 | 7 |
 | history mechanisms | 0 | 0 | 1 | 1 |
 | catalogue mechanisms | 0 | 0 | 7 | 7 |
-| shared mechanisms | 6 | 5 | 3 | 14 |
+| shared mechanisms | 6 | 5 | 4 | 15 |
 | pirate-ship mechanisms | 24 | 63 | 15 | 102 |
 | restatements (pirate docs and adapters) | 0 | 90 | 2 | 92 |
-| **all rows** | 215 | 161 | 189 | 565 |
+| **all rows** | 219 | 161 | 199 | 579 |
 
 **Restatements** are not errors: the pirate body docs are rendered from the same library JSON as the realism
 code (`body/build-body-data.py`), so their tables cannot disagree with the code. Disagreements live only in their
@@ -88,7 +88,7 @@ prose formulas; those are in GRAPH.md (DUP-14, DUP-18, the sweat formula, the DO
 
 1. **No platform mechanism registry existed.** `realism/src/registry.ts` is an entity store (substances,
    materials, components); `graph.ts` is a list of port edges. Both are reusable as shared vocabulary (their ids).
-2. **47 overlap groups at the first audit** (65 today), of which the gravest are the double penalties the §7 rule forbids: work capacity from
+2. **47 overlap groups at the first audit** (67 today), of which the gravest are the double penalties the §7 rule forbids: work capacity from
    four multipliers (DUP-15), vitamin C with four consequences (DUP-16), fatigue in five places (DUP-13), vision
    dips from several sources (DUP-37), and mortality from five sources with no cause-of-death ledger (DUP-19).
 3. **One wiring bug:** circulation writes `blood_lost_ml`, nutrition reads `blood_lost_l`; haemorrhage never costs
@@ -162,7 +162,7 @@ stability/conservation/boundary tests, `integration_tested_with`, integration te
 | `realism.gas.thresholds_layering` | B | A | U | 4 | I-- | DUP-25 | realism/src/atmosphere.ts gasThresholds L221, layeredPpm L243, densityVsAir L234 |
 | `realism.gas.units` | B | A | U | 1 | I-- | DUP-4 | realism/src/atmosphere.ts L104-123 |
 | `realism.granular.mechanics` | P | A | U | 2 | --- |  | ENGINES.md 'Gaps noted from a field survey' (Rex 2026-10-31; candidate, planned, not sched |
-| `realism.infra.component_registry` | B | infra | U | 1 | I-- | DUP-10 DUP-32 | realism/src/registry.ts Registry |
+| `realism.infra.component_registry` | B | infra | U | 1 | I-- | DUP-10 | realism/src/registry.ts Registry |
 | `realism.infra.connection_graph` | B | infra | U | 1 | I-- |  | realism/src/graph.ts Graph |
 | `realism.infra.energy_addheat` | B | A | U | 1 | I-- |  | realism/src/world.ts addHeat L76 |
 | `realism.infra.library_loader` | B | infra | U | 1 | I-- |  | realism/src/library.ts libraryTable L56 |
@@ -211,31 +211,34 @@ stability/conservation/boundary tests, `integration_tested_with`, integration te
 | `realism.thermo.water_vapour_pressure` | B | A | U | 1 | IT- | DUP-2 | realism/src/physics.ts waterVapourPressure L17 |
 | `shared.communication.medium` | P | A | U | ? | --- |  | ENGINES.md 'Communication and information transmission' (Rex 2026-10-30; owned by Cognitio |
 
-### life (132)
+### life (136)
 
 | id | st | dom | sc | ev | V&V | overlaps | home |
 |---|---|---|---|---|---|---|---|
 | `realism.anatomy.assembly` | B | B | U | 4 | IT- |  | realism/src/anatomy.ts assembleBody L97-145 |
 | `realism.anatomy.crisis_floors` | B | B | M | 6 | IT- | DUP-36 | realism/src/anatomy.ts L165-169, L219 |
-| `realism.anatomy.damage_repair` | B | B | U | 5 | IT- |  | realism/src/anatomy.ts anatomyProcess L193-196 |
+| `realism.anatomy.damage_repair` | B | B | U | 5 | IT- | DUP-66 | realism/src/anatomy.ts anatomyProcess L193-196 |
 | `realism.anatomy.feed_gate` | B | B | U | 4 | IT- |  | realism/src/anatomy.ts feedAssembly L244-250 |
-| `realism.anatomy.organ_function` | B | B | U | 4 | IT- |  | realism/src/anatomy.ts anatomyProcess L174-225 |
+| `realism.anatomy.organ_function` | B | B | U | 4 | IT- | DUP-66 | realism/src/anatomy.ts anatomyProcess L174-225 |
 | `realism.anatomy.respiratory_profile` | B | B | U | 1 | I-- | DUP-25 | realism/data/library/anatomy.json respiratory; src/anatomy.ts L54 |
-| `realism.anatomy.species_profile` | B | B | U | 1 | IT- | DUP-23 DUP-24 | realism/src/anatomy.ts speciesProfile L43-56, speciesRmr L59 |
-| `realism.anatomy.tissue_collagen` | B | B | U | 4 | IT- | DUP-16 | realism/src/anatomy.ts anatomyProcess L184-187 |
+| `realism.anatomy.species_profile` | B | B | U | 1 | IT- | DUP-23 DUP-24 | realism data/library/anatomy.json (animals) and data/library/plants.json (one table per sp |
+| `realism.anatomy.tissue_collagen` | B | B | U | 4 | IT- | DUP-16 DUP-67 | realism/src/anatomy.ts anatomyProcess L184-187 |
 | `realism.bio.library_text_parsing` | B | infra | U | 4 | I-- |  | realism/src/*.ts grab()/numberIn()/libraryRow |
 | `realism.cellular.ageing_emergent` | P | B | U | ? | --- |  | realism/CELLULAR.md (planned; ENGINES.md 'Cellular biology', Rex 2026-10-30) |
 | `realism.cellular.atp_flux` | P | B | U | ? | --- |  | realism/CELLULAR.md (planned; ENGINES.md 'Cellular biology', Rex 2026-10-30) |
+| `realism.cellular.cell_architecture` | P | B | U | 2 | --- |  | life/DESIGN.md §1.10 (cellular architecture; approved by Rex 2026-10-31) |
+| `realism.cellular.chemical_injury` | P | B | U | ? | --- |  | life/DESIGN.md §1.10 (cellular architecture; approved by Rex 2026-10-31) |
 | `realism.cellular.death_replacement` | P | B | U | ? | --- |  | realism/CELLULAR.md (planned; ENGINES.md 'Cellular biology', Rex 2026-10-30) |
 | `realism.cellular.dna_damage_repair` | P | B | U | ? | --- |  | realism/CELLULAR.md (planned; ENGINES.md 'Cellular biology', Rex 2026-10-30) |
 | `realism.cellular.epigenetic_regulation` | P | B | U | ? | --- |  | realism/CELLULAR.md (planned; ENGINES.md 'Cellular biology', Rex 2026-10-30) |
 | `realism.cellular.inflammation_signalling` | P | B | U | ? | --- |  | realism/CELLULAR.md (planned; ENGINES.md 'Cellular biology', Rex 2026-10-30) |
 | `realism.cellular.mitochondrial_function` | P | B | U | ? | --- |  | realism/CELLULAR.md (planned; ENGINES.md 'Cellular biology', Rex 2026-10-30) |
-| `realism.cellular.population_state` | P | B | U | ? | --- |  | realism/CELLULAR.md (planned; ENGINES.md 'Cellular biology', Rex 2026-10-30) |
+| `realism.cellular.population_state` | P | B | U | ? | --- | DUP-66 DUP-67 | realism/CELLULAR.md (planned; ENGINES.md 'Cellular biology', Rex 2026-10-30) |
 | `realism.cellular.proteostasis` | P | B | U | ? | --- |  | realism/CELLULAR.md (planned; ENGINES.md 'Cellular biology', Rex 2026-10-30) |
 | `realism.cellular.senescence` | P | B | U | ? | --- |  | realism/CELLULAR.md (planned; ENGINES.md 'Cellular biology', Rex 2026-10-30) |
 | `realism.cellular.stem_cell_pools` | P | B | U | ? | --- |  | realism/CELLULAR.md (planned; ENGINES.md 'Cellular biology', Rex 2026-10-30) |
 | `realism.cellular.telomeres` | P | B | U | ? | --- |  | realism/CELLULAR.md (planned; ENGINES.md 'Cellular biology', Rex 2026-10-30) |
+| `realism.cellular.tissue_remodelling` | P | B | U | ? | --- |  | life/DESIGN.md §1.10 (cellular architecture; approved by Rex 2026-10-31) |
 | `realism.circulation.aerobic_today` | B | B | U | 2 | IT- | DUP-14 UNIT-4 | realism/src/circulation.ts L144,172 |
 | `realism.circulation.bleed_rate` | B | B | U | 5 | IT- |  | realism/src/circulation.ts bleed/bleedFactor L116-124 |
 | `realism.circulation.bleeding_class` | B | B | M | 2 | IT- | DUP-15 DUP-36 | realism/src/circulation.ts bleedingClass/bleedingEffects L44-66 |
@@ -246,6 +249,7 @@ stability/conservation/boundary tests, `integration_tested_with`, integration te
 | `realism.circulation.o2_delivery` | B | B | U | 1 | IT- |  | realism/src/circulation.ts oxygenDelivery L36-40 |
 | `realism.circulation.regulation_loops` | P | B | U | 5 | --- |  | realism/src/circulation.ts regulationLoops L128 |
 | `realism.circulation.volume_recovery` | B | B | U | 5 | IT- |  | realism/src/circulation.ts L148-154 |
+| `realism.development.maturation` | P | B | U | ? | --- | DUP-17 | realism (Life & Species; planned, P3 with the cellular layer; controller's overlap check f |
 | `realism.development.trait_change` | P | B | U | ? | --- |  | realism (Life & Species; planned; ENGINES.md 'Resolution of the biology', Rex 2026-10-30) |
 | `realism.eco.fished_out_catch` | B | B | M | 4 | I-- | DUP-50 | realism/src/ecology.ts dailyCatch L55, isFishedOut L52 |
 | `realism.eco.logistic_stock` | B | B | U | 1 | I-- | DUP-50 UNIT-7 | realism/src/ecology.ts stepStock L63, effectiveR L46 |
@@ -296,7 +300,7 @@ stability/conservation/boundary tests, `integration_tested_with`, integration te
 | `realism.neurology.pk` | B | B | U | 1 | I-- |  | realism/src/neurology.ts pkStep/concentration/dose L289-318,491 |
 | `realism.neurology.sleep_wake` | B | B | U | 5 | IT- | DUP-12 | realism/src/neurology.ts L539-543 |
 | `realism.neurology.tolerance_dependence_withdrawal` | B | B | U | 5 | I-- |  | realism/src/neurology.ts toleranceStep/recoveryStep/dependence/rebound L346-358; process L |
-| `realism.neurology.tone` | B | B | U | 4 | IT- |  | realism/src/neurology.ts neurologyProcess L580-623 |
+| `realism.neurology.tone` | B | B | U | 4 | IT- | DUP-17 | realism/src/neurology.ts neurologyProcess L580-623 |
 | `realism.nutri.rmr_mifflin` | B | B | U | 2 | I-- | DUP-24 | realism/src/physics.ts restingMetabolicRate L93 |
 | `realism.nutrition.absorption` | B | B | M | 4 | IT- |  | realism/src/nutrition.ts absorbedFraction L289-309 |
 | `realism.nutrition.body_mass` | B | B | U | 2 | IT- |  | realism/src/nutrition.ts L455-461; GLYCOGEN_BOUND_WATER L383 |
@@ -365,8 +369,8 @@ stability/conservation/boundary tests, `integration_tested_with`, integration te
 | `settlement.business.open` | B | D | U | 4 | I-- | DUP-58 | settlement/src/commands.ts openBusiness/closeBusiness/setOperator/setManager/setLines/setP |
 | `settlement.business.staffing` | B | D | U | 4 | IT- |  | settlement/src/tick/staffing.ts staffing(); queries.economic |
 | `settlement.expiry` | B | E | U | 4 | IT- |  | settlement/src/tick/expiry.ts expiry() |
-| `settlement.infra.id_scheme` | B | infra | U | 4 | I-- | DUP-32 | settlement/src/ids.ts mint(), isPool() |
-| `settlement.infra.reducer_replay` | B | infra | U | 4 | I-- | DUP-32 | settlement/src/reduce.ts reduce(), Runner |
+| `settlement.infra.id_scheme` | B | infra | U | 4 | I-- |  | settlement/src/ids.ts mint(), isPool() |
+| `settlement.infra.reducer_replay` | B | infra | U | 4 | I-- |  | settlement/src/reduce.ts reduce(), Runner |
 | `settlement.infra.tick_scheduler` | B | infra | U | 4 | IT- | DUP-33 | settlement/src/tick/index.ts, src/config.ts TICK_ORDER |
 | `settlement.land.parcel_split_merge` | B | F | U | 4 | I-- |  | settlement/src/commands.ts splitParcel/mergeParcels |
 | `settlement.ledger.pay` | B | D | U | 1 | IT- | DUP-30 DUP-43 | settlement/src/context.ts pay/record/accountOf; commands.ts credit/debit/payCommand; queri |
@@ -393,8 +397,8 @@ stability/conservation/boundary tests, `integration_tested_with`, integration te
 | `economy.example.three_ports` | B | D | U | 5 | I-- |  | economy/examples/three-ports.ts |
 | `economy.goods.record_object` | P | D | U | ? | --- |  | ENGINES.md 'History is the backend record; knowledge of history is Cognition's' (Rex 2026- |
 | `economy.household.budget` | P | D | U | ? | --- | DUP-59 | ROADMAP P5 Grounded economy (planned) |
-| `economy.infra.id_scheme` | B | infra | U | 4 | I-- | DUP-32 | economy/src/ids.ts |
-| `economy.infra.reducer_replay` | B | infra | U | 4 | I-- | DUP-32 | economy/src/reduce.ts, src/context.ts |
+| `economy.infra.id_scheme` | B | infra | U | 4 | I-- |  | economy/src/ids.ts |
+| `economy.infra.reducer_replay` | B | infra | U | 4 | I-- |  | economy/src/reduce.ts, src/context.ts |
 | `economy.infra.tick_scheduler` | B | infra | U | 4 | IT- | DUP-33 | economy/src/tick/index.ts tick(); config TICK_ORDER |
 | `economy.inventory.holdings` | B | D | U | 1 | IT- |  | economy/src/state.ts Inventory; context.ts adjust/stockOf; commands.ts openInventory/addSt |
 | `economy.labour.wage_quote` | B | D | U | 5 | IT- | DUP-28 | economy/src/labour.ts wageQuote/wageQuotes |
@@ -414,7 +418,7 @@ stability/conservation/boundary tests, `integration_tested_with`, integration te
 | `economy.trade.shipment` | B | D | U | 4 | IT- |  | economy/src/commands.ts ship(); tick shipments() |
 | `economy.trade.trade` | B | D | U | 4 | IT- |  | economy/src/commands.ts trade() |
 
-### cognition (53)
+### cognition (54)
 
 | id | st | dom | sc | ev | V&V | overlaps | home |
 |---|---|---|---|---|---|---|---|
@@ -456,6 +460,7 @@ stability/conservation/boundary tests, `integration_tested_with`, integration te
 | `cognition.perception.detect` | B | C | U | 4 | IT- |  | cognition/src/perception.ts (cognition 3a2bdcd) |
 | `cognition.personality.eight_function` | B | C | U | 5 | IT- |  | cognition/src/personality/eight-function/v1.ts (cognition 3a2bdcd) |
 | `cognition.personality.function_allocation` | P | C | U | 5 | --- |  | ENGINES.md 'Dynamic function allocation, the light and the crystal' (Rex 2026-10-30; plann |
+| `cognition.personality.function_development` | P | C | U | 5 | --- |  | ENGINES.md 'Developmental cognitive functions' (Rex 2026-10-31; cognition DESIGN §19) |
 | `cognition.personality.function_sensitivity` | P | C | U | 5 | --- |  | ENGINES.md 'Cultural salience and the zeitgeist in attraction' (Rex 2026-10-30; planned, i |
 | `cognition.personality.slot` | B | C | U | ? | IT- |  | cognition/src/personality.ts (cognition 3a2bdcd) |
 | `cognition.planning.lookahead` | P | C | U | ? | --- |  | cognition/DESIGN.md (design approved by Rex 2026-10-30, cognition 0291ac8; lane running) |
@@ -494,14 +499,22 @@ stability/conservation/boundary tests, `integration_tested_with`, integration te
 | `society.religion.community_ritual` | P | F | U | ? | --- |  | ENGINES.md 'Institutions, government and religion emerge' (Rex 2026-10-31; planned) |
 | `society.transmission.preferences` | P | F | U | ? | --- | DUP-60 | ENGINES.md 'General preference learning' (Rex 2026-10-30; Cognition, planned, built after  |
 
-### government (7)
+### government (15)
 
 | id | st | dom | sc | ev | V&V | overlaps | home |
 |---|---|---|---|---|---|---|---|
-| `government.authority.acquisition_delegation` | P | E | U | ? | --- | DUP-62 | ENGINES.md 'Institutions, government and religion emerge' (Rex 2026-10-31; planned) |
-| `government.compliance.enforcement` | P | E | U | ? | --- |  | ENGINES.md 'Institutions, government and religion emerge' (Rex 2026-10-31; planned) |
-| `government.jurisdiction.competing` | P | E | U | ? | --- |  | ENGINES.md 'Institutions, government and religion emerge' (Rex 2026-10-31; planned) |
-| `government.law.schema` | P | E | U | ? | --- |  | ENGINES.md 'Institutions, government and religion emerge' (Rex 2026-10-31; planned) |
+| `government.authority.acquisition_delegation` | B | E | U | ? | I-- | DUP-62 | government/src/authority/distribution.ts, readers.ts (3f8fe4f (2867)) |
+| `government.collective_choice.procedure` | P | E | U | ? | --- |  | government/DESIGN.md (approved by Rex 2026-10-31) §1.12 |
+| `government.compliance.enforcement` | B | E | U | ? | I-- |  | government/src/law/evaluate.ts, violation.ts (d04b4dc (2864)) |
+| `government.diplomacy.relations` | P | E | U | ? | --- |  | government/DESIGN.md (approved by Rex 2026-10-31) §1.14 |
+| `government.fiscal.spending` | P | E | U | ? | --- |  | government/DESIGN.md (approved by Rex 2026-10-31) §1.10 |
+| `government.fiscal.taxation` | P | E | U | ? | --- | DUP-42 | government/DESIGN.md (approved by Rex 2026-10-31) §1.9 |
+| `government.jurisdiction.competing` | B | E | U | ? | I-- |  | government/src/law/evaluate.ts (jurisdiction applicability), src/authority/distribution.ts |
+| `government.law.schema` | B | E | U | ? | I-- |  | government/src/law/schema.ts, load.ts, predicate.ts (705ce83 (2863)) |
+| `government.legitimacy.aggregate` | P | E | U | ? | --- |  | government/DESIGN.md (approved by Rex 2026-10-31) §1.8 |
+| `government.military.organisation` | P | E | U | ? | --- |  | government/DESIGN.md (approved by Rex 2026-10-31) §1.13 |
+| `government.polity.structure` | P | E | U | ? | --- |  | government/DESIGN.md (approved by Rex 2026-10-31) §1.14 |
+| `government.property.regime` | P | E | U | ? | --- |  | government/DESIGN.md (approved by Rex 2026-10-31) §1.11 |
 | `government.rule.creation_amendment` | P | E | U | ? | --- |  | ENGINES.md 'Institutions, government and religion emerge' (Rex 2026-10-31; planned) |
 | `government.succession.institutional` | P | E | U | ? | --- | DUP-62 | ENGINES.md 'Institutions, government and religion emerge' (Rex 2026-10-31; planned) |
 | `government.suppression.communication` | P | E | U | ? | --- |  | ENGINES.md 'Communication and information transmission' (Rex 2026-10-30; owned by Cognitio |
@@ -536,10 +549,11 @@ stability/conservation/boundary tests, `integration_tested_with`, integration te
 | `catalogue.reference.ingest` | P | infra | U | ? | --- |  | catalogue/DESIGN.md (approved by Rex 2026-10-31) §2.2 |
 | `catalogue.region.membership` | P | infra | U | ? | --- |  | catalogue/DESIGN.md (approved by Rex 2026-10-31) §1.4 |
 
-### shared (14)
+### shared (15)
 
 | id | st | dom | sc | ev | V&V | overlaps | home |
 |---|---|---|---|---|---|---|---|
+| `shared.action.kind` | P | infra | U | ? | --- |  | government/DESIGN.md (approved by Rex 2026-10-31) § GOV-Q4 |
 | `shared.contract.day_order` | B | infra | U | 4 | IT- | DUP-33 | settlement/CONTRACTS.md s9 |
 | `shared.contract.inventory_ownership` | B | D | U | 4 | -T- |  | settlement/CONTRACTS.md s2 and s15 (= economy/CONTRACTS.md) |
 | `shared.contract.labour_supply` | P | D | U | 4 | --- |  | settlement/CONTRACTS.md s16 (= economy); declaration in settlement/src/providers.ts and ec |
