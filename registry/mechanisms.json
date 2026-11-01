@@ -30265,7 +30265,7 @@
    "scope_note": "",
    "inputs": [
     {
-     "name": "realism.records.genetic_profile",
+     "name": "organism.genetic_profile",
      "unit": "see quantities.json"
     },
     {
@@ -43838,6 +43838,58 @@
    "scope_note": "",
    "inputs": [
     {
+     "name": "place.par",
+     "unit": "see quantities.json"
+    },
+    {
+     "name": "place.vpd",
+     "unit": "see quantities.json"
+    },
+    {
+     "name": "place.rain",
+     "unit": "see quantities.json"
+    },
+    {
+     "name": "world.soil_water",
+     "unit": "see quantities.json"
+    },
+    {
+     "name": "world.soil_salinity",
+     "unit": "see quantities.json"
+    },
+    {
+     "name": "world.water_depth",
+     "unit": "see quantities.json"
+    },
+    {
+     "name": "world.water_kd",
+     "unit": "see quantities.json"
+    },
+    {
+     "name": "world.water_salinity",
+     "unit": "see quantities.json"
+    },
+    {
+     "name": "world.water_t",
+     "unit": "see quantities.json"
+    },
+    {
+     "name": "world.inundation",
+     "unit": "see quantities.json"
+    },
+    {
+     "name": "world.sediment_porewater_nutrients",
+     "unit": "see quantities.json"
+    },
+    {
+     "name": "place.t",
+     "unit": "see quantities.json"
+    },
+    {
+     "name": "air.ppm_gases",
+     "unit": "see quantities.json"
+    },
+    {
      "name": "world.soil",
      "unit": "see quantities.json"
     },
@@ -43855,6 +43907,10 @@
     },
     {
      "name": "air.wind",
+     "unit": "see quantities.json"
+    },
+    {
+     "name": "organism.genetic_profile",
      "unit": "see quantities.json"
     }
    ],

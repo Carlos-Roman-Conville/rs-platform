@@ -2854,3 +2854,31 @@ for _g in INTERFACE_GAPS:
     if _g["interface"] == "CG-18":
         _g["progress"] = ("controller go 2026-11-01: registry/events.json (registry keeper owns; created empty) with type, producer, consumers, cause, payload schema; "
             "kernel 3007 adds checkEventContracts (warns until populated); the first unit is the event inventory")
+
+# --- 2026-11-01: Life keeper's chain-gap decisions (Toolchain/life/DESIGN.md §2.4). CG-4 and CG-12 close with these registry edits; the rest are progress ---
+_L2IN = ["place.par", "place.vpd", "place.rain", "world.soil_water", "world.soil_salinity", "world.water_depth", "world.water_kd",
+         "world.water_salinity", "world.water_t", "world.inundation", "world.sediment_porewater_nutrients", "place.t", "air.ppm_gases"]
+ROW_PATCHES.setdefault("realism.plant.physiology", {})["inputs"] = [{"name": x, "unit": "see quantities.json"} for x in _L2IN + ["world.soil", "world.soil_nutrient_pool", "world.soil_ph", "world.groundwater", "air.wind", "organism.genetic_profile"]]
+EXTRA_QUANTITIES.append({"id": "organism.genetic_profile", "kind": "record", "unit": None, "scope": "organism", "writer": "realism.records.genetic_profile",
+    "description": "record 1, kingdom-neutral: the organism's genome (chromosome segments with trait-associated variants), written once at conception or creation; read by maturation, phenotype and plant physiology (CG-12)",
+    "status": "planned (CG-12, Life keeper 2026-11-01)"})
+ROW_PATCHES.setdefault("realism.development.maturation", {})["inputs"] = [{"name": x, "unit": "see quantities.json"} for x in ["organism.genetic_profile", "realism.nutrition.pools", "world.signal_at_point", "body.crisis"]]
+for _el, _d in [("water", "water"), ("n", "nitrogen"), ("p", "phosphorus"), ("k", "potassium")]:
+    EXTRA_QUANTITIES.append({"id": "world.plant_uptake_" + _el, "kind": "quantity", "unit": "kg", "scope": "world", "writer": "realism.plant.physiology",
+        "description": "plant uptake of " + _d + " per plant record per step, cell-scoped: one transfer, delta soil available = -q, delta plant = +q, one substrate transaction (PLATFORM §7a; CG-3); litter returns the same way",
+        "status": "planned (CG-3, Life keeper 2026-11-01; built with unit {CG21} after realism 2815)"})
+_LIFE_PROG = {
+ "CG-4": "closed 2026-11-01 (registry edit): realism.plant.physiology inputs set to the eleven LIFE-2 ids + place.t + air.ppm_gases (Life keeper); verification: registry rebuild and belt check exit 0; 2815's env interface reads them",
+ "CG-12": "closed 2026-11-01 (registry edit): organism.genetic_profile (record, scope organism, writer realism.records.genetic_profile) registered; maturation reads it; verification: registry rebuild and belt check exit 0",
+}
+for _g in INTERFACE_GAPS:
+    _id = _g["interface"]
+    if _id in _LIFE_PROG: _g["state"] = _LIFE_PROG[_id]
+    elif _id == "CG-13": _g["progress"] = "Life keeper 2026-11-01: confirmed absorbed: kept = eaten x absorbedFraction('energy') to intake_kcal; eaten - kept is a traced food->waste transfer (J); no double count. Closes on unit {CG13}: realism test/nutrition.test.ts 'energy enters absorbed (CG-13)'. Unabsorbed energy has no quantity until CG-6"
+    elif _id == "CG-21": _g["progress"] = "Life keeper 2026-11-01: world.plant_state is the only biomass store at every resolution; world.vegetation_stock becomes a derived read (sum over records in a region, never integrated); vegetation_stocks becomes the coarsen/refine interface (conserves to 1e-12, no transfer). Closes on unit {CG21} after 2815"
+    elif _id == "CG-3": _g["progress"] = "Life keeper 2026-11-01: one transfer per element; world.plant_uptake_water/_n/_p/_k (kg) registered planned; harvest then removes nutrients from the plant only (Life's half of CG-20). Closes on unit {CG21} after 2815"
+    elif _id == "CG-23": _g["progress"] = "Life keeper 2026-11-01: trophic_flux over a period = sum of kg eaten by individually resolved consumers + cohort consumption of population-resolved ones, never both for one consumer; E = m x e_food from Life's food table. Designed; built with phase 19"
+    elif _id == "CG-19": _g["progress"] = _g.get("progress", "") + "; Life keeper 2026-11-01 confirms: goods carry no kcal, Life's food table owns kcal per kg; body-side test is unit {CG13}; the cross-engine test lives in the economy lane after 2999"
+    elif _id == "CG-16": _g["progress"] = "Life keeper 2026-11-01: Life owns body.capacity_functional (DUP-15), designed with the human sections; lead Cognition"
+    elif _id == "CG-20": _g["progress"] = "Life agrees 2026-11-01: soil loses nutrients only by uptake, leaching, runoff and erosion; the fertility drain becomes a read. Reality decides"
+    elif _id == "CG-22": _g["progress"] = _g.get("progress", "") + "; Life 2026-11-01: immediate substrate transactions, not a pending sum"

@@ -97,8 +97,8 @@ The registry keeper re-audits the commit and fills the closure record below.
 | 2 | IF-26 | broken connection | `mind.intention` to Economy demand | Cognition | Economy |
 | 2 | IF-27 | broken connection | `mind.intention` to labour offers (LabourSupply) | Cognition | Economy, Settlement |
 | 2 | CG-3 | broken connection | The plant uptake quantity (water, N, P, K), one transfer from the soil pool | Life | Reality |
-| 2 | CG-4 | broken connection | `realism.plant.physiology` reads the LIFE-2 quantities | Life | Reality |
-| 2 | CG-12 | broken connection | A quantity id for the genetic profile | Life | — |
+| 2 | CG-4 (**closed**) | broken connection | `realism.plant.physiology` reads the LIFE-2 quantities | Life | Reality |
+| 2 | CG-12 (**closed**) | broken connection | A quantity id for the genetic profile | Life | — |
 | 2 | CG-23 | broken connection | Population and individual consumption joined across resolutions | Life | Economy |
 | 2 | CG-17 (**closed**) | broken connection | A registry row for the kernel's `ConservedQuantity` and `ResolutionService` | Kernel | registry keeper |
 | 2 | CG-18 | missing (no equation), assigned by the controller | Typed event contracts (type, payload, producer, consumers) | Kernel | controller, all engines |
@@ -117,13 +117,19 @@ The registry keeper re-audits the commit and fills the closure record below.
 
 | Gap | Unit | Equation | Unit of q | Owner | Verification planned |
 |---|---|---|---|---|---|
-| CG-19 | economy 2999-economy-goods-mass-transfers (running) | `takeMass`: Δinventory = −q with q = units × `Good.weight`; `eatMeal({food, kg: q})`: Δbody = +q, in one transaction | kg (`economy.mass_taken`; `economy.good_mass_per_unit` kg/count, owned by `economy.recipe.definition`) | Economy (Life agrees) | economy test/mass.test.ts and the goldens at 2999's commit, then Life's coupled test. Open: goods carry no kcal; a good names its Life food id, and Life confirms it owns kcal per kg. |
+| CG-13 | {CG13} (Life, with Reality to number) | kept = eaten × absorbedFraction(energy) → intake; Δfood = −E_eaten, Δbody = +E_kept, Δwaste = +(E_eaten − E_kept) | J | Life | realism test/nutrition.test.ts "energy enters absorbed (CG-13)" |
+| CG-21 | {CG21}, after realism 2815 | `world.plant_state` is the only biomass store; `world.vegetation_stock` = Σ biomass over records in a region (a derived read, never integrated); coarsen/refine conserves to 1e-12 | kg | Life (Reality agrees) | the unit's coarsen/refine conservation test |
+| CG-3 | {CG21}, after realism 2815 | Δsoil_avail_X = −q, Δplant_X = +q per element, one transaction; ids `world.plant_uptake_water`, `_n`, `_p`, `_k` (planned) | kg per plant record per step | Life (Reality agrees) | the unit's transfer test |
+| CG-23 | Life phase 19 | trophic_flux = Σ kg eaten by individually resolved consumers + cohort consumption of population-resolved ones, never both for one consumer; E = m × e_food | kg | Life (Economy agrees) | with phase 19 |
+| CG-19 | economy 2999-economy-goods-mass-transfers (running) | `takeMass`: Δinventory = −q with q = units × `Good.weight`; `eatMeal({food, kg: q})`: Δbody = +q, in one transaction | kg (`economy.mass_taken`; `economy.good_mass_per_unit` kg/count, owned by `economy.recipe.definition`) | Economy (Life agrees) | economy test/mass.test.ts and the goldens at 2999's commit, then Life's coupled test. Life confirmed (2026-11-01): goods carry no kcal; a good names its Life food id, and Life's food table owns kcal per kg. The body side is {CG13}; the cross-engine test is in the economy lane after 2999. |
 
 ### Closure record
 
 | Gap | Unit | Equation | Unit of q | Owner | Verification | Re-audit |
 |---|---|---|---|---|---|---|
 | CG-17 | none: the code already existed; registered by the registry keeper from the Kernel keeper's proposal | refine is accepted only if every declared conserved quantity matches within its tolerance; coarsen installs the exact aggregate; `transaction` restores every participant on failure | owner-declared per quantity | Kernel | `test/resolution.test.ts` and `test/transaction.test.ts`: 23/23 at kernel 309a317 (code unchanged since a3c4314) | registry keeper 2026-11-01. Rows `kernel.resolution.handoff` and `kernel.transaction` are built; integrated: no (no registered consumer yet) |
+| CG-4 | registry edit (registry keeper, from the Life keeper's decision) | — (an input list) | — | Life | `realism.plant.physiology` reads the eleven LIFE-2 ids plus `place.t` and `air.ppm_gases`; registry rebuild and belt check exit 0 | registry keeper 2026-11-01. Realism 2815's environment interface reads them. |
+| CG-12 | registry edit (registry keeper, from the Life keeper's decision) | — (a record id) | record | Life | `organism.genetic_profile` (scope `organism`, writer `realism.records.genetic_profile`, planned), read by maturation; registry rebuild and belt check exit 0 | registry keeper 2026-11-01 |
 
 ## Chain 1: ecological
 
@@ -256,7 +262,7 @@ accepts it (IF-26, IF-27, IF-43), and the kernel event carries it as an `unknown
 | CG-1 | `place.par` has no writer | missing (no equation) | Reality |
 | CG-2 | `place.rain`, `place.vpd`, `world.soil_water` have no writer | missing (no equation) | Reality |
 | CG-3 | No plant uptake quantity (water, N, P, K) between soils and plants | broken connection | Life with Reality |
-| CG-4 | `realism.plant.physiology` inputs omit the LIFE-2 quantities | broken connection | Life |
+| CG-4 | **closed 2026-11-01**: `realism.plant.physiology` inputs omitted the LIFE-2 quantities | broken connection | Life |
 | CG-5 | No row moves an organism between places | missing (no equation) | Reality / Life |
 | CG-6 | No excreta mass or nutrient quantity; DUP-45 undecided | missing (no equation) | Life |
 | CG-7 | No nitrogen inputs (deposition, fixation, manure as mass) | missing (no equation) | Reality / Life |
@@ -264,7 +270,7 @@ accepts it (IF-26, IF-27, IF-43), and the kernel event carries it as an `unknown
 | CG-9 | Soil pools and fluxes: N, P and K in one kg quantity, "per area" with no area unit | invalid coupling | Reality |
 | CG-10 | No gut microbial digestion term | missing (no equation) | Life |
 | CG-11 | X1: body outputs (faeces) have no destination | missing (no equation) | controller / Rex |
-| CG-12 | The genetic profile has no quantity id; maturation reads a row id | broken connection | Life |
+| CG-12 | **closed 2026-11-01**: the genetic profile had no quantity id; maturation reads a row id | broken connection | Life |
 | CG-13 | energy_store reads "intake": eaten or absorbed is unstated | invalid coupling, to confirm | Life |
 | CG-14 | Expenditure has no growth, thermoregulation or reproduction term | missing (no equation) | Life |
 | CG-15 | Tissue populations have no B − D equation or quantities | missing (no equation) | Life (realism 2815) |

@@ -11060,13 +11060,14 @@
     "agreeing": [
      "reality"
     ],
-    "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)"
+    "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)",
+    "progress": "Life keeper 2026-11-01: one transfer per element; world.plant_uptake_water/_n/_p/_k (kg) registered planned; harvest then removes nutrients from the plant only (Life's half of CG-20). Closes on unit {CG21} after 2815"
    },
    {
     "interface": "CG-4",
     "from": "reality",
     "to": "life",
-    "state": "gap (CHAINS.md 2026-11-01)",
+    "state": "closed 2026-11-01 (registry edit): realism.plant.physiology inputs set to the eleven LIFE-2 ids + place.t + air.ppm_gases (Life keeper); verification: registry rebuild and belt check exit 0; 2815's env interface reads them",
     "gap": "chain 1.4: realism.plant.physiology inputs omit the LIFE-2 quantities (par, vpd, rain, soil_water, salinity, water)",
     "joins": "Toolchain/CHAINS.md",
     "failure_type": "broken connection",
@@ -11162,7 +11163,7 @@
     "interface": "CG-12",
     "from": "life",
     "to": "life",
-    "state": "gap (CHAINS.md 2026-11-01)",
+    "state": "closed 2026-11-01 (registry edit): organism.genetic_profile (record, scope organism, writer realism.records.genetic_profile) registered; maturation reads it; verification: registry rebuild and belt check exit 0",
     "gap": "chain 2.2: the genetic profile (record 1) has no quantity id; maturation lists the row id as an input",
     "joins": "Toolchain/CHAINS.md",
     "failure_type": "broken connection",
@@ -11182,7 +11183,8 @@
     "priority": 1,
     "owner": "life",
     "agreeing": [],
-    "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)"
+    "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)",
+    "progress": "Life keeper 2026-11-01: confirmed absorbed: kept = eaten x absorbedFraction('energy') to intake_kcal; eaten - kept is a traced food->waste transfer (J); no double count. Closes on unit {CG13}: realism test/nutrition.test.ts 'energy enters absorbed (CG-13)'. Unabsorbed energy has no quantity until CG-6"
    },
    {
     "interface": "CG-14",
@@ -11221,7 +11223,8 @@
      "life",
      "economy"
     ],
-    "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)"
+    "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)",
+    "progress": "Life keeper 2026-11-01: Life owns body.capacity_functional (DUP-15), designed with the human sections; lead Cognition"
    },
    {
     "interface": "CG-17",
@@ -11269,7 +11272,7 @@
      "life"
     ],
     "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)",
-    "progress": "Economy keeper 2026-11-01: unit 2999-economy-goods-mass-transfers (running). takeMass: delta inventory = -q, q = units x Good.weight (kg); eatMeal({food, kg: q}): delta body = +q in one kernel transaction; quantities economy.good_mass_per_unit (kg/count) and economy.mass_taken (kg) registered planned; energy: proposed amendment: goods carry no kcal, a good names its Life food id (Good.food) and Life's nutrition owns kcal per kg (Life to confirm); verification: economy test/mass.test.ts and goldens at 2999's commit, then Life's coupled test; adopts kernel.transfer (controller go)"
+    "progress": "Economy keeper 2026-11-01: unit 2999-economy-goods-mass-transfers (running). takeMass: delta inventory = -q, q = units x Good.weight (kg); eatMeal({food, kg: q}): delta body = +q in one kernel transaction; quantities economy.good_mass_per_unit (kg/count) and economy.mass_taken (kg) registered planned; energy: proposed amendment: goods carry no kcal, a good names its Life food id (Good.food) and Life's nutrition owns kcal per kg (Life to confirm); verification: economy test/mass.test.ts and goldens at 2999's commit, then Life's coupled test; adopts kernel.transfer (controller go); Life keeper 2026-11-01 confirms: goods carry no kcal, Life's food table owns kcal per kg; body-side test is unit {CG13}; the cross-engine test lives in the economy lane after 2999"
    },
    {
     "interface": "CG-20",
@@ -11284,7 +11287,8 @@
     "agreeing": [
      "life"
     ],
-    "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)"
+    "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)",
+    "progress": "Life agrees 2026-11-01: soil loses nutrients only by uptake, leaching, runoff and erosion; the fertility drain becomes a read. Reality decides"
    },
    {
     "interface": "CG-21",
@@ -11299,7 +11303,8 @@
     "agreeing": [
      "reality"
     ],
-    "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)"
+    "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)",
+    "progress": "Life keeper 2026-11-01: world.plant_state is the only biomass store at every resolution; world.vegetation_stock becomes a derived read (sum over records in a region, never integrated); vegetation_stocks becomes the coarsen/refine interface (conserves to 1e-12, no transfer). Closes on unit {CG21} after 2815"
    },
    {
     "interface": "CG-22",
@@ -11316,7 +11321,7 @@
      "kernel"
     ],
     "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)",
-    "progress": "Kernel keeper 2026-11-01: no kernel change; proposed rule: each fast flux applies its transfer to the stock at its own period (one transaction with the source, §7a); the yearly mechanism runs only the stock's slow dynamics; a yearly buffer breaks §7a unless it is a declared conserved stock. Reality decides"
+    "progress": "Kernel keeper 2026-11-01: no kernel change; proposed rule: each fast flux applies its transfer to the stock at its own period (one transaction with the source, §7a); the yearly mechanism runs only the stock's slow dynamics; a yearly buffer breaks §7a unless it is a declared conserved stock. Reality decides; Life 2026-11-01: immediate substrate transactions, not a pending sum"
    },
    {
     "interface": "CG-23",
@@ -11331,7 +11336,8 @@
     "agreeing": [
      "economy"
     ],
-    "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)"
+    "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)",
+    "progress": "Life keeper 2026-11-01: trophic_flux over a period = sum of kg eaten by individually resolved consumers + cohort consumption of population-resolved ones, never both for one consumer; E = m x e_food from Life's food table. Designed; built with phase 19"
    },
    {
     "interface": "CG-24",

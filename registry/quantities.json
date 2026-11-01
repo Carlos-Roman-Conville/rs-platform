@@ -10,8 +10,8 @@
    "checked": "2026-10-30",
    "parser": "Toolchain/kernel/src/units.ts parse (unit 2592)",
    "tally": {
-    "parses": 314,
-    "kind record": 127,
+    "parses": 318,
+    "kind record": 128,
     "kind text": 1,
     "kind categorical": 8,
     "unknown: the": 38
@@ -3576,6 +3576,16 @@
    "unit_parses": null
   },
   {
+   "id": "organism.genetic_profile",
+   "kind": "record",
+   "unit": null,
+   "scope": "organism",
+   "writer": "realism.records.genetic_profile",
+   "description": "record 1, kingdom-neutral: the organism's genome (chromosome segments with trait-associated variants), written once at conception or creation; read by maturation, phenotype and plant physiology (CG-12)",
+   "status": "planned (CG-12, Life keeper 2026-11-01)",
+   "unit_parses": null
+  },
+  {
    "id": "place.exhaustion_time",
    "unit": "min",
    "unit_text": "min span",
@@ -5420,6 +5430,46 @@
    "description": "per plant or cohort: the three organism records' plant fields",
    "status": "planned (Rex 2026-10-30, ecosystem foundation)",
    "unit_parses": null
+  },
+  {
+   "id": "world.plant_uptake_k",
+   "kind": "quantity",
+   "unit": "kg",
+   "scope": "world",
+   "writer": "realism.plant.physiology",
+   "description": "plant uptake of potassium per plant record per step, cell-scoped: one transfer, delta soil available = -q, delta plant = +q, one substrate transaction (PLATFORM §7a; CG-3); litter returns the same way",
+   "status": "planned (CG-3, Life keeper 2026-11-01; built with unit {CG21} after realism 2815)",
+   "unit_parses": true
+  },
+  {
+   "id": "world.plant_uptake_n",
+   "kind": "quantity",
+   "unit": "kg",
+   "scope": "world",
+   "writer": "realism.plant.physiology",
+   "description": "plant uptake of nitrogen per plant record per step, cell-scoped: one transfer, delta soil available = -q, delta plant = +q, one substrate transaction (PLATFORM §7a; CG-3); litter returns the same way",
+   "status": "planned (CG-3, Life keeper 2026-11-01; built with unit {CG21} after realism 2815)",
+   "unit_parses": true
+  },
+  {
+   "id": "world.plant_uptake_p",
+   "kind": "quantity",
+   "unit": "kg",
+   "scope": "world",
+   "writer": "realism.plant.physiology",
+   "description": "plant uptake of phosphorus per plant record per step, cell-scoped: one transfer, delta soil available = -q, delta plant = +q, one substrate transaction (PLATFORM §7a; CG-3); litter returns the same way",
+   "status": "planned (CG-3, Life keeper 2026-11-01; built with unit {CG21} after realism 2815)",
+   "unit_parses": true
+  },
+  {
+   "id": "world.plant_uptake_water",
+   "kind": "quantity",
+   "unit": "kg",
+   "scope": "world",
+   "writer": "realism.plant.physiology",
+   "description": "plant uptake of water per plant record per step, cell-scoped: one transfer, delta soil available = -q, delta plant = +q, one substrate transaction (PLATFORM §7a; CG-3); litter returns the same way",
+   "status": "planned (CG-3, Life keeper 2026-11-01; built with unit {CG21} after realism 2815)",
+   "unit_parses": true
   },
   {
    "id": "world.pollination_events",
