@@ -127,7 +127,7 @@ def _retire(qid, alias, why, date="2026-10-30"):
     ALIASES_OUT.append({"old": qid, "new": alias, "date": date, "kind": "quantity", "reason": why})
 ALIASES_OUT = [dict(a) for a in ALIASES]
 for op in QUANTITY_OPS:
-    if op[0] == "retire": _retire(op[1], op[2], op[3])
+    if op[0] == "retire": _retire(op[1], op[2], op[3], *op[4:5])   # optional 5th element: the retirement date (2026-11-01)
     elif op[0] == "writer":
         _q = quantities[op[1]]; _q.update({"writer": op[2], "status": "confirmed by owner", "writer_note": op[3]}); _q.pop("candidate_writers", None); _drop_writes(op[1], keep=op[2])
     elif op[0] == "split":

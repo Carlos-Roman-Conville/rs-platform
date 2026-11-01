@@ -10,7 +10,7 @@
    "checked": "2026-10-30",
    "parser": "Toolchain/kernel/src/units.ts parse (unit 2592)",
    "tally": {
-    "parses": 318,
+    "parses": 327,
     "kind record": 128,
     "kind text": 1,
     "kind categorical": 8,
@@ -5023,7 +5023,7 @@
    "unit_status": "mapped",
    "scope": "stock",
    "writer": "realism.eco.soil_fertility",
-   "description": "f",
+   "description": "soil fertility index f (0-1): from realism unit 3001 a derived Liebig view of world.soil_n, world.soil_p and world.soil_k (level 4, gears doc), still written by realism.eco.soil_fertility as a view, never a second drain (CG-20)",
    "status": "seed",
    "kind": "quantity",
    "unit_parses": true
@@ -5396,9 +5396,45 @@
    "kind": "quantity",
    "unit": "kg/a",
    "scope": "world",
-   "writer": "realism.ecology.decomposition",
+   "writer": null,
    "description": "nutrients returned from detritus to soil and water",
-   "status": "planned (Rex 2026-10-30, ecosystem foundation)",
+   "status": "retired",
+   "retired_reason": "split into separate N, P and K quantities per soil cell (CG-9, Reality keeper 2026-11-01; CHAINS.md priority 1)",
+   "replaced_by": [
+    "world.mineralisation_flux_n",
+    "world.mineralisation_flux_p",
+    "world.mineralisation_flux_k"
+   ],
+   "unit_parses": true
+  },
+  {
+   "id": "world.mineralisation_flux_k",
+   "kind": "quantity",
+   "unit": "kg/d",
+   "scope": "world",
+   "writer": "realism.ecology.decomposition",
+   "description": "potassium returned from detritus to the soil pool, per soil cell (the cell record carries areaM2; kg/m^2 is a derived view) (CG-9)",
+   "status": "planned (CG-9, Reality keeper 2026-11-01)",
+   "unit_parses": true
+  },
+  {
+   "id": "world.mineralisation_flux_n",
+   "kind": "quantity",
+   "unit": "kg/d",
+   "scope": "world",
+   "writer": "realism.ecology.decomposition",
+   "description": "nitrogen returned from detritus to the soil pool, per soil cell (the cell record carries areaM2; kg/m^2 is a derived view) (CG-9)",
+   "status": "planned (CG-9, Reality keeper 2026-11-01)",
+   "unit_parses": true
+  },
+  {
+   "id": "world.mineralisation_flux_p",
+   "kind": "quantity",
+   "unit": "kg/d",
+   "scope": "world",
+   "writer": "realism.ecology.decomposition",
+   "description": "phosphorus returned from detritus to the soil pool, per soil cell (the cell record carries areaM2; kg/m^2 is a derived view) (CG-9)",
+   "status": "planned (CG-9, Reality keeper 2026-11-01)",
    "unit_parses": true
   },
   {
@@ -5406,9 +5442,45 @@
    "kind": "quantity",
    "unit": "kg/a",
    "scope": "world",
-   "writer": "realism.terrain.nutrient_transport",
+   "writer": null,
    "description": "N, P, K moved by runoff, leaching, erosion and deposition",
-   "status": "planned (Rex 2026-10-30, ecosystem foundation)",
+   "status": "retired",
+   "retired_reason": "split into separate N, P and K quantities per soil cell (CG-9, Reality keeper 2026-11-01; CHAINS.md priority 1)",
+   "replaced_by": [
+    "world.nutrient_flux_n",
+    "world.nutrient_flux_p",
+    "world.nutrient_flux_k"
+   ],
+   "unit_parses": true
+  },
+  {
+   "id": "world.nutrient_flux_k",
+   "kind": "quantity",
+   "unit": "kg/d",
+   "scope": "world",
+   "writer": "realism.terrain.nutrient_transport",
+   "description": "potassium moved by runoff, leaching, erosion and deposition, per soil cell (the cell record carries areaM2; kg/m^2 is a derived view) (CG-9)",
+   "status": "planned (CG-9, Reality keeper 2026-11-01)",
+   "unit_parses": true
+  },
+  {
+   "id": "world.nutrient_flux_n",
+   "kind": "quantity",
+   "unit": "kg/d",
+   "scope": "world",
+   "writer": "realism.terrain.nutrient_transport",
+   "description": "nitrogen moved by runoff, leaching, erosion and deposition, per soil cell (the cell record carries areaM2; kg/m^2 is a derived view) (CG-9)",
+   "status": "planned (CG-9, Reality keeper 2026-11-01)",
+   "unit_parses": true
+  },
+  {
+   "id": "world.nutrient_flux_p",
+   "kind": "quantity",
+   "unit": "kg/d",
+   "scope": "world",
+   "writer": "realism.terrain.nutrient_transport",
+   "description": "phosphorus moved by runoff, leaching, erosion and deposition, per soil cell (the cell record carries areaM2; kg/m^2 is a derived view) (CG-9)",
+   "status": "planned (CG-9, Reality keeper 2026-11-01)",
    "unit_parses": true
   },
   {
@@ -5587,13 +5659,49 @@
    "unit_parses": null
   },
   {
-   "id": "world.soil_nutrient_pool",
+   "id": "world.soil_k",
    "kind": "quantity",
    "unit": "kg",
    "scope": "world",
    "writer": "realism.terrain.soils",
+   "description": "soil potassium pool, per soil cell (the cell record carries areaM2; kg/m^2 is a derived view); changes only by transfer (transferNutrient / addNutrient, PLATFORM §7a); losses go to loss:<pathway> accounts (CG-9)",
+   "status": "planned (CG-9, Reality keeper 2026-11-01; realism unit 3001)",
+   "unit_parses": true
+  },
+  {
+   "id": "world.soil_n",
+   "kind": "quantity",
+   "unit": "kg",
+   "scope": "world",
+   "writer": "realism.terrain.soils",
+   "description": "soil nitrogen pool, per soil cell (the cell record carries areaM2; kg/m^2 is a derived view); changes only by transfer (transferNutrient / addNutrient, PLATFORM §7a); losses go to loss:<pathway> accounts (CG-9)",
+   "status": "planned (CG-9, Reality keeper 2026-11-01; realism unit 3001)",
+   "unit_parses": true
+  },
+  {
+   "id": "world.soil_nutrient_pool",
+   "kind": "quantity",
+   "unit": "kg",
+   "scope": "world",
+   "writer": null,
    "description": "soil N, P and K pools per area, total and plant-available (Life keeper and Reality agreed 2026-10-31); written only by realism.terrain.soils; Life writes uptake (water, N, P, K) and litter fluxes back through the substrate ledger, never the stock",
-   "status": "planned (Rex 2026-10-30, ecosystem foundation)",
+   "status": "retired",
+   "retired_reason": "split into separate N, P and K quantities per soil cell (CG-9, Reality keeper 2026-11-01; CHAINS.md priority 1)",
+   "replaced_by": [
+    "world.soil_n",
+    "world.soil_p",
+    "world.soil_k"
+   ],
+   "unit_parses": true
+  },
+  {
+   "id": "world.soil_p",
+   "kind": "quantity",
+   "unit": "kg",
+   "scope": "world",
+   "writer": "realism.terrain.soils",
+   "description": "soil phosphorus pool, per soil cell (the cell record carries areaM2; kg/m^2 is a derived view); changes only by transfer (transferNutrient / addNutrient, PLATFORM §7a); losses go to loss:<pathway> accounts (CG-9)",
+   "status": "planned (CG-9, Reality keeper 2026-11-01; realism unit 3001)",
    "unit_parses": true
   },
   {

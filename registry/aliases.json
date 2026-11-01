@@ -213,6 +213,39 @@
    "date": "2026-10-31",
    "kind": "quantity",
    "reason": "Reality keeper 2026-10-31 (unit 2765); non-owner writes left in code are recorded as '(2765) multi-writer:' flags for the overlap work: PO2 in the alveoli and blood belongs to the body (respiration after SPLIT step 2b); gas.altitude_inspired_po2 writes only the inspired air value"
+  },
+  {
+   "old": "world.soil_nutrient_pool",
+   "new": [
+    "world.soil_n",
+    "world.soil_p",
+    "world.soil_k"
+   ],
+   "date": "2026-11-01",
+   "kind": "quantity",
+   "reason": "split into separate N, P and K quantities per soil cell (CG-9, Reality keeper 2026-11-01; CHAINS.md priority 1)"
+  },
+  {
+   "old": "world.mineralisation_flux",
+   "new": [
+    "world.mineralisation_flux_n",
+    "world.mineralisation_flux_p",
+    "world.mineralisation_flux_k"
+   ],
+   "date": "2026-11-01",
+   "kind": "quantity",
+   "reason": "split into separate N, P and K quantities per soil cell (CG-9, Reality keeper 2026-11-01; CHAINS.md priority 1)"
+  },
+  {
+   "old": "world.nutrient_flux",
+   "new": [
+    "world.nutrient_flux_n",
+    "world.nutrient_flux_p",
+    "world.nutrient_flux_k"
+   ],
+   "date": "2026-11-01",
+   "kind": "quantity",
+   "reason": "split into separate N, P and K quantities per soil cell (CG-9, Reality keeper 2026-11-01; CHAINS.md priority 1)"
   }
  ]
 }

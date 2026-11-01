@@ -2887,3 +2887,46 @@ for _g in INTERFACE_GAPS:
 for _g in INTERFACE_GAPS:
     if _g["interface"] == "CG-19":
         _g["progress"] = _g.get("progress", "") + "; amended 2026-11-01: goods carry mass (kg per unit, owned once by Economy) and name a Life food id; energy stays Life's (food.kcalPerKg, E = m x e_food); verification units 2999-economy-goods-mass-transfers and 3010-economy-coupled-food-to-body-test (one kernel transaction; Needs 2999)"
+
+# --- 2026-11-01: CG-9 and CG-22 (Reality keeper; realism units 3000-3001 queued): N, P and K as separate per-cell quantities; one transfer per change ---
+_CELL = "per soil cell (the cell record carries areaM2; kg/m^2 is a derived view)"
+for _el, _nm in [("n", "nitrogen"), ("p", "phosphorus"), ("k", "potassium")]:
+    EXTRA_QUANTITIES += [
+     {"id": "world.soil_" + _el, "kind": "quantity", "unit": "kg", "scope": "world", "writer": "realism.terrain.soils",
+      "description": "soil " + _nm + " pool, " + _CELL + "; changes only by transfer (transferNutrient / addNutrient, PLATFORM §7a); losses go to loss:<pathway> accounts (CG-9)",
+      "status": "planned (CG-9, Reality keeper 2026-11-01; realism unit 3001)"},
+     {"id": "world.mineralisation_flux_" + _el, "kind": "quantity", "unit": "kg/d", "scope": "world", "writer": "realism.ecology.decomposition",
+      "description": _nm + " returned from detritus to the soil pool, " + _CELL + " (CG-9)", "status": "planned (CG-9, Reality keeper 2026-11-01)"},
+     {"id": "world.nutrient_flux_" + _el, "kind": "quantity", "unit": "kg/d", "scope": "world", "writer": "realism.terrain.nutrient_transport",
+      "description": _nm + " moved by runoff, leaching, erosion and deposition, " + _CELL + " (CG-9)", "status": "planned (CG-9, Reality keeper 2026-11-01)"},
+    ]
+_why9 = "split into separate N, P and K quantities per soil cell (CG-9, Reality keeper 2026-11-01; CHAINS.md priority 1)"
+QUANTITY_OPS += [
+ ("retire", "world.soil_nutrient_pool", ["world.soil_n", "world.soil_p", "world.soil_k"], _why9, "2026-11-01"),
+ ("retire", "world.mineralisation_flux", ["world.mineralisation_flux_n", "world.mineralisation_flux_p", "world.mineralisation_flux_k"], _why9, "2026-11-01"),
+ ("retire", "world.nutrient_flux", ["world.nutrient_flux_n", "world.nutrient_flux_p", "world.nutrient_flux_k"], _why9, "2026-11-01"),
+]
+_q = lambda xs: [{"name": x, "unit": "see quantities.json"} for x in xs]
+_NPK = lambda p: [p + e for e in ("n", "p", "k")]
+_TS = "pools change per transfer at the flux's step; formation once per world; pedogenesis per year (CG-22, Reality keeper 2026-11-01; realism gears/soil-integration.md, unit 3001)"
+ROW_PATCHES.setdefault("realism.terrain.soils", {}).update({"timescale": _TS,
+    "outputs": [{"name": "world.soil", "unit": "record"}, {"name": "world.soil_ph", "unit": "1"}] + [{"name": x, "unit": "kg"} for x in _NPK("world.soil_")],
+    "planned_writes": ["world.soil", "world.soil_ph"] + _NPK("world.soil_")})
+ROW_PATCHES.setdefault("realism.terrain.hydrology", {})["timescale"] = _TS
+ROW_PATCHES.setdefault("realism.terrain.nutrient_transport", {}).update({"inputs": _q(["world.sediment_flux", "world.drainage"] + _NPK("world.soil_")),
+    "outputs": [{"name": x, "unit": "kg/d"} for x in _NPK("world.nutrient_flux_")]})
+ROW_PATCHES.setdefault("realism.ecology.decomposition", {})["outputs"] = [{"name": "world.detritus", "unit": "kg"}] + [{"name": x, "unit": "kg/d"} for x in _NPK("world.mineralisation_flux_")]
+ROW_PATCHES["realism.plant.physiology"]["inputs"] = [i for i in ROW_PATCHES["realism.plant.physiology"]["inputs"] if i["name"] != "world.soil_nutrient_pool"] + _q(_NPK("world.soil_"))
+QUANTITY_PATCH.setdefault("stock.f", {})["description"] = ("soil fertility index f (0-1): from realism unit 3001 a derived Liebig view of world.soil_n, world.soil_p and world.soil_k "
+    "(level 4, gears doc), still written by realism.eco.soil_fertility as a view, never a second drain (CG-20)")
+for _g in INTERFACE_GAPS:
+    if _g["interface"] in ("CG-9", "CG-20", "CG-22"):
+        _g["progress"] = _g.get("progress", "") + ("; Reality keeper 2026-11-01: realism units 3000 (sourced removal and manure N, P, K) and 3001 (src/soils.ts: SoilCell kg N, P, K with areaM2; "
+            "transferNutrient the only decrease, pool -q / account +q, one trace record; losses to loss:<pathway>; no clamp; harvest one transfer of yield x removal, nothing from soil when uptakeByPlant; "
+            "f a derived Liebig index; gears/soil-integration.md; tests 'one transfer', 'no clamp', 'integration rule' (daily vs hourly 1e-9), 'uptake once'); registry ids split 2026-11-01")
+
+# --- 2026-11-01: Economy keeper's precision on the §7a migration (Economy owns the goods stock ledger; money is Settlement's ledger, CONTRACTS §3) ---
+for _r in EXTRA_ROWS:
+    if _r["id"] == "kernel.transfer":
+        _r["notes"] = ("controller decision 2026-11-01 (go); after kernel v0.1.0 the ledgers migrate in paired units: Economy's goods stock ledger (adjust, economy.stock_changes; takeMass/addMass first) "
+                       "and Settlement's money ledger (CONTRACTS §3; Economy has no money ledger); CHAINS CG-19/20/21 adopt it")

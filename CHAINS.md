@@ -108,8 +108,9 @@ The registry keeper re-audits the commit and fills the closure record below.
 
 - **§7a transfer service: go.** The kernel adds `transfer()` (row `kernel.transfer`, planned, kernel unit 3006): debit,
   credit, record and check inside `kernel.transaction`. It is bookkeeping only, with no formula and no unit conversion.
-  Every engine's flows go through it, and the CG-19, CG-20 and CG-21 fixes adopt it. Economy and Settlement ledgers
-  migrate in paired units after kernel v0.1.0.
+  Every engine's flows go through it, and the CG-19, CG-20 and CG-21 fixes adopt it. After kernel v0.1.0 the ledgers
+  migrate in paired units: Economy's goods stock ledger (`adjust`, `economy.stock_changes`; takeMass and addMass first)
+  and Settlement's money ledger (CONTRACTS §3). Economy has no money ledger.
 - **CG-18 events contract: yes.** `registry/events.json` is owned by the registry keeper and created empty. The kernel's
   `checkEventContracts` (unit 3007) warns, never fails, until the file is populated. The first unit is the event inventory.
 
@@ -121,6 +122,9 @@ The registry keeper re-audits the commit and fills the closure record below.
 | CG-21 | {CG21}, after realism 2815 | `world.plant_state` is the only biomass store; `world.vegetation_stock` = Σ biomass over records in a region (a derived read, never integrated); coarsen/refine conserves to 1e-12 | kg | Life (Reality agrees) | the unit's coarsen/refine conservation test |
 | CG-3 | {CG21}, after realism 2815 | Δsoil_avail_X = −q, Δplant_X = +q per element, one transaction; ids `world.plant_uptake_water`, `_n`, `_p`, `_k` (planned) | kg per plant record per step | Life (Reality agrees) | the unit's transfer test |
 | CG-23 | Life phase 19 | trophic_flux = Σ kg eaten by individually resolved consumers + cohort consumption of population-resolved ones, never both for one consumer; E = m × e_food | kg | Life (Economy agrees) | with phase 19 |
+| CG-9 | realism 3001 (needs 3000) | `world.soil_nutrient_pool` split into `world.soil_n`, `world.soil_p`, `world.soil_k` (kg per cell; the cell carries areaM2); fluxes `world.mineralisation_flux_{n,p,k}` and `world.nutrient_flux_{n,p,k}` (kg/d per cell). The old ids are retired as aliases (registry, 2026-11-01). | kg; kg/d | Reality (Life agrees) | realism 3001's tests |
+| CG-20 | realism 3000 (sourced removal per tonne and manure N, P, K), then 3001 | `transferNutrient`: pool −q, account +q, one trace record. Harvest is one transfer of yield × removal, and nothing from the soil when `uptakeByPlant` (the plant's uptake already moved it). f is a derived Liebig view (`stock.f`). | kg | Reality (Life agrees) | 3001: `one transfer`, `no clamp`, `uptake once` |
+| CG-22 | realism 3001 | A pool changes only by transfer at the flux's own step; formation once per world; pedogenesis per year, also by transfer (gears/soil-integration.md). The rows' timescale text is updated in the registry. | — | Reality (Life, Kernel agree) | 3001: `integration rule` (daily vs hourly, 1e-9) |
 | CG-19 | economy 2999-economy-goods-mass-transfers (running) | `takeMass`: Δinventory = −q with q = units × `Good.weight`; `eatMeal({food, kg: q})`: Δbody = +q, in one transaction | kg (`economy.mass_taken`; `economy.good_mass_per_unit` kg/count, owned by `economy.recipe.definition`) | Economy (Life agrees) | economy test/mass.test.ts and the goldens at 2999's commit; economy 3010-economy-coupled-food-to-body-test (takeMass and eatMeal in one kernel transaction; Needs 2999); Life's body side {CG13}. Life confirmed (2026-11-01): goods carry no kcal; a good names its Life food id, and Life's food table owns kcal per kg. The body side is {CG13}; the cross-engine test is in the economy lane after 2999. |
 
 ### Closure record

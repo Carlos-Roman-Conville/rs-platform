@@ -11135,7 +11135,8 @@
     "agreeing": [
      "life"
     ],
-    "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)"
+    "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)",
+    "progress": "; Reality keeper 2026-11-01: realism units 3000 (sourced removal and manure N, P, K) and 3001 (src/soils.ts: SoilCell kg N, P, K with areaM2; transferNutrient the only decrease, pool -q / account +q, one trace record; losses to loss:<pathway>; no clamp; harvest one transfer of yield x removal, nothing from soil when uptakeByPlant; f a derived Liebig index; gears/soil-integration.md; tests 'one transfer', 'no clamp', 'integration rule' (daily vs hourly 1e-9), 'uptake once'); registry ids split 2026-11-01"
    },
    {
     "interface": "CG-10",
@@ -11288,7 +11289,7 @@
      "life"
     ],
     "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)",
-    "progress": "Life agrees 2026-11-01: soil loses nutrients only by uptake, leaching, runoff and erosion; the fertility drain becomes a read. Reality decides"
+    "progress": "Life agrees 2026-11-01: soil loses nutrients only by uptake, leaching, runoff and erosion; the fertility drain becomes a read. Reality decides; Reality keeper 2026-11-01: realism units 3000 (sourced removal and manure N, P, K) and 3001 (src/soils.ts: SoilCell kg N, P, K with areaM2; transferNutrient the only decrease, pool -q / account +q, one trace record; losses to loss:<pathway>; no clamp; harvest one transfer of yield x removal, nothing from soil when uptakeByPlant; f a derived Liebig index; gears/soil-integration.md; tests 'one transfer', 'no clamp', 'integration rule' (daily vs hourly 1e-9), 'uptake once'); registry ids split 2026-11-01"
    },
    {
     "interface": "CG-21",
@@ -11321,7 +11322,7 @@
      "kernel"
     ],
     "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)",
-    "progress": "Kernel keeper 2026-11-01: no kernel change; proposed rule: each fast flux applies its transfer to the stock at its own period (one transaction with the source, §7a); the yearly mechanism runs only the stock's slow dynamics; a yearly buffer breaks §7a unless it is a declared conserved stock. Reality decides; Life 2026-11-01: immediate substrate transactions, not a pending sum"
+    "progress": "Kernel keeper 2026-11-01: no kernel change; proposed rule: each fast flux applies its transfer to the stock at its own period (one transaction with the source, §7a); the yearly mechanism runs only the stock's slow dynamics; a yearly buffer breaks §7a unless it is a declared conserved stock. Reality decides; Life 2026-11-01: immediate substrate transactions, not a pending sum; Reality keeper 2026-11-01: realism units 3000 (sourced removal and manure N, P, K) and 3001 (src/soils.ts: SoilCell kg N, P, K with areaM2; transferNutrient the only decrease, pool -q / account +q, one trace record; losses to loss:<pathway>; no clamp; harvest one transfer of yield x removal, nothing from soil when uptakeByPlant; f a derived Liebig index; gears/soil-integration.md; tests 'one transfer', 'no clamp', 'integration rule' (daily vs hourly 1e-9), 'uptake once'); registry ids split 2026-11-01"
    },
    {
     "interface": "CG-23",

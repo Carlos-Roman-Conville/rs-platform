@@ -9135,7 +9135,7 @@
    "approximations": "none (accounting)",
    "tests": "planned: test/transfer.test.ts (unit 3006)",
    "consumers": [],
-   "notes": "controller decision 2026-11-01 (go): Economy and Settlement ledgers migrate in paired units after kernel v0.1.0; CHAINS CG-19/20/21 adopt it",
+   "notes": "controller decision 2026-11-01 (go); after kernel v0.1.0 the ledgers migrate in paired units: Economy's goods stock ledger (adjust, economy.stock_changes; takeMass/addMass first) and Settlement's money ledger (CONTRACTS §3; Economy has no money ledger); CHAINS CG-19/20/21 adopt it",
    "overlap_groups": [],
    "unit_issues": [],
    "audit_batch": "controller-2026-11-01-transfer",
@@ -9165,7 +9165,7 @@
      },
      "integration_tested_with": [],
      "integration_tests": [],
-     "report": "controller decision 2026-11-01 (go): Economy and Settlement ledgers migrate in paired units after kernel v0.1.0; CHAINS CG-19/20/21 adopt it"
+     "report": "controller decision 2026-11-01 (go); after kernel v0.1.0 the ledgers migrate in paired units: Economy's goods stock ledger (adjust, economy.stock_changes; takeMass/addMass first) and Settlement's money ledger (CONTRACTS §3; Economy has no money ledger); CHAINS CG-19/20/21 adopt it"
     }
    },
    "rate_limiter": null,
@@ -30924,11 +30924,19 @@
    "outputs": [
     {
      "name": "world.detritus",
-     "unit": "see quantities.json"
+     "unit": "kg"
     },
     {
-     "name": "world.mineralisation_flux",
-     "unit": "see quantities.json"
+     "name": "world.mineralisation_flux_n",
+     "unit": "kg/d"
+    },
+    {
+     "name": "world.mineralisation_flux_p",
+     "unit": "kg/d"
+    },
+    {
+     "name": "world.mineralisation_flux_k",
+     "unit": "kg/d"
     }
    ],
    "state": "planned",
@@ -43894,10 +43902,6 @@
      "unit": "see quantities.json"
     },
     {
-     "name": "world.soil_nutrient_pool",
-     "unit": "see quantities.json"
-    },
-    {
      "name": "world.soil_ph",
      "unit": "see quantities.json"
     },
@@ -43911,6 +43915,18 @@
     },
     {
      "name": "organism.genetic_profile",
+     "unit": "see quantities.json"
+    },
+    {
+     "name": "world.soil_n",
+     "unit": "see quantities.json"
+    },
+    {
+     "name": "world.soil_p",
+     "unit": "see quantities.json"
+    },
+    {
+     "name": "world.soil_k",
      "unit": "see quantities.json"
     }
    ],
@@ -45820,7 +45836,7 @@
    "state": "planned",
    "formulation": "rivers and drainage basins from elevation and rainfall; groundwater storage and flow; consumed water is drawn from a stock",
    "dependencies": [],
-   "timescale": "planned (generation once per world; slow change per year)",
+   "timescale": "pools change per transfer at the flux's step; formation once per world; pedogenesis per year (CG-22, Reality keeper 2026-11-01; realism gears/soil-integration.md, unit 3001)",
    "invariants": "conservation: extracted or harvested mass leaves its stock, sediment moves from one place to another, consumed water comes from somewhere; Economy never creates a physical resource because a recipe ran; no biome loot tables: a deposit or stock exists only where geological, hydrological, climatic and ecological processes make it plausible; every resource has quantity, quality, accessibility and location; generation is hierarchical and constraint-based, never a replay of planetary history, and reproducible from the Kernel's seeded RNG; the platform never represents the planet as blocks",
    "sources": "to research per unit (evidence levels stated); ENGINES.md",
    "evidence": 4,
@@ -45979,14 +45995,30 @@
      "unit": "see quantities.json"
     },
     {
-     "name": "world.soil_nutrient_pool",
+     "name": "world.soil_n",
+     "unit": "see quantities.json"
+    },
+    {
+     "name": "world.soil_p",
+     "unit": "see quantities.json"
+    },
+    {
+     "name": "world.soil_k",
      "unit": "see quantities.json"
     }
    ],
    "outputs": [
     {
-     "name": "world.nutrient_flux",
-     "unit": "see quantities.json"
+     "name": "world.nutrient_flux_n",
+     "unit": "kg/d"
+    },
+    {
+     "name": "world.nutrient_flux_p",
+     "unit": "kg/d"
+    },
+    {
+     "name": "world.nutrient_flux_k",
+     "unit": "kg/d"
     }
    ],
    "state": "planned",
@@ -46153,14 +46185,22 @@
      "unit": "1"
     },
     {
-     "name": "world.soil_nutrient_pool",
+     "name": "world.soil_n",
+     "unit": "kg"
+    },
+    {
+     "name": "world.soil_p",
+     "unit": "kg"
+    },
+    {
+     "name": "world.soil_k",
      "unit": "kg"
     }
    ],
    "state": "planned",
    "formulation": "soil formation from parent material, climate, terrain and time; soil chemistry: texture, depth, organic matter, pH, N/P/K pools, water retention, microbial activity; the only writer of the soil stocks, integrating the fluxes of nutrient transport, decomposition, plant uptake and harvest",
    "dependencies": [],
-   "timescale": "planned (generation once per world; slow change per year)",
+   "timescale": "pools change per transfer at the flux's step; formation once per world; pedogenesis per year (CG-22, Reality keeper 2026-11-01; realism gears/soil-integration.md, unit 3001)",
    "invariants": "conservation: extracted or harvested mass leaves its stock, sediment moves from one place to another, consumed water comes from somewhere; Economy never creates a physical resource because a recipe ran; no biome loot tables: a deposit or stock exists only where geological, hydrological, climatic and ecological processes make it plausible; every resource has quantity, quality, accessibility and location; generation is hierarchical and constraint-based, never a replay of planetary history, and reproducible from the Kernel's seeded RNG; the platform never represents the planet as blocks",
    "sources": "to research per unit (evidence levels stated); ENGINES.md",
    "evidence": 4,
@@ -46182,7 +46222,9 @@
    "planned_writes": [
     "world.soil",
     "world.soil_ph",
-    "world.soil_nutrient_pool"
+    "world.soil_n",
+    "world.soil_p",
+    "world.soil_k"
    ],
    "interfaces": [
     "IF-38",
