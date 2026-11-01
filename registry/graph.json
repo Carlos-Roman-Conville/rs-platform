@@ -1072,7 +1072,39 @@
    "scope": "universal"
   },
   {
+   "id": "government.collective_choice.procedure",
+   "engine": "government",
+   "status": "planned",
+   "kind": "mechanism",
+   "domain": "E",
+   "scope": "universal"
+  },
+  {
    "id": "government.compliance.enforcement",
+   "engine": "government",
+   "status": "planned",
+   "kind": "mechanism",
+   "domain": "E",
+   "scope": "universal"
+  },
+  {
+   "id": "government.diplomacy.relations",
+   "engine": "government",
+   "status": "planned",
+   "kind": "mechanism",
+   "domain": "E",
+   "scope": "universal"
+  },
+  {
+   "id": "government.fiscal.spending",
+   "engine": "government",
+   "status": "planned",
+   "kind": "mechanism",
+   "domain": "E",
+   "scope": "universal"
+  },
+  {
+   "id": "government.fiscal.taxation",
    "engine": "government",
    "status": "planned",
    "kind": "mechanism",
@@ -1089,6 +1121,38 @@
   },
   {
    "id": "government.law.schema",
+   "engine": "government",
+   "status": "planned",
+   "kind": "mechanism",
+   "domain": "E",
+   "scope": "universal"
+  },
+  {
+   "id": "government.legitimacy.aggregate",
+   "engine": "government",
+   "status": "planned",
+   "kind": "mechanism",
+   "domain": "E",
+   "scope": "universal"
+  },
+  {
+   "id": "government.military.organisation",
+   "engine": "government",
+   "status": "planned",
+   "kind": "mechanism",
+   "domain": "E",
+   "scope": "universal"
+  },
+  {
+   "id": "government.polity.structure",
+   "engine": "government",
+   "status": "planned",
+   "kind": "mechanism",
+   "domain": "E",
+   "scope": "universal"
+  },
+  {
+   "id": "government.property.regime",
    "engine": "government",
    "status": "planned",
    "kind": "mechanism",
@@ -4632,6 +4696,14 @@
    "scope": "universal"
   },
   {
+   "id": "shared.action.kind",
+   "engine": "shared",
+   "status": "planned",
+   "kind": "mechanism",
+   "domain": "infra",
+   "scope": "universal"
+  },
+  {
    "id": "shared.communication.medium",
    "engine": "reality",
    "status": "planned",
@@ -7193,6 +7265,12 @@
    "group": "DUP-42"
   },
   {
+   "from": "government.fiscal.taxation",
+   "to": "settlement.wage.pay",
+   "type": "overlap",
+   "group": "DUP-42"
+  },
+  {
    "from": "economy.price.rule",
    "to": "shared.contract.price_provider",
    "type": "overlap",
@@ -8961,6 +9039,12 @@
      "step": "re-audit: not passed",
      "by": "registry keeper",
      "note": "implemented in part: settlement and economy import kernel ids, context and reduce; realism uses the kernel rng; engine suites passed above baseline in 2693-2695 and harness goldens 2697 (all before the 22:53 deletion). GAP 1: no kernel test refuses an id minted under another engine's prefix (test/ids.test.ts covers mint, widening, qualify only; the design moved to '<engine>/<id>' qualification but the acceptance text was never amended). GAP 2: leftovers: economy src/providers.ts:68 hand-mints txn ids; realism src/circulation.ts:31 its own finite (maybe intended). GAP 3: the re-check runs predate the recovery. Owner: Kernel keeper (test or amended text via the controller); Economy for the txn mint"
+    },
+    {
+     "date": "2026-10-31",
+     "step": "acceptance amended",
+     "by": "Rex (via the controller)",
+     "note": "the id clause becomes the <engine>/<local id> qualification scheme; kernel 2749 (aa8e64c, 'never collide' test in test/ids.test.ts, gate passed) is its test"
     }
    ]
   },
@@ -8995,6 +9079,12 @@
      "step": "units queued",
      "by": "Reality keeper",
      "note": "Reality asked the Kernel keeper for the counter rule; one Codex unit applies it to realism's counters"
+    },
+    {
+     "date": "2026-10-31",
+     "step": "acceptance amended",
+     "by": "Rex (via the controller)",
+     "note": "the clause becomes: an engine may keep its own counter only if the kernel adapter asserts it equals floor(T/DAY) each tick"
     }
    ]
   },
@@ -9175,7 +9265,8 @@
    "summary": "Taxation: settlement wages.ts publicWorks is an empty stub; taxes belong to the future Government engine",
    "members": [
     "settlement.wage.pay",
-    "settlement.authority.office_powers"
+    "settlement.authority.office_powers",
+    "government.fiscal.taxation"
    ],
    "proposed_owner": "Government (new); settlement records office holders only (ENGINES.md contract).",
    "approved_owner": null,
@@ -9819,6 +9910,12 @@
      "by": "registry keeper",
      "commit": "settlement 3069dda (2781)",
      "note": "re-audited: PACKAGES.md and README.md mark office powers and succession as Government's; Office.powers[] and appoint / vacate / grantPermission are records only. The code part (AuthorityProvider.may, tests (1)-(4)) waits for Government; group stays closing"
+    },
+    {
+     "date": "2026-10-31",
+     "step": "contract agreed",
+     "by": "Government and Settlement keepers",
+     "note": "GOVERNMENT-SETTLEMENT.md AGREED and byte-identical (settlement ac0a81d, government dd75837); quantity government.office_may registered for the AuthorityProvider.may port"
     }
    ]
   },

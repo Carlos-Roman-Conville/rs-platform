@@ -10,7 +10,7 @@
    "checked": "2026-10-30",
    "parser": "Toolchain/kernel/src/units.ts parse (unit 2592)",
    "tally": {
-    "parses": 300,
+    "parses": 301,
     "kind record": 123,
     "kind text": 1,
     "kind categorical": 8,
@@ -3023,6 +3023,17 @@
    "description": "law records: jurisdiction, regulated action, condition, consequence, enforcing body, exceptions",
    "status": "planned (Rex 2026-10-31, institutions)",
    "unit_parses": null
+  },
+  {
+   "id": "government.office_may",
+   "kind": "quantity",
+   "unit": "1",
+   "scope": "government",
+   "writer": "government.authority.acquisition_delegation",
+   "written_by": "host (default provider: Settlement Office.powers[])",
+   "description": "the answer to AuthorityProvider.may(office, power, subject, day), boolean (0/1); read by settlement.authority.office_powers as an in port at its four power checks",
+   "status": "agreed contract (GOVERNMENT-SETTLEMENT.md §2; government dd75837, settlement ac0a81d)",
+   "unit_parses": true
   },
   {
    "id": "government.succession_event",

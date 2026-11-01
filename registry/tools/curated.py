@@ -2506,3 +2506,56 @@ QUANTITY_OPS += [
 ]
 QUANTITY_PATCH.setdefault("body.pao2", {}).update({"writer": "realism.gas.breathing_process"})
 QUANTITY_PATCH.setdefault("plugin.state", {}).update({"written_by": "host (the pirate plugin's own state)"})
+
+# --- Rex 2026-10-31 (via the controller): DUP-33 and DUP-32 acceptance texts amended ---
+DECISIONS["DUP-33"]["progress"].append({"date": "2026-10-31", "step": "acceptance amended", "by": "Rex (via the controller)",
+    "note": "the clause becomes: an engine may keep its own counter only if the kernel adapter asserts it equals floor(T/DAY) each tick"})
+DECISIONS["DUP-32"]["progress"].append({"date": "2026-10-31", "step": "acceptance amended", "by": "Rex (via the controller)",
+    "note": "the id clause becomes the <engine>/<local id> qualification scheme; kernel 2749 (aa8e64c, 'never collide' test in test/ids.test.ts, gate passed) is its test"})
+
+# --- 2026-10-31: Government design approved by Rex (Toolchain/government/DESIGN.md; government 705ce83). GOV-Q3 rows, GOV-Q4 contract,
+# and the agreed Government-Settlement contract quantity (GOVERNMENT-SETTLEMENT.md §2; government dd75837, settlement ac0a81d) ---
+_GOV_HOME = "Toolchain/government/DESIGN.md (approved by Rex 2026-10-31) §"
+_GOV_INV = _INST_INV + "; GOV-Q1 (Rex): authority is computed from mechanisms, never a stored score; GOV-Q2: the type label is the Catalogue's vocabulary, read by History; Government exposes only government.authority_distribution"
+def _gov(k, sec, name, form, writes, reads, consumers, notes="", rl=None, fm=None, ev="?"):
+    r = _sal(k, name, "E", form, writes, reads, consumers, "Government keeper 2026-10-31 (design approved). " + notes, eng="government", ev=ev,
+             home=_GOV_HOME + sec, inv=_GOV_INV, batch="government-keeper-2026-10-31")
+    if rl: r["rate_limiter"] = rl + " (government DESIGN §" + sec + ")"
+    if fm: r["failure_mode"] = fm + " (government DESIGN §" + sec + ")"
+    return r
+EXTRA_ROWS += [
+ _gov("government.legitimacy.aggregate", "1.8", "Legitimacy as an aggregate of beliefs",
+      "an aggregate read of members' beliefs about an authority (mind.belief), for observers and History; writes no state, never a meter a mechanism reads",
+      [], ["mind.belief"], [], "GOV-Q1: never a stored score"),
+ _gov("government.fiscal.taxation", "1.9", "Taxation",
+      "tax laws (data) on a base; collection runs in Government's own process phase, paying through Settlement's LedgerProvider; Settlement's publicWorks step stays a no-op",
+      [], ["government.law", "contract.balance"], ["settlement.ledger.pay"], "closes DUP-42 with Settlement; money only through LedgerProvider",
+      rl="the schedule and collectors' person-hours", fm="evasion (undetected breach), inability to pay (the base is not there), collector diversion"),
+ _gov("government.fiscal.spending", "1.10", "Spending",
+      "the treasury is a Settlement account; spending is a spending-power holder choosing (Cognition) or an appropriation rule (a require law on the treasury) within the balance; payments are Settlement pay rows; Government owns the appropriation rules and the record of promises and decides no expenditure itself",
+      [], ["government.law", "contract.balance"], ["settlement.ledger.pay"],
+      fm="an appropriation without funds is unpaid: a breach of the institution's own law, evidence for legitimacy beliefs"),
+ _gov("government.property.regime", "1.11", "Property-rights regimes", "property-rights regimes as law data over Settlement's titles and leases (IF-44)", [], ["government.law", "settlement.lease_record"], ["settlement.property.lease"]),
+ _gov("government.collective_choice.procedure", "1.12", "Collective choice procedures", "procedures by which a polity decides (councils, votes, assemblies) as law data over members' intentions", [], ["mind.intention", "government.law"], ["government.rule.creation_amendment"],
+      "watched boundary with society.organisation.collective_choice (IF-47): law over a territory and non-members vs an organisation's own members"),
+ _gov("government.military.organisation", "1.13", "Military organisation", "military organisation as an organisation record with command authority; on Society's organisation record", [], ["society.organisation", "government.authority_distribution"], [],
+      "the DUP-58 seam: one organisation store (Society); GOV-Q7: battle-scale aggregation is a shared aggregation interface, Reality owns the physics, Government the decision"),
+ _gov("government.polity.structure", "1.14", "Polity structure", "a read of the authority graph: which authorities form a polity, its territory and fragments; writes no state", [], ["government.authority_distribution", "government.jurisdiction"], [],
+      "polity formation, expansion and fragmentation moved here from History (Rex 2026-10-31)"),
+ _gov("government.diplomacy.relations", "1.14", "Diplomacy, war and relations", "relations between authorities (treaty, tribute, alliance, war) decided by office-holders (Cognition) under each authority's rules", [], ["government.authority_distribution", "mind.intention"], [],
+      "war decisions moved here from History (Rex 2026-10-31)"),
+]
+EXTRA_ROWS.append({"id": "shared.action.kind", "name": "Action vocabulary (shared contract)", "engine": "shared", "home": _GOV_HOME + " GOV-Q4",
+    "status": "planned", "domain": "i", "scope": "universal", "inputs": [], "outputs": [], "state": "planned",
+    "formulation": "the vocabulary of actions that laws regulate: Cognition repertoire kinds, Settlement command types, Economy trade kinds; one id per action kind, owned by no engine",
+    "dependencies": [], "timescale": "contract", "invariants": "a law's regulated action names a kind from this vocabulary; engines map their own actions to it; no engine owns it",
+    "sources": "contract", "evidence": "?", "approximations": "contract", "tests": "none",
+    "consumers": ["government.law.schema", "government.compliance.enforcement", "cognition.decision.generate"],
+    "notes": "GOV-Q4 (Rex-approved Government design 2026-10-31); a contract row in 'shared', owned by no engine", "audit_batch": "government-keeper-2026-10-31", "planned_writes": []})
+EXTRA_QUANTITIES.append({"id": "government.office_may", "kind": "quantity", "unit": "1", "scope": "government", "writer": "government.authority.acquisition_delegation",
+    "written_by": "host (default provider: Settlement Office.powers[])",
+    "description": "the answer to AuthorityProvider.may(office, power, subject, day), boolean (0/1); read by settlement.authority.office_powers as an in port at its four power checks",
+    "status": "agreed contract (GOVERNMENT-SETTLEMENT.md §2; government dd75837, settlement ac0a81d)"})
+GROUPS[:] = [(g[0], g[1], g[2], g[3] + (["government.fiscal.taxation"] if g[0] == "DUP-42" else []), g[4]) for g in GROUPS]
+DECISIONS["DUP-62"]["progress"].append({"date": "2026-10-31", "step": "contract agreed", "by": "Government and Settlement keepers",
+    "note": "GOVERNMENT-SETTLEMENT.md AGREED and byte-identical (settlement ac0a81d, government dd75837); quantity government.office_may registered for the AuthorityProvider.may port"})

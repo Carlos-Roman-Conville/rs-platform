@@ -8,11 +8,11 @@
   "evidence_scale": "PLATFORM.md §4 (1 law ... 6 fiction)",
   "counts": {
    "built": 215,
-   "planned": 189,
+   "planned": 198,
    "documented-only": 161
   },
   "kinds": {
-   "mechanism": 473,
+   "mechanism": 482,
    "restatement": 92
   },
   "schema_version": 4,
@@ -7762,6 +7762,79 @@
    "failure_mode": null
   },
   {
+   "id": "government.collective_choice.procedure",
+   "name": "Collective choice procedures",
+   "owning_engine": "government",
+   "home": "Toolchain/government/DESIGN.md (approved by Rex 2026-10-31) §1.12",
+   "home_kind": "docs",
+   "status": "planned",
+   "status_note": "",
+   "kind": "mechanism",
+   "restates": null,
+   "domain": "E",
+   "scope": "universal",
+   "scope_note": "",
+   "inputs": [
+    {
+     "name": "mind.intention",
+     "unit": "see quantities.json"
+    },
+    {
+     "name": "government.law",
+     "unit": "see quantities.json"
+    }
+   ],
+   "outputs": [],
+   "state": "planned",
+   "formulation": "procedures by which a polity decides (councils, votes, assemblies) as law data over members' intentions",
+   "dependencies": [],
+   "timescale": "planned",
+   "invariants": "no mechanism assigns a government type: the distribution of authority is computed, and monarchy, council, republic and the rest are classifications of the result (History or Catalogue may label them); a law can exist and not be obeyed, and enforcement can fail for want of resources, witnesses, cooperation or legitimacy; religious movements spread, fragment, merge, reform or vanish through these mechanisms, never a meter; GOV-Q1 (Rex): authority is computed from mechanisms, never a stored score; GOV-Q2: the type label is the Catalogue's vocabulary, read by History; Government exposes only government.authority_distribution",
+   "sources": "to research per unit (evidence levels stated); ENGINES.md",
+   "evidence": null,
+   "evidence_note": "?",
+   "approximations": "planned",
+   "tests": "none",
+   "consumers": [
+    "government.rule.creation_amendment"
+   ],
+   "notes": "Government keeper 2026-10-31 (design approved). watched boundary with society.organisation.collective_choice (IF-47): law over a territory and non-members vs an organisation's own members",
+   "overlap_groups": [],
+   "unit_issues": [],
+   "audit_batch": "government-keeper-2026-10-31",
+   "audit_id": null,
+   "writes": [],
+   "reads": [],
+   "aggregates": null,
+   "vv": {
+    "implemented": false,
+    "integrated": "no (not built)",
+    "validated": "n/a",
+    "record": {
+     "sources_and_model": {
+      "sources": "to research per unit (evidence levels stated); ENGINES.md",
+      "model": "procedures by which a polity decides (councils, votes, assemblies) as law data over members' intentions",
+      "evidence_level": null
+     },
+     "applicability": "planned",
+     "verification_tests": "none",
+     "validation_evidence": [],
+     "tolerance": null,
+     "stability_conservation_boundary": [],
+     "numerical": {
+      "stability": null,
+      "coupled_update_consistency": null,
+      "sensitivity": null
+     },
+     "integration_tested_with": [],
+     "integration_tests": [],
+     "report": "Government keeper 2026-10-31 (design approved). watched boundary with society.organisation.collective_choice (IF-47): law over a territory and non-members vs an organisation's own members"
+    }
+   },
+   "rate_limiter": null,
+   "failure_mode": null
+  },
+  {
    "id": "government.compliance.enforcement",
    "name": "Institutional compliance and enforcement",
    "owning_engine": "government",
@@ -7847,6 +7920,225 @@
      "integration_tested_with": [],
      "integration_tests": [],
      "report": "reads attempts (Cognition intentions), outcomes (Reality and Life), property interests (Settlement)"
+    }
+   },
+   "rate_limiter": null,
+   "failure_mode": null
+  },
+  {
+   "id": "government.diplomacy.relations",
+   "name": "Diplomacy, war and relations",
+   "owning_engine": "government",
+   "home": "Toolchain/government/DESIGN.md (approved by Rex 2026-10-31) §1.14",
+   "home_kind": "docs",
+   "status": "planned",
+   "status_note": "",
+   "kind": "mechanism",
+   "restates": null,
+   "domain": "E",
+   "scope": "universal",
+   "scope_note": "",
+   "inputs": [
+    {
+     "name": "government.authority_distribution",
+     "unit": "see quantities.json"
+    },
+    {
+     "name": "mind.intention",
+     "unit": "see quantities.json"
+    }
+   ],
+   "outputs": [],
+   "state": "planned",
+   "formulation": "relations between authorities (treaty, tribute, alliance, war) decided by office-holders (Cognition) under each authority's rules",
+   "dependencies": [],
+   "timescale": "planned",
+   "invariants": "no mechanism assigns a government type: the distribution of authority is computed, and monarchy, council, republic and the rest are classifications of the result (History or Catalogue may label them); a law can exist and not be obeyed, and enforcement can fail for want of resources, witnesses, cooperation or legitimacy; religious movements spread, fragment, merge, reform or vanish through these mechanisms, never a meter; GOV-Q1 (Rex): authority is computed from mechanisms, never a stored score; GOV-Q2: the type label is the Catalogue's vocabulary, read by History; Government exposes only government.authority_distribution",
+   "sources": "to research per unit (evidence levels stated); ENGINES.md",
+   "evidence": null,
+   "evidence_note": "?",
+   "approximations": "planned",
+   "tests": "none",
+   "consumers": [],
+   "notes": "Government keeper 2026-10-31 (design approved). war decisions moved here from History (Rex 2026-10-31)",
+   "overlap_groups": [],
+   "unit_issues": [],
+   "audit_batch": "government-keeper-2026-10-31",
+   "audit_id": null,
+   "writes": [],
+   "reads": [],
+   "aggregates": null,
+   "vv": {
+    "implemented": false,
+    "integrated": "no (not built)",
+    "validated": "n/a",
+    "record": {
+     "sources_and_model": {
+      "sources": "to research per unit (evidence levels stated); ENGINES.md",
+      "model": "relations between authorities (treaty, tribute, alliance, war) decided by office-holders (Cognition) under each authority's rules",
+      "evidence_level": null
+     },
+     "applicability": "planned",
+     "verification_tests": "none",
+     "validation_evidence": [],
+     "tolerance": null,
+     "stability_conservation_boundary": [],
+     "numerical": {
+      "stability": null,
+      "coupled_update_consistency": null,
+      "sensitivity": null
+     },
+     "integration_tested_with": [],
+     "integration_tests": [],
+     "report": "Government keeper 2026-10-31 (design approved). war decisions moved here from History (Rex 2026-10-31)"
+    }
+   },
+   "rate_limiter": null,
+   "failure_mode": null
+  },
+  {
+   "id": "government.fiscal.spending",
+   "name": "Spending",
+   "owning_engine": "government",
+   "home": "Toolchain/government/DESIGN.md (approved by Rex 2026-10-31) §1.10",
+   "home_kind": "docs",
+   "status": "planned",
+   "status_note": "",
+   "kind": "mechanism",
+   "restates": null,
+   "domain": "E",
+   "scope": "universal",
+   "scope_note": "",
+   "inputs": [
+    {
+     "name": "government.law",
+     "unit": "see quantities.json"
+    },
+    {
+     "name": "contract.balance",
+     "unit": "see quantities.json"
+    }
+   ],
+   "outputs": [],
+   "state": "planned",
+   "formulation": "the treasury is a Settlement account; spending is a spending-power holder choosing (Cognition) or an appropriation rule (a require law on the treasury) within the balance; payments are Settlement pay rows; Government owns the appropriation rules and the record of promises and decides no expenditure itself",
+   "dependencies": [],
+   "timescale": "planned",
+   "invariants": "no mechanism assigns a government type: the distribution of authority is computed, and monarchy, council, republic and the rest are classifications of the result (History or Catalogue may label them); a law can exist and not be obeyed, and enforcement can fail for want of resources, witnesses, cooperation or legitimacy; religious movements spread, fragment, merge, reform or vanish through these mechanisms, never a meter; GOV-Q1 (Rex): authority is computed from mechanisms, never a stored score; GOV-Q2: the type label is the Catalogue's vocabulary, read by History; Government exposes only government.authority_distribution",
+   "sources": "to research per unit (evidence levels stated); ENGINES.md",
+   "evidence": null,
+   "evidence_note": "?",
+   "approximations": "planned",
+   "tests": "none",
+   "consumers": [
+    "settlement.ledger.pay"
+   ],
+   "notes": "Government keeper 2026-10-31 (design approved). ",
+   "overlap_groups": [],
+   "unit_issues": [],
+   "audit_batch": "government-keeper-2026-10-31",
+   "audit_id": null,
+   "writes": [],
+   "reads": [],
+   "aggregates": null,
+   "vv": {
+    "implemented": false,
+    "integrated": "no (not built)",
+    "validated": "n/a",
+    "record": {
+     "sources_and_model": {
+      "sources": "to research per unit (evidence levels stated); ENGINES.md",
+      "model": "the treasury is a Settlement account; spending is a spending-power holder choosing (Cognition) or an appropriation rule (a require law on the treasury) within the balance; payments are Settlement pay rows; Government owns the appropriation rules and the record of promises and decides no expenditure itself",
+      "evidence_level": null
+     },
+     "applicability": "planned",
+     "verification_tests": "none",
+     "validation_evidence": [],
+     "tolerance": null,
+     "stability_conservation_boundary": [],
+     "numerical": {
+      "stability": null,
+      "coupled_update_consistency": null,
+      "sensitivity": null
+     },
+     "integration_tested_with": [],
+     "integration_tests": [],
+     "report": "Government keeper 2026-10-31 (design approved). "
+    }
+   },
+   "rate_limiter": null,
+   "failure_mode": null
+  },
+  {
+   "id": "government.fiscal.taxation",
+   "name": "Taxation",
+   "owning_engine": "government",
+   "home": "Toolchain/government/DESIGN.md (approved by Rex 2026-10-31) §1.9",
+   "home_kind": "docs",
+   "status": "planned",
+   "status_note": "",
+   "kind": "mechanism",
+   "restates": null,
+   "domain": "E",
+   "scope": "universal",
+   "scope_note": "",
+   "inputs": [
+    {
+     "name": "government.law",
+     "unit": "see quantities.json"
+    },
+    {
+     "name": "contract.balance",
+     "unit": "see quantities.json"
+    }
+   ],
+   "outputs": [],
+   "state": "planned",
+   "formulation": "tax laws (data) on a base; collection runs in Government's own process phase, paying through Settlement's LedgerProvider; Settlement's publicWorks step stays a no-op",
+   "dependencies": [],
+   "timescale": "planned",
+   "invariants": "no mechanism assigns a government type: the distribution of authority is computed, and monarchy, council, republic and the rest are classifications of the result (History or Catalogue may label them); a law can exist and not be obeyed, and enforcement can fail for want of resources, witnesses, cooperation or legitimacy; religious movements spread, fragment, merge, reform or vanish through these mechanisms, never a meter; GOV-Q1 (Rex): authority is computed from mechanisms, never a stored score; GOV-Q2: the type label is the Catalogue's vocabulary, read by History; Government exposes only government.authority_distribution",
+   "sources": "to research per unit (evidence levels stated); ENGINES.md",
+   "evidence": null,
+   "evidence_note": "?",
+   "approximations": "planned",
+   "tests": "none",
+   "consumers": [
+    "settlement.ledger.pay"
+   ],
+   "notes": "Government keeper 2026-10-31 (design approved). closes DUP-42 with Settlement; money only through LedgerProvider",
+   "overlap_groups": [
+    "DUP-42"
+   ],
+   "unit_issues": [],
+   "audit_batch": "government-keeper-2026-10-31",
+   "audit_id": null,
+   "writes": [],
+   "reads": [],
+   "aggregates": null,
+   "vv": {
+    "implemented": false,
+    "integrated": "no (not built)",
+    "validated": "n/a",
+    "record": {
+     "sources_and_model": {
+      "sources": "to research per unit (evidence levels stated); ENGINES.md",
+      "model": "tax laws (data) on a base; collection runs in Government's own process phase, paying through Settlement's LedgerProvider; Settlement's publicWorks step stays a no-op",
+      "evidence_level": null
+     },
+     "applicability": "planned",
+     "verification_tests": "none",
+     "validation_evidence": [],
+     "tolerance": null,
+     "stability_conservation_boundary": [],
+     "numerical": {
+      "stability": null,
+      "coupled_update_consistency": null,
+      "sensitivity": null
+     },
+     "integration_tested_with": [],
+     "integration_tests": [],
+     "report": "Government keeper 2026-10-31 (design approved). closes DUP-42 with Settlement; money only through LedgerProvider"
     }
    },
    "rate_limiter": null,
@@ -7987,6 +8279,288 @@
      "integration_tested_with": [],
      "integration_tests": [],
      "report": "the format of government.law; writes nothing of its own"
+    }
+   },
+   "rate_limiter": null,
+   "failure_mode": null
+  },
+  {
+   "id": "government.legitimacy.aggregate",
+   "name": "Legitimacy as an aggregate of beliefs",
+   "owning_engine": "government",
+   "home": "Toolchain/government/DESIGN.md (approved by Rex 2026-10-31) §1.8",
+   "home_kind": "docs",
+   "status": "planned",
+   "status_note": "",
+   "kind": "mechanism",
+   "restates": null,
+   "domain": "E",
+   "scope": "universal",
+   "scope_note": "",
+   "inputs": [
+    {
+     "name": "mind.belief",
+     "unit": "see quantities.json"
+    }
+   ],
+   "outputs": [],
+   "state": "planned",
+   "formulation": "an aggregate read of members' beliefs about an authority (mind.belief), for observers and History; writes no state, never a meter a mechanism reads",
+   "dependencies": [],
+   "timescale": "planned",
+   "invariants": "no mechanism assigns a government type: the distribution of authority is computed, and monarchy, council, republic and the rest are classifications of the result (History or Catalogue may label them); a law can exist and not be obeyed, and enforcement can fail for want of resources, witnesses, cooperation or legitimacy; religious movements spread, fragment, merge, reform or vanish through these mechanisms, never a meter; GOV-Q1 (Rex): authority is computed from mechanisms, never a stored score; GOV-Q2: the type label is the Catalogue's vocabulary, read by History; Government exposes only government.authority_distribution",
+   "sources": "to research per unit (evidence levels stated); ENGINES.md",
+   "evidence": null,
+   "evidence_note": "?",
+   "approximations": "planned",
+   "tests": "none",
+   "consumers": [],
+   "notes": "Government keeper 2026-10-31 (design approved). GOV-Q1: never a stored score",
+   "overlap_groups": [],
+   "unit_issues": [],
+   "audit_batch": "government-keeper-2026-10-31",
+   "audit_id": null,
+   "writes": [],
+   "reads": [],
+   "aggregates": null,
+   "vv": {
+    "implemented": false,
+    "integrated": "no (not built)",
+    "validated": "n/a",
+    "record": {
+     "sources_and_model": {
+      "sources": "to research per unit (evidence levels stated); ENGINES.md",
+      "model": "an aggregate read of members' beliefs about an authority (mind.belief), for observers and History; writes no state, never a meter a mechanism reads",
+      "evidence_level": null
+     },
+     "applicability": "planned",
+     "verification_tests": "none",
+     "validation_evidence": [],
+     "tolerance": null,
+     "stability_conservation_boundary": [],
+     "numerical": {
+      "stability": null,
+      "coupled_update_consistency": null,
+      "sensitivity": null
+     },
+     "integration_tested_with": [],
+     "integration_tests": [],
+     "report": "Government keeper 2026-10-31 (design approved). GOV-Q1: never a stored score"
+    }
+   },
+   "rate_limiter": null,
+   "failure_mode": null
+  },
+  {
+   "id": "government.military.organisation",
+   "name": "Military organisation",
+   "owning_engine": "government",
+   "home": "Toolchain/government/DESIGN.md (approved by Rex 2026-10-31) §1.13",
+   "home_kind": "docs",
+   "status": "planned",
+   "status_note": "",
+   "kind": "mechanism",
+   "restates": null,
+   "domain": "E",
+   "scope": "universal",
+   "scope_note": "",
+   "inputs": [
+    {
+     "name": "society.organisation",
+     "unit": "see quantities.json"
+    },
+    {
+     "name": "government.authority_distribution",
+     "unit": "see quantities.json"
+    }
+   ],
+   "outputs": [],
+   "state": "planned",
+   "formulation": "military organisation as an organisation record with command authority; on Society's organisation record",
+   "dependencies": [],
+   "timescale": "planned",
+   "invariants": "no mechanism assigns a government type: the distribution of authority is computed, and monarchy, council, republic and the rest are classifications of the result (History or Catalogue may label them); a law can exist and not be obeyed, and enforcement can fail for want of resources, witnesses, cooperation or legitimacy; religious movements spread, fragment, merge, reform or vanish through these mechanisms, never a meter; GOV-Q1 (Rex): authority is computed from mechanisms, never a stored score; GOV-Q2: the type label is the Catalogue's vocabulary, read by History; Government exposes only government.authority_distribution",
+   "sources": "to research per unit (evidence levels stated); ENGINES.md",
+   "evidence": null,
+   "evidence_note": "?",
+   "approximations": "planned",
+   "tests": "none",
+   "consumers": [],
+   "notes": "Government keeper 2026-10-31 (design approved). the DUP-58 seam: one organisation store (Society); GOV-Q7: battle-scale aggregation is a shared aggregation interface, Reality owns the physics, Government the decision",
+   "overlap_groups": [],
+   "unit_issues": [],
+   "audit_batch": "government-keeper-2026-10-31",
+   "audit_id": null,
+   "writes": [],
+   "reads": [],
+   "aggregates": null,
+   "vv": {
+    "implemented": false,
+    "integrated": "no (not built)",
+    "validated": "n/a",
+    "record": {
+     "sources_and_model": {
+      "sources": "to research per unit (evidence levels stated); ENGINES.md",
+      "model": "military organisation as an organisation record with command authority; on Society's organisation record",
+      "evidence_level": null
+     },
+     "applicability": "planned",
+     "verification_tests": "none",
+     "validation_evidence": [],
+     "tolerance": null,
+     "stability_conservation_boundary": [],
+     "numerical": {
+      "stability": null,
+      "coupled_update_consistency": null,
+      "sensitivity": null
+     },
+     "integration_tested_with": [],
+     "integration_tests": [],
+     "report": "Government keeper 2026-10-31 (design approved). the DUP-58 seam: one organisation store (Society); GOV-Q7: battle-scale aggregation is a shared aggregation interface, Reality owns the physics, Government the decision"
+    }
+   },
+   "rate_limiter": null,
+   "failure_mode": null
+  },
+  {
+   "id": "government.polity.structure",
+   "name": "Polity structure",
+   "owning_engine": "government",
+   "home": "Toolchain/government/DESIGN.md (approved by Rex 2026-10-31) §1.14",
+   "home_kind": "docs",
+   "status": "planned",
+   "status_note": "",
+   "kind": "mechanism",
+   "restates": null,
+   "domain": "E",
+   "scope": "universal",
+   "scope_note": "",
+   "inputs": [
+    {
+     "name": "government.authority_distribution",
+     "unit": "see quantities.json"
+    },
+    {
+     "name": "government.jurisdiction",
+     "unit": "see quantities.json"
+    }
+   ],
+   "outputs": [],
+   "state": "planned",
+   "formulation": "a read of the authority graph: which authorities form a polity, its territory and fragments; writes no state",
+   "dependencies": [],
+   "timescale": "planned",
+   "invariants": "no mechanism assigns a government type: the distribution of authority is computed, and monarchy, council, republic and the rest are classifications of the result (History or Catalogue may label them); a law can exist and not be obeyed, and enforcement can fail for want of resources, witnesses, cooperation or legitimacy; religious movements spread, fragment, merge, reform or vanish through these mechanisms, never a meter; GOV-Q1 (Rex): authority is computed from mechanisms, never a stored score; GOV-Q2: the type label is the Catalogue's vocabulary, read by History; Government exposes only government.authority_distribution",
+   "sources": "to research per unit (evidence levels stated); ENGINES.md",
+   "evidence": null,
+   "evidence_note": "?",
+   "approximations": "planned",
+   "tests": "none",
+   "consumers": [],
+   "notes": "Government keeper 2026-10-31 (design approved). polity formation, expansion and fragmentation moved here from History (Rex 2026-10-31)",
+   "overlap_groups": [],
+   "unit_issues": [],
+   "audit_batch": "government-keeper-2026-10-31",
+   "audit_id": null,
+   "writes": [],
+   "reads": [],
+   "aggregates": null,
+   "vv": {
+    "implemented": false,
+    "integrated": "no (not built)",
+    "validated": "n/a",
+    "record": {
+     "sources_and_model": {
+      "sources": "to research per unit (evidence levels stated); ENGINES.md",
+      "model": "a read of the authority graph: which authorities form a polity, its territory and fragments; writes no state",
+      "evidence_level": null
+     },
+     "applicability": "planned",
+     "verification_tests": "none",
+     "validation_evidence": [],
+     "tolerance": null,
+     "stability_conservation_boundary": [],
+     "numerical": {
+      "stability": null,
+      "coupled_update_consistency": null,
+      "sensitivity": null
+     },
+     "integration_tested_with": [],
+     "integration_tests": [],
+     "report": "Government keeper 2026-10-31 (design approved). polity formation, expansion and fragmentation moved here from History (Rex 2026-10-31)"
+    }
+   },
+   "rate_limiter": null,
+   "failure_mode": null
+  },
+  {
+   "id": "government.property.regime",
+   "name": "Property-rights regimes",
+   "owning_engine": "government",
+   "home": "Toolchain/government/DESIGN.md (approved by Rex 2026-10-31) §1.11",
+   "home_kind": "docs",
+   "status": "planned",
+   "status_note": "",
+   "kind": "mechanism",
+   "restates": null,
+   "domain": "E",
+   "scope": "universal",
+   "scope_note": "",
+   "inputs": [
+    {
+     "name": "government.law",
+     "unit": "see quantities.json"
+    },
+    {
+     "name": "settlement.lease_record",
+     "unit": "see quantities.json"
+    }
+   ],
+   "outputs": [],
+   "state": "planned",
+   "formulation": "property-rights regimes as law data over Settlement's titles and leases (IF-44)",
+   "dependencies": [],
+   "timescale": "planned",
+   "invariants": "no mechanism assigns a government type: the distribution of authority is computed, and monarchy, council, republic and the rest are classifications of the result (History or Catalogue may label them); a law can exist and not be obeyed, and enforcement can fail for want of resources, witnesses, cooperation or legitimacy; religious movements spread, fragment, merge, reform or vanish through these mechanisms, never a meter; GOV-Q1 (Rex): authority is computed from mechanisms, never a stored score; GOV-Q2: the type label is the Catalogue's vocabulary, read by History; Government exposes only government.authority_distribution",
+   "sources": "to research per unit (evidence levels stated); ENGINES.md",
+   "evidence": null,
+   "evidence_note": "?",
+   "approximations": "planned",
+   "tests": "none",
+   "consumers": [
+    "settlement.property.lease"
+   ],
+   "notes": "Government keeper 2026-10-31 (design approved). ",
+   "overlap_groups": [],
+   "unit_issues": [],
+   "audit_batch": "government-keeper-2026-10-31",
+   "audit_id": null,
+   "writes": [],
+   "reads": [],
+   "aggregates": null,
+   "vv": {
+    "implemented": false,
+    "integrated": "no (not built)",
+    "validated": "n/a",
+    "record": {
+     "sources_and_model": {
+      "sources": "to research per unit (evidence levels stated); ENGINES.md",
+      "model": "property-rights regimes as law data over Settlement's titles and leases (IF-44)",
+      "evidence_level": null
+     },
+     "applicability": "planned",
+     "verification_tests": "none",
+     "validation_evidence": [],
+     "tolerance": null,
+     "stability_conservation_boundary": [],
+     "numerical": {
+      "stability": null,
+      "coupled_update_consistency": null,
+      "sensitivity": null
+     },
+     "integration_tested_with": [],
+     "integration_tests": [],
+     "report": "Government keeper 2026-10-31 (design approved). "
     }
    },
    "rate_limiter": null,
@@ -49088,6 +49662,72 @@
      "integration_tested_with": [],
      "integration_tests": [],
      "report": "CONTRACTS s16 (agreed 2026-10-30): the only writer of Post.wage besides addPost (settlement U17, units 2617-2619)."
+    }
+   },
+   "rate_limiter": null,
+   "failure_mode": null
+  },
+  {
+   "id": "shared.action.kind",
+   "name": "Action vocabulary (shared contract)",
+   "owning_engine": "shared",
+   "home": "Toolchain/government/DESIGN.md (approved by Rex 2026-10-31) § GOV-Q4",
+   "home_kind": "code",
+   "status": "planned",
+   "status_note": "",
+   "kind": "mechanism",
+   "restates": null,
+   "domain": "infra",
+   "scope": "universal",
+   "scope_note": "",
+   "inputs": [],
+   "outputs": [],
+   "state": "planned",
+   "formulation": "the vocabulary of actions that laws regulate: Cognition repertoire kinds, Settlement command types, Economy trade kinds; one id per action kind, owned by no engine",
+   "dependencies": [],
+   "timescale": "contract",
+   "invariants": "a law's regulated action names a kind from this vocabulary; engines map their own actions to it; no engine owns it",
+   "sources": "contract",
+   "evidence": null,
+   "evidence_note": "?",
+   "approximations": "contract",
+   "tests": "none",
+   "consumers": [
+    "government.law.schema",
+    "government.compliance.enforcement",
+    "cognition.decision.generate"
+   ],
+   "notes": "GOV-Q4 (Rex-approved Government design 2026-10-31); a contract row in 'shared', owned by no engine",
+   "overlap_groups": [],
+   "unit_issues": [],
+   "audit_batch": "government-keeper-2026-10-31",
+   "audit_id": null,
+   "writes": [],
+   "reads": [],
+   "aggregates": null,
+   "vv": {
+    "implemented": false,
+    "integrated": "no (not built)",
+    "validated": "n/a",
+    "record": {
+     "sources_and_model": {
+      "sources": "contract",
+      "model": "the vocabulary of actions that laws regulate: Cognition repertoire kinds, Settlement command types, Economy trade kinds; one id per action kind, owned by no engine",
+      "evidence_level": null
+     },
+     "applicability": "contract",
+     "verification_tests": "none",
+     "validation_evidence": [],
+     "tolerance": null,
+     "stability_conservation_boundary": [],
+     "numerical": {
+      "stability": null,
+      "coupled_update_consistency": null,
+      "sensitivity": null
+     },
+     "integration_tested_with": [],
+     "integration_tests": [],
+     "report": "GOV-Q4 (Rex-approved Government design 2026-10-31); a contract row in 'shared', owned by no engine"
     }
    },
    "rate_limiter": null,
