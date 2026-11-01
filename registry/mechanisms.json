@@ -51824,7 +51824,7 @@
    "consumers": [
     "settlement.assign.workforce"
    ],
-   "notes": "IF-27 (CHAINS.md priority 2); the work resolver of the CG-16 contract for demonstration runs; open (History keeper, X1 spec): what makes a work intention accepted (hours > 0, available(), or reservation wage vs posted wage); the kernel unit (Needs 2823) waits on it; the harness already reaches Settlement's apply and LabourSupply (settlement src/providers.ts); 'accepted' ruled by the controller 2026-11-01 (see formulation); the host's phase follows kernel order.json; role source ruled 2026-11-01 (controller, option a): the intention's target",
+   "notes": "IF-27 (CHAINS.md priority 2); the work resolver of the CG-16 contract for demonstration runs; open (History keeper, X1 spec): what makes a work intention accepted (hours > 0, available(), or reservation wage vs posted wage); the kernel unit (Needs 2823) waits on it; the harness already reaches Settlement's apply and LabourSupply (settlement src/providers.ts); 'accepted' ruled by the controller 2026-11-01 (see formulation); the host's phase follows kernel order.json; role source ruled 2026-11-01 (controller, option a): the intention's target; OPEN 2026-11-01: Cognition queued 5007/5008 (role?: string on Intention) against ruling (a); controller asked which stands; Life's provider is unaffected (the host supplies roleOf(intention))",
    "overlap_groups": [],
    "unit_issues": [],
    "audit_batch": "controller-2026-11-01-if27-host",
@@ -51854,7 +51854,7 @@
      },
      "integration_tested_with": [],
      "integration_tests": [],
-     "report": "IF-27 (CHAINS.md priority 2); the work resolver of the CG-16 contract for demonstration runs; open (History keeper, X1 spec): what makes a work intention accepted (hours > 0, available(), or reservation wage vs posted wage); the kernel unit (Needs 2823) waits on it; the harness already reaches Settlement's apply and LabourSupply (settlement src/providers.ts); 'accepted' ruled by the controller 2026-11-01 (see formulation); the host's phase follows kernel order.json; role source ruled 2026-11-01 (controller, option a): the intention's target"
+     "report": "IF-27 (CHAINS.md priority 2); the work resolver of the CG-16 contract for demonstration runs; open (History keeper, X1 spec): what makes a work intention accepted (hours > 0, available(), or reservation wage vs posted wage); the kernel unit (Needs 2823) waits on it; the harness already reaches Settlement's apply and LabourSupply (settlement src/providers.ts); 'accepted' ruled by the controller 2026-11-01 (see formulation); the host's phase follows kernel order.json; role source ruled 2026-11-01 (controller, option a): the intention's target; OPEN 2026-11-01: Cognition queued 5007/5008 (role?: string on Intention) against ruling (a); controller asked which stands; Life's provider is unaffected (the host supplies roleOf(intention))"
     }
    },
    "rate_limiter": null,

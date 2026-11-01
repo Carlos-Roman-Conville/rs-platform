@@ -3106,3 +3106,8 @@ for _r in EXTRA_ROWS:
         _r["notes"] = _r["notes"].replace("; OPEN 2026-11-01 (escalated): the ruling reads the role from the intention's terms, but terms are numbers only (cognition src/types.ts), so a role name cannot be a term; where the role comes from (target, a numeric role id, or a terms type change) is the controller's call",
                                           "; role source ruled 2026-11-01 (controller, option a): the intention's target")
         assert "option a" in _r["formulation"] and "option a" in _r["notes"]
+
+# --- 2026-11-01: conflict: Cognition queued 5007/5008 adding role?: string to Candidate/Intention ('no role' failure), citing a controller amendment; the controller's ruling to the registry is option (a), target, no type change. Escalated; Cognition asked to hold ---
+for _r in EXTRA_ROWS:
+    if _r["id"] == "shared.host.work_resolution":
+        _r["notes"] += "; OPEN 2026-11-01: Cognition queued 5007/5008 (role?: string on Intention) against ruling (a); controller asked which stands; Life's provider is unaffected (the host supplies roleOf(intention))"
