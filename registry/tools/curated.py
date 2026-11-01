@@ -3075,3 +3075,12 @@ for _r in EXTRA_ROWS:
             "(reservation wage vs posted wage is not tested), exactly as Economy applies no floor today. Not accepted resolves to shared.action.outcome status failed with the reason among the stimuli (C-Q25), so the mind learns")
         _r["notes"] = _r["notes"].replace("; History §3.8 defers 'accepted' and the host's phase to the contract and kernel order.json, and the Kernel keeper defers it to History: escalated to the controller 2026-11-01",
             "; 'accepted' ruled by the controller 2026-11-01 (see formulation); the host's phase follows kernel order.json")
+
+# --- 2026-11-01: cognition.intention added to registry/events.json (fields from cognition src/types.ts at HEAD). Conflict found: the controller's 'accepted' ruling names the role in the intention's terms,
+# but terms are numbers only (Readonly<Record<string, number>>); escalated to the controller ---
+for _r in EXTRA_ROWS:
+    if _r["id"] == "shared.host.work_resolution":
+        _r["notes"] += "; OPEN 2026-11-01 (escalated): the ruling reads the role from the intention's terms, but terms are numbers only (cognition src/types.ts), so a role name cannot be a term; where the role comes from (target, a numeric role id, or a terms type change) is the controller's call"
+for _g in INTERFACE_GAPS:
+    if _g["interface"] == "CG-18": _g["progress"] += "; cognition.intention row added to events.json 2026-11-01 (expectedOutcomes and terms untyped: no map kind)"
+    if _g["interface"] == "IF-27": _g["progress"] += "; Life's provider drafted (HQ/handoffs/life/drafts/life-20-labour-supply-from-intentions.md, LIFE-16): hours = terms.hours, reservationWage = terms.wage_min, reads cognition.intention from the EventBus, pure"

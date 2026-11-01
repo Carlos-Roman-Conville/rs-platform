@@ -1,6 +1,43 @@
 {
   "events": [
     {
+      "type": "cognition.intention",
+      "producer": "cognition.decision.select",
+      "consumers": [
+        "shared.action.resolution",
+        "shared.host.work_resolution",
+        "shared.contract.labour_supply_provider"
+      ],
+      "cause": "optional",
+      "payload": {
+        "id": {
+          "kind": "id",
+          "required": true
+        },
+        "mind": {
+          "kind": "id",
+          "required": true
+        },
+        "action": {
+          "kind": "string",
+          "required": true
+        },
+        "target": {
+          "kind": "id",
+          "required": false
+        },
+        "t": {
+          "kind": "integer",
+          "required": true
+        },
+        "status": {
+          "kind": "string",
+          "required": true
+        }
+      },
+      "notes": "CG-18 (Cognition keeper 2026-11-01; built, cognition 2106314; terms? added at f53f16d, unit 3044). Two fields are not typed here because no checker kind fits a map: expectedOutcomes (Categorical over good | bad | unfinished) and terms? (Readonly<Record<string, number>>, host repertoire data, numbers only (cognition src/types.ts): e.g. hours, wage_min; absent when none). Read by the action resolvers, the host's work resolution and Life's LabourSupply provider (IF-27, from the kernel EventBus). t is kernel SimTime (integer ms). status is active | completed | failed | impossible."
+    },
+    {
       "type": "shared.action.outcome",
       "producer": "shared.action.resolution",
       "consumers": [
