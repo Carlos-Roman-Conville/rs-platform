@@ -3372,3 +3372,19 @@ for _q in EXTRA_QUANTITIES:
     if _q["id"] == "government.legal_tender":
         _q["status"] = "built (government 5290 7e1c179; out port at ebe49f6, 2026-11-01)"
         _q["description"] += "; read shape for every consumer (Cognition, Settlement): " + _LT_SIG
+
+# --- 2026-11-01: REG-33 (Government's port file in the check). Government keeper's request; Government's own fix is unit 5320 (port kind: record, a government.rule process).
+# Registry keeper re-audited government ebe49f6: src/law/enact.ts enact() is the one entry; amendment and repeal are enactments whose `supersedes` makes earlier laws
+# ineffective (no separate amend/repeal export); test/enact.test.ts 26/26 'rule creation and amendment' (amendment on its later effective day; cross-authority supersedes) ---
+for _r in EXTRA_ROWS:
+    if _r["id"] == "government.rule.creation_amendment":
+        _r["status"] = "built"; _r["state"] = "built (law records; the host owns persistence)"
+        _r["home"] = ("Toolchain/government/src/law/enact.ts enact (amend and repeal as enactments with `supersedes`, returned `ineffective`); Government DESIGN §1.1-§1.3; "
+                      "design " + _r["home"].replace("; planned)", ")"))
+        _r["tests"] = "Toolchain/government test/enact.test.ts 26/26 at ebe49f6 (registry keeper rerun 2026-11-01); full suite 990/990"
+        _r["notes"] += "; built 2026-11-01 (REG-33): the writer of government.law; recognition through deJure 'legislate' over the draft's regulated.action"
+VV_OVERRIDES["government.rule.creation_amendment"] = {"validated": "no (enclosure test §4 / ROADMAP P8 t3 not run)", "integrated": "no (government.rule process pending unit 5320)",
+                                                     "evidence": "re-audit 2026-11-01 at government ebe49f6: enact.test.ts 26/26"}
+EXTRA_QUANTITIES.append({"id": "settlement.office", "kind": "record", "unit": None, "scope": "settlement", "writer": "settlement.authority.office_powers",
+    "description": "office records {id, name, holder, seat}; the holder is written only by Settlement's appoint and vacate (GOVERNMENT-SETTLEMENT.md §1); read by Government's government.authority process",
+    "status": "built (Settlement createOffice/appoint; registered 2026-11-01, REG-33)"})

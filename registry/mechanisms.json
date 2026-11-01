@@ -7,8 +7,8 @@
   "contract_fields": "PLATFORM.md §7",
   "evidence_scale": "PLATFORM.md §4 (1 law ... 6 fiction)",
   "counts": {
-   "built": 227,
-   "planned": 202,
+   "built": 228,
+   "planned": 201,
    "documented-only": 161
   },
   "kinds": {
@@ -20,8 +20,8 @@
   "schema_4": "adds rate_limiter and failure_mode to the §7 contract fields (with inputs = what enters, outputs = what leaves, state = what accumulates), null until owners fill them; widens vv.record item 5 with numerical {stability, coupled_update_consistency, sensitivity} (PLATFORM §11a item 5, Rex 2026-10-31); check-registry warns, never fails, on empty fields of built rows",
   "schema_3": "each row carries vv {implemented, integrated, validated, record{sources_and_model, applicability, verification_tests, validation_evidence, tolerance, stability_conservation_boundary, integration_tested_with, integration_tests, report}} (PLATFORM.md §11a); seeded 2026-10-30 from the audit and the combined tests; owners complete it, the registry keeper re-audits",
   "vv_counts": {
-   "implemented": 225,
-   "built_mechanisms": 227,
+   "implemented": 226,
+   "built_mechanisms": 228,
    "with_integration_test": 122,
    "integrated_yes": 128,
    "validated_yes": 0,
@@ -9040,9 +9040,9 @@
    "id": "government.rule.creation_amendment",
    "name": "Rule creation and amendment",
    "owning_engine": "government",
-   "home": "Toolchain/ENGINES.md 'Institutions, government and religion emerge' (Rex 2026-10-31; planned)",
+   "home": "Toolchain/government/src/law/enact.ts enact (amend and repeal as enactments with `supersedes`, returned `ineffective`); Government DESIGN §1.1-§1.3; design Toolchain/ENGINES.md 'Institutions, government and religion emerge' (Rex 2026-10-31)",
    "home_kind": "docs",
-   "status": "planned",
+   "status": "built",
    "status_note": "",
    "kind": "mechanism",
    "restates": null,
@@ -9065,7 +9065,7 @@
      "unit": "see quantities.json"
     }
    ],
-   "state": "planned",
+   "state": "built (law records; the host owns persistence)",
    "formulation": "who may make or change a rule, by what procedure, and the resulting law records (government.law.schema); includes religious law and official recognition or restriction of religions",
    "dependencies": [],
    "timescale": "planned",
@@ -9074,12 +9074,12 @@
    "evidence": null,
    "evidence_note": "?",
    "approximations": "planned",
-   "tests": "none",
+   "tests": "Toolchain/government test/enact.test.ts 26/26 at ebe49f6 (registry keeper rerun 2026-11-01); full suite 990/990",
    "consumers": [
     "government.compliance.enforcement",
     "cognition.decision.evaluate"
    ],
-   "notes": "",
+   "notes": "; built 2026-11-01 (REG-33): the writer of government.law; recognition through deJure 'legislate' over the draft's regulated.action",
    "overlap_groups": [],
    "unit_issues": [],
    "audit_batch": "rex-2026-10-31-institutions",
@@ -9087,13 +9087,15 @@
    "interfaces": [
     "IF-47"
    ],
-   "writes": [],
+   "writes": [
+    "government.law"
+   ],
    "reads": [],
    "aggregates": null,
    "vv": {
-    "implemented": false,
-    "integrated": "no (not built)",
-    "validated": "n/a",
+    "implemented": true,
+    "integrated": "no (government.rule process pending unit 5320)",
+    "validated": "no (enclosure test §4 / ROADMAP P8 t3 not run)",
     "record": {
      "sources_and_model": {
       "sources": "to research per unit (evidence levels stated); ENGINES.md",
@@ -9101,8 +9103,10 @@
       "evidence_level": null
      },
      "applicability": "planned",
-     "verification_tests": "none",
-     "validation_evidence": [],
+     "verification_tests": "Toolchain/government test/enact.test.ts 26/26 at ebe49f6 (registry keeper rerun 2026-11-01); full suite 990/990",
+     "validation_evidence": [
+      "re-audit 2026-11-01 at government ebe49f6: enact.test.ts 26/26"
+     ],
      "tolerance": null,
      "stability_conservation_boundary": [],
      "numerical": {
@@ -9112,7 +9116,7 @@
      },
      "integration_tested_with": [],
      "integration_tests": [],
-     "report": ""
+     "report": "; built 2026-11-01 (REG-33): the writer of government.law; recognition through deJure 'legislate' over the draft's regulated.action"
     }
    },
    "rate_limiter": null,

@@ -71,14 +71,14 @@ mechanisms, and are not itemised. Coverage limits are listed in `HQ/handoffs/reg
 | economy mechanisms | 24 | 0 | 5 | 29 |
 | cognition mechanisms | 13 | 0 | 42 | 55 |
 | society mechanisms | 0 | 0 | 18 | 18 |
-| government mechanisms | 5 | 0 | 11 | 16 |
+| government mechanisms | 6 | 0 | 10 | 16 |
 | knowledge mechanisms | 0 | 0 | 7 | 7 |
 | history mechanisms | 0 | 0 | 1 | 1 |
 | catalogue mechanisms | 0 | 0 | 7 | 7 |
 | shared mechanisms | 7 | 5 | 5 | 17 |
 | pirate-ship mechanisms | 24 | 63 | 15 | 102 |
 | restatements (pirate docs and adapters) | 0 | 90 | 2 | 92 |
-| **all rows** | 227 | 161 | 202 | 590 |
+| **all rows** | 228 | 161 | 201 | 590 |
 
 **Restatements** are not errors: the pirate body docs are rendered from the same library JSON as the realism
 code (`body/build-body-data.py`), so their tables cannot disagree with the code. Disagreements live only in their
@@ -524,7 +524,7 @@ stability/conservation/boundary tests, `integration_tested_with`, integration te
 | `government.monetary.authority` | B | E | U | ? | I-- |  | government/src/monetary/legal-tender.ts legalTender (5290, 7e1c179); src/monetary/authorit |
 | `government.polity.structure` | P | E | U | ? | --- |  | government/DESIGN.md (approved by Rex 2026-10-31) §1.14 |
 | `government.property.regime` | P | E | U | ? | --- |  | government/DESIGN.md (approved by Rex 2026-10-31) §1.11 |
-| `government.rule.creation_amendment` | P | E | U | ? | --- |  | ENGINES.md 'Institutions, government and religion emerge' (Rex 2026-10-31; planned) |
+| `government.rule.creation_amendment` | B | E | U | ? | I-- |  | government/src/law/enact.ts enact (amend and repeal as enactments with `supersedes`, retur |
 | `government.succession.institutional` | P | E | U | ? | --- | DUP-62 | ENGINES.md 'Institutions, government and religion emerge' (Rex 2026-10-31; planned) |
 | `government.suppression.communication` | P | E | U | ? | --- |  | ENGINES.md 'Communication and information transmission' (Rex 2026-10-30; owned by Cognitio |
 

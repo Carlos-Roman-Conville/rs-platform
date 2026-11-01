@@ -11,7 +11,7 @@
    "parser": "Toolchain/kernel/src/units.ts parse (unit 2592)",
    "tally": {
     "parses": 328,
-    "kind record": 131,
+    "kind record": 132,
     "kind text": 1,
     "kind categorical": 8,
     "unknown: the": 38
@@ -4675,6 +4675,16 @@
    "status": "seed",
    "kind": "quantity",
    "unit_parses": true
+  },
+  {
+   "id": "settlement.office",
+   "kind": "record",
+   "unit": null,
+   "scope": "settlement",
+   "writer": "settlement.authority.office_powers",
+   "description": "office records {id, name, holder, seat}; the holder is written only by Settlement's appoint and vacate (GOVERNMENT-SETTLEMENT.md §1); read by Government's government.authority process",
+   "status": "built (Settlement createOffice/appoint; registered 2026-11-01, REG-33)",
+   "unit_parses": null
   },
   {
    "id": "settlement.permission_record",

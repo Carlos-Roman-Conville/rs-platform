@@ -1238,7 +1238,7 @@
   {
    "id": "government.rule.creation_amendment",
    "engine": "government",
-   "status": "planned",
+   "status": "built",
    "kind": "mechanism",
    "domain": "E",
    "scope": "universal"
