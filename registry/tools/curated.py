@@ -3010,3 +3010,10 @@ for _g in INTERFACE_GAPS:
         _g["progress"] += ("; settlement 3047 landed 7e49d3c: hire takes cause?, emits settlement.post_filled then shared.action.outcome (completed, cause, wage) in one command; "
                            "unknown post throws with no event or state change; replay identical; test/engine.test.ts U24 6/6 (registry keeper rerun). Settlement's resolver part verified; "
                            "closes when an intention reaches hire through the host with a targeted test (Cognition lead)")
+
+# --- 2026-11-01: IF-27 evidence (Cognition keeper): intention terms? at cognition f53f16d (unit 3044, test/intention-terms.test.ts 4/4, registry keeper rerun) ---
+for _g in INTERFACE_GAPS:
+    if _g["interface"] == "IF-27":
+        _g["progress"] += ("; cognition 3044 f53f16d: intention terms? (test/intention-terms.test.ts 4/4, registry keeper rerun). Still missing: the LabourSupply provider that reads the latest "
+                           "work/refuse_work intention and answers hours(person, role, day) with the intention event id as cause (owner not yet named: Reality's population provider or the host); "
+                           "Economy's wage-quote floor (their wage rule, open for Rex). Units: person-hours per day (h); wage money per filled post-day")
