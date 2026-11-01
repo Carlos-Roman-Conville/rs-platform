@@ -29898,7 +29898,7 @@
     "realism.development.trait_change",
     "realism.reproduction.fertility_conception"
    ],
-   "notes": "registered 2026-10-31 after the controller's overlap check for Rex: no authoritative maturation mechanism existed. Hormonal development has no endocrine row yet; this row owns it until one is registered. Writes the developmental part of record 2; trait_change stays adult trait change [package split pending, SPLIT.md; owner life since 2026-10-31]",
+   "notes": "registered 2026-10-31 after the controller's overlap check for Rex; adopted by the Life keeper (life DESIGN §1.9): shares the developmental-state record plants use (§1.2); full contract fields after the plant work; owns hormonal development until an endocrine row is proposed. Writes the developmental part of record 2; trait_change stays adult trait change [package split pending, SPLIT.md; owner life since 2026-10-31]",
    "overlap_groups": [
     "DUP-17"
    ],
@@ -29933,7 +29933,7 @@
      },
      "integration_tested_with": [],
      "integration_tests": [],
-     "report": "registered 2026-10-31 after the controller's overlap check for Rex: no authoritative maturation mechanism existed. Hormonal development has no endocrine row yet; this row owns it until one is registered. Writes the developmental part of record 2; trait_change stays adult trait change [package split pending, SPLIT.md; owner life since 2026-10-31]"
+     "report": "registered 2026-10-31 after the controller's overlap check for Rex; adopted by the Life keeper (life DESIGN §1.9): shares the developmental-state record plants use (§1.2); full contract fields after the plant work; owns hormonal development until an endocrine row is proposed. Writes the developmental part of record 2; trait_change stays adult trait change [package split pending, SPLIT.md; owner life since 2026-10-31]"
     }
    },
    "rate_limiter": null,
