@@ -9953,6 +9953,12 @@
      "by": "registry keeper",
      "commit": "settlement e52afbd (2871)",
      "note": "re-audited: every office power check goes through officeHas -> AuthorityProvider.may (src/context.ts:78-82) at the four sites (commands.ts:178 public title, :212 seize, :624 and :637 permit); default provider officePowersAuthority reads Office.powers[]; kernel.json declares the in port on government.office_may; belt check exits 0; Settlement reports 72 tests and a byte-identical pirate golden (test (4)). Waits for Government's provider (government 2870) and test (2) through appoint / vacate / inherit"
+    },
+    {
+     "date": "2026-10-31",
+     "step": "units queued",
+     "by": "Government keeper",
+     "note": "the closing combined test is government 2892 (contract §7 tests 1-4 with both real packages), after government 2870 (the provider alone), settlement 2891 (subjects passed to may) and government 2888 (law fixture)"
     }
    ]
   },

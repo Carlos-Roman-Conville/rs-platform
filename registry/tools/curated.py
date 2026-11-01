@@ -2604,3 +2604,5 @@ for _k, _src, _t, _c, _n in [
     VV_OVERRIDES[_k] = {"validated": "no (no independent data yet; the law fixture 2866 failed review and is re-encoded in 2888)",
                         "integrated": "no (no combined test: the Settlement port provider is government 2870)",
                         "evidence": "re-audit 2026-10-31 of " + _c + ": " + _n}
+DECISIONS["DUP-62"]["progress"].append({"date": "2026-10-31", "step": "units queued", "by": "Government keeper",
+    "note": "the closing combined test is government 2892 (contract §7 tests 1-4 with both real packages), after government 2870 (the provider alone), settlement 2891 (subjects passed to may) and government 2888 (law fixture)"})
