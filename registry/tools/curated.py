@@ -3111,3 +3111,10 @@ for _r in EXTRA_ROWS:
 for _r in EXTRA_ROWS:
     if _r["id"] == "shared.host.work_resolution":
         _r["notes"] += "; OPEN 2026-11-01: Cognition queued 5007/5008 (role?: string on Intention) against ruling (a); controller asked which stands; Life's provider is unaffected (the host supplies roleOf(intention))"
+
+# --- 2026-11-01: role source settled: controller confirms (a) stands (record: rs-platform 36ed07e); Cognition withdrew 5007/5008's type change (one-line DESIGN §2.4 note on the target convention instead); kernel 5006 and Life's roleOf(intention) read target ---
+for _r in EXTRA_ROWS:
+    if _r["id"] == "shared.host.work_resolution":
+        _r["notes"] = _r["notes"].replace("; OPEN 2026-11-01: Cognition queued 5007/5008 (role?: string on Intention) against ruling (a); controller asked which stands; Life's provider is unaffected (the host supplies roleOf(intention))",
+            "; (a) confirmed by the controller 2026-11-01: Cognition's role? type change withdrawn (a DESIGN §2.4 note on the target convention instead); kernel 5006 and Life's roleOf(intention) read target; the failure reason is 'no target'")
+        assert "(a) confirmed" in _r["notes"]
