@@ -7,12 +7,12 @@ acceptance tests. This is the readable view of `registry/graph.json`; ids are th
 
 ## 1. The graph in numbers
 
-- Nodes: 583 rows (491 mechanisms, 92 restatements).
-- Edges: 224 `depends_on` (resolved from each row's dependency list), 92 `restates`, 190 `overlap` (members of the 67 groups below), 51 `interface` (hand-offs, §2).
+- Nodes: 584 rows (492 mechanisms, 92 restatements).
+- Edges: 228 `depends_on` (resolved from each row's dependency list), 92 `restates`, 190 `overlap` (members of the 67 groups below), 51 `interface` (hand-offs, §2).
 - Unresolved dependencies: 82 mentions of 79 names that match no row (data files, host inputs, props, other docs); listed in graph.json.
-- Cross-engine `depends_on` edges: life → pirate-ship: 14, economy → shared: 7, life → reality: 5, settlement → shared: 5, settlement → economy: 5, shared → economy: 3, pirate-ship → life: 3, reality → kernel: 2, shared → kernel: 2, shared → settlement: 1, shared → life: 1.
+- Cross-engine `depends_on` edges: life → pirate-ship: 14, economy → shared: 7, life → reality: 5, settlement → shared: 5, settlement → economy: 5, shared → economy: 3, pirate-ship → life: 3, shared → kernel: 3, reality → kernel: 2, shared → settlement: 2, shared → life: 1.
   The realism → pirate-ship edges are realism code citing a pirate doc as its formula's authority (ENGINE.md, GAS_DYNAMICS.md, ANATOMY.md §3a, BODY.md): universal formulas whose statement lives in the plugin. Proposed: move each statement into a realism gear file (PLATFORM.md §8) and leave the doc pointing at it.
-- Most-read mechanisms (in-degree): `realism.chem.molar_mass` 5, `settlement.ledger.pay` 5, `pirate.gas.box_model` 4, `economy.inventory.holdings` 4, `realism.population.labour` 4, `realism.thermo.water_vapour_pressure` 3, `realism.thermo.water_latent_heat` 3, `realism.mech.rigid_body_contact` 3.
+- Most-read mechanisms (in-degree): `realism.chem.molar_mass` 5, `settlement.ledger.pay` 5, `pirate.gas.box_model` 4, `economy.inventory.holdings` 4, `realism.population.labour` 4, `kernel.transaction` 4, `realism.thermo.water_vapour_pressure` 3, `realism.thermo.water_latent_heat` 3.
 
 The causal spine the code follows today (from `examples/human-wound.ts`, `three-ports.ts` and the pirate adapter's
 `runDay`): environment → room air → physiology → breathing → nutrition → neurology → circulation → medicine →

@@ -3037,3 +3037,17 @@ for _g in INTERFACE_GAPS:
         _g["progress"] += ("; remaining pieces (2026-11-01): (1) the LabourSupply provider, owner Life (controller): pure queries hours(person, role, day) and reservationWage?, no cause; "
                            "(2) the host's hire command {type: 'hire', post, holder, cause: intention event id} through Settlement's apply, owner the host adapter. Economy's wage-quote floor stays with Rex (ECON-24)")
         _g["owner_remaining"] = ["life (LabourSupply provider)", "host adapter (hire command with cause)"]
+
+# --- 2026-11-01: controller: the host of IF-27's hire step is the kernel harness (code: Kernel keeper; specification: History keeper, as part of X1); in a game the game adapter plays the same role ---
+EXTRA_ROWS.append({"id": "shared.host.work_resolution", "name": "Host role: resolving work intentions (shared contract)", "engine": "shared",
+    "home": "contract (controller 2026-11-01); implemented in Toolchain/kernel/harness/ (Kernel keeper, after kernel v0.1.0), specified by the History keeper as part of X1; in a game the game adapter plays the same role",
+    "status": "planned", "domain": "infra", "scope": "universal", "inputs": [], "outputs": [], "state": "none (a host role)",
+    "formulation": "the host resolves a work intention by reading Life's LabourSupply provider answers (hours(person, role, day), reservationWage?) and issuing one {type: 'hire', post, holder, cause: intention event id} through Settlement's apply per accepted intention, inside one kernel.transaction",
+    "dependencies": ["shared.action.resolution", "shared.contract.labour_supply_provider", "settlement.assign.workforce", "kernel.transaction"], "timescale": "per work intention",
+    "invariants": "a host role, never a mechanism: no engine grows a staffing rule; the host never decides the wage (Economy's rule, ECON-24, Rex); one hire per accepted intention; cause = the intention event id",
+    "sources": "contract", "evidence": None, "approximations": "planned", "tests": "none",
+    "consumers": ["settlement.assign.workforce"], "notes": "IF-27 (CHAINS.md priority 2); the work resolver of the CG-16 contract for demonstration runs", "audit_batch": "controller-2026-11-01-if27-host"})
+for _g in INTERFACE_GAPS:
+    if _g["interface"] == "IF-27":
+        _g["owner_remaining"] = ["life (LabourSupply provider)", "kernel harness (shared.host.work_resolution; Kernel keeper code after v0.1.0, History keeper specification in X1)"]
+        _g["progress"] += "; controller 2026-11-01: the hire step is the kernel harness's (contract row shared.host.work_resolution); the game adapter plays the same role in a game"

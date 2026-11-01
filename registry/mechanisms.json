@@ -8,11 +8,11 @@
   "evidence_scale": "PLATFORM.md §4 (1 law ... 6 fiction)",
   "counts": {
    "built": 222,
-   "planned": 200,
+   "planned": 201,
    "documented-only": 161
   },
   "kinds": {
-   "mechanism": 491,
+   "mechanism": 492,
    "restatement": 92
   },
   "schema_version": 4,
@@ -51786,6 +51786,75 @@
      "integration_tested_with": [],
      "integration_tests": [],
      "report": "contract.transport_provider: implemented by host (map); consumed by economy ship"
+    }
+   },
+   "rate_limiter": null,
+   "failure_mode": null
+  },
+  {
+   "id": "shared.host.work_resolution",
+   "name": "Host role: resolving work intentions (shared contract)",
+   "owning_engine": "shared",
+   "home": "contract (controller 2026-11-01); implemented in Toolchain/kernel/harness/ (Kernel keeper, after kernel v0.1.0), specified by the History keeper as part of X1; in a game the game adapter plays the same role",
+   "home_kind": "code",
+   "status": "planned",
+   "status_note": "",
+   "kind": "mechanism",
+   "restates": null,
+   "domain": "infra",
+   "scope": "universal",
+   "scope_note": "",
+   "inputs": [],
+   "outputs": [],
+   "state": "none (a host role)",
+   "formulation": "the host resolves a work intention by reading Life's LabourSupply provider answers (hours(person, role, day), reservationWage?) and issuing one {type: 'hire', post, holder, cause: intention event id} through Settlement's apply per accepted intention, inside one kernel.transaction",
+   "dependencies": [
+    "shared.action.resolution",
+    "shared.contract.labour_supply_provider",
+    "settlement.assign.workforce",
+    "kernel.transaction"
+   ],
+   "timescale": "per work intention",
+   "invariants": "a host role, never a mechanism: no engine grows a staffing rule; the host never decides the wage (Economy's rule, ECON-24, Rex); one hire per accepted intention; cause = the intention event id",
+   "sources": "contract",
+   "evidence": null,
+   "evidence_note": "None",
+   "approximations": "planned",
+   "tests": "none",
+   "consumers": [
+    "settlement.assign.workforce"
+   ],
+   "notes": "IF-27 (CHAINS.md priority 2); the work resolver of the CG-16 contract for demonstration runs",
+   "overlap_groups": [],
+   "unit_issues": [],
+   "audit_batch": "controller-2026-11-01-if27-host",
+   "audit_id": null,
+   "writes": [],
+   "reads": [],
+   "aggregates": null,
+   "vv": {
+    "implemented": false,
+    "integrated": "no (not built)",
+    "validated": "n/a",
+    "record": {
+     "sources_and_model": {
+      "sources": "contract",
+      "model": "the host resolves a work intention by reading Life's LabourSupply provider answers (hours(person, role, day), reservationWage?) and issuing one {type: 'hire', post, holder, cause: intention event id} through Settlement's apply per accepted intention, inside one kernel.transaction",
+      "evidence_level": null
+     },
+     "applicability": "planned",
+     "verification_tests": "none",
+     "validation_evidence": [],
+     "tolerance": null,
+     "stability_conservation_boundary": [],
+     "numerical": {
+      "stability": null,
+      "coupled_update_consistency": null,
+      "sensitivity": null
+     },
+     "integration_tested_with": [],
+     "integration_tests": [],
+     "report": "IF-27 (CHAINS.md priority 2); the work resolver of the CG-16 contract for demonstration runs"
     }
    },
    "rate_limiter": null,

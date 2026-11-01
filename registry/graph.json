@@ -4908,6 +4908,14 @@
    "scope": "universal"
   },
   {
+   "id": "shared.host.work_resolution",
+   "engine": "shared",
+   "status": "planned",
+   "kind": "mechanism",
+   "domain": "infra",
+   "scope": "universal"
+  },
+  {
    "id": "shared.labour.provider_draw",
    "engine": "shared",
    "status": "built",
@@ -6647,6 +6655,26 @@
   {
    "from": "shared.action.resolution",
    "to": "kernel.transfer",
+   "type": "depends_on"
+  },
+  {
+   "from": "shared.host.work_resolution",
+   "to": "shared.action.resolution",
+   "type": "depends_on"
+  },
+  {
+   "from": "shared.host.work_resolution",
+   "to": "shared.contract.labour_supply_provider",
+   "type": "depends_on"
+  },
+  {
+   "from": "shared.host.work_resolution",
+   "to": "settlement.assign.workforce",
+   "type": "depends_on"
+  },
+  {
+   "from": "shared.host.work_resolution",
+   "to": "kernel.transaction",
    "type": "depends_on"
   },
   {
@@ -11055,10 +11083,10 @@
      "settlement"
     ],
     "approved": "Rex 2026-11-01 (integration first; PLATFORM §7a)",
-    "progress": "; Cognition keeper 2026-11-01: contract shared.action.resolution registered planned; proposals with Reality, Life, Economy, Settlement; Settlement's answer pending; agreed by Cognition, Economy, Settlement 2026-11-01; hire takes cause? and emits shared.action.outcome + settlement.post_filled (Settlement's next unit); CONTRACTS §19 optional reservationWage (economy da42670, settlement 87ff281); settlement 3047 queued (Codex: hire.cause, postFilled, shared.action.outcome; test U24); money-ledger migration onto kernel.transfer after kernel v0.1.0; settlement 3047 landed 7e49d3c: hire takes cause?, emits settlement.post_filled then shared.action.outcome (completed, cause, wage) in one command; unknown post throws with no event or state change; replay identical; test/engine.test.ts U24 6/6 (registry keeper rerun). Settlement's resolver part verified; closes when an intention reaches hire through the host with a targeted test (Cognition lead); cognition 3044 f53f16d: intention terms? (test/intention-terms.test.ts 4/4, registry keeper rerun). Still missing: the LabourSupply provider that reads the latest work/refuse_work intention and answers hours(person, role, day) with the intention event id as cause (owner not yet named: Reality's population provider or the host); Economy's wage-quote floor (their wage rule, open for Rex). Units: person-hours per day (h); wage money per filled post-day; remaining pieces (2026-11-01): (1) the LabourSupply provider, owner Life (controller): pure queries hours(person, role, day) and reservationWage?, no cause; (2) the host's hire command {type: 'hire', post, holder, cause: intention event id} through Settlement's apply, owner the host adapter. Economy's wage-quote floor stays with Rex (ECON-24)",
+    "progress": "; Cognition keeper 2026-11-01: contract shared.action.resolution registered planned; proposals with Reality, Life, Economy, Settlement; Settlement's answer pending; agreed by Cognition, Economy, Settlement 2026-11-01; hire takes cause? and emits shared.action.outcome + settlement.post_filled (Settlement's next unit); CONTRACTS §19 optional reservationWage (economy da42670, settlement 87ff281); settlement 3047 queued (Codex: hire.cause, postFilled, shared.action.outcome; test U24); money-ledger migration onto kernel.transfer after kernel v0.1.0; settlement 3047 landed 7e49d3c: hire takes cause?, emits settlement.post_filled then shared.action.outcome (completed, cause, wage) in one command; unknown post throws with no event or state change; replay identical; test/engine.test.ts U24 6/6 (registry keeper rerun). Settlement's resolver part verified; closes when an intention reaches hire through the host with a targeted test (Cognition lead); cognition 3044 f53f16d: intention terms? (test/intention-terms.test.ts 4/4, registry keeper rerun). Still missing: the LabourSupply provider that reads the latest work/refuse_work intention and answers hours(person, role, day) with the intention event id as cause (owner not yet named: Reality's population provider or the host); Economy's wage-quote floor (their wage rule, open for Rex). Units: person-hours per day (h); wage money per filled post-day; remaining pieces (2026-11-01): (1) the LabourSupply provider, owner Life (controller): pure queries hours(person, role, day) and reservationWage?, no cause; (2) the host's hire command {type: 'hire', post, holder, cause: intention event id} through Settlement's apply, owner the host adapter. Economy's wage-quote floor stays with Rex (ECON-24); controller 2026-11-01: the hire step is the kernel harness's (contract row shared.host.work_resolution); the game adapter plays the same role in a game",
     "owner_remaining": [
      "life (LabourSupply provider)",
-     "host adapter (hire command with cause)"
+     "kernel harness (shared.host.work_resolution; Kernel keeper code after v0.1.0, History keeper specification in X1)"
     ]
    },
    {
