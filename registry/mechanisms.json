@@ -23,7 +23,7 @@
    "implemented": 221,
    "built_mechanisms": 223,
    "with_integration_test": 122,
-   "integrated_yes": 123,
+   "integrated_yes": 124,
    "validated_yes": 0,
    "validated_candidate": 6,
    "validation_failed": 2
@@ -9136,8 +9136,11 @@
    "evidence_note": "",
    "approximations": "none (accounting)",
    "tests": "Toolchain/kernel test/transfer.test.ts (registry keeper rerun at kernel a7459c8, 20/20)",
-   "consumers": [],
-   "notes": "controller decision 2026-11-01 (go); after kernel v0.1.0 the ledgers migrate in paired units: Economy's goods stock ledger (adjust, economy.stock_changes; takeMass/addMass first) and Settlement's money ledger (CONTRACTS §3; Economy has no money ledger); CHAINS CG-19/20/21 adopt it",
+   "consumers": [
+    "economy.trade.trade",
+    "economy.trade.shipment"
+   ],
+   "notes": "controller decision 2026-11-01 (go); after kernel v0.1.0 the ledgers migrate in paired units: Economy's goods stock ledger (adjust, economy.stock_changes; takeMass/addMass first) and Settlement's money ledger (CONTRACTS §3; Economy has no money ledger); CHAINS CG-19/20/21 adopt it; first migration 2026-11-01: Economy's goods ledger (economy 5068, 1e79dbe): buy/sell legs and shipment dispatch/arrival through transfer() on ledger economy.goods (accounts inventory ids or shipment:<id>, quantity = good id, unit count); production, spoilage, consumption and mass commands keep adjust; money waits on settlement 5069",
    "overlap_groups": [],
    "unit_issues": [],
    "audit_batch": "controller-2026-11-01-transfer",
@@ -9149,7 +9152,7 @@
    "aggregates": null,
    "vv": {
     "implemented": true,
-    "integrated": "no (no engine ledger migrated yet: realism 3001, economy, settlement follow)",
+    "integrated": "yes (economy goods ledger 'economy.goods': economy 1e79dbe, test/goods-ledger.test.ts T1-T6 8/8 at 85a173e on kernel v0.1.1); Settlement money (5069) and realism 3001 to follow",
     "validated": "n/a (accounting identity)",
     "record": {
      "sources_and_model": {
@@ -9160,7 +9163,7 @@
      "applicability": "none (accounting)",
      "verification_tests": "Toolchain/kernel test/transfer.test.ts (registry keeper rerun at kernel a7459c8, 20/20)",
      "validation_evidence": [
-      "re-audit 2026-11-01 at kernel a7459c8: transfer.test.ts 20/20"
+      "re-audit 2026-11-01 at economy 85a173e: goods-ledger 8/8"
      ],
      "tolerance": null,
      "stability_conservation_boundary": [],
@@ -9171,7 +9174,7 @@
      },
      "integration_tested_with": [],
      "integration_tests": [],
-     "report": "controller decision 2026-11-01 (go); after kernel v0.1.0 the ledgers migrate in paired units: Economy's goods stock ledger (adjust, economy.stock_changes; takeMass/addMass first) and Settlement's money ledger (CONTRACTS §3; Economy has no money ledger); CHAINS CG-19/20/21 adopt it"
+     "report": "controller decision 2026-11-01 (go); after kernel v0.1.0 the ledgers migrate in paired units: Economy's goods stock ledger (adjust, economy.stock_changes; takeMass/addMass first) and Settlement's money ledger (CONTRACTS §3; Economy has no money ledger); CHAINS CG-19/20/21 adopt it; first migration 2026-11-01: Economy's goods ledger (economy 5068, 1e79dbe): buy/sell legs and shipment dispatch/arrival through transfer() on ledger economy.goods (accounts inventory ids or shipment:<id>, quantity = good id, unit count); production, spoilage, consumption and mass commands keep adjust; money waits on settlement 5069"
     }
    }
   },

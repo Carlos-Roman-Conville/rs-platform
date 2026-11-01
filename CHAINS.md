@@ -111,7 +111,11 @@ The registry keeper re-audits the commit and fills the closure record below.
   Every engine's flows go through it, and the CG-19, CG-20 and CG-21 fixes adopt it. After kernel v0.1.0 the ledgers
   migrate in paired units: Economy's goods stock ledger (`adjust`, `economy.stock_changes`; takeMass and addMass first)
   and Settlement's money ledger (CONTRACTS §3). Economy has no money ledger.
-- **CG-18 events contract: yes.** `registry/events.json` is owned by the registry keeper. Its first rows are `shared.action.outcome` (CG-16) and `settlement.post_filled` (IF-27). The kernel's checker landed (kernel 3007, c171702): the belt check passes with one advisory warning, because `stimuli` has no element type yet. The kernel's
+  **First migration (2026-11-01):** Economy's goods ledger `economy.goods` (economy 5068, 1e79dbe, on kernel v0.1.1): buy and sell legs and shipment
+  dispatch and arrival go through `transfer()` (account = inventory id or `shipment:<id>`; quantity = good id; unit count). Production, spoilage,
+  consumption and the mass commands keep `adjust`, since they are not transfers between two holders. Registry rerun: goods-ledger T1–T6 8/8 at
+  economy 85a173e. Money stays on Settlement's provider until settlement 5069.
+- **CG-18 events contract: yes.** `registry/events.json` is owned by the registry keeper. Its first rows are `shared.action.outcome` (CG-16) and `settlement.post_filled` (IF-27). Since 2026-11-01 it holds 36 bus types from kernel 3011's inventory; `settlement.post_filled` is retired (the bus type is `postFilled`), and lists are typed `of: 'record'` (kernel 5067), so there are no event warnings. The kernel's checker landed (kernel 3007, c171702): the belt check passes with one advisory warning, because `stimuli` has no element type yet. The kernel's
   `checkEventContracts` (unit 3007) warns, never fails, until the file is populated. The first unit is the event inventory.
 
 ### In progress

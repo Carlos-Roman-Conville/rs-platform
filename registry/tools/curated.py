@@ -3184,3 +3184,16 @@ for _g in INTERFACE_GAPS:
 for _g in INTERFACE_GAPS:
     if _g["interface"] in ("IF-26", "CG-16"):
         _g["progress"] = _g.get("progress", "") + "; Economy's resolver part built 2026-11-01: economy 3045 4192e27 (price limits, refused) and 5050 4831b5a (outcome event for caused buy, sell, takeMass); outcome.test.ts 13/13 on the registry keeper's rerun"
+
+# --- 2026-11-01: economy 5068 (1e79dbe; rechecked after the kernel v0.1.1 pin, 85a173e): buy/sell goods legs and shipment dispatch/arrival move through kernel transfer()
+# on ledger 'economy.goods' (account = inventory id or shipment:<id>; quantity = good id; unit count). Processes economy.trade.trade and economy.trade.shipment are
+# registered built mechanisms. Registry keeper rerun test/goods-ledger.test.ts T1-T6 8/8 at 85a173e. Production, spoilage, consumption and the mass commands keep adjust (not two-holder transfers).
+# Money stays on Settlement's provider until settlement 5069 ---
+ROW_PATCHES.setdefault("kernel.transfer", {}).update({"consumers": ["economy.trade.trade", "economy.trade.shipment"]})
+VV_OVERRIDES["kernel.transfer"] = {"validated": "n/a (accounting identity)",
+    "integrated": "yes (economy goods ledger 'economy.goods': economy 1e79dbe, test/goods-ledger.test.ts T1-T6 8/8 at 85a173e on kernel v0.1.1); Settlement money (5069) and realism 3001 to follow",
+    "evidence": "re-audit 2026-11-01 at economy 85a173e: goods-ledger 8/8"}
+for _r in EXTRA_ROWS:
+    if _r["id"] == "kernel.transfer":
+        _r["notes"] += ("; first migration 2026-11-01: Economy's goods ledger (economy 5068, 1e79dbe): buy/sell legs and shipment dispatch/arrival through transfer() on ledger economy.goods "
+                        "(accounts inventory ids or shipment:<id>, quantity = good id, unit count); production, spoilage, consumption and mass commands keep adjust; money waits on settlement 5069")
