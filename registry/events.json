@@ -51,10 +51,11 @@
         },
         "stimuli": {
           "kind": "list",
-          "required": true
+          "required": true,
+          "of": "record"
         }
       },
-      "notes": "CG-16/CG-18 (Cognition keeper 2026-11-01; agreed by Reality, Life, Economy and Settlement). One outcome type for every action kind; cause = the intention event id; status completed | failed | impossible (C-Q25 decided by the controller 2026-11-01: a refusal is failed, the reason among the stimuli). Produced by the engine resolving the action kind (shared.action.resolution); consumed through the host's outcome command. stimuli are raw scene truth records; their element schema is not yet fixed (no 3007 kind fits a record), so 'of' is omitted. payload? carries the engine-native record (trade, refused, contact_event) and is not typed here. Settlement (3047) emits it only when hire carries a cause, with stimuli [{post, holder, wage}]. Kernel 3011 inventory (2026-11-01): today emitted by Settlement (src/commands.ts:589, producer settlement.assign.workforce) with payload {cause, status, stimuli, payload}; the harness adapter (kernel/harness/adapters.ts:30) publishes the reducer object but does not forward cause to the kernel envelope, so the envelope cause is missing (REG-31)."
+      "notes": "CG-16/CG-18 (Cognition keeper 2026-11-01; agreed by Reality, Life, Economy and Settlement). One outcome type for every action kind; cause = the intention event id; status completed | failed | impossible (C-Q25 decided by the controller 2026-11-01: a refusal is failed, the reason among the stimuli). Produced by the engine resolving the action kind (shared.action.resolution); consumed through the host's outcome command. stimuli are raw scene truth records; each element is a record (kernel 5067, 1080dec: of 'record'; inner fields untyped). payload? carries the engine-native record (trade, refused, contact_event) and is not typed here. Settlement (3047) emits it only when hire carries a cause, with stimuli [{post, holder, wage}]. Kernel 3011 inventory (2026-11-01): today emitted by Settlement (src/commands.ts:589, producer settlement.assign.workforce) with payload {cause, status, stimuli, payload}; the harness adapter (kernel/harness/adapters.ts:30) publishes the reducer object but does not forward cause to the kernel envelope, so the envelope cause was missing; fixed by kernel 5066 (cd2feee): the adapter forwards a string cause to the envelope (REG-31)."
     },
     {
       "type": "settlement.post_filled",
@@ -211,7 +212,8 @@
         },
         "observations": {
           "kind": "list",
-          "required": true
+          "required": true,
+          "of": "record"
         },
         "outcome": {
           "kind": "string",
@@ -235,7 +237,8 @@
         },
         "updates": {
           "kind": "list",
-          "required": true
+          "required": true,
+          "of": "record"
         },
         "attributedCause": {
           "kind": "string",

@@ -3172,3 +3172,10 @@ for _q in EXTRA_QUANTITIES:
         _q["status"] = "built (economy da23966, unit 2999; CG-19 re-audit 2026-11-01 at 4192e27, 28/28); port declared at economy 730e54f (unit 5049)"
 VV_OVERRIDES["economy.recipe.definition"] = {"validated": "no", "integrated": "yes (combined test: economy test/food-to-body.test.ts F1-F5 with Life, economy 2fef178; Good.weight read by takeMass/addMass)",
                                              "evidence": "CG-19 re-audit 2026-11-01 at economy 4192e27 (28/28); port declared at 730e54f"}
+
+# --- 2026-11-01: kernel 5066 (cd2feee, harness adapter forwards a reducer event's cause to the envelope) and 5067 (1080dec, field kind 'record' and nullable?) landed;
+# registry keeper reran harness adapters/registry/work-resolution 20/20 and kernel registry/events 231/231 at 1080dec; events.json: stimuli, observations, updates now of 'record'; event warnings 0 ---
+for _g in INTERFACE_GAPS:
+    if _g["interface"] == "CG-18":
+        _g["progress"] += ("; REG-31 points 1 and 4 fixed 2026-11-01: kernel 5066 cd2feee forwards cause to the envelope, kernel 5067 1080dec adds 'record' and nullable; "
+                           "lists typed of 'record'; event-contract warnings 0. Still open: Society local kinds and Government returned records have no bus path; 'refused' name collision")
