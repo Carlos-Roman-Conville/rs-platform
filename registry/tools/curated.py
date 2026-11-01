@@ -2955,3 +2955,16 @@ for _g in INTERFACE_GAPS:
     if _g["interface"] == "CG-18":
         _g["progress"] += ("; Cognition keeper 2026-11-01: cognition.intention payload {id, mind, action, target?, t, expectedOutcomes: Categorical, status} (built, cognition 2106314), "
                            "producer cognition.decision.select, consumers the resolvers; proposed terms?: Record<string, number>; enters events.json with the 3011 inventory")
+
+# --- 2026-11-01: CG-16 contract agreed by Reality, Life and Economy (Settlement's IF-27 answer pending); text in cognition DESIGN §2.4 via cognition 3043 ---
+for _r in EXTRA_ROWS:
+    if _r["id"] == "shared.action.resolution":
+        _r["notes"] = ("CG-16 (CHAINS.md priority 2); agreed by Reality, Life and Economy 2026-11-01, Settlement's IF-27 answer pending. Implemented per action kind: Reality move/gather (after realism 3020); "
+                       "Life eat and body.capacity_functional (after kernel 3006 + economy 2999); Economy buy/sell/consume (after cognition 3044); Settlement + Economy work; Society IF-46; Government IF-43. "
+                       "Outcome event shared.action.outcome {cause: intention event id, status, stimuli, payload?} (CG-18), consumer cognition.learning.outcome via the host outcome command; "
+                       "open: C-Q25 (refusal = failed? Rex), C-Q26 (who excludes simulated minds from the headcount, CG-23 never-both; controller)")
+for _g in INTERFACE_GAPS:
+    if _g["interface"] in ("CG-16", "IF-26"): _g["progress"] += "; agreed by Reality, Life, Economy 2026-11-01 (cognition DESIGN §2.4, unit 3043)"
+    if _g["interface"] == "IF-27": _g["progress"] += "; Settlement's answer pending"
+    if _g["interface"] == "CG-18": _g["progress"] += "; proposed event shared.action.outcome {cause, status, stimuli, payload?} (producer: the resolver), consumer cognition.learning.outcome; cognition.intention gains terms? (cognition 3044)"
+    if _g["interface"] == "CG-23": _g["progress"] += "; open C-Q26 (controller): who excludes simulated minds from the population headcount"
