@@ -2491,3 +2491,7 @@ QUANTITY_OPS += [
  ("writer", "body.blood_volume", "realism.circulation.blood_ledger", _RW + ": one ledger; circulation.volume_recovery supplies the refill flux as an input"),
  ("writer", "body.sweat", "realism.physiology.sweat", _RW + ": physiology.heat_balance reads it"),
 ]
+
+# --- 2026-10-31: re-audit of settlement 47af0d5 (2771, provider ports) and 3069dda (2781, DUP-62 doc) ---
+DECISIONS["DUP-62"]["progress"].append({"date": "2026-10-31", "step": "unit passed (doc part)", "by": "registry keeper", "commit": "settlement 3069dda (2781)",
+    "note": "re-audited: PACKAGES.md and README.md mark office powers and succession as Government's; Office.powers[] and appoint / vacate / grantPermission are records only. The code part (AuthorityProvider.may, tests (1)-(4)) waits for Government; group stays closing"})

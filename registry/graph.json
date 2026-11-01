@@ -9812,6 +9812,13 @@
      "step": "units queued",
      "by": "Settlement keeper",
      "note": "settlement 2781 (Composer): PACKAGES.md and README.md mark office powers as Government's"
+    },
+    {
+     "date": "2026-10-31",
+     "step": "unit passed (doc part)",
+     "by": "registry keeper",
+     "commit": "settlement 3069dda (2781)",
+     "note": "re-audited: PACKAGES.md and README.md mark office powers and succession as Government's; Office.powers[] and appoint / vacate / grantPermission are records only. The code part (AuthorityProvider.may, tests (1)-(4)) waits for Government; group stays closing"
     }
    ]
   },
