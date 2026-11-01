@@ -51824,7 +51824,7 @@
    "consumers": [
     "settlement.assign.workforce"
    ],
-   "notes": "IF-27 (CHAINS.md priority 2); the work resolver of the CG-16 contract for demonstration runs; open (History keeper, X1 spec): what makes a work intention accepted (hours > 0, available(), or reservation wage vs posted wage); the kernel unit (Needs 2823) waits on it; the harness already reaches Settlement's apply and LabourSupply (settlement src/providers.ts); 'accepted' ruled by the controller 2026-11-01 (see formulation); the host's phase follows kernel order.json; role source ruled 2026-11-01 (controller, option a): the intention's target; (a) confirmed by the controller 2026-11-01: Cognition's role? type change withdrawn (a DESIGN §2.4 note on the target convention instead); kernel 5006 and Life's roleOf(intention) read target; the failure reason is 'no target'",
+   "notes": "IF-27 (CHAINS.md priority 2); the work resolver of the CG-16 contract for demonstration runs; open (History keeper, X1 spec): what makes a work intention accepted (hours > 0, available(), or reservation wage vs posted wage); the kernel unit (Needs 2823) waits on it; the harness already reaches Settlement's apply and LabourSupply (settlement src/providers.ts); 'accepted' ruled by the controller 2026-11-01 (see formulation); the host's phase follows kernel order.json; role source ruled 2026-11-01 (controller, option a): the intention's target; (a) confirmed by the controller 2026-11-01: Cognition's role? type change withdrawn (the DESIGN §2.4 target-convention note instead: unit 5007, cognition 07fb59d; 5008 withdrawn); kernel 5006 and Life's roleOf(intention) read target; the failure reason is 'no target'",
    "overlap_groups": [],
    "unit_issues": [],
    "audit_batch": "controller-2026-11-01-if27-host",
@@ -51854,7 +51854,7 @@
      },
      "integration_tested_with": [],
      "integration_tests": [],
-     "report": "IF-27 (CHAINS.md priority 2); the work resolver of the CG-16 contract for demonstration runs; open (History keeper, X1 spec): what makes a work intention accepted (hours > 0, available(), or reservation wage vs posted wage); the kernel unit (Needs 2823) waits on it; the harness already reaches Settlement's apply and LabourSupply (settlement src/providers.ts); 'accepted' ruled by the controller 2026-11-01 (see formulation); the host's phase follows kernel order.json; role source ruled 2026-11-01 (controller, option a): the intention's target; (a) confirmed by the controller 2026-11-01: Cognition's role? type change withdrawn (a DESIGN §2.4 note on the target convention instead); kernel 5006 and Life's roleOf(intention) read target; the failure reason is 'no target'"
+     "report": "IF-27 (CHAINS.md priority 2); the work resolver of the CG-16 contract for demonstration runs; open (History keeper, X1 spec): what makes a work intention accepted (hours > 0, available(), or reservation wage vs posted wage); the kernel unit (Needs 2823) waits on it; the harness already reaches Settlement's apply and LabourSupply (settlement src/providers.ts); 'accepted' ruled by the controller 2026-11-01 (see formulation); the host's phase follows kernel order.json; role source ruled 2026-11-01 (controller, option a): the intention's target; (a) confirmed by the controller 2026-11-01: Cognition's role? type change withdrawn (the DESIGN §2.4 target-convention note instead: unit 5007, cognition 07fb59d; 5008 withdrawn); kernel 5006 and Life's roleOf(intention) read target; the failure reason is 'no target'"
     }
    },
    "rate_limiter": null,

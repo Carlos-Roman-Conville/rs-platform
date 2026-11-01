@@ -3134,3 +3134,9 @@ for _g in INTERFACE_GAPS:
     if _g["interface"] == "CG-19":
         _g.update({"state": "closed 2026-11-01: goods carry kg (Good.weight) and a Life food id; takeMass then eatMeal in one kernel transaction, "
                             "mass delta -q/+q exact, rollback of both engines on failure; re-audit at economy 4192e27: mass 9/9 + food-to-body 5/5 + intention, 28/28"})
+
+# --- 2026-11-01: Cognition keeper: unit 5007 landed as the DESIGN §2.4 target-convention note (cognition 07fb59d, reason 'no target', no type change); 5008 withdrawn. Registry keeper checked the commit (DESIGN.md only) ---
+for _r in EXTRA_ROWS:
+    if _r["id"] == "shared.host.work_resolution":
+        _r["notes"] = _r["notes"].replace("(a DESIGN §2.4 note on the target convention instead)", "(the DESIGN §2.4 target-convention note instead: unit 5007, cognition 07fb59d; 5008 withdrawn)")
+        assert "07fb59d" in _r["notes"]
