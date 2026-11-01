@@ -27189,7 +27189,7 @@
    "inputs": [],
    "outputs": [],
    "state": "planned",
-   "formulation": "the tissue-population state per cell type: viable mass, capacity, injury D, repair capacity, senescent fraction, turnover, fibrotic fraction, cell type, optional region; damage D(t+1) = D(t) + damage - repair; specialised cell-type populations per organ; organ function is the combination of its populations; optional regional subdivision where the sum of regions equals the aggregate (refinement B)",
+   "formulation": "the tissue-population state per cell type: viable mass, capacity, injury D, repair capacity, senescent fraction, turnover, fibrotic fraction, matrix integrity (0-1; extracellular matrix and mechanical structure, Rex 2026-10-31), cell type, optional region; damage D(t+1) = D(t) + damage - repair; specialised cell-type populations per organ; organ function is the combination of its populations; the organ-integrity read combines viable mass, fibrotic fraction and matrix integrity; optional regional subdivision where the sum of regions equals the aggregate (refinement B)",
    "dependencies": [],
    "timescale": "planned",
    "invariants": "planned",
@@ -27229,7 +27229,7 @@
     "record": {
      "sources_and_model": {
       "sources": "to research; established processes labelled apart from simplified or experimental ageing models (Rex)",
-      "model": "the tissue-population state per cell type: viable mass, capacity, injury D, repair capacity, senescent fraction, turnover, fibrotic fraction, cell type, optional region; damage D(t+1) = D(t) + damage - repair; specialised cell-type populations per organ; organ function is the combination of its populations; optional regional subdivision where the sum of regions equals the aggregate (refinement B)",
+      "model": "the tissue-population state per cell type: viable mass, capacity, injury D, repair capacity, senescent fraction, turnover, fibrotic fraction, matrix integrity (0-1; extracellular matrix and mechanical structure, Rex 2026-10-31), cell type, optional region; damage D(t+1) = D(t) + damage - repair; specialised cell-type populations per organ; organ function is the combination of its populations; the organ-integrity read combines viable mass, fibrotic fraction and matrix integrity; optional regional subdivision where the sum of regions equals the aggregate (refinement B)",
       "evidence_level": null
      },
      "applicability": "cell populations with representative states, never individual cells",

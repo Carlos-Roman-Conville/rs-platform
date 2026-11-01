@@ -10184,10 +10184,17 @@
     "realism.anatomy.organ_function"
    ],
    "proposed_owner": "population_state owns injury per cell-type population; the anatomy rows become the documented one-population aggregate; organs with populations read damage from them; anatomy restates; no numbers move until a unit does it",
-   "approved_owner": null,
-   "state": "proposed",
-   "decision": null,
-   "progress": []
+   "approved_owner": "population_state owns injury per cell-type population; the anatomy rows become the documented one-population aggregate; organs with populations read damage from them; anatomy restates; no numbers move until a unit does it",
+   "state": "closing",
+   "decision": "owner approved as proposed (Rex 2026-10-31, to the Life keeper; relayed): tissue populations are the authoritative source of cellular injury, repair, viability and remodelling; anatomy's organ-damage and tissue-integrity quantities become derived summaries, never independent stores. Qualification: integrity is not cell survival alone; population_state gains a matrix integrity field (0-1) beside viable mass and fibrotic fraction, and the organ-integrity read combines all three; injury is counted once across chemical exposure, DNA damage and organ level (IF-50)",
+   "progress": [
+    {
+     "date": "2026-10-31",
+     "step": "owner approved",
+     "by": "Rex (via the Life keeper)",
+     "note": "life DESIGN §1.10; realism 2815 implements the matrix integrity field"
+    }
+   ]
   },
   {
    "id": "DUP-67",
@@ -10201,10 +10208,17 @@
     "realism.anatomy.tissue_collagen"
    ],
    "proposed_owner": "connective, bone and endothelial populations in population_state carry the same numbers; tissue_collagen becomes their read; the DUP-16 pathway (vitamin C to collagen to healing) runs through the population",
-   "approved_owner": null,
-   "state": "proposed",
-   "decision": null,
-   "progress": []
+   "approved_owner": "connective, bone and endothelial populations in population_state carry the same numbers; tissue_collagen becomes their read; the DUP-16 pathway (vitamin C to collagen to healing) runs through the population",
+   "state": "closing",
+   "decision": "owner approved as proposed (Rex 2026-10-31, to the Life keeper; relayed): tissue populations are the authoritative source of cellular injury, repair, viability and remodelling; anatomy's organ-damage and tissue-integrity quantities become derived summaries, never independent stores. Qualification: integrity is not cell survival alone; population_state gains a matrix integrity field (0-1) beside viable mass and fibrotic fraction, and the organ-integrity read combines all three; injury is counted once across chemical exposure, DNA damage and organ level (IF-50). DUP-67: collagen loss in scurvy is matrix integrity falling in the connective population, with the same numbers",
+   "progress": [
+    {
+     "date": "2026-10-31",
+     "step": "owner approved",
+     "by": "Rex (via the Life keeper)",
+     "note": "life DESIGN §1.10; realism 2815 implements the matrix integrity field"
+    }
+   ]
   }
  ],
  "unit_issues": [
