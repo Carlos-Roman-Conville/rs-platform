@@ -3388,3 +3388,19 @@ VV_OVERRIDES["government.rule.creation_amendment"] = {"validated": "no (enclosur
 EXTRA_QUANTITIES.append({"id": "settlement.office", "kind": "record", "unit": None, "scope": "settlement", "writer": "settlement.authority.office_powers",
     "description": "office records {id, name, holder, seat}; the holder is written only by Settlement's appoint and vacate (GOVERNMENT-SETTLEMENT.md §1); read by Government's government.authority process",
     "status": "built (Settlement createOffice/appoint; registered 2026-11-01, REG-33)"})
+
+# --- 2026-11-01: Cognition payment acceptance landed: DESIGN §2.4 (3503cb2), engine c803a0d (src/valuation.ts directUsefulness + exchangeability, asset value inside r(o);
+# src/evaluate.ts exchange candidates and ratioMin by bisection; src/select.ts carries ratioMin into the chosen terms), tests (a)-(d) f761a38 (unit 5296);
+# kernel pin v0.1.1 (e9b0db4). Registry keeper re-audited at cognition 5f048e7 (tree clean): vitest 351/351 (34 files), tsc --noEmit clean ---
+for _r in EXTRA_ROWS:
+    if _r["id"] == "cognition.valuation.payment_acceptance":
+        _r["status"] = "built"; _r["state"] = "derived per evaluation (ratioMin never stored)"; _r["timescale"] = "per decision"
+        _r["home"] = ("Toolchain/cognition/src/valuation.ts directUsefulness, exchangeability; src/evaluate.ts (exchange candidates, ratioMin bisection); src/select.ts "
+                      "(c803a0d); Cognition DESIGN §2.4 (3503cb2); design " + _r["home"].replace("; planned", ""))
+        _r["tests"] = ("Toolchain/cognition vitest 351/351 at 5f048e7 (registry keeper rerun 2026-11-01): test/payment-acceptance.test.ts (a)-(d) (5296, f761a38), "
+                       "payment-acceptance-engine.test.ts, bench-acceptance.test.ts (CB-1..7)")
+        _r["notes"] += ("; built 2026-11-01 as the specialisation of cognition.decision.evaluate (no second evaluator): asset value = direct usefulness + one-step expected "
+                        "exchangeability inside r(o); ratioMin found by bisection where expected utility equals the best alternative")
+        assert "valuation.ts" in _r["home"]
+VV_OVERRIDES["cognition.valuation.payment_acceptance"] = {"validated": "no (§8 two-island demonstration waits on Society 5288/5289)",
+    "integrated": "partial (reads perceived observations; Economy's offers reach it through the host)", "evidence": "re-audit 2026-11-01 at cognition 5f048e7: 351/351, tsc clean"}

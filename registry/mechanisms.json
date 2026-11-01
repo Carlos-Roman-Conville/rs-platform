@@ -7,8 +7,8 @@
   "contract_fields": "PLATFORM.md §7",
   "evidence_scale": "PLATFORM.md §4 (1 law ... 6 fiction)",
   "counts": {
-   "built": 228,
-   "planned": 201,
+   "built": 229,
+   "planned": 200,
    "documented-only": 161
   },
   "kinds": {
@@ -20,8 +20,8 @@
   "schema_4": "adds rate_limiter and failure_mode to the §7 contract fields (with inputs = what enters, outputs = what leaves, state = what accumulates), null until owners fill them; widens vv.record item 5 with numerical {stability, coupled_update_consistency, sensitivity} (PLATFORM §11a item 5, Rex 2026-10-31); check-registry warns, never fails, on empty fields of built rows",
   "schema_3": "each row carries vv {implemented, integrated, validated, record{sources_and_model, applicability, verification_tests, validation_evidence, tolerance, stability_conservation_boundary, integration_tested_with, integration_tests, report}} (PLATFORM.md §11a); seeded 2026-10-30 from the audit and the combined tests; owners complete it, the registry keeper re-audits",
   "vv_counts": {
-   "implemented": 226,
-   "built_mechanisms": 228,
+   "implemented": 227,
+   "built_mechanisms": 229,
    "with_integration_test": 122,
    "integrated_yes": 128,
    "validated_yes": 0,
@@ -4989,9 +4989,9 @@
    "id": "cognition.valuation.payment_acceptance",
    "name": "Willingness to accept a payment asset",
    "owning_engine": "cognition",
-   "home": "HQ/handoffs/economy/MULTI-ECONOMY-DESIGN.md v2 (Rex 2026-11-01, ENGINES.md 'Competing economies and endogenous money'); planned",
+   "home": "Toolchain/cognition/src/valuation.ts directUsefulness, exchangeability; src/evaluate.ts (exchange candidates, ratioMin bisection); src/select.ts (c803a0d); Cognition DESIGN §2.4 (3503cb2); design HQ/handoffs/economy/MULTI-ECONOMY-DESIGN.md v2 (Rex 2026-11-01, ENGINES.md 'Competing economies and endogenous money')",
    "home_kind": "docs",
-   "status": "planned",
+   "status": "built",
    "status_note": "",
    "kind": "mechanism",
    "restates": null,
@@ -5005,22 +5005,22 @@
     }
    ],
    "outputs": [],
-   "state": "planned",
+   "state": "derived per evaluation (ratioMin never stored)",
    "formulation": "decision.evaluate applied to an offer: direct usefulness from needs; expected exchangeability as a belief (cognition.belief.update) from observed acceptances, refusals and testimony; trust from cognition.relationship.trust and cognition.communication.credibility; cost as the action's cost; ratioMin derived where expected utility equals the best alternative, never stored",
    "dependencies": [
     "cognition.decision.evaluate"
    ],
-   "timescale": "planned",
+   "timescale": "per decision",
    "invariants": "no conversion table; acceptance is a relation between a holder and an asset, never a flag on the asset; no date, population or count unlock (Rex 2026-11-01)",
    "sources": "MULTI-ECONOMY-DESIGN v2; ECON-27/28: Harris 2003 (price-time priority), Spufford 1986 (owners post offers)",
    "evidence": null,
    "evidence_note": "?",
    "approximations": "planned",
-   "tests": "planned: the two-island demonstration acceptance tests (design §8)",
+   "tests": "Toolchain/cognition vitest 351/351 at 5f048e7 (registry keeper rerun 2026-11-01): test/payment-acceptance.test.ts (a)-(d) (5296, f761a38), payment-acceptance-engine.test.ts, bench-acceptance.test.ts (CB-1..7)",
    "consumers": [
     "cognition.decision.select"
    ],
-   "notes": "SPECIALISATION of cognition.decision.evaluate, not a new gear; a specialisation or documented composition, never a second evaluator; Society's acceptance and Government's legal tender reach a mind only as perceived observations or testimony",
+   "notes": "SPECIALISATION of cognition.decision.evaluate, not a new gear; a specialisation or documented composition, never a second evaluator; Society's acceptance and Government's legal tender reach a mind only as perceived observations or testimony; built 2026-11-01 as the specialisation of cognition.decision.evaluate (no second evaluator): asset value = direct usefulness + one-step expected exchangeability inside r(o); ratioMin found by bisection where expected utility equals the best alternative",
    "overlap_groups": [],
    "unit_issues": [],
    "audit_batch": "registry-keeper-2026-11-01-multi-economy",
@@ -5029,9 +5029,9 @@
    "reads": [],
    "aggregates": null,
    "vv": {
-    "implemented": false,
-    "integrated": "no (not built)",
-    "validated": "n/a",
+    "implemented": true,
+    "integrated": "partial (reads perceived observations; Economy's offers reach it through the host)",
+    "validated": "no (§8 two-island demonstration waits on Society 5288/5289)",
     "record": {
      "sources_and_model": {
       "sources": "MULTI-ECONOMY-DESIGN v2; ECON-27/28: Harris 2003 (price-time priority), Spufford 1986 (owners post offers)",
@@ -5039,8 +5039,10 @@
       "evidence_level": null
      },
      "applicability": "planned",
-     "verification_tests": "planned: the two-island demonstration acceptance tests (design §8)",
-     "validation_evidence": [],
+     "verification_tests": "Toolchain/cognition vitest 351/351 at 5f048e7 (registry keeper rerun 2026-11-01): test/payment-acceptance.test.ts (a)-(d) (5296, f761a38), payment-acceptance-engine.test.ts, bench-acceptance.test.ts (CB-1..7)",
+     "validation_evidence": [
+      "re-audit 2026-11-01 at cognition 5f048e7: 351/351, tsc clean"
+     ],
      "tolerance": null,
      "stability_conservation_boundary": [],
      "numerical": {
@@ -5050,7 +5052,7 @@
      },
      "integration_tested_with": [],
      "integration_tests": [],
-     "report": "SPECIALISATION of cognition.decision.evaluate, not a new gear; a specialisation or documented composition, never a second evaluator; Society's acceptance and Government's legal tender reach a mind only as perceived observations or testimony"
+     "report": "SPECIALISATION of cognition.decision.evaluate, not a new gear; a specialisation or documented composition, never a second evaluator; Society's acceptance and Government's legal tender reach a mind only as perceived observations or testimony; built 2026-11-01 as the specialisation of cognition.decision.evaluate (no second evaluator): asset value = direct usefulness + one-step expected exchangeability inside r(o); ratioMin found by bisection where expected utility equals the best alternative"
     }
    },
    "rate_limiter": null,

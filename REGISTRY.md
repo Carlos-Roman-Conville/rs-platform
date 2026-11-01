@@ -69,7 +69,7 @@ mechanisms, and are not itemised. Coverage limits are listed in `HQ/handoffs/reg
 | kernel mechanisms | 4 | 0 | 0 | 4 |
 | settlement mechanisms | 23 | 0 | 1 | 24 |
 | economy mechanisms | 24 | 0 | 5 | 29 |
-| cognition mechanisms | 13 | 0 | 42 | 55 |
+| cognition mechanisms | 14 | 0 | 41 | 55 |
 | society mechanisms | 0 | 0 | 18 | 18 |
 | government mechanisms | 6 | 0 | 10 | 16 |
 | knowledge mechanisms | 0 | 0 | 7 | 7 |
@@ -78,7 +78,7 @@ mechanisms, and are not itemised. Coverage limits are listed in `HQ/handoffs/reg
 | shared mechanisms | 7 | 5 | 5 | 17 |
 | pirate-ship mechanisms | 24 | 63 | 15 | 102 |
 | restatements (pirate docs and adapters) | 0 | 90 | 2 | 92 |
-| **all rows** | 228 | 161 | 201 | 590 |
+| **all rows** | 229 | 161 | 200 | 590 |
 
 **Restatements** are not errors: the pirate body docs are rendered from the same library JSON as the realism
 code (`body/build-body-data.py`), so their tables cannot disagree with the code. Disagreements live only in their
@@ -481,7 +481,7 @@ stability/conservation/boundary tests, `integration_tested_with`, integration te
 | `cognition.reproduction.behaviour` | P | C | U | ? | --- |  | ENGINES.md 'Attraction and partner selection' (Rex 2026-10-30; planned, after the P7 Cogni |
 | `cognition.skill.practice` | P | C | U | ? | --- |  | cognition/DESIGN.md (design approved by Rex 2026-10-30, cognition 0291ac8; lane running) |
 | `cognition.substance.adaptation` | P | C | U | ? | --- |  | ENGINES.md 'Five Cognition directions' (Rex 2026-10-31; planned; cognition DESIGN §14) |
-| `cognition.valuation.payment_acceptance` | P | C | U | ? | --- |  | HQ/handoffs/economy/MULTI-ECONOMY-DESIGN.md v2 (Rex 2026-11-01, ENGINES.md 'Competing econ |
+| `cognition.valuation.payment_acceptance` | B | C | U | ? | I-- |  | cognition/src/valuation.ts directUsefulness, exchangeability; src/evaluate.ts (exchange ca |
 | `shared.presentation.set` | P | C | U | ? | --- |  | ENGINES.md 'Style and presentation' (Rex 2026-10-30; a shared planned mechanism, not an en |
 
 ### society (18)

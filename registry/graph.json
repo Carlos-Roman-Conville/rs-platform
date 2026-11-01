@@ -894,7 +894,7 @@
   {
    "id": "cognition.valuation.payment_acceptance",
    "engine": "cognition",
-   "status": "planned",
+   "status": "built",
    "kind": "mechanism",
    "domain": "C",
    "scope": "universal"
@@ -10590,10 +10590,17 @@
   "meta": {
    "rule": "a depends_on edge between two built mechanisms with no combined test that runs both (PLATFORM.md §11a item 6)",
    "covered_pairs": 67,
-   "gap_pairs": 62,
+   "gap_pairs": 63,
    "interface_gap_count": 27
   },
   "gaps": [
+   {
+    "reader": "cognition.valuation.payment_acceptance",
+    "read": "cognition.decision.evaluate",
+    "engines": [
+     "cognition"
+    ]
+   },
    {
     "reader": "economy.infra.reducer_replay",
     "read": "economy.infra.id_scheme",
