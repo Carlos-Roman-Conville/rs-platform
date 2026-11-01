@@ -2987,3 +2987,9 @@ for _g in INTERFACE_GAPS:
 # --- 2026-11-01: IF-27 unit queued: settlement 3047 (hire.cause, postFilled, shared.action.outcome; test U24) ---
 for _g in INTERFACE_GAPS:
     if _g["interface"] == "IF-27": _g["progress"] += "; settlement 3047 queued (Codex: hire.cause, postFilled, shared.action.outcome; test U24); money-ledger migration onto kernel.transfer after kernel v0.1.0"
+
+# --- 2026-11-01: kernel 3007 (c171702) and 3008 (e1a35bb) landed; check-registry now reads registry/events.json: one warning (shared.action.outcome stimuli list has no 'of', documented); 3011 requeued on codex ---
+for _g in INTERFACE_GAPS:
+    if _g["interface"] == "CG-18":
+        _g["progress"] += ("; kernel 3007 (c171702): checkEventContracts + opt-in EventBus hook, advisory; registry keeper ran the belt check with events.json: exit 0, one warning "
+                           "(shared.action.outcome stimuli list has no 'of'; element schema open); kernel test suite 205/205; DESIGN §17 (e1a35bb); inventory 3011 requeued on codex")

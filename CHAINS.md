@@ -111,7 +111,7 @@ The registry keeper re-audits the commit and fills the closure record below.
   Every engine's flows go through it, and the CG-19, CG-20 and CG-21 fixes adopt it. After kernel v0.1.0 the ledgers
   migrate in paired units: Economy's goods stock ledger (`adjust`, `economy.stock_changes`; takeMass and addMass first)
   and Settlement's money ledger (CONTRACTS §3). Economy has no money ledger.
-- **CG-18 events contract: yes.** `registry/events.json` is owned by the registry keeper. Its first rows are `shared.action.outcome` (CG-16) and `settlement.post_filled` (IF-27). The kernel's
+- **CG-18 events contract: yes.** `registry/events.json` is owned by the registry keeper. Its first rows are `shared.action.outcome` (CG-16) and `settlement.post_filled` (IF-27). The kernel's checker landed (kernel 3007, c171702): the belt check passes with one advisory warning, because `stimuli` has no element type yet. The kernel's
   `checkEventContracts` (unit 3007) warns, never fails, until the file is populated. The first unit is the event inventory.
 
 ### In progress
