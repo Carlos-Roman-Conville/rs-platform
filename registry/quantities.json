@@ -11,7 +11,7 @@
    "parser": "Toolchain/kernel/src/units.ts parse (unit 2592)",
    "tally": {
     "parses": 301,
-    "kind record": 125,
+    "kind record": 127,
     "kind text": 1,
     "kind categorical": 8,
     "unknown: the": 38
@@ -773,6 +773,16 @@
    "unit_parses": true
   },
   {
+   "id": "body.developmental_state",
+   "kind": "record",
+   "unit": null,
+   "scope": "body",
+   "writer": "realism.development.maturation",
+   "description": "per organism: growth (stature, bone, muscle, organ size), sexual and reproductive maturity, hormonal stage; the developmental part of record 2",
+   "status": "planned (2026-10-31)",
+   "unit_parses": null
+  },
+  {
    "id": "body.do2",
    "unit": "mL/min",
    "unit_text": "mL/min",
@@ -1162,6 +1172,16 @@
    "status": "seed",
    "kind": "record",
    "kind_note": "a bundle of numeric quantities with different units; split into one quantity each when the owner declares kernel.json ports (per-nutrient requirements in table units)",
+   "unit_parses": null
+  },
+  {
+   "id": "body.neural_development",
+   "kind": "record",
+   "unit": null,
+   "scope": "body",
+   "writer": "realism.development.maturation",
+   "description": "per organism: neural development as limits on learning capacity, memory, attention and impulse regulation (executive control); read by Cognition, never computed there",
+   "status": "planned (2026-10-31)",
    "unit_parses": null
   },
   {

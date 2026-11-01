@@ -372,6 +372,20 @@
    "consumer": "government.rule.creation_amendment",
    "summary": "Watched boundary (SOC-4, Rex's SOC-Q3): an organisation's rules bind its members, who joined and may leave; law binds a territory and non-members. Neither engine makes the other's kind of rule.",
    "related_groups": []
+  },
+  {
+   "id": "IF-48",
+   "provider": "realism.development.maturation",
+   "consumer": "cognition.personality.function_development",
+   "summary": "Neural development to Cognition (2026-10-31): Life's neurological development constrains learning capacity, memory, attention and impulse regulation (body.neural_development); Cognition reads the constraints and never computes brain maturity itself; function development operates within them; the same constraints reach attention.allocate and memory.",
+   "related_groups": []
+  },
+  {
+   "id": "IF-49",
+   "provider": "society.household.structure",
+   "consumer": "cognition.learning.outcome",
+   "summary": "Social maturation (2026-10-31): language, norms and upbringing reach a growing mind as acquired experience (observed acts and messages from household, kin and community, IF-46), never as a maturity setting; Cognition learns from them as from any experience.",
+   "related_groups": []
   }
  ],
  "nodes": [
@@ -3157,6 +3171,14 @@
    "status": "planned",
    "kind": "mechanism",
    "domain": "A",
+   "scope": "universal"
+  },
+  {
+   "id": "realism.development.maturation",
+   "engine": "life",
+   "status": "planned",
+   "kind": "mechanism",
+   "domain": "B",
    "scope": "universal"
   },
   {
@@ -6523,6 +6545,16 @@
    "type": "depends_on"
   },
   {
+   "from": "realism.development.maturation",
+   "to": "realism.genetics.inheritance",
+   "type": "depends_on"
+  },
+  {
+   "from": "realism.development.maturation",
+   "to": "realism.cellular.population_state",
+   "type": "depends_on"
+  },
+  {
    "from": "realism.chem.reaction_extent",
    "to": "realism.chem.carbon_combustion_charcoal",
    "type": "overlap",
@@ -6812,6 +6844,18 @@
   },
   {
    "from": "pirate.phys.ageing_curves",
+   "to": "realism.physiology.ageing_curves",
+   "type": "overlap",
+   "group": "DUP-17"
+  },
+  {
+   "from": "realism.development.maturation",
+   "to": "realism.physiology.ageing_curves",
+   "type": "overlap",
+   "group": "DUP-17"
+  },
+  {
+   "from": "realism.neurology.tone",
    "to": "realism.physiology.ageing_curves",
    "type": "overlap",
    "group": "DUP-17"
@@ -7913,6 +7957,18 @@
    "to": "society.organisation.collective_choice",
    "type": "interface",
    "interface": "IF-47"
+  },
+  {
+   "from": "cognition.personality.function_development",
+   "to": "realism.development.maturation",
+   "type": "interface",
+   "interface": "IF-48"
+  },
+  {
+   "from": "cognition.learning.outcome",
+   "to": "society.household.structure",
+   "type": "interface",
+   "interface": "IF-49"
   }
  ],
  "overlap_groups": [
@@ -8388,7 +8444,9 @@
     "realism.muscular.adaptation_day",
     "realism.neurology.baseline_drivers",
     "pirate.stats.ageing_max",
-    "pirate.phys.ageing_curves"
+    "pirate.phys.ageing_curves",
+    "realism.development.maturation",
+    "realism.neurology.tone"
    ],
    "proposed_owner": "realism.genes.ageing_capacity (planned Phase 12): ageing acts through organ capacity; the four effects become reads.",
    "approved_owner": "realism.genes.ageing_capacity (planned Phase 12): ageing acts through organ capacity; the four effects become reads.",
@@ -8400,6 +8458,12 @@
      "step": "owner approved",
      "by": "Rex (via the controller)",
      "note": "batch 2"
+    },
+    {
+     "date": "2026-10-31",
+     "step": "members added",
+     "by": "registry keeper",
+     "note": "realism.development.maturation (planned) joins as the developmental side: it must add no age-keyed multiplier and ends where cellular ageing begins; realism.neurology.tone (built, an age scale in its formula) joins as a fifth age-keyed effect, frozen like the other four until the cellular layer"
     }
    ]
   },

@@ -2619,3 +2619,36 @@ for _id, _d in [("mind.function_experience", "per mind, one value per function f
                 ("mind.function_competence", "per mind, one value per function f: developed competence C_f (provisional log form), read by function_allocation as L_f")]:
     EXTRA_QUANTITIES.append({"id": _id, "kind": "record", "unit": None, "scope": "mind", "writer": "cognition.personality.function_development",
                              "description": _d + ". " + _DEV_INV, "status": "planned (Rex 2026-10-31, cognition DESIGN §19)"})
+
+# --- 2026-10-31: organism maturation and development (controller's overlap check for Rex). No authoritative row existed; registered planned.
+# Existing: realism.development.trait_change (planned; adult trait change from genes, training, nutrition, hormones, recovery), realism.records.cellular_state
+# (planned record 2: cellular and developmental state), realism.cellular.* (planned; ageing emergent), realism.genetics.* and realism.genes.ageing_capacity
+# (planned); no endocrine or hormonal-development row; built age-keyed effects: the four frozen under DUP-17 plus realism.neurology.tone (an age scale). ---
+_MAT_HOME = "Toolchain/realism (Life & Species; planned, P3 with the cellular layer; controller's overlap check for Rex 2026-10-31)"
+EXTRA_ROWS.append({"id": "realism.development.maturation", "name": "Organism maturation and development (conception to adulthood)", "engine": "realism",
+    "home": _MAT_HOME, "status": "planned", "domain": "B", "scope": "universal",
+    "inputs": [{"name": x, "unit": "see quantities.json"} for x in ["realism.records.genetic_profile", "realism.nutrition.pools", "world.signal_at_point", "body.crisis"]],
+    "outputs": [{"name": "body.developmental_state", "unit": "record"}, {"name": "body.neural_development", "unit": "record"}],
+    "state": "the developmental part of record 2 (realism.records.cellular_state)",
+    "formulation": "species-specific trajectories from conception through growth and puberty to adulthood: growth of bones, muscle, organs and nervous system; reproductive maturation; hormonal development; brain development as changing learning capacity, attention, memory and executive control; driven by genetics, nutrition, hormones and environment, with age an input and never the sole cause",
+    "dependencies": ["realism.genetics.inheritance", "realism.cellular.population_state"], "timescale": "days to years",
+    "invariants": "age is an input, never the sole cause; no age-keyed multiplier is added anywhere (DUP-17 freeze); adult decline is realism.cellular.ageing_emergent's, so this row ends where that one begins, over one continuous developmental state; Cognition never computes brain maturity itself",
+    "sources": "to research per unit (developmental physiology, auxology, neurodevelopment)", "evidence": "?", "approximations": "planned", "tests": "none",
+    "consumers": ["cognition.personality.function_development", "cognition.attention.allocate", "cognition.memory.episodic", "realism.development.trait_change", "realism.reproduction.fertility_conception"],
+    "notes": "registered 2026-10-31 after the controller's overlap check for Rex: no authoritative maturation mechanism existed. Hormonal development has no endocrine row yet; this row owns it until one is registered. Writes the developmental part of record 2; trait_change stays adult trait change",
+    "audit_batch": "registry-keeper-2026-10-31-maturation", "planned_writes": ["body.developmental_state", "body.neural_development"]})
+EXTRA_QUANTITIES += [
+ {"id": "body.developmental_state", "kind": "record", "unit": None, "scope": "body", "writer": "realism.development.maturation",
+  "description": "per organism: growth (stature, bone, muscle, organ size), sexual and reproductive maturity, hormonal stage; the developmental part of record 2", "status": "planned (2026-10-31)"},
+ {"id": "body.neural_development", "kind": "record", "unit": None, "scope": "body", "writer": "realism.development.maturation",
+  "description": "per organism: neural development as limits on learning capacity, memory, attention and impulse regulation (executive control); read by Cognition, never computed there", "status": "planned (2026-10-31)"},
+]
+INTERFACES += [
+ ("IF-48", "realism.development.maturation", "cognition.personality.function_development",
+  "Neural development to Cognition (2026-10-31): Life's neurological development constrains learning capacity, memory, attention and impulse regulation (body.neural_development); Cognition reads the constraints and never computes brain maturity itself; function development operates within them; the same constraints reach attention.allocate and memory.", []),
+ ("IF-49", "society.household.structure", "cognition.learning.outcome",
+  "Social maturation (2026-10-31): language, norms and upbringing reach a growing mind as acquired experience (observed acts and messages from household, kin and community, IF-46), never as a maturity setting; Cognition learns from them as from any experience.", []),
+]
+GROUPS[:] = [(g[0], g[1], g[2], g[3] + (["realism.development.maturation", "realism.neurology.tone"] if g[0] == "DUP-17" else []), g[4]) for g in GROUPS]
+DECISIONS["DUP-17"]["progress"].append({"date": "2026-10-31", "step": "members added", "by": "registry keeper",
+    "note": "realism.development.maturation (planned) joins as the developmental side: it must add no age-keyed multiplier and ends where cellular ageing begins; realism.neurology.tone (built, an age scale in its formula) joins as a fifth age-keyed effect, frozen like the other four until the cellular layer"})
