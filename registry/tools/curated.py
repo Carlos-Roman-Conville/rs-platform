@@ -3089,3 +3089,8 @@ for _g in INTERFACE_GAPS:
 for _r in EXTRA_ROWS:
     if _r["id"] == "shared.host.work_resolution":
         _r["home"] = _r["home"].replace("(history 0c53036)", "(history 0c53036; e1ff6ea cites this contract, H1 checks the accepted rule)")
+
+# --- 2026-11-01: host work resolution queued as kernel 5006 (codex, after v0.1.0 / 2823), test harness/work-resolution.test.ts, built to history DESIGN §3.8 (037b87e) ---
+for _r in EXTRA_ROWS:
+    if _r["id"] == "shared.host.work_resolution":
+        _r["tests"] = "planned: Toolchain/kernel harness/work-resolution.test.ts (kernel 5006, after v0.1.0 / 2823); X1 seam S6 Gate H1-H4 (history DESIGN §3.8)"
