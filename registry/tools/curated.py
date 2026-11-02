@@ -3538,3 +3538,34 @@ _CG_CLOSE = {
 for _g in INTERFACE_GAPS:
     if _g["interface"] in _CG_CLOSE:
         _g["state"] = _CG_CLOSE[_g["interface"]]
+
+# --- 2026-11-01: Cognition keeper: competence architecture (Rex, FUNCTION-DESIGN.md §4.6-§4.7 at cognition de6625b; unit 5463 bc203cb; DESIGN §22.7 with unit 5464).
+# The mind's per-function state is a learned processing strategy theta_f; competence C_f(T, b) = Evaluate_f(theta_f, T, b) is measured outside the mind, never a mind quantity.
+# Experience E_f stays and drives the saturating habit H_f. Both rows experimental V2, not baseline. mind.function_competence kept (never deleted) as a diagnostic no mind writes ---
+_V2 = "experimental V2, not baseline (Rex 2026-11-01, FUNCTION-DESIGN §4.6-§4.7 at cognition de6625b; unit 5463 bc203cb; DESIGN §22.7 with unit 5464)"
+for _r in EXTRA_ROWS:
+    if _r["id"] == "cognition.personality.function_development":
+        _r["formulation"] = ("E_f(t+dt) = E_f(t) + A_f(t) R_f(t) dt per function (practice history, never lost); E_f drives the saturating habit H_f = 1 + h(1 - exp(-E_f/E_0)) "
+                             "(h = 1, E_0 = 22: estimates, H-Q1, H-Q2); learned capability is a concrete processing strategy theta_f(t+1) = Learn_f(theta_f(t), e_t, r_hat_t) "
+                             "from the experience and the feedback the mind actually receives (first case: the Ti proof-of-mechanism experiment, §12.7); "
+                             "per-function learning algorithms open. SUPERSEDED: the log competence form C_f = C_f,0 + k_f log(1 + E_f) and 'competence feeds back into allocation'")
+        _r["outputs"] = [o for o in _r.get("outputs", []) if o.get("name") != "mind.function_competence"]
+        if "planned_writes" in _r: _r["planned_writes"] = [w for w in _r["planned_writes"] if w != "mind.function_competence"]
+        _r["consumers"] = [c for c in _r.get("consumers", [])]
+        _r["name"] = "Developmental function experience and learned strategy"
+        _r["notes"] += "; " + _V2 + ": writes mind.function_experience only; competence is an outside measurement (mind.function_competence is a diagnostic, no mind writer)"
+    if _r["id"] == "cognition.personality.function_allocation":
+        _r["formulation"] = ("A^x_f = softmax_f(ln B_f + ln R^x_f + ln H_f + ln M_f), x in {attention, evaluation}: B_f baseline preference, R_f relevance, "
+                             "H_f saturating habit from E_f (function_development), M_f motivational and emotional modulation; no competence term (the L_f term is superseded); "
+                             "budget b_f = A_f * B")
+        _r["inputs"] = [i for i in _r.get("inputs", []) if i.get("name") != "mind.function_competence"]
+        if not any(i.get("name") == "mind.function_experience" for i in _r["inputs"]):
+            _r["inputs"].append({"name": "mind.function_experience", "unit": "see quantities.json"})
+        _r["notes"] += "; " + _V2 + ": habit H_f and motivation M_f replace L_f; competence never enters allocation"
+for _q in EXTRA_QUANTITIES:
+    if _q["id"] == "mind.function_competence":
+        _q["writer"] = None
+        _q["written_by"] = "no mind writes it: an evaluator outside the mind measures C_f(T, b) = Evaluate_f(theta_f, T, b) on a task set T at budget b (FUNCTION-DESIGN §4.7)"
+        _q["description"] = ("DIAGNOSTIC, not a mind quantity (Rex 2026-11-01, §4.7): competence as a measured profile of theta_f's performance over tasks and budgets, never known "
+                             "to the mind and never read by allocation; supersedes the provisional log form read as L_f. " + _q["description"])
+        _q["status"] = "diagnostic (experimental V2; no mind writer), 2026-11-01"

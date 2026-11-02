@@ -3385,9 +3385,10 @@
    "kind": "record",
    "unit": null,
    "scope": "mind",
-   "writer": "cognition.personality.function_development",
-   "description": "per mind, one value per function f: developed competence C_f (provisional log form), read by function_allocation as L_f. all four stack functions exist from birth: no age unlocks or maturity thresholds; the hierarchy sets speed and focus, never existence; cognitive competence != domain knowledge != learned skill != intelligence (distinct from mind.skill and from K&T's holder port); the baseline B_f never changes",
-   "status": "planned (Rex 2026-10-31, cognition DESIGN §19)",
+   "writer": null,
+   "description": "DIAGNOSTIC, not a mind quantity (Rex 2026-11-01, §4.7): competence as a measured profile of theta_f's performance over tasks and budgets, never known to the mind and never read by allocation; supersedes the provisional log form read as L_f. per mind, one value per function f: developed competence C_f (provisional log form), read by function_allocation as L_f. all four stack functions exist from birth: no age unlocks or maturity thresholds; the hierarchy sets speed and focus, never existence; cognitive competence != domain knowledge != learned skill != intelligence (distinct from mind.skill and from K&T's holder port); the baseline B_f never changes",
+   "status": "diagnostic (experimental V2; no mind writer), 2026-11-01",
+   "written_by": "no mind writes it: an evaluator outside the mind measures C_f(T, b) = Evaluate_f(theta_f, T, b) on a task set T at budget b (FUNCTION-DESIGN §4.7)",
    "unit_parses": null
   },
   {

@@ -3656,6 +3656,10 @@
     {
      "name": "mind.prediction_error",
      "unit": "see quantities.json"
+    },
+    {
+     "name": "mind.function_experience",
+     "unit": "see quantities.json"
     }
    ],
    "outputs": [
@@ -3665,7 +3669,7 @@
     }
    ],
    "state": "planned",
-   "formulation": "A_f(t) = B_f R_f(t) L_f(t) M_f(t) / sum_j B_j R_j(t) L_j(t) M_j(t) (proposed, provisional; a softmax over function scores preferred): B_f baseline preference (the light), R_f relevance to the situation, L_f learned competence and habit (part of the crystal), M_f motivational and emotional modulation; experience changes activation conditions (repeated consequences raise a situation's activation of a function), misattribution possible",
+   "formulation": "A^x_f = softmax_f(ln B_f + ln R^x_f + ln H_f + ln M_f), x in {attention, evaluation}: B_f baseline preference, R_f relevance, H_f saturating habit from E_f (function_development), M_f motivational and emotional modulation; no competence term (the L_f term is superseded); budget b_f = A_f * B",
    "dependencies": [],
    "timescale": "planned",
    "invariants": "attention allocation != evaluation influence: a function can receive most of the processing without deciding the action; the type hierarchy is a baseline, never a fixed allocation per decision; variation emerges from the formula, never from hardcoded exceptions; an inferior function is never prevented from leading a decision; function-specific sensitivities are hypotheses (evidence 5), never laws",
@@ -3679,7 +3683,7 @@
     "cognition.decision.evaluate",
     "cognition.personality.function_sensitivity"
    ],
-   "notes": "personality layer (DESIGN §9); writes the processing share per function, which is not the share of decision influence (Rex's paste was cut off at the last point; the rest to be supplied)",
+   "notes": "personality layer (DESIGN §9); writes the processing share per function, which is not the share of decision influence (Rex's paste was cut off at the last point; the rest to be supplied); experimental V2, not baseline (Rex 2026-11-01, FUNCTION-DESIGN §4.6-§4.7 at cognition de6625b; unit 5463 bc203cb; DESIGN §22.7 with unit 5464): habit H_f and motivation M_f replace L_f; competence never enters allocation",
    "overlap_groups": [],
    "unit_issues": [],
    "audit_batch": "rex-2026-10-30-function-allocation",
@@ -3694,7 +3698,7 @@
     "record": {
      "sources_and_model": {
       "sources": "to research per unit (evidence levels stated); ENGINES.md",
-      "model": "A_f(t) = B_f R_f(t) L_f(t) M_f(t) / sum_j B_j R_j(t) L_j(t) M_j(t) (proposed, provisional; a softmax over function scores preferred): B_f baseline preference (the light), R_f relevance to the situation, L_f learned competence and habit (part of the crystal), M_f motivational and emotional modulation; experience changes activation conditions (repeated consequences raise a situation's activation of a function), misattribution possible",
+      "model": "A^x_f = softmax_f(ln B_f + ln R^x_f + ln H_f + ln M_f), x in {attention, evaluation}: B_f baseline preference, R_f relevance, H_f saturating habit from E_f (function_development), M_f motivational and emotional modulation; no competence term (the L_f term is superseded); budget b_f = A_f * B",
       "evidence_level": 5
      },
      "applicability": "planned",
@@ -3709,7 +3713,7 @@
      },
      "integration_tested_with": [],
      "integration_tests": [],
-     "report": "personality layer (DESIGN §9); writes the processing share per function, which is not the share of decision influence (Rex's paste was cut off at the last point; the rest to be supplied)"
+     "report": "personality layer (DESIGN §9); writes the processing share per function, which is not the share of decision influence (Rex's paste was cut off at the last point; the rest to be supplied); experimental V2, not baseline (Rex 2026-11-01, FUNCTION-DESIGN §4.6-§4.7 at cognition de6625b; unit 5463 bc203cb; DESIGN §22.7 with unit 5464): habit H_f and motivation M_f replace L_f; competence never enters allocation"
     }
    },
    "rate_limiter": null,
@@ -3717,7 +3721,7 @@
   },
   {
    "id": "cognition.personality.function_development",
-   "name": "Developmental function experience and competence",
+   "name": "Developmental function experience and learned strategy",
    "owning_engine": "cognition",
    "home": "Toolchain/ENGINES.md 'Developmental cognitive functions' (Rex 2026-10-31; cognition DESIGN §19)",
    "home_kind": "docs",
@@ -3738,14 +3742,10 @@
     {
      "name": "mind.function_experience",
      "unit": "see quantities.json"
-    },
-    {
-     "name": "mind.function_competence",
-     "unit": "see quantities.json"
     }
    ],
    "state": "planned",
-   "formulation": "accumulated function-relevant experience E_f(t+dt) = E_f(t) + A_f(t) R_f(t) dt per function; developed competence C_f = C_f,0 + k_f log(1 + E_f), provisional; competence feeds back into allocation as the L_f term",
+   "formulation": "E_f(t+dt) = E_f(t) + A_f(t) R_f(t) dt per function (practice history, never lost); E_f drives the saturating habit H_f = 1 + h(1 - exp(-E_f/E_0)) (h = 1, E_0 = 22: estimates, H-Q1, H-Q2); learned capability is a concrete processing strategy theta_f(t+1) = Learn_f(theta_f(t), e_t, r_hat_t) from the experience and the feedback the mind actually receives (first case: the Ti proof-of-mechanism experiment, §12.7); per-function learning algorithms open. SUPERSEDED: the log competence form C_f = C_f,0 + k_f log(1 + E_f) and 'competence feeds back into allocation'",
    "dependencies": [],
    "timescale": "planned",
    "invariants": "all four stack functions exist from birth: no age unlocks or maturity thresholds; the hierarchy sets speed and focus, never existence; cognitive competence != domain knowledge != learned skill != intelligence (distinct from mind.skill and from K&T's holder port); the baseline B_f never changes",
@@ -3757,7 +3757,7 @@
    "consumers": [
     "cognition.personality.function_allocation"
    ],
-   "notes": "a separate row so each quantity has one writer (allocation owns A_f); not built; does not interrupt the baseline or T-1/T-2; open: C-Q20 (sources for k_f, C_f,0, R_f), C-Q21 (how C_f enters L_f; decay of E_f)",
+   "notes": "a separate row so each quantity has one writer (allocation owns A_f); not built; does not interrupt the baseline or T-1/T-2; open: C-Q20 (sources for k_f, C_f,0, R_f), C-Q21 (how C_f enters L_f; decay of E_f); experimental V2, not baseline (Rex 2026-11-01, FUNCTION-DESIGN §4.6-§4.7 at cognition de6625b; unit 5463 bc203cb; DESIGN §22.7 with unit 5464): writes mind.function_experience only; competence is an outside measurement (mind.function_competence is a diagnostic, no mind writer)",
    "overlap_groups": [],
    "unit_issues": [],
    "audit_batch": "rex-2026-10-31-function-development",
@@ -3775,7 +3775,7 @@
     "record": {
      "sources_and_model": {
       "sources": "to research per unit (evidence levels stated); ENGINES.md",
-      "model": "accumulated function-relevant experience E_f(t+dt) = E_f(t) + A_f(t) R_f(t) dt per function; developed competence C_f = C_f,0 + k_f log(1 + E_f), provisional; competence feeds back into allocation as the L_f term",
+      "model": "E_f(t+dt) = E_f(t) + A_f(t) R_f(t) dt per function (practice history, never lost); E_f drives the saturating habit H_f = 1 + h(1 - exp(-E_f/E_0)) (h = 1, E_0 = 22: estimates, H-Q1, H-Q2); learned capability is a concrete processing strategy theta_f(t+1) = Learn_f(theta_f(t), e_t, r_hat_t) from the experience and the feedback the mind actually receives (first case: the Ti proof-of-mechanism experiment, §12.7); per-function learning algorithms open. SUPERSEDED: the log competence form C_f = C_f,0 + k_f log(1 + E_f) and 'competence feeds back into allocation'",
       "evidence_level": 5
      },
      "applicability": "planned",
@@ -3790,7 +3790,7 @@
      },
      "integration_tested_with": [],
      "integration_tests": [],
-     "report": "a separate row so each quantity has one writer (allocation owns A_f); not built; does not interrupt the baseline or T-1/T-2; open: C-Q20 (sources for k_f, C_f,0, R_f), C-Q21 (how C_f enters L_f; decay of E_f)"
+     "report": "a separate row so each quantity has one writer (allocation owns A_f); not built; does not interrupt the baseline or T-1/T-2; open: C-Q20 (sources for k_f, C_f,0, R_f), C-Q21 (how C_f enters L_f; decay of E_f); experimental V2, not baseline (Rex 2026-11-01, FUNCTION-DESIGN §4.6-§4.7 at cognition de6625b; unit 5463 bc203cb; DESIGN §22.7 with unit 5464): writes mind.function_experience only; competence is an outside measurement (mind.function_competence is a diagnostic, no mind writer)"
     }
    },
    "rate_limiter": null,
