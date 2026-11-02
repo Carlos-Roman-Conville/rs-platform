@@ -52804,6 +52804,8 @@
    "unit_issues": [],
    "audit_batch": "registry-keeper-2026-11-01-multi-economy",
    "audit_id": null,
+   "rate_limiter": "the share moves only as fast as members trade: each observation is a completed exchange or a not-accepted refusal, which needs a trade contact (§1.1 contact rates, waking hours); only observations inside the caller's window count; recomputing is unlimited (stateless projection). (Society DESIGN §1.17, 7fbd51f)",
+   "failure_mode": "no member observed (including no Economy records) -> null, never 0; a null, missing, non-finite or reversed window, a group with no supplied membership, or a record with a non-finite day -> the call refuses with an error naming the cause; never a default or a skipped record. (Society DESIGN §1.17, 7fbd51f)",
    "writes": [
     "society.payment_acceptance_share"
    ],
@@ -52835,9 +52837,7 @@
      "integration_tests": [],
      "report": "SPECIALISATION of society.norm.sanction, not a new gear; measured from behaviour, never willingness; the true share is a view for hosts, reports and tests and is never fed into minds; built 2026-11-01: share = latest takes over observed members; unobserved members excluded (null when none observed); a null or non-finite window throws, no default"
     }
-   },
-   "rate_limiter": null,
-   "failure_mode": null
+   }
   },
   {
    "id": "society.culture.salience",
@@ -53171,12 +53171,7 @@
      "unit": "see quantities.json"
     }
    ],
-   "outputs": [
-    {
-     "name": "society.organisation_event",
-     "unit": "see quantities.json"
-    }
-   ],
+   "outputs": [],
    "state": "planned",
    "formulation": "organisations become institutions (recognised offices, enforcement, succession, revenue) or dissolve, from coordination and conflict among individuals and households; acts on society.organisation.actors records, never a second organisation store",
    "dependencies": [],
@@ -53191,16 +53186,14 @@
     "government.authority.acquisition_delegation",
     "society.organisation.actors"
    ],
-   "notes": "DUP-58 seam; built 2026-11-01 (re-audit at society f53452e, REG-34 follow-up)",
+   "notes": "DUP-58 seam; built 2026-11-01 (re-audit at society f53452e, REG-34 follow-up); 2026-11-01 (REG-34, DESIGN §1.18): computes formation, merger, split and dissolution acts; society.organisation.actors' store commits them and writes society.organisation_event",
    "overlap_groups": [],
    "unit_issues": [],
    "audit_batch": "rex-2026-10-31-institutions",
    "audit_id": null,
    "rate_limiter": "founding costs the founders' time and money (meeting, fees, charter cost through Economy); every founder must be reachable by the others on the network (Society DESIGN §1.4 at 1515974)",
    "failure_mode": "founders who cannot meet cannot found; an incomplete founding is recorded with the missing intentions (Society DESIGN §1.4 at 1515974)",
-   "writes": [
-    "society.organisation_event"
-   ],
+   "writes": [],
    "reads": [],
    "aggregates": null,
    "vv": {
@@ -53227,7 +53220,7 @@
      },
      "integration_tested_with": [],
      "integration_tests": [],
-     "report": "DUP-58 seam; built 2026-11-01 (re-audit at society f53452e, REG-34 follow-up)"
+     "report": "DUP-58 seam; built 2026-11-01 (re-audit at society f53452e, REG-34 follow-up); 2026-11-01 (REG-34, DESIGN §1.18): computes formation, merger, split and dissolution acts; society.organisation.actors' store commits them and writes society.organisation_event"
     }
    }
   },
@@ -53501,7 +53494,7 @@
    "approximations": "planned",
    "tests": "Toolchain/society test/organisation.test.ts 25/25, charter*.test.ts 553/553; full suite 862 + 2 skipped at f53452e (registry keeper rerun 2026-11-01)",
    "consumers": [],
-   "notes": "; built 2026-11-01 (re-audit at society f53452e, REG-34 follow-up)",
+   "notes": "; built 2026-11-01 (re-audit at society f53452e, REG-34 follow-up); 2026-11-01 (REG-34, DESIGN §1.18): the one writer of society.organisation, society.membership and society.organisation_event",
    "overlap_groups": [
     "DUP-58"
    ],
@@ -53547,7 +53540,7 @@
      },
      "integration_tested_with": [],
      "integration_tests": [],
-     "report": "; built 2026-11-01 (re-audit at society f53452e, REG-34 follow-up)"
+     "report": "; built 2026-11-01 (re-audit at society f53452e, REG-34 follow-up); 2026-11-01 (REG-34, DESIGN §1.18): the one writer of society.organisation, society.membership and society.organisation_event"
     }
    }
   },
@@ -53594,6 +53587,8 @@
    "unit_issues": [],
    "audit_batch": "society-keeper-2026-10-31",
    "audit_id": null,
+   "rate_limiter": "meetings are contacts (§1.1): only members present (attendance is each member's choice) vote where the rule requires presence. (Society DESIGN §1.3)",
+   "failure_mode": "no quorum -> no act, recorded; a tie under a rule with no tie-break -> no act, recorded; never a random resolution unless the rule says lots. (Society DESIGN §1.3)",
    "interfaces": [
     "IF-47"
    ],
@@ -53626,9 +53621,7 @@
      "integration_tests": [],
      "report": "proposed by the Society keeper 2026-10-31, not yet approved by Rex. watched boundary with government.rule.creation_amendment (SOC-4, Rex's SOC-Q3; IF-47): an organisation's rules bind members who joined and may leave, law binds a territory and non-members; built 2026-11-01 (re-audit at society f53452e, REG-34 follow-up)"
     }
-   },
-   "rate_limiter": null,
-   "failure_mode": null
+   }
   },
   {
    "id": "society.population.demography",

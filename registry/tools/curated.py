@@ -3473,3 +3473,39 @@ EXTRA_QUANTITIES.append({"id": "body.energy_requirement", "kind": "record", "uni
                     "basis = the library's kcalPerKg basis (today 'unstated (LIFE-17)'); omitted = terms not yet costed (CG-14: growth, thermoregulation, pregnancy, lactation). "
                     "Same writer as body.need (dailyNeed). Out port in Life's kernel.json after the split; a realism export until then. Consumer: Government's manor demonstration"),
     "status": "planned (Life keeper 2026-11-01; unit {SUBSIST} not yet numbered)"})
+
+# --- 2026-11-01: REG-34 registry side, per Society DESIGN §1.18 (society 1986bc5; kernel.json read ids a03a299; §1.17 fields 7fbd51f). One writer per quantity:
+# society.organisation, society.membership and society.organisation_event are written only by society.organisation.actors (the store commits every act in one kernel
+# transaction); formation_dissolution and collective_choice compute acts and list actors among their process mechanisms. contract.available_hours already registered (4a72b83) ---
+QUANTITY_PATCH.setdefault("society.organisation_event", {}).update({"writer": "society.organisation.actors",
+    "written_by": "society.organisation.actors (the organisation store commits formation, merger, split, dissolution and collective-choice acts; Society DESIGN §1.18, 2026-11-01)"})
+for _r in EXTRA_ROWS:
+    if _r["id"] == "society.institution.formation_dissolution":
+        for _k in ("outputs",):
+            _r[_k] = [o for o in _r.get(_k, []) if o.get("name") != "society.organisation_event"]
+        if "planned_writes" in _r: _r["planned_writes"] = [w for w in _r["planned_writes"] if w != "society.organisation_event"]
+        _r["notes"] += "; 2026-11-01 (REG-34, DESIGN §1.18): computes formation, merger, split and dissolution acts; society.organisation.actors' store commits them and writes society.organisation_event"
+    if _r["id"] == "society.organisation.actors":
+        if not any(o.get("name") == "society.organisation_event" for o in _r.get("outputs", [])):
+            _r.setdefault("outputs", []).append({"name": "society.organisation_event", "unit": "see quantities.json"})
+        _r["notes"] += "; 2026-11-01 (REG-34, DESIGN §1.18): the one writer of society.organisation, society.membership and society.organisation_event"
+    if _r["id"] == "society.convention.payment_acceptance":
+        _r["rate_limiter"] = ("the share moves only as fast as members trade: each observation is a completed exchange or a not-accepted refusal, which needs a trade contact "
+                              "(§1.1 contact rates, waking hours); only observations inside the caller's window count; recomputing is unlimited (stateless projection). (Society DESIGN §1.17, 7fbd51f)")
+        _r["failure_mode"] = ("no member observed (including no Economy records) -> null, never 0; a null, missing, non-finite or reversed window, a group with no supplied membership, "
+                              "or a record with a non-finite day -> the call refuses with an error naming the cause; never a default or a skipped record. (Society DESIGN §1.17, 7fbd51f)")
+    if _r["id"] == "society.organisation.collective_choice":
+        _r["rate_limiter"] = "meetings are contacts (§1.1): only members present (attendance is each member's choice) vote where the rule requires presence. (Society DESIGN §1.3)"
+        _r["failure_mode"] = "no quorum -> no act, recorded; a tie under a rule with no tie-break -> no act, recorded; never a random resolution unless the rule says lots. (Society DESIGN §1.3)"
+EXTRA_QUANTITIES += [
+ {"id": "society.meeting_attendance", "kind": "record", "unit": None, "scope": "society", "writer": "society.organisation.actors",
+  "description": "{org, person, activity, t}: a member's recorded attendance at an organisation's meeting or activity, recorded only from that person's own attend intention; read by society.affordance.offer, society.organisation.collective_choice, society.network.communication (Society DESIGN §1.18)",
+  "status": "built (society 1986bc5, 2026-11-01)"},
+ {"id": "society.kinship", "kind": "record", "unit": None, "scope": "society", "writer": "society.household.structure",
+  "description": "{person, relative, relation, since}: kin relations (parent, child, sibling, spouse, affine) as a graph (Society DESIGN §1.6, §1.18); until society.household.structure is built a host supplies the facts through the kinship port (society src/ports.ts); read by society.network.communication and admission by kinship",
+  "status": "planned writer (society.household.structure not built); host port until then (2026-11-01)"},
+]
+# (rate_limiter/failure_mode on EXTRA_ROWS are not kept by the build; set through ROW_PATCHES as the other rows do)
+for _id in ("society.convention.payment_acceptance", "society.organisation.collective_choice"):
+    _src = [r for r in EXTRA_ROWS if r["id"] == _id][0]
+    ROW_PATCHES.setdefault(_id, {}).update({"rate_limiter": _src["rate_limiter"], "failure_mode": _src["failure_mode"]})

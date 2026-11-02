@@ -11,7 +11,7 @@
    "parser": "Toolchain/kernel/src/units.ts parse (unit 2592)",
    "tally": {
     "parses": 330,
-    "kind record": 133,
+    "kind record": 135,
     "kind text": 1,
     "kind categorical": 8,
     "unknown: the": 38
@@ -4983,6 +4983,16 @@
    "unit_parses": null
   },
   {
+   "id": "society.kinship",
+   "kind": "record",
+   "unit": null,
+   "scope": "society",
+   "writer": "society.household.structure",
+   "description": "{person, relative, relation, since}: kin relations (parent, child, sibling, spouse, affine) as a graph (Society DESIGN §1.6, §1.18); until society.household.structure is built a host supplies the facts through the kinship port (society src/ports.ts); read by society.network.communication and admission by kinship",
+   "status": "planned writer (society.household.structure not built); host port until then (2026-11-01)",
+   "unit_parses": null
+  },
+  {
    "id": "society.knowledge_stock",
    "kind": "record",
    "unit": null,
@@ -4990,6 +5000,16 @@
    "writer": "knowledge.collective.stock",
    "description": "what a community knows, with who holds it and which records carry it; loses items as holders die and records decay",
    "status": "planned (Rex 2026-10-31)",
+   "unit_parses": null
+  },
+  {
+   "id": "society.meeting_attendance",
+   "kind": "record",
+   "unit": null,
+   "scope": "society",
+   "writer": "society.organisation.actors",
+   "description": "{org, person, activity, t}: a member's recorded attendance at an organisation's meeting or activity, recorded only from that person's own attend intention; read by society.affordance.offer, society.organisation.collective_choice, society.network.communication (Society DESIGN §1.18)",
+   "status": "built (society 1986bc5, 2026-11-01)",
    "unit_parses": null
   },
   {
@@ -5017,9 +5037,10 @@
    "kind": "record",
    "unit": null,
    "scope": "society",
-   "writer": "society.institution.formation_dissolution",
+   "writer": "society.organisation.actors",
    "description": "an organisation becoming an institution, splitting, merging or dissolving",
    "status": "planned (Rex 2026-10-31, institutions)",
+   "written_by": "society.organisation.actors (the organisation store commits formation, merger, split, dissolution and collective-choice acts; Society DESIGN §1.18, 2026-11-01)",
    "unit_parses": null
   },
   {
