@@ -11,7 +11,7 @@
    "parser": "Toolchain/kernel/src/units.ts parse (unit 2592)",
    "tally": {
     "parses": 330,
-    "kind record": 132,
+    "kind record": 133,
     "kind text": 1,
     "kind categorical": 8,
     "unknown: the": 38
@@ -854,6 +854,16 @@
    "description": "endurance time at an effort",
    "status": "confirmed by owner",
    "unit_parses": true
+  },
+  {
+   "id": "body.energy_requirement",
+   "kind": "record",
+   "unit": "kcal/d",
+   "scope": "body",
+   "writer": "realism.nutrition.requirement",
+   "description": "per-person daily energy requirement record {absorbedKcal, foodKcal, basis, omitted} plus a household sum. absorbedKcal = sum metabolicRateW(met_i)*s_i/KCAL_J over the host's 86 400 s MET schedule (equal to physiology's expenditure_kcal for that day: a read of realism.physiology.energy_expenditure and realism.physiology.rmr, not a second expenditure; cf. body.expenditure); foodKcal = absorbedKcal / absorbedFraction('energy', food, meal); basis = the library's kcalPerKg basis (today 'unstated (LIFE-17)'); omitted = terms not yet costed (CG-14: growth, thermoregulation, pregnancy, lactation). Same writer as body.need (dailyNeed). Out port in Life's kernel.json after the split; a realism export until then. Consumer: Government's manor demonstration",
+   "status": "planned (Life keeper 2026-11-01; unit {SUBSIST} not yet numbered)",
+   "unit_parses": null
   },
   {
    "id": "body.expenditure",

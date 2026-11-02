@@ -3463,3 +3463,13 @@ EXTRA_QUANTITIES.append({"id": "government.port.recognition", "kind": "quantity"
     "written_by": "Cognition's BeliefReader.recognition (cognition unit 5419): a pure read of mind.belief, served read-only; Government consumes it (government.authority.acquisition_delegation)",
     "description": "recognition(i, k, d): P('true') of mind i's categorical belief about the handle for office k, attribute ought_obey:<domain d>; null when missing (excluded from aggregates, never 0); the host maps actor ids to handles",
     "status": "provider-port vocabulary 2026-11-01 (defined by Government DESIGN, agreed with Cognition 2026-10-31; reader in cognition 5419)"})
+
+# --- 2026-11-01: Life keeper: body.energy_requirement proposed for Government's household subsistence read (manor demonstration). Writer the existing
+# realism.nutrition.requirement (dailyNeed), extended with energy, not a second requirement gear. Planned until the unit ({SUBSIST}, Codex; Reality keeper numbers it) lands ---
+EXTRA_QUANTITIES.append({"id": "body.energy_requirement", "kind": "record", "unit": "kcal/d", "scope": "body", "writer": "realism.nutrition.requirement",
+    "description": ("per-person daily energy requirement record {absorbedKcal, foodKcal, basis, omitted} plus a household sum. absorbedKcal = sum metabolicRateW(met_i)*s_i/KCAL_J "
+                    "over the host's 86 400 s MET schedule (equal to physiology's expenditure_kcal for that day: a read of realism.physiology.energy_expenditure and "
+                    "realism.physiology.rmr, not a second expenditure; cf. body.expenditure); foodKcal = absorbedKcal / absorbedFraction('energy', food, meal); "
+                    "basis = the library's kcalPerKg basis (today 'unstated (LIFE-17)'); omitted = terms not yet costed (CG-14: growth, thermoregulation, pregnancy, lactation). "
+                    "Same writer as body.need (dailyNeed). Out port in Life's kernel.json after the split; a realism export until then. Consumer: Government's manor demonstration"),
+    "status": "planned (Life keeper 2026-11-01; unit {SUBSIST} not yet numbered)"})
