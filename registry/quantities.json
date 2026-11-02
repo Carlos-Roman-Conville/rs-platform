@@ -10,7 +10,7 @@
    "checked": "2026-10-30",
    "parser": "Toolchain/kernel/src/units.ts parse (unit 2592)",
    "tally": {
-    "parses": 329,
+    "parses": 330,
     "kind record": 132,
     "kind text": 1,
     "kind categorical": 8,
@@ -3114,6 +3114,17 @@
    "written_by": "host (default provider: Settlement Office.powers[])",
    "description": "the answer to AuthorityProvider.may(office, power, subject, day), boolean (0/1); read by settlement.authority.office_powers as an in port at its four power checks",
    "status": "agreed contract (GOVERNMENT-SETTLEMENT.md §2; government dd75837, settlement ac0a81d)",
+   "unit_parses": true
+  },
+  {
+   "id": "government.port.recognition",
+   "kind": "quantity",
+   "unit": "1",
+   "scope": "government",
+   "writer": null,
+   "written_by": "Cognition's BeliefReader.recognition (cognition unit 5419): a pure read of mind.belief, served read-only; Government consumes it (government.authority.acquisition_delegation)",
+   "description": "recognition(i, k, d): P('true') of mind i's categorical belief about the handle for office k, attribute ought_obey:<domain d>; null when missing (excluded from aggregates, never 0); the host maps actor ids to handles",
+   "status": "provider-port vocabulary 2026-11-01 (defined by Government DESIGN, agreed with Cognition 2026-10-31; reader in cognition 5419)",
    "unit_parses": true
   },
   {

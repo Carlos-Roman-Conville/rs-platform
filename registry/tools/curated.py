@@ -3455,3 +3455,11 @@ EXTRA_QUANTITIES.append({"id": "contract.available_hours", "kind": "quantity", "
     "written_by": "host: body.hours_awake minus post hours (settlement.post_assignment, settlement.config.hours_per_day); offered hours from Life's LabourSupply (IF-27)",
     "description": "per-person time budget in hours per day read by society.network.communication (Society DESIGN §1.1, §1.14 item 4); replaces mind.available_hours",
     "status": "provider-port vocabulary 2026-11-01 (Society keeper; Cognition agreed it is not a mind quantity)"})
+
+# --- 2026-11-01: Cognition keeper: government.port.recognition was used by Government (DESIGN §-table line 620, src/authority/distribution.ts) but had no registry entry.
+# Registered as provider-port vocabulary (writer null, same convention as contract.available_hours): Government defines it, Cognition serves it read-only (unit 5419),
+# derived from the registered mind.belief; no new state, no kernel.json port on Cognition's side ---
+EXTRA_QUANTITIES.append({"id": "government.port.recognition", "kind": "quantity", "unit": "1", "scope": "government", "writer": None,
+    "written_by": "Cognition's BeliefReader.recognition (cognition unit 5419): a pure read of mind.belief, served read-only; Government consumes it (government.authority.acquisition_delegation)",
+    "description": "recognition(i, k, d): P('true') of mind i's categorical belief about the handle for office k, attribute ought_obey:<domain d>; null when missing (excluded from aggregates, never 0); the host maps actor ids to handles",
+    "status": "provider-port vocabulary 2026-11-01 (defined by Government DESIGN, agreed with Cognition 2026-10-31; reader in cognition 5419)"})
