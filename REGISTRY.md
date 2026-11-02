@@ -64,7 +64,7 @@ mechanisms, and are not itemised. Coverage limits are listed in `HQ/handoffs/reg
 
 | | built | documented-only | planned | total |
 |---|---|---|---|---|
-| reality mechanisms | 44 | 0 | 38 | 82 |
+| reality mechanisms | 45 | 0 | 37 | 82 |
 | life mechanisms | 83 | 3 | 50 | 136 |
 | kernel mechanisms | 4 | 0 | 0 | 4 |
 | settlement mechanisms | 23 | 0 | 1 | 24 |
@@ -78,7 +78,7 @@ mechanisms, and are not itemised. Coverage limits are listed in `HQ/handoffs/reg
 | shared mechanisms | 7 | 5 | 5 | 17 |
 | pirate-ship mechanisms | 24 | 63 | 15 | 102 |
 | restatements (pirate docs and adapters) | 0 | 90 | 2 | 92 |
-| **all rows** | 235 | 161 | 194 | 590 |
+| **all rows** | 236 | 161 | 193 | 590 |
 
 **Restatements** are not errors: the pirate body docs are rendered from the same library JSON as the realism
 code (`body/build-body-data.py`), so their tables cannot disagree with the code. Disagreements live only in their
@@ -194,7 +194,7 @@ stability/conservation/boundary tests, `integration_tested_with`, integration te
 | `realism.terrain.mineral_deposits` | P | A | U | 4 | --- | DUP-52 | ENGINES.md 'Planetary terrain and resource formation' (Rex 2026-10-30; Physical Reality P2 |
 | `realism.terrain.nutrient_transport` | P | A | U | 2 | --- |  | ENGINES.md 'Terrestrial and aquatic ecosystem foundation' (Rex 2026-10-30; planned; resear |
 | `realism.terrain.provinces` | P | A | U | 4 | --- |  | ENGINES.md 'Planetary terrain and resource formation' (Rex 2026-10-30; Physical Reality P2 |
-| `realism.terrain.soils` | P | B | U | 4 | --- | DUP-51 | ENGINES.md 'Planetary terrain and resource formation' (Rex 2026-10-30; Physical Reality P2 |
+| `realism.terrain.soils` | B | B | U | 4 | I-- | DUP-51 | realism/src/soils.ts (unit 3001, 723ce8b): SoilCell {N, P, K kg, areaM2}; transferNutrient |
 | `realism.terrain.solute_transport` | P | A | U | 2 | --- |  | ENGINES.md 'Gaps noted from a field survey' (Rex 2026-10-31; candidate, planned, not sched |
 | `realism.thermo.boiling` | B | A | U | 4 | IT- |  | realism/src/process.ts boilingProcess L125 |
 | `realism.thermo.brick_wall_constants` | B | A | M | ? | I-- | DUP-10 | realism/src/physics.ts BRICK_WALL L119 |

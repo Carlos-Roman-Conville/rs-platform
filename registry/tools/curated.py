@@ -3518,3 +3518,23 @@ ROW_PATCHES.setdefault("society.affordance.offer", {}).update({
     "failure_mode": ("a rule needing an amount or fact the host did not supply (fee amount, sponsor count, sponsor, kinship or occupation facts, founding-circle window) refuses "
                      "with an error naming it, never a default or a silently dropped offer; a source with no open rule offers nothing; an offer the true state no longer allows "
                      "is refused at the attempt as an outcome event the mind observes. (Society DESIGN §1.18, 679abe7)")})
+
+# --- 2026-11-01: CG-9, CG-20, CG-22 closed. Registry keeper re-audit at realism 723ce8b (unit 3001; tree clean except Reality's uncommitted kernel.json for 3021):
+# test/soils.test.ts 8/8 ('one transfer (3001)', 'no clamp (3001)', 'integration rule (3001)', 'uptake once (3001)' + 4); tsc clean; full suite 420 pass, 2 fail outside
+# soils (perf.test.ts circulation-cost bound 5245 > 5000 ms and snapshot.test.ts 30 s timeout, timing under load, untouched by 3001). Ports: realism 3021 pending ---
+_SOIL = "realism 3001 (723ce8b) src/soils.ts transferNutrients, transferNutrient, addNutrient"
+ROW_PATCHES.setdefault("realism.terrain.soils", {}).update({"status": "built",
+    "home": "Toolchain/realism/src/soils.ts (unit 3001, 723ce8b): SoilCell {N, P, K kg, areaM2}; transferNutrient(s)/addNutrient through kernel transfer(); gears/soil-integration.md, gears/soil-fertility-index.md",
+    "tests": "Toolchain/realism test/soils.test.ts 8/8 at 723ce8b (registry keeper rerun 2026-11-01): one transfer, no clamp, integration rule, uptake once (3001)"})
+VV_OVERRIDES["realism.terrain.soils"] = {"validated": "no", "integrated": "no (process realism.ecology.soils and ports in realism 3021, pending)",
+                                        "evidence": "re-audit 2026-11-01 at realism 723ce8b: soils 8/8, tsc clean"}
+for _q in ("world.soil_n", "world.soil_p", "world.soil_k"):
+    QUANTITY_PATCH.setdefault(_q, {})["status"] = "built (" + _SOIL + "; CG-9 closed 2026-11-01); port pending realism 3021"
+_CG_CLOSE = {
+ "CG-9": "closed 2026-11-01: N, P and K are separate kg-per-cell quantities world.soil_n/_p/_k (the cell carries areaM2); old ids aliases; realism 3001 723ce8b, soils 8/8 on rerun",
+ "CG-20": "closed 2026-11-01: transferNutrient pool -q / account +q in one transfer, losses to loss:<pathway>, no clamp; harvest one transfer of yield x removal (3000 table), nothing from soil when uptakeByPlant; f a derived Liebig view (stock.f) never debited; tests 'one transfer', 'no clamp', 'uptake once (3001)' pass at 723ce8b",
+ "CG-22": "closed 2026-11-01: each flux applies at its own step through kernel transfer(), no yearly buffer; test 'integration rule (3001)' (daily vs hourly annual fluxes agree, 1e-9) passes at 723ce8b",
+}
+for _g in INTERFACE_GAPS:
+    if _g["interface"] in _CG_CLOSE:
+        _g["state"] = _CG_CLOSE[_g["interface"]]

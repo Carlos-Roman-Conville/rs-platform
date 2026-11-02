@@ -7,8 +7,8 @@
   "contract_fields": "PLATFORM.md §7",
   "evidence_scale": "PLATFORM.md §4 (1 law ... 6 fiction)",
   "counts": {
-   "built": 235,
-   "planned": 194,
+   "built": 236,
+   "planned": 193,
    "documented-only": 161
   },
   "kinds": {
@@ -20,8 +20,8 @@
   "schema_4": "adds rate_limiter and failure_mode to the §7 contract fields (with inputs = what enters, outputs = what leaves, state = what accumulates), null until owners fill them; widens vv.record item 5 with numerical {stability, coupled_update_consistency, sensitivity} (PLATFORM §11a item 5, Rex 2026-10-31); check-registry warns, never fails, on empty fields of built rows",
   "schema_3": "each row carries vv {implemented, integrated, validated, record{sources_and_model, applicability, verification_tests, validation_evidence, tolerance, stability_conservation_boundary, integration_tested_with, integration_tests, report}} (PLATFORM.md §11a); seeded 2026-10-30 from the audit and the combined tests; owners complete it, the registry keeper re-audits",
   "vv_counts": {
-   "implemented": 233,
-   "built_mechanisms": 235,
+   "implemented": 234,
+   "built_mechanisms": 236,
    "with_integration_test": 122,
    "integrated_yes": 129,
    "validated_yes": 0,
@@ -46530,9 +46530,9 @@
    "id": "realism.terrain.soils",
    "name": "Soils",
    "owning_engine": "reality",
-   "home": "Toolchain/ENGINES.md 'Planetary terrain and resource formation' (Rex 2026-10-30; Physical Reality P2 subsystem; planned)",
+   "home": "Toolchain/realism/src/soils.ts (unit 3001, 723ce8b): SoilCell {N, P, K kg, areaM2}; transferNutrient(s)/addNutrient through kernel transfer(); gears/soil-integration.md, gears/soil-fertility-index.md",
    "home_kind": "code",
-   "status": "planned",
+   "status": "built",
    "status_note": "",
    "kind": "mechanism",
    "restates": null,
@@ -46588,7 +46588,7 @@
    "evidence": 4,
    "evidence_note": "",
    "approximations": "planned",
-   "tests": "none",
+   "tests": "Toolchain/realism test/soils.test.ts 8/8 at 723ce8b (registry keeper rerun 2026-11-01): one transfer, no clamp, integration rule, uptake once (3001)",
    "consumers": [
     "realism.terrain.vegetation_stocks",
     "realism.eco.soil_fertility",
@@ -46612,13 +46612,19 @@
     "IF-38",
     "IF-39"
    ],
-   "writes": [],
+   "writes": [
+    "world.soil",
+    "world.soil_ph",
+    "world.soil_n",
+    "world.soil_p",
+    "world.soil_k"
+   ],
    "reads": [],
    "aggregates": null,
    "vv": {
-    "implemented": false,
-    "integrated": "no (not built)",
-    "validated": "n/a",
+    "implemented": true,
+    "integrated": "no (process realism.ecology.soils and ports in realism 3021, pending)",
+    "validated": "no",
     "record": {
      "sources_and_model": {
       "sources": "to research per unit (evidence levels stated); ENGINES.md",
@@ -46626,8 +46632,10 @@
       "evidence_level": 4
      },
      "applicability": "planned",
-     "verification_tests": "none",
-     "validation_evidence": [],
+     "verification_tests": "Toolchain/realism test/soils.test.ts 8/8 at 723ce8b (registry keeper rerun 2026-11-01): one transfer, no clamp, integration rule, uptake once (3001)",
+     "validation_evidence": [
+      "re-audit 2026-11-01 at realism 723ce8b: soils 8/8, tsc clean"
+     ],
      "tolerance": null,
      "stability_conservation_boundary": [],
      "numerical": {

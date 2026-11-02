@@ -5768,7 +5768,7 @@
    "scope": "world",
    "writer": "realism.terrain.soils",
    "description": "soil potassium pool, per soil cell (the cell record carries areaM2; kg/m^2 is a derived view); changes only by transfer (transferNutrient / addNutrient, PLATFORM §7a); losses go to loss:<pathway> accounts (CG-9)",
-   "status": "planned (CG-9, Reality keeper 2026-11-01; realism unit 3001)",
+   "status": "built (realism 3001 (723ce8b) src/soils.ts transferNutrients, transferNutrient, addNutrient; CG-9 closed 2026-11-01); port pending realism 3021",
    "unit_parses": true
   },
   {
@@ -5778,7 +5778,7 @@
    "scope": "world",
    "writer": "realism.terrain.soils",
    "description": "soil nitrogen pool, per soil cell (the cell record carries areaM2; kg/m^2 is a derived view); changes only by transfer (transferNutrient / addNutrient, PLATFORM §7a); losses go to loss:<pathway> accounts (CG-9)",
-   "status": "planned (CG-9, Reality keeper 2026-11-01; realism unit 3001)",
+   "status": "built (realism 3001 (723ce8b) src/soils.ts transferNutrients, transferNutrient, addNutrient; CG-9 closed 2026-11-01); port pending realism 3021",
    "unit_parses": true
   },
   {
@@ -5804,7 +5804,7 @@
    "scope": "world",
    "writer": "realism.terrain.soils",
    "description": "soil phosphorus pool, per soil cell (the cell record carries areaM2; kg/m^2 is a derived view); changes only by transfer (transferNutrient / addNutrient, PLATFORM §7a); losses go to loss:<pathway> accounts (CG-9)",
-   "status": "planned (CG-9, Reality keeper 2026-11-01; realism unit 3001)",
+   "status": "built (realism 3001 (723ce8b) src/soils.ts transferNutrients, transferNutrient, addNutrient; CG-9 closed 2026-11-01); port pending realism 3021",
    "unit_parses": true
   },
   {
