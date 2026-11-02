@@ -10,7 +10,7 @@
    "checked": "2026-10-30",
    "parser": "Toolchain/kernel/src/units.ts parse (unit 2592)",
    "tally": {
-    "parses": 328,
+    "parses": 329,
     "kind record": 132,
     "kind text": 1,
     "kind categorical": 8,
@@ -2188,6 +2188,17 @@
    "kind": "quantity",
    "writer_note": "provider-port vocabulary 2026-10-31 (Kernel keeper; Settlement and Economy agreed): LabourSupply.available (person present)",
    "written_by": "host (pirate PortLabour / the caller's LabourSupply until Reality's population supply is wired, DUP-26)",
+   "unit_parses": true
+  },
+  {
+   "id": "contract.available_hours",
+   "kind": "quantity",
+   "unit": "h/d",
+   "scope": "contract",
+   "writer": null,
+   "written_by": "host: body.hours_awake minus post hours (settlement.post_assignment, settlement.config.hours_per_day); offered hours from Life's LabourSupply (IF-27)",
+   "description": "per-person time budget in hours per day read by society.network.communication (Society DESIGN §1.1, §1.14 item 4); replaces mind.available_hours",
+   "status": "provider-port vocabulary 2026-11-01 (Society keeper; Cognition agreed it is not a mind quantity)",
    "unit_parses": true
   },
   {

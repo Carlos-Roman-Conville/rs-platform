@@ -3447,3 +3447,11 @@ for _id in _SOC_BUILT:
     VV_OVERRIDES[_id] = {"validated": "no (D-SOC-1 study evidence is the validation route; not a VV sign-off)",
                          "integrated": "partial (society kernel.json process declared; the check with it fails on unregistered reads, REG-34)",
                          "evidence": "re-audit 2026-11-01 at society f53452e: 862 + 2 skipped, tsc clean"}
+
+# --- 2026-11-01: REG-34, Society keeper: contract.available_hours replaces mind.available_hours in society.network.communication's reads (Cognition: a mind holds no hours
+# budget, no Cognition writer). Host-composed, same convention as contract.transport_days. Society unit 5412 renames it in kernel.json and records the writer and new-row
+# proposals in DESIGN §1.18 (registered when 5412 lands) ---
+EXTRA_QUANTITIES.append({"id": "contract.available_hours", "kind": "quantity", "unit": "h/d", "scope": "contract", "writer": None,
+    "written_by": "host: body.hours_awake minus post hours (settlement.post_assignment, settlement.config.hours_per_day); offered hours from Life's LabourSupply (IF-27)",
+    "description": "per-person time budget in hours per day read by society.network.communication (Society DESIGN §1.1, §1.14 item 4); replaces mind.available_hours",
+    "status": "provider-port vocabulary 2026-11-01 (Society keeper; Cognition agreed it is not a mind quantity)"})
