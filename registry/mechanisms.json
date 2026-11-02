@@ -7,8 +7,8 @@
   "contract_fields": "PLATFORM.md §7",
   "evidence_scale": "PLATFORM.md §4 (1 law ... 6 fiction)",
   "counts": {
-   "built": 230,
-   "planned": 199,
+   "built": 235,
+   "planned": 194,
    "documented-only": 161
   },
   "kinds": {
@@ -20,8 +20,8 @@
   "schema_4": "adds rate_limiter and failure_mode to the §7 contract fields (with inputs = what enters, outputs = what leaves, state = what accumulates), null until owners fill them; widens vv.record item 5 with numerical {stability, coupled_update_consistency, sensitivity} (PLATFORM §11a item 5, Rex 2026-10-31); check-registry warns, never fails, on empty fields of built rows",
   "schema_3": "each row carries vv {implemented, integrated, validated, record{sources_and_model, applicability, verification_tests, validation_evidence, tolerance, stability_conservation_boundary, integration_tested_with, integration_tests, report}} (PLATFORM.md §11a); seeded 2026-10-30 from the audit and the combined tests; owners complete it, the registry keeper re-audits",
   "vv_counts": {
-   "implemented": 228,
-   "built_mechanisms": 230,
+   "implemented": 233,
+   "built_mechanisms": 235,
    "with_integration_test": 122,
    "integrated_yes": 129,
    "validated_yes": 0,
@@ -52530,9 +52530,9 @@
    "id": "society.affordance.offer",
    "name": "Affordances offered to a person",
    "owning_engine": "society",
-   "home": "Toolchain/society/DESIGN.md (society 1515974; proposed, awaiting Rex)",
+   "home": "Toolchain/society/src/affordance.ts offers (householdOffers and migrationOffers return none until those rows are built) (society f53452e); DESIGN §1.13, IF-46; design approved (Rex, 2026-10-31); was: Toolchain/society/DESIGN.md (society 1515974; proposed, awaiting Rex)",
    "home_kind": "docs",
-   "status": "planned",
+   "status": "built",
    "status_note": "",
    "kind": "mechanism",
    "restates": null,
@@ -52568,22 +52568,24 @@
    "evidence": 4,
    "evidence_note": "",
    "approximations": "planned",
-   "tests": "none",
+   "tests": "Toolchain/society test/affordance.test.ts 17/17; full suite 862 + 2 skipped at f53452e (registry keeper rerun 2026-11-01)",
    "consumers": [
     "cognition.decision.generate"
    ],
-   "notes": "proposed by the Society keeper 2026-10-31, not yet approved by Rex. the only writer of society.affordance; offering is not choosing (Cognition's, IF-46); its source rows stay providers. Evidence level 4, a simulation interface",
+   "notes": "proposed by the Society keeper 2026-10-31, not yet approved by Rex. the only writer of society.affordance; offering is not choosing (Cognition's, IF-46); its source rows stay providers. Evidence level 4, a simulation interface; built 2026-11-01 (re-audit at society f53452e, REG-34 follow-up)",
    "overlap_groups": [],
    "unit_issues": [],
    "audit_batch": "society-keeper-2026-10-31",
    "audit_id": null,
-   "writes": [],
+   "writes": [
+    "society.affordance"
+   ],
    "reads": [],
    "aggregates": null,
    "vv": {
-    "implemented": false,
-    "integrated": "no (not built)",
-    "validated": "n/a",
+    "implemented": true,
+    "integrated": "partial (society kernel.json process declared; the check with it fails on unregistered reads, REG-34)",
+    "validated": "no (D-SOC-1 study evidence is the validation route; not a VV sign-off)",
     "record": {
      "sources_and_model": {
       "sources": "Society DESIGN.md sources; evidence per unit",
@@ -52591,8 +52593,10 @@
       "evidence_level": 4
      },
      "applicability": "planned",
-     "verification_tests": "none",
-     "validation_evidence": [],
+     "verification_tests": "Toolchain/society test/affordance.test.ts 17/17; full suite 862 + 2 skipped at f53452e (registry keeper rerun 2026-11-01)",
+     "validation_evidence": [
+      "re-audit 2026-11-01 at society f53452e: 862 + 2 skipped, tsc clean"
+     ],
      "tolerance": null,
      "stability_conservation_boundary": [],
      "numerical": {
@@ -52602,7 +52606,7 @@
      },
      "integration_tested_with": [],
      "integration_tests": [],
-     "report": "proposed by the Society keeper 2026-10-31, not yet approved by Rex. the only writer of society.affordance; offering is not choosing (Cognition's, IF-46); its source rows stay providers. Evidence level 4, a simulation interface"
+     "report": "proposed by the Society keeper 2026-10-31, not yet approved by Rex. the only writer of society.affordance; offering is not choosing (Cognition's, IF-46); its source rows stay providers. Evidence level 4, a simulation interface; built 2026-11-01 (re-audit at society f53452e, REG-34 follow-up)"
     }
    },
    "rate_limiter": null,
@@ -53148,9 +53152,9 @@
    "id": "society.institution.formation_dissolution",
    "name": "Institution formation and dissolution",
    "owning_engine": "society",
-   "home": "Toolchain/ENGINES.md 'Institutions, government and religion emerge' (Rex 2026-10-31; planned)",
+   "home": "Toolchain/society/src/formation.ts found, secede, split, merge, dissolve; src/institution.ts classifyInstitution (society f53452e); DESIGN §1.4; design approved (Rex, 2026-10-31); was: Toolchain/ENGINES.md 'Institutions, government and religion emerge' (Rex 2026-10-31; planned)",
    "home_kind": "docs",
-   "status": "planned",
+   "status": "built",
    "status_note": "",
    "kind": "mechanism",
    "restates": null,
@@ -53182,25 +53186,27 @@
    "evidence": null,
    "evidence_note": "?",
    "approximations": "planned",
-   "tests": "none",
+   "tests": "Toolchain/society test/formation.test.ts 26/26, institution*.test.ts 12/12; full suite 862 + 2 skipped at f53452e (registry keeper rerun 2026-11-01)",
    "consumers": [
     "government.authority.acquisition_delegation",
     "society.organisation.actors"
    ],
-   "notes": "DUP-58 seam",
+   "notes": "DUP-58 seam; built 2026-11-01 (re-audit at society f53452e, REG-34 follow-up)",
    "overlap_groups": [],
    "unit_issues": [],
    "audit_batch": "rex-2026-10-31-institutions",
    "audit_id": null,
    "rate_limiter": "founding costs the founders' time and money (meeting, fees, charter cost through Economy); every founder must be reachable by the others on the network (Society DESIGN §1.4 at 1515974)",
    "failure_mode": "founders who cannot meet cannot found; an incomplete founding is recorded with the missing intentions (Society DESIGN §1.4 at 1515974)",
-   "writes": [],
+   "writes": [
+    "society.organisation_event"
+   ],
    "reads": [],
    "aggregates": null,
    "vv": {
-    "implemented": false,
-    "integrated": "no (not built)",
-    "validated": "n/a",
+    "implemented": true,
+    "integrated": "partial (society kernel.json process declared; the check with it fails on unregistered reads, REG-34)",
+    "validated": "no (D-SOC-1 study evidence is the validation route; not a VV sign-off)",
     "record": {
      "sources_and_model": {
       "sources": "to research per unit (evidence levels stated); ENGINES.md",
@@ -53208,8 +53214,10 @@
       "evidence_level": null
      },
      "applicability": "planned",
-     "verification_tests": "none",
-     "validation_evidence": [],
+     "verification_tests": "Toolchain/society test/formation.test.ts 26/26, institution*.test.ts 12/12; full suite 862 + 2 skipped at f53452e (registry keeper rerun 2026-11-01)",
+     "validation_evidence": [
+      "re-audit 2026-11-01 at society f53452e: 862 + 2 skipped, tsc clean"
+     ],
      "tolerance": null,
      "stability_conservation_boundary": [],
      "numerical": {
@@ -53219,7 +53227,7 @@
      },
      "integration_tested_with": [],
      "integration_tests": [],
-     "report": "DUP-58 seam"
+     "report": "DUP-58 seam; built 2026-11-01 (re-audit at society f53452e, REG-34 follow-up)"
     }
    }
   },
@@ -53303,9 +53311,9 @@
    "id": "society.network.communication",
    "name": "Communication networks",
    "owning_engine": "society",
-   "home": "Toolchain/ENGINES.md 'Communication and information transmission' (Rex 2026-10-30; owned by Cognition; planned, after the P7 baseline)",
+   "home": "Toolchain/society/src/network.ts CommunicationNetwork (society f53452e); DESIGN §1.1; design approved (Rex, 2026-10-31); was: Toolchain/ENGINES.md 'Communication and information transmission' (Rex 2026-10-30; owned by Cognition; planned, after the P7 baseline)",
    "home_kind": "docs",
-   "status": "planned",
+   "status": "built",
    "status_note": "",
    "kind": "mechanism",
    "restates": null,
@@ -53333,7 +53341,7 @@
    "evidence": null,
    "evidence_note": "?",
    "approximations": "planned",
-   "tests": "none",
+   "tests": "Toolchain/society test/network.test.ts 38/38; full suite 862 + 2 skipped at f53452e (registry keeper rerun 2026-11-01)",
    "consumers": [
     "cognition.communication.encode",
     "realism.communication.transmission"
@@ -53352,13 +53360,15 @@
     "IF-16",
     "IF-45"
    ],
-   "writes": [],
+   "writes": [
+    "society.comm_network"
+   ],
    "reads": [],
    "aggregates": null,
    "vv": {
-    "implemented": false,
-    "integrated": "no (not built)",
-    "validated": "n/a",
+    "implemented": true,
+    "integrated": "partial (society kernel.json process declared; the check with it fails on unregistered reads, REG-34)",
+    "validated": "no (D-SOC-1 study evidence is the validation route; not a VV sign-off)",
     "record": {
      "sources_and_model": {
       "sources": "to research per unit (evidence levels stated); ENGINES.md",
@@ -53366,8 +53376,10 @@
       "evidence_level": null
      },
      "applicability": "planned",
-     "verification_tests": "none",
-     "validation_evidence": [],
+     "verification_tests": "Toolchain/society test/network.test.ts 38/38; full suite 862 + 2 skipped at f53452e (registry keeper rerun 2026-11-01)",
+     "validation_evidence": [
+      "re-audit 2026-11-01 at society f53452e: 862 + 2 skipped, tsc clean"
+     ],
      "tolerance": null,
      "stability_conservation_boundary": [],
      "numerical": {
@@ -53458,9 +53470,9 @@
    "id": "society.organisation.actors",
    "name": "Organisations as actors",
    "owning_engine": "society",
-   "home": "ROADMAP P6 Society (planned)",
+   "home": "Toolchain/society/src/organisation.ts OrganisationStore; src/charter.ts validateCharter, validateReference (society f53452e); DESIGN §1.2, §1.2a; design approved (Rex, 2026-10-31); was: ROADMAP P6 Society (planned)",
    "home_kind": "docs",
-   "status": "planned",
+   "status": "built",
    "status_note": "",
    "kind": "mechanism",
    "restates": null,
@@ -53487,9 +53499,9 @@
    "evidence": null,
    "evidence_note": "?",
    "approximations": "planned",
-   "tests": "none",
+   "tests": "Toolchain/society test/organisation.test.ts 25/25, charter*.test.ts 553/553; full suite 862 + 2 skipped at f53452e (registry keeper rerun 2026-11-01)",
    "consumers": [],
-   "notes": "",
+   "notes": "; built 2026-11-01 (re-audit at society f53452e, REG-34 follow-up)",
    "overlap_groups": [
     "DUP-58"
    ],
@@ -53505,13 +53517,16 @@
    "interfaces": [
     "IF-46"
    ],
-   "writes": [],
+   "writes": [
+    "society.organisation",
+    "society.membership"
+   ],
    "reads": [],
    "aggregates": null,
    "vv": {
-    "implemented": false,
-    "integrated": "no (not built)",
-    "validated": "n/a",
+    "implemented": true,
+    "integrated": "partial (society kernel.json process declared; the check with it fails on unregistered reads, REG-34)",
+    "validated": "no (D-SOC-1 study evidence is the validation route; not a VV sign-off)",
     "record": {
      "sources_and_model": {
       "sources": "to research; ROADMAP",
@@ -53519,8 +53534,10 @@
       "evidence_level": null
      },
      "applicability": "planned",
-     "verification_tests": "none",
-     "validation_evidence": [],
+     "verification_tests": "Toolchain/society test/organisation.test.ts 25/25, charter*.test.ts 553/553; full suite 862 + 2 skipped at f53452e (registry keeper rerun 2026-11-01)",
+     "validation_evidence": [
+      "re-audit 2026-11-01 at society f53452e: 862 + 2 skipped, tsc clean"
+     ],
      "tolerance": null,
      "stability_conservation_boundary": [],
      "numerical": {
@@ -53530,7 +53547,7 @@
      },
      "integration_tested_with": [],
      "integration_tests": [],
-     "report": ""
+     "report": "; built 2026-11-01 (re-audit at society f53452e, REG-34 follow-up)"
     }
    }
   },
@@ -53538,9 +53555,9 @@
    "id": "society.organisation.collective_choice",
    "name": "Collective choice inside an organisation",
    "owning_engine": "society",
-   "home": "Toolchain/society/DESIGN.md (society 1515974; proposed, awaiting Rex)",
+   "home": "Toolchain/society/src/choice.ts collectiveChoice, pairwiseCollectiveChoice, proposalProcedure; src/amendment.ts; src/open-proposals.ts (society f53452e); DESIGN §1.3; design approved (Rex, 2026-10-31); was: Toolchain/society/DESIGN.md (society 1515974; proposed, awaiting Rex)",
    "home_kind": "docs",
-   "status": "planned",
+   "status": "built",
    "status_note": "",
    "kind": "mechanism",
    "restates": null,
@@ -53567,12 +53584,12 @@
    "evidence": null,
    "evidence_note": "?",
    "approximations": "planned",
-   "tests": "none",
+   "tests": "Toolchain/society test/choice.test.ts 41/41, amendment 23/23, open-proposals 28/28; full suite 862 + 2 skipped at f53452e (registry keeper rerun 2026-11-01)",
    "consumers": [
     "society.organisation.actors",
     "society.collective.action"
    ],
-   "notes": "proposed by the Society keeper 2026-10-31, not yet approved by Rex. watched boundary with government.rule.creation_amendment (SOC-4, Rex's SOC-Q3; IF-47): an organisation's rules bind members who joined and may leave, law binds a territory and non-members",
+   "notes": "proposed by the Society keeper 2026-10-31, not yet approved by Rex. watched boundary with government.rule.creation_amendment (SOC-4, Rex's SOC-Q3; IF-47): an organisation's rules bind members who joined and may leave, law binds a territory and non-members; built 2026-11-01 (re-audit at society f53452e, REG-34 follow-up)",
    "overlap_groups": [],
    "unit_issues": [],
    "audit_batch": "society-keeper-2026-10-31",
@@ -53584,9 +53601,9 @@
    "reads": [],
    "aggregates": null,
    "vv": {
-    "implemented": false,
-    "integrated": "no (not built)",
-    "validated": "n/a",
+    "implemented": true,
+    "integrated": "partial (society kernel.json process declared; the check with it fails on unregistered reads, REG-34)",
+    "validated": "no (D-SOC-1 study evidence is the validation route; not a VV sign-off)",
     "record": {
      "sources_and_model": {
       "sources": "Society DESIGN.md sources; evidence per unit",
@@ -53594,8 +53611,10 @@
       "evidence_level": null
      },
      "applicability": "planned",
-     "verification_tests": "none",
-     "validation_evidence": [],
+     "verification_tests": "Toolchain/society test/choice.test.ts 41/41, amendment 23/23, open-proposals 28/28; full suite 862 + 2 skipped at f53452e (registry keeper rerun 2026-11-01)",
+     "validation_evidence": [
+      "re-audit 2026-11-01 at society f53452e: 862 + 2 skipped, tsc clean"
+     ],
      "tolerance": null,
      "stability_conservation_boundary": [],
      "numerical": {
@@ -53605,7 +53624,7 @@
      },
      "integration_tested_with": [],
      "integration_tests": [],
-     "report": "proposed by the Society keeper 2026-10-31, not yet approved by Rex. watched boundary with government.rule.creation_amendment (SOC-4, Rex's SOC-Q3; IF-47): an organisation's rules bind members who joined and may leave, law binds a territory and non-members"
+     "report": "proposed by the Society keeper 2026-10-31, not yet approved by Rex. watched boundary with government.rule.creation_amendment (SOC-4, Rex's SOC-Q3; IF-47): an organisation's rules bind members who joined and may leave, law binds a territory and non-members; built 2026-11-01 (re-audit at society f53452e, REG-34 follow-up)"
     }
    },
    "rate_limiter": null,

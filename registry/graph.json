@@ -4982,7 +4982,7 @@
   {
    "id": "society.affordance.offer",
    "engine": "society",
-   "status": "planned",
+   "status": "built",
    "kind": "mechanism",
    "domain": "F",
    "scope": "universal"
@@ -5046,7 +5046,7 @@
   {
    "id": "society.institution.formation_dissolution",
    "engine": "society",
-   "status": "planned",
+   "status": "built",
    "kind": "mechanism",
    "domain": "F",
    "scope": "universal"
@@ -5062,7 +5062,7 @@
   {
    "id": "society.network.communication",
    "engine": "society",
-   "status": "planned",
+   "status": "built",
    "kind": "mechanism",
    "domain": "F",
    "scope": "universal"
@@ -5078,7 +5078,7 @@
   {
    "id": "society.organisation.actors",
    "engine": "society",
-   "status": "planned",
+   "status": "built",
    "kind": "mechanism",
    "domain": "F",
    "scope": "universal"
@@ -5086,7 +5086,7 @@
   {
    "id": "society.organisation.collective_choice",
    "engine": "society",
-   "status": "planned",
+   "status": "built",
    "kind": "mechanism",
    "domain": "F",
    "scope": "universal"

@@ -70,7 +70,7 @@ mechanisms, and are not itemised. Coverage limits are listed in `HQ/handoffs/reg
 | settlement mechanisms | 23 | 0 | 1 | 24 |
 | economy mechanisms | 24 | 0 | 5 | 29 |
 | cognition mechanisms | 14 | 0 | 41 | 55 |
-| society mechanisms | 1 | 0 | 17 | 18 |
+| society mechanisms | 6 | 0 | 12 | 18 |
 | government mechanisms | 6 | 0 | 10 | 16 |
 | knowledge mechanisms | 0 | 0 | 7 | 7 |
 | history mechanisms | 0 | 0 | 1 | 1 |
@@ -78,7 +78,7 @@ mechanisms, and are not itemised. Coverage limits are listed in `HQ/handoffs/reg
 | shared mechanisms | 7 | 5 | 5 | 17 |
 | pirate-ship mechanisms | 24 | 63 | 15 | 102 |
 | restatements (pirate docs and adapters) | 0 | 90 | 2 | 92 |
-| **all rows** | 230 | 161 | 199 | 590 |
+| **all rows** | 235 | 161 | 194 | 590 |
 
 **Restatements** are not errors: the pirate body docs are rendered from the same library JSON as the realism
 code (`body/build-body-data.py`), so their tables cannot disagree with the code. Disagreements live only in their
@@ -488,7 +488,7 @@ stability/conservation/boundary tests, `integration_tested_with`, integration te
 
 | id | st | dom | sc | ev | V&V | overlaps | home |
 |---|---|---|---|---|---|---|---|
-| `society.affordance.offer` | P | F | U | 4 | --- |  | society/DESIGN.md (society 1515974; proposed, awaiting Rex) |
+| `society.affordance.offer` | B | F | U | 4 | I-- |  | society/src/affordance.ts offers (householdOffers and migrationOffers return none until th |
 | `society.class.structure` | P | F | U | 3 | --- |  | society/DESIGN.md (society 1515974; proposed, awaiting Rex) |
 | `society.collective.action` | P | F | U | ? | --- |  | society/DESIGN.md (society 1515974; proposed, awaiting Rex) |
 | `society.convention.payment_acceptance` | B | F | U | ? | I-- |  | society/src/acceptance.ts acceptance(group, asset, window, records); src/network.ts trade  |
@@ -496,12 +496,12 @@ stability/conservation/boundary tests, `integration_tested_with`, integration te
 | `society.doctrine.transmission_divergence` | P | F | U | ? | --- |  | ENGINES.md 'Institutions, government and religion emerge' (Rex 2026-10-31; planned) |
 | `society.household.structure` | P | F | U | ? | --- | DUP-59 | ROADMAP P6 Society (planned) |
 | `society.influence.partner_choice` | P | F | U | ? | --- |  | ENGINES.md 'Attraction and partner selection' (Rex 2026-10-30; planned, after the P7 Cogni |
-| `society.institution.formation_dissolution` | P | F | U | ? | --- |  | ENGINES.md 'Institutions, government and religion emerge' (Rex 2026-10-31; planned) |
+| `society.institution.formation_dissolution` | B | F | U | ? | I-- |  | society/src/formation.ts found, secede, split, merge, dissolve; src/institution.ts classif |
 | `society.migration.flows` | P | F | U | ? | --- | DUP-41 | society/DESIGN.md (society 1515974; proposed, awaiting Rex) |
-| `society.network.communication` | P | F | U | ? | --- | DUP-60 DUP-61 | ENGINES.md 'Communication and information transmission' (Rex 2026-10-30; owned by Cognitio |
+| `society.network.communication` | B | F | U | ? | I-- | DUP-60 DUP-61 | society/src/network.ts CommunicationNetwork (society f53452e); DESIGN §1.1; design approve |
 | `society.norm.sanction` | P | F | U | ? | --- |  | society/DESIGN.md (society 1515974; proposed, awaiting Rex) |
-| `society.organisation.actors` | P | F | U | ? | --- | DUP-58 | ROADMAP P6 Society (planned) |
-| `society.organisation.collective_choice` | P | F | U | ? | --- |  | society/DESIGN.md (society 1515974; proposed, awaiting Rex) |
+| `society.organisation.actors` | B | F | U | ? | I-- | DUP-58 | society/src/organisation.ts OrganisationStore; src/charter.ts validateCharter, validateRef |
+| `society.organisation.collective_choice` | B | F | U | ? | I-- |  | society/src/choice.ts collectiveChoice, pairwiseCollectiveChoice, proposalProcedure; src/a |
 | `society.population.demography` | P | F | U | ? | --- | DUP-41 | society/DESIGN.md (society 1515974; proposed, awaiting Rex) |
 | `society.presentation.interpretation` | P | F | U | ? | --- |  | ENGINES.md 'Style and presentation' (Rex 2026-10-30; a shared planned mechanism, not an en |
 | `society.religion.community_ritual` | P | F | U | ? | --- |  | ENGINES.md 'Institutions, government and religion emerge' (Rex 2026-10-31; planned) |

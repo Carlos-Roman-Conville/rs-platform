@@ -3421,3 +3421,29 @@ VV_OVERRIDES["society.convention.payment_acceptance"] = {"validated": "no (the �
 for _q in EXTRA_QUANTITIES:
     if _q["id"] == "society.payment_acceptance_share":
         _q["status"] = "built (society 5288 bf20d01; out port at edb1696, 2026-11-01)"
+
+# --- 2026-11-01: REG-34 follow-up. Society added mechanisms arrays to kernel.json processes (20f481d, f53452e). Registry keeper re-audited at society f53452e (tree clean):
+# vitest 862 pass + 2 skipped (20 files), tsc --noEmit clean; design approved (Rex, 2026-10-31, DESIGN status line). Six P6 rows with code and tests flipped to built
+# (collective_choice included: the check flags it too). society.household.structure stays planned (Society: not built). The check with ../society/kernel.json still fails on
+# twelve reads absent from quantities.json and three writer mismatches; owners' calls, sent to the controller (REG-34) ---
+_SOC_BUILT = {
+    "society.network.communication": ("src/network.ts CommunicationNetwork", "test/network.test.ts 38/38", "DESIGN §1.1"),
+    "society.organisation.actors": ("src/organisation.ts OrganisationStore; src/charter.ts validateCharter, validateReference", "test/organisation.test.ts 25/25, charter*.test.ts 553/553", "DESIGN §1.2, §1.2a"),
+    "society.organisation.collective_choice": ("src/choice.ts collectiveChoice, pairwiseCollectiveChoice, proposalProcedure; src/amendment.ts; src/open-proposals.ts", "test/choice.test.ts 41/41, amendment 23/23, open-proposals 28/28", "DESIGN §1.3"),
+    "society.institution.formation_dissolution": ("src/formation.ts found, secede, split, merge, dissolve; src/institution.ts classifyInstitution", "test/formation.test.ts 26/26, institution*.test.ts 12/12", "DESIGN §1.4"),
+    "society.affordance.offer": ("src/affordance.ts offers (householdOffers and migrationOffers return none until those rows are built)", "test/affordance.test.ts 17/17", "DESIGN §1.13, IF-46"),
+}
+_seen = set()
+def _soc_apply(_r, _w, _t, _d):
+    _r["status"] = "built"
+    _r["home"] = "Toolchain/society/" + _w + " (society f53452e); " + _d + "; design approved (Rex, 2026-10-31); was: " + (_r.get("home") or "")
+    _r["tests"] = "Toolchain/society " + _t + "; full suite 862 + 2 skipped at f53452e (registry keeper rerun 2026-11-01)"
+    _r["notes"] = (_r.get("notes") or "") + "; built 2026-11-01 (re-audit at society f53452e, REG-34 follow-up)"
+for _r in EXTRA_ROWS:
+    if _r["id"] in _SOC_BUILT:
+        _soc_apply(_r, *_SOC_BUILT[_r["id"]]); _seen.add(_r["id"])
+assert _seen == set(_SOC_BUILT), set(_SOC_BUILT) - _seen
+for _id in _SOC_BUILT:
+    VV_OVERRIDES[_id] = {"validated": "no (D-SOC-1 study evidence is the validation route; not a VV sign-off)",
+                         "integrated": "partial (society kernel.json process declared; the check with it fails on unregistered reads, REG-34)",
+                         "evidence": "re-audit 2026-11-01 at society f53452e: 862 + 2 skipped, tsc clean"}
