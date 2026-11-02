@@ -3569,3 +3569,9 @@ for _q in EXTRA_QUANTITIES:
         _q["description"] = ("DIAGNOSTIC, not a mind quantity (Rex 2026-11-01, §4.7): competence as a measured profile of theta_f's performance over tasks and budgets, never known "
                              "to the mind and never read by allocation; supersedes the provisional log form read as L_f. " + _q["description"])
         _q["status"] = "diagnostic (experimental V2; no mind writer), 2026-11-01"
+# Cognition keeper 2026-11-01: §4.7 narrows C-Q20 and C-Q21 (Cognition DESIGN §12 rows reworded in its next doc unit)
+for _r in EXTRA_ROWS:
+    if _r["id"] == "cognition.personality.function_development":
+        _r["notes"] += ("; open questions narrowed by §4.7 (Cognition keeper 2026-11-01): C-Q20 now asks only the form of R_f (relevance and availability of learning "
+                        "opportunities) and the habit constants h and E_0 (FUNCTION-DESIGN H-Q1, H-Q2), k_f and C_f,0 retired; C-Q21 now asks only whether E_f, and so H_f, "
+                        "decays without practice, 'how C_f enters L_f' retired")

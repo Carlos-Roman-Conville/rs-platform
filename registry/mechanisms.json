@@ -3757,7 +3757,7 @@
    "consumers": [
     "cognition.personality.function_allocation"
    ],
-   "notes": "a separate row so each quantity has one writer (allocation owns A_f); not built; does not interrupt the baseline or T-1/T-2; open: C-Q20 (sources for k_f, C_f,0, R_f), C-Q21 (how C_f enters L_f; decay of E_f); experimental V2, not baseline (Rex 2026-11-01, FUNCTION-DESIGN §4.6-§4.7 at cognition de6625b; unit 5463 bc203cb; DESIGN §22.7 with unit 5464): writes mind.function_experience only; competence is an outside measurement (mind.function_competence is a diagnostic, no mind writer)",
+   "notes": "a separate row so each quantity has one writer (allocation owns A_f); not built; does not interrupt the baseline or T-1/T-2; open: C-Q20 (sources for k_f, C_f,0, R_f), C-Q21 (how C_f enters L_f; decay of E_f); experimental V2, not baseline (Rex 2026-11-01, FUNCTION-DESIGN §4.6-§4.7 at cognition de6625b; unit 5463 bc203cb; DESIGN §22.7 with unit 5464): writes mind.function_experience only; competence is an outside measurement (mind.function_competence is a diagnostic, no mind writer); open questions narrowed by §4.7 (Cognition keeper 2026-11-01): C-Q20 now asks only the form of R_f (relevance and availability of learning opportunities) and the habit constants h and E_0 (FUNCTION-DESIGN H-Q1, H-Q2), k_f and C_f,0 retired; C-Q21 now asks only whether E_f, and so H_f, decays without practice, 'how C_f enters L_f' retired",
    "overlap_groups": [],
    "unit_issues": [],
    "audit_batch": "rex-2026-10-31-function-development",
@@ -3790,7 +3790,7 @@
      },
      "integration_tested_with": [],
      "integration_tests": [],
-     "report": "a separate row so each quantity has one writer (allocation owns A_f); not built; does not interrupt the baseline or T-1/T-2; open: C-Q20 (sources for k_f, C_f,0, R_f), C-Q21 (how C_f enters L_f; decay of E_f); experimental V2, not baseline (Rex 2026-11-01, FUNCTION-DESIGN §4.6-§4.7 at cognition de6625b; unit 5463 bc203cb; DESIGN §22.7 with unit 5464): writes mind.function_experience only; competence is an outside measurement (mind.function_competence is a diagnostic, no mind writer)"
+     "report": "a separate row so each quantity has one writer (allocation owns A_f); not built; does not interrupt the baseline or T-1/T-2; open: C-Q20 (sources for k_f, C_f,0, R_f), C-Q21 (how C_f enters L_f; decay of E_f); experimental V2, not baseline (Rex 2026-11-01, FUNCTION-DESIGN §4.6-§4.7 at cognition de6625b; unit 5463 bc203cb; DESIGN §22.7 with unit 5464): writes mind.function_experience only; competence is an outside measurement (mind.function_competence is a diagnostic, no mind writer); open questions narrowed by §4.7 (Cognition keeper 2026-11-01): C-Q20 now asks only the form of R_f (relevance and availability of learning opportunities) and the habit constants h and E_0 (FUNCTION-DESIGN H-Q1, H-Q2), k_f and C_f,0 retired; C-Q21 now asks only whether E_f, and so H_f, decays without practice, 'how C_f enters L_f' retired"
     }
    },
    "rate_limiter": null,
