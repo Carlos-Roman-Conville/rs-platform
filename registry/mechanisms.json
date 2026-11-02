@@ -52577,6 +52577,8 @@
    "unit_issues": [],
    "audit_batch": "society-keeper-2026-10-31",
    "audit_id": null,
+   "rate_limiter": "offers open only as fast as their sources change: membership and charters (§1.2), meetings a charter schedules (§1.3), network contacts for a founding circle (§1.1, §1.4), balances for a fee; computing offers is a stateless projection (recomputing unlimited) and an offer never acts; taking one is the person's own intention, limited by their hours (§1.1) and re-checked against true state at the attempt (IF-46 amendment A). (Society DESIGN §1.18, 679abe7)",
+   "failure_mode": "a rule needing an amount or fact the host did not supply (fee amount, sponsor count, sponsor, kinship or occupation facts, founding-circle window) refuses with an error naming it, never a default or a silently dropped offer; a source with no open rule offers nothing; an offer the true state no longer allows is refused at the attempt as an outcome event the mind observes. (Society DESIGN §1.18, 679abe7)",
    "writes": [
     "society.affordance"
    ],
@@ -52608,9 +52610,7 @@
      "integration_tests": [],
      "report": "proposed by the Society keeper 2026-10-31, not yet approved by Rex. the only writer of society.affordance; offering is not choosing (Cognition's, IF-46); its source rows stay providers. Evidence level 4, a simulation interface; built 2026-11-01 (re-audit at society f53452e, REG-34 follow-up)"
     }
-   },
-   "rate_limiter": null,
-   "failure_mode": null
+   }
   },
   {
    "id": "society.class.structure",

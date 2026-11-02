@@ -3509,3 +3509,12 @@ EXTRA_QUANTITIES += [
 for _id in ("society.convention.payment_acceptance", "society.organisation.collective_choice"):
     _src = [r for r in EXTRA_ROWS if r["id"] == _id][0]
     ROW_PATCHES.setdefault(_id, {}).update({"rate_limiter": _src["rate_limiter"], "failure_mode": _src["failure_mode"]})
+
+# --- 2026-11-01: Society keeper: society.affordance.offer contract fields (Society DESIGN §1.18 'Contract fields: society.affordance.offer', society 679abe7) ---
+ROW_PATCHES.setdefault("society.affordance.offer", {}).update({
+    "rate_limiter": ("offers open only as fast as their sources change: membership and charters (§1.2), meetings a charter schedules (§1.3), network contacts for a founding "
+                     "circle (§1.1, §1.4), balances for a fee; computing offers is a stateless projection (recomputing unlimited) and an offer never acts; taking one is the "
+                     "person's own intention, limited by their hours (§1.1) and re-checked against true state at the attempt (IF-46 amendment A). (Society DESIGN §1.18, 679abe7)"),
+    "failure_mode": ("a rule needing an amount or fact the host did not supply (fee amount, sponsor count, sponsor, kinship or occupation facts, founding-circle window) refuses "
+                     "with an error naming it, never a default or a silently dropped offer; a source with no open rule offers nothing; an offer the true state no longer allows "
+                     "is refused at the attempt as an outcome event the mind observes. (Society DESIGN §1.18, 679abe7)")})
