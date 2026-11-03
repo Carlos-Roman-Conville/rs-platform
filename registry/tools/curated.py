@@ -3575,3 +3575,46 @@ for _r in EXTRA_ROWS:
         _r["notes"] += ("; open questions narrowed by §4.7 (Cognition keeper 2026-11-01): C-Q20 now asks only the form of R_f (relevance and availability of learning "
                         "opportunities) and the habit constants h and E_0 (FUNCTION-DESIGN H-Q1, H-Q2), k_f and C_f,0 retired; C-Q21 now asks only whether E_f, and so H_f, "
                         "decays without practice, 'how C_f enters L_f' retired")
+
+# --- 2026-11-03: registry keeper; REG-41, REG-43, REG-44; INTEGRATION-PLAN rev 3 M1a-08, M1a-14, M5-14 (unit 5574) ---
+EXTRA_QUANTITIES += [
+ {"id": "society.household_arrangement", "kind": "record", "unit": None, "scope": "society", "writer": "society.household.structure",
+  "description": ("a household's declared ownership-and-access arrangement: kind plus permit and deny entries "
+                  "{who: person id | members | non-members, good: id | any, window?}, each labelled fixture, assumption or sourced "
+                  "(Society PLAN H7, SN-3; INTEGRATION-PLAN M1a-14, IT-M1a-7)"),
+  "status": "planned (society 5472, 5474; REG-43, 2026-11-03)"},
+ {"id": "society.draw_authorisation", "kind": "record", "unit": None, "scope": "society", "writer": "society.household.structure",
+  "description": ("the authorisation value of a take from a household inventory, authorised | unauthorised | unjudged, "
+                  "with its basis (the matching permit or deny entry, or none); advisory, never blocks the physical take; "
+                  "Economy records it per take (economy PLAN EN-3). Non-membership alone is never unauthorised (INTEGRATION-PLAN M1a-14, IT-M1a-7)"),
+  "status": "planned (society 5472, 5474; REG-43, 2026-11-03)"},
+]
+EXTRA_QUANTITIES.append({"id": "contract.right_of_use", "kind": "quantity", "unit": "1", "scope": "contract", "writer": None,
+    "written_by": "host: Settlement hasRightOfUse(household, building) (title holder or active tenant; settlement 5551)",
+    "description": ("whether a household has the right of use of a building; read by society.household.structure "
+                    "(same provider-port convention as contract.available_hours)"),
+    "status": "provider-port vocabulary (REG-43, 2026-11-03)"})
+EXTRA_QUANTITIES += [
+ {"id": "world.position", "kind": "record", "unit": "cell id + m", "scope": "world", "writer": None,
+  "written_by": ("Reality move and mechanics commands inside the resolver's per-step transaction (RN-2); "
+                 "declared by the fixture at load in M1a"),
+  "description": ("the cell a body or object is in; a Reality port output under kernel K1's writer-checked PortTable.write "
+                  "(Reality decision 2026-11-02, KRN-53; REAL-40); readers Life, Cognition (perception), Economy (where goods are) read only"),
+  "status": "planned (REG-44, 2026-11-03)"},
+ {"id": "world.movement_state", "kind": "record", "unit": None, "scope": "world", "writer": None,
+  "description": ("{path, segment index, progress_m along the current segment (m, authoritative), status}; the cell changes when a segment boundary "
+                  "is crossed; a failed step rolls back only itself (Reality PLAN §4, RN-2); Reality port output as world.position"),
+  "status": "planned (REG-44, 2026-11-03)"},
+ {"id": "government.entitlement", "kind": "record", "unit": None, "scope": "government", "writer": None,
+  "description": ("heir-at-law person id(s) of a holding, or unresolved with reason; who is entitled under law, never who receives; "
+                  "written once per holder's death; separate from Society's custom record; never executes a transfer (Government PLAN 3.8; INH-06)"),
+  "status": "planned (REG-41, 2026-11-03)"},
+ {"id": "government.case", "kind": "record", "unit": None, "scope": "government", "writer": None,
+  "description": ("append-only records of report, evidence, finding and order for an alleged breach; each may disagree with government.violation and with "
+                  "each other; a finding reads only evidence presented (Government PLAN GN-3)"),
+  "status": "planned (REG-41, 2026-11-03)"},
+ {"id": "government.report", "kind": "record", "unit": None, "scope": "government", "writer": None,
+  "description": ("an official's written claim of an act or collection, possibly false; never reconciled away: its gap to the transactions is the deception "
+                  "(fact ≠ record ≠ belief, PLAN-SPEC §3; Government PLAN §B)"),
+  "status": "planned (REG-41, 2026-11-03)"},
+]
