@@ -1,6 +1,48 @@
 {
   "events": [
     {
+      "type": "cognition.decision",
+      "producer": "cognition.decision.evaluate",
+      "consumers": [
+        "history.record.backend"
+      ],
+      "cause": "optional",
+      "payload": {
+        "mind": {
+          "kind": "id",
+          "required": true
+        },
+        "t": {
+          "kind": "integer",
+          "required": true
+        },
+        "needs": {
+          "kind": "list",
+          "required": true,
+          "of": "record"
+        },
+        "candidates": {
+          "kind": "list",
+          "required": true,
+          "of": "record"
+        },
+        "ineligible": {
+          "kind": "list",
+          "required": true,
+          "of": "record"
+        },
+        "intention": {
+          "kind": "id",
+          "required": true
+        },
+        "kept": {
+          "kind": "string",
+          "required": true
+        }
+      },
+      "notes": "M1a-27 (INTEGRATION-PLAN rev 3; cognition 5511). One per decide per mind, also when commitment keeps the intention; emitted before cognition.intention. A read-only record of the decision trace: no world state. History reads it for IT-M1a-4."
+    },
+    {
       "type": "cognition.intention",
       "producer": "cognition.decision.select",
       "consumers": [
@@ -53,9 +95,17 @@
           "kind": "list",
           "required": true,
           "of": "record"
+        },
+        "reason": {
+          "kind": "string",
+          "required": false
+        },
+        "diagnostic": {
+          "kind": "record",
+          "required": false
         }
       },
-      "notes": "CG-16/CG-18 (Cognition keeper 2026-11-01; agreed by Reality, Life, Economy and Settlement). One outcome type for every action kind; cause = the intention event id; status completed | failed | impossible (C-Q25 decided by the controller 2026-11-01: a refusal is failed, the reason among the stimuli). Produced by the engine resolving the action kind (shared.action.resolution); consumed through the host's outcome command. stimuli are raw scene truth records; each element is a record (kernel 5067, 1080dec: of 'record'; inner fields untyped). payload? carries the engine-native record (trade, refused, contact_event) and is not typed here. Settlement (3047) emits it only when hire carries a cause, with stimuli [{post, holder, wage}]. Kernel 3011 inventory (2026-11-01): today emitted by Settlement (src/commands.ts:589, producer settlement.assign.workforce) with payload {cause, status, stimuli, payload}; the harness adapter (kernel/harness/adapters.ts:30) publishes the reducer object but does not forward cause to the kernel envelope, so the envelope cause was missing; fixed by kernel 5066 (cd2feee): the adapter forwards a string cause to the envelope (REG-31). Economy emits it too (unit 5050, economy 4831b5a; registry keeper rerun test/outcome.test.ts O1-O8 13/13, 2026-11-01): when a buy, sell or takeMass command carries a cause, as that command's last event; completed with the bought/sold/stockChanged payload and stimuli {good, units, price, amount, market, inventory} or {inventory, good, kg}; failed with the refused event as payload and its fields (incl. reason) as stimuli; never impossible. Producing mechanisms: economy.trade.trade, economy.inventory.holdings."
+      "notes": "CG-16/CG-18 (Cognition keeper 2026-11-01; agreed by Reality, Life, Economy and Settlement). One outcome type for every action kind; cause = the intention event id; status completed | failed | impossible (C-Q25 decided by the controller 2026-11-01: a refusal is failed, the reason among the stimuli). Produced by the engine resolving the action kind (shared.action.resolution); consumed through the host's outcome command. stimuli are raw scene truth records; each element is a record (kernel 5067, 1080dec: of 'record'; inner fields untyped). payload? carries the engine-native record (trade, refused, contact_event) and is not typed here. Settlement (3047) emits it only when hire carries a cause, with stimuli [{post, holder, wage}]. Kernel 3011 inventory (2026-11-01): today emitted by Settlement (src/commands.ts:589, producer settlement.assign.workforce) with payload {cause, status, stimuli, payload}; the harness adapter (kernel/harness/adapters.ts:30) publishes the reducer object but does not forward cause to the kernel envelope, so the envelope cause was missing; fixed by kernel 5066 (cd2feee): the adapter forwards a string cause to the envelope (REG-31). Economy emits it too (unit 5050, economy 4831b5a; registry keeper rerun test/outcome.test.ts O1-O8 13/13, 2026-11-01): when a buy, sell or takeMass command carries a cause, as that command's last event; completed with the bought/sold/stockChanged payload and stimuli {good, units, price, amount, market, inventory} or {inventory, good, kg}; failed with the refused event as payload and its fields (incl. reason) as stimuli; never impossible. Producing mechanisms: economy.trade.trade, economy.inventory.holdings. 2026-11-03 (INTEGRATION-PLAN rev 3, M1a-20; KRN-52; HIST-16): the host resolution is the only emitter, source kernel.harness.resolver, after commit or rollback and outside the transaction; one terminal outcome per intention, an intention may span several committed steps; a technical failure is one outcome {status: failed, reason: technical} or an explicit retry with the same intention id; no crisis or death event has this source. Settlement's hire (IF-27) keeps its own producer until the work resolution moves under the harness."
     },
     {
       "type": "settlement.post_filled",
