@@ -1,6 +1,6 @@
 # The eleven engines: what each does and how they connect
 
-**Status:** the stable reference (controller, 2026-10-31). `ENGINES.md` is the dated decision log and stays the
+**Status:** the stable reference (controller, 2026-10-31; last rewritten 2026-10-31 ~22:15 after every engine got a keeper, a repo and a lane). `ENGINES.md` is the dated decision log and stays the
 authority on *why*; this file is the authority on *what each engine is for* and is rewritten, never appended, when a
 decision changes it. Every row here traces to `PLATFORM.md`, `ENGINES.md`, `ROADMAP.md` or the registry. Nothing
 below is a controller invention. Marks: **(Rex)** his decision; proposed; open.
@@ -15,10 +15,15 @@ the material properties of wood; Life owns the living tree, its biomass producti
 Economy owns harvested timber inventories, processing and exchange. Felling is a conservation-preserving transfer of
 mass from Life's stock to Economy's inventory, never a second count. The same sequence holds for crops, fish and game.
 
+**Dependencies are pinned, never live (Rex, 2026-10-31, kernel DESIGN §16):** an engine consumes another only at an
+immutable release tag installed from the local backup mirror (tarball as fallback), upgrades only in a paired belt unit,
+and each run records its compatible versions; releases are cut for any change a consumer needs; release commits must
+exist off-machine. Live `file:` links are being retired.
+
 Three rules bind all eleven: one authoritative owner per mechanism (the registry tracks it); explain outcomes by
 mechanisms, never by scripts, dates, levels or meters; nothing is a fixed property that a mechanism could produce.
 
-## Six engines exist
+## Six engines built before 2026-10-31
 
 ### 1. Kernel (`Toolchain/kernel`, `@rex/kernel`, repo `rs-kernel`) — P0, complete 2026-10-30
 
@@ -31,7 +36,9 @@ all as warnings or failures).
 **Reads from / writes to:** nothing of its own; every other engine imports it and declares its processes, reads and
 writes in a `kernel.json` that the check script reads as data. Provider calls between engines are ports too
 (decided 2026-10-31), so ports are the one integration mechanism.
-**State:** 149 tests; adopted by all five other engines; the thirty-day three-engine harness lives here.
+**State:** 149 tests; adopted by every engine; the thirty-day three-engine harness lives here; v0.1.0 released 2026-11-01 and pinned by
+six engines; v0.1.1 released (compiled JS in dist/, because Node refuses to type-strip .ts under node_modules; §16);
+snapshot header v2 with numeric epoch and catalogue hash landed.
 
 ### 2. Reality (`Toolchain/realism` today → `Toolchain/reality`, `@rex/reality`, repo `rs-reality`) — P2 next
 
@@ -48,7 +55,8 @@ light and sound fields. **Read by:** Life (heat, air, light, sound, terrain, wat
 construction), Economy (non-living resource stocks: mineral deposits, water, stone, clay, as physical quantities with conservation), game
 adapters (tiles, blocks, weather display).
 **State:** built inside `realism/` (thermodynamics, gases, chemistry, atmosphere, environment); the package split
-(`realism/SPLIT.md`) moves it out module by module; 80 registry rows, 43 built.
+(`realism/SPLIT.md`, landed) moves it out module by module; 82 registry rows, 44 built. Keeper: the Reality & Species
+keeper, sole committer to `realism/` until the split; phase 6 mechanics is its next design.
 
 ### 3. Life (`Toolchain/realism` today → `Toolchain/life`, `@rex/life`, repo `rs-life`) — P1 landed, P3 later
 
@@ -65,8 +73,10 @@ of them, never a second source of numbers (Rex). **Life owns what a body can do.
 quantities: hunger and satiety signals, capacity, pain, transmitter and hormone levels, detectability (what a body can
 perceive), fatigue, crises and deaths. **Read by:** Cognition (every body signal and sense), Settlement and Economy
 (labour supply in person-hours from population, mortality), game adapters (stats, medicine, food, weather on bodies).
-**State:** the bulk of today's `realism/`: 134 registry rows, 84 built, 286+ tests; population and demography sit here
-until Society exists.
+**State:** the bulk of today's `realism/`: 132 registry rows, 83 built, 286+ tests; population and demography sit here
+until Society exists. Keeper since 2026-10-31: the Life keeper (design approved: plants with the three records, four
+Caribbean species first, pollinators as populations; twelve units queued in the realism lane); takes the `life` package
+when SPLIT step 4 lands.
 
 ### 4. Settlement (`Toolchain/settlement`, `@rex/settlement`, repo `rs-settlement`) — built
 
@@ -97,7 +107,7 @@ planned). **Writes to:** inventories, prices, trades, shipments, wage levels. **
 prices, wages), Society and Government (planned: incomes, taxation), game adapters.
 **Planned edge:** Cognition → Economy (IF-26, IF-27): an individual's wants and refusals become demand and labour
 offers; today consumption is per-capita with no individual input.
-**State:** 42 tests; 26 registry rows, 21 built; pirate adapter and thirty-day benchmark. The food group (DUP-21) is approved,
+**State:** 42 tests; 26 registry rows, 21 built; 19 provider calls declared as ports; pirate adapter and thirty-day benchmark. The food group (DUP-21) is approved,
 not built.
 
 ### 6. Cognition (`Toolchain/cognition`, `@rex/cognition`, repo `rs-cognition`) — P7 baseline accepted 2026-10-30
@@ -120,12 +130,12 @@ from other minds (communication, planned). **Writes to:** `mind.*` quantities: b
 recalled body state, conversation state. **Read by:** Life (appraisal feeds neurology; planned), Economy (demand and
 labour offers; planned), Society (collective action aggregates individual states; planned), game adapters (NPC
 behaviour).
-**State:** 307 tests; CB-1 to CB-7 pass; V1 is verification only (validated: no), V2 recorded as a failure, not tuned; 13 rows
+**State:** 307 tests; 54 registry rows, 13 built; CB-1 to CB-7 pass; V1 is verification only (validated: no), V2 recorded as a failure, not tuned; 13 rows
 built, integrated with stubs; personality v1 opt-in, 16 types collapse to 3 behaviours in the hungry pair (T-3).
 
-## Five engines do not exist yet
+## Five engines started 2026-10-31 (keeper, approved design, repo and lane each; first units running)
 
-### 7. Catalogue — P4; can start now (its only input, P0, is complete)
+### 7. Catalogue (`Toolchain/catalogue`, `@rex/catalogue`, repo `rs-catalogue`) — P4, started 2026-10-31
 
 **Purpose.** The universal reference catalogue: every entity, substance, organism, technology, institution, practice
 and phenomenon with stable id, names, classification, geographic origin and spread, culture, earliest evidence, dates
@@ -136,10 +146,12 @@ information; nothing exists in the world because its year arrived. Two uses: gam
 that beliefs and History are compared against.
 **Reads from:** Kernel (ids). **Read by:** every engine for reference data and labels; game adapters for starting
 conditions; History for validation baselines.
-**Today:** no keeper, no package; a second catalogue is quietly forming in the pirate `STARTING_TOWN.md`,
-`CULTURE.md`, `TECHNOLOGY.md` and `economy/RESEARCH.md`, which should become its first fixture.
+**State:** design approved (CAT-Q1–Q6); repo at c02b0d1; 7 planned rows; schema, dates, regions and window query,
+tags-never-unlocks check, fixture manifest landed or running; the pirate town files are being ingested in place as the
+first fixture (~520 records); England 1270 benchmark rows next. Owns calendars and date conversion (agreed with Kernel
+and History).
 
-### 8. Society — P6
+### 8. Society (`Toolchain/society`, `@rex/society`, repo `rs-society`) — P6, started 2026-10-31
 
 **Purpose.** Population and demography (moves here from Life), households and kinship, religion, norms and
 traditions, organisations (families, churches, guilds, cults, political groups) as actors that are at once economic,
@@ -153,10 +165,12 @@ the institutions that keep memory: priests, scribes, schools, oral tradition.
 goods), Settlement (where people are), Catalogue (culture profile as a seed). **Writes to:** organisations, norms,
 cultural salience and social valuation (read by Cognition's attraction and preference learning), networks, collective
 events. **Read by:** Cognition, Economy, Government, History.
-**Today:** 10 planned rows (organisation actors, household structure, institution formation, doctrine transmission, religious community among them); factions split between pirate story
-docs and `factions.json`; culture and organisations have no built owner (CTRL-6; DUP-58, DUP-59 proposed).
+**State:** design approved (SOC-Q1–Q8; charter forms are composable components, never an exhaustive menu, Rex);
+repo at a6567b8; 17 planned rows; ten units queued (organisation actors, composable charters, the one network,
+affordances port IF-46 with Cognition); demonstration: a late-fourteenth-century English parish with fraternities.
+DUP-58/59/60 owners approved and agreed.
 
-### 9. Government — P8
+### 9. Government (`Toolchain/government`, `@rex/government`, repo `rs-government`) — P8, started 2026-10-31
 
 **Purpose.** Authority, law, offices (what an office may do; Settlement records who holds it), taxation and spending,
 property rights, enforcement, military organisation, diplomacy, succession, legitimacy; censorship and suppression of
@@ -166,9 +180,12 @@ communication; polity formation, expansion and fragmentation, war decisions and 
 **Reads from:** Society (organisations, grievances, legitimacy inputs), Economy (taxable flows), Settlement (offices,
 property), Cognition (rulers are minds). **Writes to:** laws, offices' powers, tax rules, enforcement capacity,
 polities. **Read by:** Economy (taxes, property rights), Society, Settlement, Cognition (what is permitted), History.
-**Today:** 7 planned rows (authority acquisition and delegation, rule creation and amendment, the law record as executable data, compliance and enforcement, succession, competing jurisdiction); one overlap with Settlement's built office-powers row (DUP-62: Government owns what an office may do, Settlement who holds it). Architecture may be researched while P6 and P7 build.
+**State:** design approved (GOV-Q1–Q8; authority is computed from resources, enforcement capability, recognition,
+relationships and compliance, never a stored score, formula provisional, Rex); repo at d04b4dc; 15 planned rows; law
+record as executable data, breach evaluation and the office-powers answer to Settlement queued; demonstration: an
+English manor c. 1300. DUP-62 approved: Government owns what an office may do, Settlement who holds it.
 
-### 10. Knowledge & Technology — P9
+### 10. Knowledge & Technology (`Toolchain/knowledge`, `@rex/knowledge`, repo `rs-knowledge`) — P9, started 2026-10-31
 
 **Purpose.** Discovery, invention, capability and diffusion as mechanisms: a society develops a technology from
 resources, knowledge, tools, manufacturing capability, energy, skilled labour, incentives, institutions, communication
@@ -181,9 +198,12 @@ society knows as recorded and transmitted knowledge, the bridge between one mind
 **Reads from:** Cognition (individual knowledge and inference), Society (transmission, institutions), Economy (tools,
 materials, incentives), Catalogue (reference). **Writes to:** capability states per society, diffusion. **Read by:**
 Economy (recipes become possible), Government, History.
-**Today:** 3 planned rows: media availability, technique diffusion, collective knowledge stock (DUP-61).
+**State:** design approved (KNT-Q1–Q4: five states with "invented" meaning a working method present here;
+propositions and techniques, no technique names another; media are techniques; Cognition decides at agent resolution,
+K&T aggregates); repo at dce94db; 7 planned rows; collective knowledge stock with loss implemented in its first unit;
+diffusion waits on Society's contact port.
 
-### 11. History — P10–P11
+### 11. History (`Toolchain/history`, `@rex/history`, repo `rs-history`) — P10–P11, started 2026-10-31
 
 **Purpose.** A thin composition and validation layer, **the backend record of what occurred (Rex, 2026-10-31)**:
 long-step aggregation of settlements and polities, the resolution hand-off at civilisation scale, historical
@@ -193,7 +213,10 @@ variation; Seshat and cliodynamic models as yardsticks. **Never determines what 
 engine reads it.** What people in the world know of the past is Cognition's, by fallible routes.
 **Reads from:** every engine's state over time; Catalogue for baselines. **Writes to:** the record and the validation
 reports only.
-**Today:** 1 planned row, `history.record.backend`; the kernel harness is its seed.
+**State:** design approved (HIST-Q1–Q4: owning engines write their own coarse forms, History owns the series across
+the switch and the agreement check; declared labelled boundary inputs allowed at a region's edge, never outcomes; the
+scoring amendments define the 70 %; X1 starts from a documented Catalogue village); repo at bfb1336; 1 planned row;
+resolution-aware aggregation and checks landed; X1 is its harness specification.
 
 ## How they connect
 
@@ -214,15 +237,16 @@ checkpoint and water-ledger tests, inside one package; the split names interface
 engine: adopted by all, but the registry keeps no kernel rows, the harness has not been rerun since the recovery, and
 Cognition reaches it only through host stubs. Built but not yet passing: Life → Settlement and Economy (labour in
 person-hours): population supply exists, `hours()` fails CONTRACTS §18, and no combined test exists (DUP-26, 28, 29
-open). Every other arrow is a registered planned interface (IF-1 to IF-45) and a gap in the registry's
+open). Every other arrow is a registered planned interface (IF-1 to IF-47) and a gap in the registry's
 `integration_gaps` until a combined test exists. Fourteen shared contract rows (`shared.*`) belong to no engine: they
 are the contracts between engines, not mechanisms.
 
-Five seams where a second gear is most likely to be built by mistake, all proposed overlap groups in batch 2b and
-watched by the registry: organisations (DUP-58, Economy's built row vs Society), households (DUP-59, Economy P5 vs
+Five seams where a second gear is most likely to be built by mistake, all approved overlap groups in batch 2b (Rex,
+2026-10-31), closing as their units land: organisations (DUP-58, Economy's built row vs Society), households (DUP-59, Economy P5 vs
 Society P6), transmission (DUP-60, Society's network vs Cognition's communication vs Knowledge & Technology's
 diffusion; proposal: one network, three kinds of content), and collective knowledge (DUP-61, Cognition vs Society vs
-Knowledge & Technology), and office powers (DUP-62, Settlement's built row vs Government). Three mechanisms registered 2026-10-31 as planned with owners but no design: records as
+Knowledge & Technology), and office powers (DUP-62, Settlement's built row vs Government). Overlap groups overall: 65, of which 7 closed, 25 closing, 33 proposed (batches 3–5 unwritten). Three mechanisms
+registered 2026-10-31 as planned with owners but no design: records as
 physical objects (Economy the object, Cognition the content; IF-40, IF-41), inference from remaining evidence
 (Cognition), collective knowledge with loss (Knowledge & Technology on Society's network).
 

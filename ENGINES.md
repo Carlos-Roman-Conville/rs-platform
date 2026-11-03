@@ -484,6 +484,82 @@ Fe/Ti many outlines vs one structure; Te/Fi shared vs private standard. Conflict
 rigidity), never scripted. Open: C-Q18 reconstruction vs selection in Fe; C-Q19 Se/Si/Ne/Ni profiles. Quantities
 `mind.meaning_pool`, `mind.bubble_exposure` (registry).
 
+**Developmental cognitive functions (Rex, 2026-10-31 late night, with ChatGPT; planned, personality layer; no age
+unlocks):** all four functions of a type's stack are present and available from birth; what differs is the attention,
+experience, practice and learning each receives through life. The dominant gets the greatest early allocation and
+develops fastest; the auxiliary develops to support it; the tertiary later, assisting the first two; the inferior is
+the last to be substantially integrated, yet present and usable at any age. Learning is more pronounced for data
+relevant to the first function, then the second, less for the third and fourth; the hierarchy sets **the speed at which
+each function develops and where focus is spent**, never whether it exists. Four separate quantities per function:
+baseline attention preference (the light, `B_f`), active allocation (`A_f(t)`, the dynamic-allocation paragraph),
+accumulated function-relevant experience `E_f(t+Δt) = E_f(t) + A_f(t)·R_f(t)·Δt` (R = availability and relevance of
+learning opportunities), and developed competence `C_f(t) = C_f,0 + k_f·log(1 + E_f(t))` (diminishing returns;
+provisional, not a law). Competence feeds back into future allocation, so two people with one hierarchy diverge by
+environment (an ESTP raised on abstract planning develops more Ni facility than one rewarded for immediate action);
+the baseline never changes. **Cognitive competence ≠ domain knowledge ≠ learned skill ≠ intelligence**: a developed Ti
+with little mathematics, or much mathematics reached by other strategies; development never substitutes for the
+learning and skill systems. No hardcoded ages, maturity thresholds or unlocks. Versioned formulas; test that different
+environments give different trajectories under one hierarchy. Does not interrupt the baseline or T-1/T-2.
+
+**Maturation in three layers (Rex, 2026-10-31 late night, with ChatGPT; audit before registering):** biological
+maturation is **Life's** (growth of bones, muscle, organs and nervous system; puberty and reproductive maturation;
+hormonal development; brain development as changing learning capacity and cognitive control; species-specific
+trajectories; emerging from genetics, nutrition, hormones, environment and accumulated change, **age an input, never
+the sole cause**; the no-hardcoded-ages rule is about cognitive-function unlocks, not biology). Cognitive maturation is
+**Cognition's** and is broader than the four functions: memory, attention, impulse and emotional regulation, planning,
+learning capacity, each consuming Life's neurological-development outputs rather than computing brain maturity itself;
+the function-development model operates within those constraints (a young ESTP can use Ni, but sustained long-term
+planning is bounded by both Ni experience and neural development). Social maturation is **Society and Cognition**:
+language, norms, relationships, responsibilities, culture, as acquired experience. Interacting components, not a
+pipeline. The registry keeper audits whether Life already holds an authoritative maturation mechanism before any row
+is added (DUP-17's four frozen age effects are the known neighbours).
+
+**Validation by competing architectures (Rex, 2026-11-02; FUNCTION-DESIGN §12.8, 1e0fa63).** Competing cognitive architectures
+(V1, V2, later versions) are tested in the simulator and the more realistic outcomes decide. Layer 1: small controlled mechanism
+tests inside Cognition. Layer 2: whole-world runs with Life, Reality, Society, Economy and Government from identical starts and
+seeds. Models are frozen before testing on unseen scenarios and compared with outside historical or empirical data. Results are
+reported as supported / contradicted / inconclusive / not exercised, never one weighted score. Layer 2 is the first consumer of the
+integrated multi-engine run (ROADMAP X1 / thirty-day harness lineage); nothing is asked of the other engines yet.
+
+**Cognition audit accepted (Rex, 2026-11-02).** Rex's independent audit of cognition at 49fb5fb: the general architecture and
+F1–F13 are built; the newer eight-function theory is not — Ti/Fi coherence and Si matching designed only, Te and Ni core operations
+missing, Fe/Ne/Se partial, experience-driven allocation incomplete (L_f and M_f fixed at 1 are placeholders). V2 is not built until
+its implementation and version-selectable integration exist; §22 must match the repo. Priorities: V1 preserved; V2 separate; each
+function's operation an executable transformation with a targeted test; Ni's mathematics stays open (never V1's other-mind
+projection); C-Q27, Si reference update and experience→allocation resolved as explicit mathematics; the Function Activation Ledger
+separates allocation, execution and influence; attention-weighted memory encoding implemented; deterministic replay kept; V1/V2
+compared afterward; no hardcoded personality behaviour, duplicate memory or personality-specific goals. Organising principle kept:
+introverted functions organise against internal reference structures, extraverted functions adapt to external conditions and
+objectives. V2 mechanisms are not delayed on V1 experiments.
+
+**S3 released; S1–S6 run without per-scenario approval (Rex, 2026-11-02).** S1's 200-seed result stands as recorded (0 stable /
+0 context-dependent / 64 none; 16 types → 8 behaviours; ISFJ and ISTJ identical to null), negative findings preserved, V1 never
+tuned to force separation. Classification gains a fourth class, *not exercised*, for functions whose opportunities had no input;
+thresholds are fixed in the scenario DESIGN before results are examined; S1 re-classified only as an addendum. V2 proceeds in
+isolation and is compared on identical seeds. §21 stays a review with the communication subsystem as its implementation
+dependency; no duplicate interpretation, memory or response-selection mechanisms. Only genuine blockers come to Rex; targeted
+testing per PLATFORM §11b. COG-54 closed.
+
+**Personality V2 (Rex, 2026-11-01, told to the Cognition keeper directly).** F1–F13 stay an immutable V1. Personality V2 is built
+now, in isolation, from DESIGN's recorded mechanisms (dynamic allocation, semantics, encoding, Ti/Fi/Si coherence), and compared
+with V1 on identical seeds; S1–S6 continue on V1 unchanged. Cognition units 5426–5432. New for Rex: C-Q27 (how coherence or an
+Si match enters a decision; diagnostics until then), C-Q28 (the form of M_f). S3 still held.
+
+**Competing economies and endogenous money (Rex, 2026-11-01).** Societies never automatically share prices, currencies,
+exchange ratios or definitions of value. Money is a role an asset acquires through acceptance and exchange, not a property
+of gold or any commodity; acceptance may differ between merchants, households, organisations and governments inside one
+society. Ownership: Cognition, individual willingness to accept a payment medium (usefulness, expected future
+exchangeability, trust, transaction cost); Society, shared conventions and acceptance networks; Government, legal tender
+and monetary authority; Economy, markets, exchange, currencies, credit, pricing; Settlement, balances and the ledger,
+one balance per currency. Barter, commodity money and currency exchange reuse the kernel's atomic transfer (§7a); no
+second goods-moving mechanism. Exchange rates emerge from offers and completed trades, never a conversion table.
+Competing currencies, several conventions and persistent price gaps are allowed; convergence only when arbitrage beats
+transport, risk and tariff costs. No date, population or transaction-count unlock. Demonstration: two islands with
+different valuations and acceptance, then contact through trade, unscripted. Debt stays a separate credit decision
+(ECON-26). Economy writes the design note in session; implementation waits until the five engines and the registry agree
+ownership and acceptance tests, and never interrupts integration-first. Supersedes the fixed "coin is money; gold dust
+and pearls are goods" default of econ 1: it depends on the society.
+
 **Weather validation (Rex, 2026-10-30):** monthly normals within a tolerance are necessary, not sufficient; the
 generator must also match rainfall frequency, dry-spell duration, temperature variability, wind distributions,
 seasonal patterns and extreme-event frequency, with variable-specific tolerances and independent observational
@@ -598,3 +674,18 @@ Catholic, under a monarchy, with private merchant ownership and strong mutual ai
 | 2026-10-31 | Rex: institutions, government and religion emerge, never assigned; laws as executable rules data; religion split Cognition / Society / Government; eight planned mechanisms registered |
 | 2026-10-31 | Rex approved batch 2b, X1, the Catalogue design and the Life design (answers in the PLATFORM log row of the same date); approval markers may be queued in the catalogue and life lanes |
 | 2026-10-31 | Rex (to the Cognition keeper directly): semantic systems model, meaning pools, selection vs reconstruction, bubble exposure; DESIGN §18 planned |
+| 2026-10-31 | Rex approved the Society (SOC-Q1–8), Government (GOV-Q1–8), Knowledge & Technology (KNT-Q1–4) and History (HIST-Q1–4) designs as the controller recommended, with two refinements: **GOV-Q1** authority is calculated from underlying mechanisms and observable conditions (resources, enforcement capability, institutional recognition, social relationships, compliance), never an independent power score; the formula is provisional and subject to validation. **SOC-Q2** historical charter forms are reference components, not an exhaustive menu; novel organisations must be able to emerge from valid combinations of mechanisms. Also approved: DUP-33 and DUP-32 acceptance-text amendments; REAL-33 option (a), Process S with sourced constants. Held until after the usage reset: C-Q10 and the T-1/T-2 scenario design. Rules restated: testing proportional to implementation (§11b); report only genuinely new decisions; never reopen settled ones |
+| 2026-10-31 | Rex: developmental cognitive-function model (four functions present from birth; hierarchy sets development speed and focus; experience → competence with diminishing returns → allocation feedback; competence ≠ knowledge ≠ skill); planned in the personality layer |
+| 2026-10-31 | Rex: maturation in three layers (Life biological with age as input, Cognition cognitive consuming Life's neural development, Society social); registry audits Life for an existing maturation owner before any row is added |
+| 2026-10-31 | Rex (to the Life keeper directly): tissue populations as the cellular layer's unit, kingdom-neutral (Life DESIGN §1.10): organ totals built from tissue populations with injury and repair steps, cell-type profiles by kingdom and tissue type per species; applied to the plant-growth unit before it ran. Species record widened to one row for every organism (LIFE-3); eleven plant quantities registered |
+| 2026-10-31 | Rex (to the Life keeper directly): batch 2c groups DUP-66 and DUP-67 approved; tissue integrity is not cell survival alone, the extracellular matrix matters (a matrixIntegrity field, folded into realism 2815 before it ran). Cellular architecture agreed and registered, not yet proven; first proof is 2815 passing, then the liver-and-alcohol demonstration |
+| 2026-10-31 | Cognition: T-1/T-2 domain-scenario design complete (b75cfc9): six scenarios giving every function a lever, a developmental cohort, Big Five cross-check; design only; the S1 fixture build waits on Rex's release; SC-4 and SC-5 open for Rex |
+| 2026-11-01 | Rex released the T-1/T-2 scenario build (S1→S3→S2→S4→S5→S6) with F1–F13 frozen; SC-4: no dedicated Neuroticism mechanism, investigate emergence from stress, appraisal, physiology and learning, a later stress-response experiment; SC-5: mixed-type gatherings with controlled runs holding the social environment fixed; record internal processing (attention, interpretation, alternatives, evaluation, learning) as well as actions; the wanted result is which mechanisms give stable, context-dependent, or no differences |
+| 2026-11-01 | Rex (to the Cognition keeper directly): a permanent **Function Activation Ledger** as personality tooling, not a mechanism: per mind, decision, function and hook it records activation, trigger, attention moved, interpretation and generation contributions, evaluation influence measured by ablation rerun (never inferred from the final action), learning contribution, stack position, eligibility (activated / eligible-but-not / no relevant input); frequencies normalised by opportunities; reports by function, stack, scenario, domain, stage, upbringing; intended-relevance map kept in a file no code reads; built on the existing trace infrastructure, no second log; F1–F13 frozen. Units 2917–2919 behind the S1 fixture |
+| 2026-11-01 | Rex (to the Cognition keeper directly, DESIGN §18.4): Ti and Fi share one coherence-building operation over an internal structure and differ by criterion, logical compatibility over the conceptual structure vs evaluative compatibility over the personal evaluative structure; Fe assembles by contextual integration (how present audiences will read a combination). Nothing about how choices look: identical outfits from different processes; Fi can be systematic without being verbal. General across taste, values, romantic preference, identity, moral judgement, attachment (§13a mechanism 5 given shape). Test: an Fi-weighted mind's accepted combinations stay coherent and evolve with exposure, an Fe-weighted one varies with audience. Open C-Q22: Fi coherence among valued things, or between them and identity |
+| 2026-11-01 | Rex (to the Cognition keeper, §18.4 addendum): one coherence-evaluation primitive for all four judging functions, Ti internal conceptual, Fi internal evaluative (`C_Fi(X) = Σ w_i·fit(x_i,P) + Σ v_ij·compat(x_i,x_j)`), Te external definitional/procedural, Fe external contextual (`C_Fe(X,c) = meaning(X,c)`); never tied to a colour or movement; mixing unlike things is not Fe and one style is not Fi, the criterion decides, never visible variation. Extension of §18 and §13, no new row |
+| 2026-11-01 | Rex decided C-Q22 (to the Cognition keeper): both, as two levels of one Fi mechanism: compatibility among valued things builds an evaluative structure and a developing identity, which feeds back into what feels compatible; `C_Fi(X,t) = Σ w_i·fit(x_i,P_t) + Σ v_ij·compat(x_i,x_j) + λ_t·identityFit(X,I_t)`, with I_t Cognition's existing self-model, never a separate Fi store; no fixed aesthetic or moral code by type; a developmental prediction from learning history, never an age unlock. Open C-Q23: which existing structure is I_t |
+| 2026-11-01 | Rex (to the Cognition keeper, DESIGN §18.5): Si as reference matching, `C_Si(a,R_i) = match(a,R_i)` against an internalised representation of what something is supposed to be, updated by observation as interpreted through the auxiliary (Si–Te reads a role through rules, Si–Fe through social expectation; neither correct by construction); role consistency is one application of a general reference-matching operation over persons, environments, procedures, roles, patterns, histories; Si preserves a possibly wrong interpretation of the past; Si vs Fi: preserving a role that matches who one is supposed to be vs rejecting one that conflicts with values. Knight experiment proposed. Open C-Q24: Ni/Se/Ne principles and the forms of match and update |
+| 2026-11-01 | Rex commissioned the causal-chain completeness audit (CHAINS.md) for the ecological, lifecycle and decision chains; X1 demonstrates chain 1, the hungry pair seeds chain 3. Note: rs-reality on GitHub is empty by design until the realism package split moves physics out of rs-life |
+| 2026-11-01 | Controller (for Rex to overrule): the kernel gains a generic **transfer service** (debit source, credit destination, record, check, inside a transaction; no formula) so §7a is enforced once for every engine's flows (CG-17); event contracts live in `registry/events.json` owned by the registry keeper, the kernel supplies the checker and an opt-in bus hook (CG-18) |
+
